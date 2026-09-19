@@ -23,6 +23,14 @@
       "recordedAt": "2026-09-19T15:36:36.816Z"
     }
   ],
-  "drivers": {},
+  "drivers": {
+    "saiful": {
+      "id": "saiful",
+      "name": "SAIFUL",
+      "pinHash": "8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92",
+      "active": true,
+      "createdAt": "2026-09-19T15:42:27.974Z"
+    }
+  },
   "adminPinHash": "92925488b28ab12584ac8fcaa8a27a0f497b2c62940c8f4fbc8ef19ebc87c43e"
 }
