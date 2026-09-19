@@ -1,0 +1,2491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Container Log</title>
+
+<!-- Add to Home Screen / installable PWA support -->
+<link rel="manifest" href="manifest.json">
+<link rel="icon" type="image/png" href="icon-192.png" sizes="192x192">
+<link rel="apple-touch-icon" href="icon-192.png">
+<meta name="theme-color" content="#1B1D18">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Container Log">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<style>
+  :root{
+    --bg:#E7E2D3;
+    --panel:#FFFDF6;
+    --panel-2:#F1ECDD;
+    --ink:#1B1D18;
+    --ink-soft:#5B5A4E;
+    --line:rgba(27,29,24,0.16);
+    --line-strong:rgba(27,29,24,0.32);
+    --ochre:#B9852A;
+    --ochre-ink:#3A2A08;
+    --teal:#2C5F6F;
+    --green:#3F6B44;
+    --amber:#B9862A;
+    --red:#A23B2E;
+    --display:'Oswald',sans-serif;
+    --body:'Inter',sans-serif;
+    --mono:'IBM Plex Mono',monospace;
+    --radius:3px;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#15181A;
+      --panel:#1D2123;
+      --panel-2:#23282A;
+      --ink:#ECE8DA;
+      --ink-soft:#A6A392;
+      --line:rgba(236,232,218,0.16);
+      --line-strong:rgba(236,232,218,0.32);
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#15181A;
+    --panel:#1D2123;
+    --panel-2:#23282A;
+    --ink:#ECE8DA;
+    --ink-soft:#A6A392;
+    --line:rgba(236,232,218,0.16);
+    --line-strong:rgba(236,232,218,0.32);
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:var(--body);
+    font-size:15px;
+    line-height:1.45;
+    min-height:100vh;
+  }
+  header.topbar{
+    background:var(--ink);
+    color:var(--bg);
+    display:flex;
+    align-items:center;
+    gap:20px;
+    padding:14px 20px;
+    flex-wrap:wrap;
+    border-bottom:4px solid var(--ochre);
+  }
+  .plate{
+    font-family:var(--display);
+    font-weight:700;
+    font-size:20px;
+    letter-spacing:0.06em;
+    padding:6px 14px;
+    border:2px solid var(--ochre);
+    border-radius:2px;
+    color:var(--ochre);
+    white-space:nowrap;
+  }
+  nav.tabs{display:flex;gap:2px;flex:1;min-width:220px;}
+  .tab{
+    background:transparent;
+    border:none;
+    color:var(--bg);
+    opacity:0.65;
+    font-family:var(--body);
+    font-weight:600;
+    font-size:14px;
+    padding:10px 16px;
+    cursor:pointer;
+    border-bottom:3px solid transparent;
+  }
+  .tab.active{opacity:1;border-bottom-color:var(--ochre);}
+  .tab:hover{opacity:1;}
+  .sync-badge{
+    font-family:var(--body);
+    font-size:11.5px;
+    font-weight:600;
+    padding:5px 10px;
+    border-radius:12px;
+    white-space:nowrap;
+    background:rgba(255,255,255,0.08);
+    color:var(--bg);
+    opacity:0.75;
+  }
+  .sync-badge.synced{opacity:1;color:#7FBF7F;}
+  .sync-badge.connecting{opacity:0.75;}
+  .sync-badge.local{opacity:0.85;color:var(--ochre);}
+  .sync-badge.error{opacity:1;color:#E07A5F;}
+  .topbar .btn-ghost{
+    background:transparent;
+    border:1px solid rgba(255,255,255,0.25);
+    color:var(--bg);
+    opacity:0.85;
+  }
+  .topbar .btn-ghost:hover{opacity:1;background:rgba(255,255,255,0.08);}
+  .driver-badge{
+    font-family:var(--body);
+    font-size:12px;
+    font-weight:600;
+    color:var(--bg);
+    opacity:0.85;
+    white-space:nowrap;
+  }
+  .login-gate{
+    position:fixed;inset:0;
+    background:var(--ink);
+    display:flex;align-items:center;justify-content:center;
+    padding:20px;
+    z-index:200;
+  }
+  .login-card{
+    background:var(--panel);
+    border-radius:var(--radius);
+    border:1px solid var(--line-strong);
+    width:100%;max-width:380px;
+    padding:28px 26px 22px;
+    text-align:center;
+  }
+  .login-card .field{text-align:left;}
+  .login-card select, .login-card input{width:100%;}
+  main{max-width:1240px;margin:0 auto;padding:22px 20px 60px;}
+  .view{display:none;}
+  .view.active{display:block;}
+  .toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:flex-end;margin-bottom:16px;}
+  .toolbar label{display:flex;flex-direction:column;gap:4px;font-size:12px;color:var(--ink-soft);font-weight:600;}
+  input,select,textarea{
+    font-family:var(--body);
+    font-size:14px;
+    color:var(--ink);
+    background:var(--panel);
+    border:1px solid var(--line-strong);
+    border-radius:var(--radius);
+    padding:8px 10px;
+  }
+  input:focus,select:focus,textarea:focus,button:focus-visible{
+    outline:2px solid var(--teal);
+    outline-offset:1px;
+  }
+  .btn{
+    font-family:var(--body);
+    font-weight:600;
+    font-size:14px;
+    padding:9px 16px;
+    border-radius:var(--radius);
+    border:1px solid var(--line-strong);
+    background:var(--panel);
+    color:var(--ink);
+    cursor:pointer;
+  }
+  .btn:hover{background:var(--panel-2);}
+  .btn-primary{background:var(--ochre);border-color:var(--ochre);color:#2A1D02;}
+  .btn-primary:hover{filter:brightness(1.06);}
+  .btn-ghost{background:transparent;border-color:transparent;color:var(--ink-soft);}
+  .btn-danger{color:var(--red);border-color:var(--red);background:transparent;}
+  .btn-danger:hover{background:var(--red);color:#fff;}
+  .btn-sm{padding:5px 10px;font-size:12.5px;}
+  .table-wrap{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    overflow-x:auto;
+  }
+  table{width:100%;border-collapse:collapse;min-width:860px;}
+  thead th{
+    text-align:left;
+    font-size:11.5px;
+    font-weight:700;
+    letter-spacing:0.02em;
+    color:var(--ink-soft);
+    border-bottom:2px solid var(--line-strong);
+    padding:10px 12px;
+    white-space:nowrap;
+    background:var(--panel-2);
+    position:sticky;top:0;
+  }
+  tbody td{
+    padding:10px 12px;
+    border-bottom:1px solid var(--line);
+    vertical-align:top;
+    font-size:13.5px;
+  }
+  tbody tr:last-child td{border-bottom:none;}
+  tbody tr:hover{background:var(--panel-2);}
+  .serial{font-family:var(--mono);font-weight:600;letter-spacing:0.02em;}
+  .mono{font-family:var(--mono);}
+  .dim-block{font-family:var(--mono);font-size:13px;color:var(--ink-soft);}
+  .badge{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    padding:4px 9px 4px 7px;
+    border-radius:2px;
+    font-size:12px;
+    font-weight:600;
+    border-left:4px solid;
+    background:var(--panel-2);
+    white-space:nowrap;
+  }
+  .badge.backloaded{border-color:var(--green);color:var(--green);}
+  .badge.reserved{border-color:var(--amber);color:var(--amber);}
+  .badge.loaded{border-color:var(--teal);color:var(--teal);}
+  .badge.reserved_next{border-color:#7A5CA8;color:#7A5CA8;}
+  .subtext{display:block;font-size:11.5px;color:var(--ink-soft);margin-top:2px;font-weight:500;}
+  .expiry-warn{color:var(--red);font-weight:700;}
+  .row-actions{display:flex;gap:6px;flex-wrap:wrap;}
+  .empty{
+    text-align:center;
+    color:var(--ink-soft);
+    padding:40px 20px;
+    font-size:14px;
+  }
+  .hidden{display:none !important;}
+  .modal-backdrop{
+    position:fixed;inset:0;
+    background:rgba(10,10,8,0.55);
+    display:flex;align-items:center;justify-content:center;
+    padding:20px;z-index:50;
+  }
+  .modal{
+    background:var(--panel);
+    border-radius:var(--radius);
+    border:1px solid var(--line-strong);
+    width:100%;max-width:560px;
+    max-height:88vh;overflow-y:auto;
+    padding:22px 24px 24px;
+  }
+  .modal h2{
+    font-family:var(--display);
+    font-size:19px;
+    margin:0 0 4px;
+    letter-spacing:0.01em;
+  }
+  .modal .modal-sub{color:var(--ink-soft);font-size:12.5px;margin:0 0 18px;}
+  .field-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+  .field{display:flex;flex-direction:column;gap:4px;margin-bottom:12px;}
+  .field label{font-size:12px;font-weight:600;color:var(--ink-soft);}
+  .field.span2{grid-column:1/-1;}
+  fieldset{border:1px solid var(--line);border-radius:var(--radius);padding:12px 14px 4px;margin:6px 0 16px;}
+  legend{font-size:12px;font-weight:700;color:var(--ink-soft);padding:0 6px;}
+  .modal-actions{display:flex;justify-content:flex-end;gap:10px;margin-top:6px;}
+  .status-options{display:flex;flex-direction:column;gap:8px;margin-bottom:14px;}
+  .status-opt{
+    display:flex;align-items:flex-start;gap:10px;
+    border:1px solid var(--line);border-radius:var(--radius);
+    padding:10px 12px;cursor:pointer;
+  }
+  .status-opt:has(input:checked){border-color:var(--ochre);background:var(--panel-2);}
+  .status-opt input{margin-top:3px;}
+  .status-opt .opt-title{font-weight:600;font-size:13.5px;}
+  .status-opt .opt-desc{font-size:12px;color:var(--ink-soft);margin-top:2px;}
+  .status-detail{display:none;padding:2px 2px 4px;}
+  .status-detail.active{display:block;}
+  .toast{
+    position:fixed;bottom:20px;left:50%;transform:translateX(-50%);
+    background:var(--ink);color:var(--bg);
+    padding:11px 18px;border-radius:var(--radius);
+    font-size:13.5px;font-weight:500;
+    box-shadow:0 6px 18px rgba(0,0,0,0.25);
+    z-index:80;
+  }
+  .toast.error{background:var(--red);color:#fff;}
+  .count-pill{font-family:var(--mono);font-size:12px;color:var(--ink-soft);}
+  .summary-bar{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:12px;
+    margin-bottom:20px;
+  }
+  .summary-card{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-left:4px solid var(--teal);
+    border-radius:var(--radius);
+    padding:12px 14px;
+    text-align:left;
+    cursor:pointer;
+    font-family:inherit;
+    width:100%;
+    transition:background 0.12s ease, border-color 0.12s ease;
+  }
+  .summary-card:hover{background:var(--panel-2);}
+  .summary-card.active{
+    background:var(--panel-2);
+    border-left-width:6px;
+    box-shadow:inset 0 0 0 1px var(--line-strong);
+  }
+  .summary-card.warn{border-left-color:var(--red);}
+  .checkbox-label{
+    display:flex !important;
+    flex-direction:row !important;
+    align-items:center;
+    gap:6px;
+    font-size:12.5px !important;
+    padding-bottom:9px;
+  }
+  .checkbox-label input{padding:0;}
+  .summary-value{
+    display:block;
+    font-family:var(--display);
+    font-size:26px;
+    font-weight:700;
+    line-height:1.1;
+  }
+  .summary-label{
+    display:block;
+    font-size:11.5px;
+    color:var(--ink-soft);
+    font-weight:600;
+    margin-top:4px;
+  }
+  @media (max-width:640px){
+    .summary-bar{grid-template-columns:repeat(2,1fr);}
+  }
+  @media (max-width:640px){
+    .field-grid{grid-template-columns:1fr;}
+    table{min-width:720px;}
+  }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="plate">CONTAINER LOG</div>
+  <nav class="tabs">
+    <button class="tab active" data-tab="containers">Containers</button>
+    <button class="tab" data-tab="trucks">Trucks</button>
+    <button class="tab" data-tab="history">History</button>
+  </nav>
+  <span class="sync-badge local" id="syncBadge" title="Checking storage mode…">○ Connecting…</span>
+  <span class="driver-badge hidden" id="driverBadge"></span>
+  <button class="btn btn-ghost hidden" id="logoutBtn" title="Log out">Log out</button>
+  <button class="btn btn-ghost" id="adminBtn" title="Admin: manage driver access">🔒 Admin</button>
+  <button class="btn btn-ghost" id="refreshDataBtn" title="Pull the latest data from GitHub">⟳ Refresh</button>
+  <button class="btn btn-ghost hidden" id="syncSettingsBtn" title="Admin: connect this device straight to GitHub with a token">⚙ Sync settings</button>
+  <button class="btn btn-primary" id="addContainerBtn">+ Add container</button>
+</header>
+
+<!-- Driver login gate — shown whenever driver accounts exist and no one is logged in -->
+<div class="login-gate hidden" id="loginGate">
+  <div class="login-card">
+    <div class="plate" style="display:inline-block;">CONTAINER LOG</div>
+    <h2 style="margin:16px 0 4px;">Driver sign-in</h2>
+    <p class="modal-sub" id="loginError" style="min-height:1.2em;"></p>
+    <form id="loginForm">
+      <div class="field">
+        <label for="login_driver">Driver</label>
+        <select id="login_driver" required></select>
+      </div>
+      <div class="field">
+        <label for="login_pin">PIN</label>
+        <input type="password" id="login_pin" inputmode="numeric" placeholder="PIN" required>
+      </div>
+      <button type="submit" class="btn btn-primary" style="width:100%;">Sign in</button>
+    </form>
+    <button type="button" class="btn btn-ghost" id="loginAdminLink" style="margin-top:14px;width:100%;">Admin access</button>
+  </div>
+</div>
+
+<main>
+
+  <div class="summary-bar" id="summaryBar">
+    <button type="button" class="summary-card" id="cardYard" data-filter="backloaded">
+      <span class="summary-value" id="sumYard">0</span>
+      <span class="summary-label">In yard (backloaded)</span>
+    </button>
+    <button type="button" class="summary-card" id="cardLoaded" data-filter="loaded_group">
+      <span class="summary-value" id="sumLoaded">0</span>
+      <span class="summary-label">Loaded / out on vessel</span>
+    </button>
+    <button type="button" class="summary-card" id="cardReserved" data-filter="reserved">
+      <span class="summary-value" id="sumReserved">0</span>
+      <span class="summary-label">Reserved for loading</span>
+    </button>
+    <button type="button" class="summary-card warn" id="cardExpiring" data-filter="expiring">
+      <span class="summary-value" id="sumExpiring">0</span>
+      <span class="summary-label">Nearing expiry (60 days)</span>
+    </button>
+  </div>
+
+  <section id="containersView" class="view active">
+    <div class="toolbar">
+      <label>Search
+        <input type="text" id="containerSearch" placeholder="Serial or vessel">
+      </label>
+      <label>Status
+        <select id="statusFilter">
+          <option value="">All statuses</option>
+          <option value="backloaded">Backloaded (in yard)</option>
+          <option value="reserved">Reserved for loading</option>
+          <option value="loaded">Loaded</option>
+          <option value="reserved_next">Reserved for next loading</option>
+          <option value="loaded_group">Loaded + reserved for next (combined)</option>
+        </select>
+      </label>
+      <label class="checkbox-label">
+        <input type="checkbox" id="expiringFilter">
+        Nearing expiry only (60 days)
+      </label>
+      <span class="count-pill" id="containerCount"></span>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Serial</th>
+            <th>Dimensions L×W×H (m)</th>
+            <th>Tare / Payload / Max gross (kg)</th>
+            <th>Expiry</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="containersBody"></tbody>
+      </table>
+    </div>
+    <p class="empty hidden" id="containersEmpty">No containers logged yet. Add one to get started.</p>
+  </section>
+
+  <section id="trucksView" class="view">
+    <div class="toolbar">
+      <label>Search
+        <input type="text" id="truckSearch" placeholder="Driver, laborer, vessel or plate">
+      </label>
+      <button class="btn" id="exportTrucksExcel">Export to Excel</button>
+      <span class="count-pill" id="truckCount"></span>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Driver</th>
+            <th>Laborer(s)</th>
+            <th>Vessel</th>
+            <th>Place of delivery</th>
+            <th>Truck / plate</th>
+            <th>Delivery time</th>
+            <th>Back to yard</th>
+            <th>Items returned</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="trucksBody"></tbody>
+      </table>
+    </div>
+    <p class="empty hidden" id="trucksEmpty">No truck records yet. Add one to get started.</p>
+  </section>
+
+  <section id="historyView" class="view">
+    <div class="toolbar">
+      <label>From
+        <input type="text" id="filterFrom" placeholder="dd/mm/yyyy" inputmode="numeric" maxlength="10" style="font-family:var(--mono);">
+      </label>
+      <label>To
+        <input type="text" id="filterTo" placeholder="dd/mm/yyyy" inputmode="numeric" maxlength="10" style="font-family:var(--mono);">
+      </label>
+      <label>Container
+        <select id="filterSerial"><option value="">All containers</option></select>
+      </label>
+      <label>Vessel
+        <input type="text" id="filterVessel" placeholder="Vessel name" list="vesselOptions">
+      </label>
+      <button class="btn" id="clearFilters">Clear</button>
+      <button class="btn btn-primary" id="exportExcel">Export to Excel</button>
+      <span class="count-pill" id="historyCount"></span>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Serial</th>
+            <th>Action</th>
+            <th>Vessel</th>
+            <th>Trailer plate</th>
+            <th>Basket L</th>
+            <th>Basket S</th>
+            <th>Basket Thai</th>
+            <th>RO bottles</th>
+            <th>Others</th>
+          </tr>
+        </thead>
+        <tbody id="historyBody"></tbody>
+      </table>
+    </div>
+    <p class="empty hidden" id="historyEmpty">No history entries match this filter.</p>
+  </section>
+
+</main>
+
+<!-- Add / edit container modal -->
+<div class="modal-backdrop hidden" id="containerModal">
+  <div class="modal">
+    <h2 id="containerModalTitle">Add container</h2>
+    <p class="modal-sub">Enter the container's fixed specifications. These are keyed in once and edited only if a correction is needed.</p>
+    <form id="containerForm">
+      <div class="field">
+        <label for="f_serial">Container serial number</label>
+        <input type="text" id="f_serial" required placeholder="e.g. MSCU1234567" style="font-family:var(--mono);text-transform:uppercase;">
+      </div>
+      <div class="field-grid">
+        <div class="field">
+          <label for="f_length">Length (m)</label>
+          <input type="number" id="f_length" step="0.001" min="0" required>
+        </div>
+        <div class="field">
+          <label for="f_width">Width (m)</label>
+          <input type="number" id="f_width" step="0.001" min="0" required>
+        </div>
+      </div>
+      <div class="field-grid">
+        <div class="field">
+          <label for="f_height">Height (m)</label>
+          <input type="number" id="f_height" step="0.001" min="0" required>
+        </div>
+        <div class="field">
+          <label for="f_expiry">Expiry date (dd/mm/yyyy)</label>
+          <input type="text" id="f_expiry" required placeholder="dd/mm/yyyy" inputmode="numeric" maxlength="10" style="font-family:var(--mono);">
+        </div>
+      </div>
+      <div class="field-grid">
+        <div class="field">
+          <label for="f_tare">Tare mass (kg)</label>
+          <input type="number" id="f_tare" step="1" min="0" required>
+        </div>
+        <div class="field">
+          <label for="f_payload">Payload (kg)</label>
+          <input type="number" id="f_payload" step="1" min="0" required>
+        </div>
+      </div>
+      <div class="field">
+        <label for="f_maxgross">Max gross mass (kg)</label>
+        <input type="number" id="f_maxgross" step="1" min="0" required>
+      </div>
+      <div class="modal-actions">
+        <button type="button" class="btn btn-ghost" data-close="containerModal">Cancel</button>
+        <button type="submit" class="btn btn-primary">Save container</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Update status modal -->
+<div class="modal-backdrop hidden" id="statusModal">
+  <div class="modal">
+    <h2>Update status</h2>
+    <p class="modal-sub">Container <span class="serial" id="statusModalSerial"></span></p>
+    <form id="statusForm">
+      <div class="status-options" id="statusOptions">
+        <label class="status-opt">
+          <input type="radio" name="statusChoice" value="backloaded">
+          <span>
+            <span class="opt-title">Backloaded — keep in yard</span>
+            <span class="opt-desc">Container discharged and sitting empty in the yard. You'll be asked to key in the contents found inside.</span>
+          </span>
+        </label>
+        <label class="status-opt">
+          <input type="radio" name="statusChoice" value="reserved">
+          <span>
+            <span class="opt-title">Reserved for loading</span>
+            <span class="opt-desc">Earmarked for an upcoming vessel while still in the yard.</span>
+          </span>
+        </label>
+        <label class="status-opt">
+          <input type="radio" name="statusChoice" value="loaded">
+          <span>
+            <span class="opt-title">Loaded</span>
+            <span class="opt-desc">Container has been loaded onto the reserved vessel.</span>
+          </span>
+        </label>
+        <label class="status-opt">
+          <input type="radio" name="statusChoice" value="reserved_next">
+          <span>
+            <span class="opt-title">Reserved for next loading</span>
+            <span class="opt-desc">Still out on its current vessel, but already earmarked for its next loading before it even comes back to backload.</span>
+          </span>
+        </label>
+      </div>
+
+      <div class="status-detail" id="detail_reserved">
+        <fieldset>
+          <legend>Reservation</legend>
+          <div class="field">
+            <label for="f_vessel_reserved">Vessel name</label>
+            <input type="text" id="f_vessel_reserved" placeholder="e.g. MV Pacific Star" list="vesselOptions">
+          </div>
+        </fieldset>
+      </div>
+
+      <div class="status-detail" id="detail_loaded">
+        <fieldset>
+          <legend>Loading</legend>
+          <div class="field">
+            <label for="f_vessel_loaded">Vessel name (same as reservation)</label>
+            <input type="text" id="f_vessel_loaded" placeholder="e.g. MV Pacific Star" list="vesselOptions">
+          </div>
+          <div class="field-grid">
+            <div class="field">
+              <label for="f_date_loaded">Loading date (dd/mm/yyyy)</label>
+              <input type="text" id="f_date_loaded" placeholder="dd/mm/yyyy" inputmode="numeric" maxlength="10" style="font-family:var(--mono);">
+            </div>
+            <div class="field">
+              <label for="f_trailer_loaded">Trailer plate number</label>
+              <input type="text" id="f_trailer_loaded" placeholder="Optional" list="trailerOptions">
+            </div>
+          </div>
+        </fieldset>
+      </div>
+
+      <div class="status-detail" id="detail_reserved_next">
+        <fieldset>
+          <legend>Next-loading reservation</legend>
+          <p class="modal-sub" id="currentVesselNote" style="margin:0 0 10px;"></p>
+          <div class="field">
+            <label for="f_vessel_next">Next vessel name</label>
+            <input type="text" id="f_vessel_next" placeholder="e.g. MV Coral Trader" list="vesselOptions">
+          </div>
+        </fieldset>
+      </div>
+
+      <div class="status-detail" id="detail_backloaded">
+        <fieldset>
+          <legend>Contents found on backload</legend>
+          <div class="field-grid">
+            <div class="field">
+              <label for="f_date_backloaded">Backload date (dd/mm/yyyy)</label>
+              <input type="text" id="f_date_backloaded" placeholder="dd/mm/yyyy" inputmode="numeric" maxlength="10" style="font-family:var(--mono);">
+            </div>
+            <div class="field">
+              <label for="f_trailer_backloaded">Trailer plate number</label>
+              <input type="text" id="f_trailer_backloaded" placeholder="Optional" list="trailerOptions">
+            </div>
+          </div>
+          <div class="field-grid">
+            <div class="field">
+              <label for="q_basketLarge">Basket, large</label>
+              <input type="number" id="q_basketLarge" min="0" step="1" value="0">
+            </div>
+            <div class="field">
+              <label for="q_basketSmall">Basket, small</label>
+              <input type="number" id="q_basketSmall" min="0" step="1" value="0">
+            </div>
+          </div>
+          <div class="field-grid">
+            <div class="field">
+              <label for="q_basketThai">Basket, Thai</label>
+              <input type="number" id="q_basketThai" min="0" step="1" value="0">
+            </div>
+            <div class="field">
+              <label for="q_roBottles">RO bottles</label>
+              <input type="number" id="q_roBottles" min="0" step="1" value="0">
+            </div>
+          </div>
+          <div class="field-grid">
+            <div class="field">
+              <label for="q_others">Others (qty)</label>
+              <input type="number" id="q_others" min="0" step="1" value="0">
+            </div>
+            <div class="field">
+              <label for="q_othersNote">Others — description</label>
+              <input type="text" id="q_othersNote" placeholder="Optional">
+            </div>
+          </div>
+        </fieldset>
+      </div>
+
+      <div class="modal-actions">
+        <button type="button" class="btn btn-ghost" data-close="statusModal">Cancel</button>
+        <button type="submit" class="btn btn-primary">Save status</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Truck record modal -->
+<div class="modal-backdrop hidden" id="truckModal">
+  <div class="modal">
+    <h2 id="truckModalTitle">Add truck record</h2>
+    <form id="truckForm">
+      <div class="field-grid">
+        <div class="field">
+          <label for="t_driver">Driver</label>
+          <input type="text" id="t_driver" list="driverOptions" required placeholder="Driver name">
+        </div>
+        <div class="field">
+          <label for="t_laborers">Laborer(s)</label>
+          <input type="text" id="t_laborers" placeholder="Comma-separated names">
+        </div>
+      </div>
+      <div class="field-grid">
+        <div class="field">
+          <label for="t_vessel">Vessel</label>
+          <input type="text" id="t_vessel" list="vesselOptions" required placeholder="e.g. MV Pacific Star">
+        </div>
+        <div class="field">
+          <label for="t_place">Place of delivery</label>
+          <input type="text" id="t_place" list="placeOptions" placeholder="e.g. Tawau Port, Jetty 2">
+        </div>
+      </div>
+      <div class="field-grid">
+        <div class="field">
+          <label for="t_truckPlate">Truck / trailer plate</label>
+          <input type="text" id="t_truckPlate" list="truckOptions" placeholder="Optional">
+        </div>
+        <div class="field">
+          <label for="t_date">Date of delivery (dd/mm/yyyy)</label>
+          <input type="text" id="t_date" required placeholder="dd/mm/yyyy" inputmode="numeric" maxlength="10" style="font-family:var(--mono);">
+        </div>
+      </div>
+      <div class="field-grid">
+        <div class="field">
+          <label for="t_timeDelivery">Time of delivery</label>
+          <input type="time" id="t_timeDelivery">
+        </div>
+        <div class="field">
+          <label for="t_timeBack">Time back to yard</label>
+          <input type="time" id="t_timeBack">
+        </div>
+      </div>
+      <fieldset>
+        <legend>Items returned</legend>
+        <div class="field-grid">
+          <div class="field">
+            <label for="tq_basketLarge">Basket, large</label>
+            <input type="number" id="tq_basketLarge" min="0" step="1" value="0">
+          </div>
+          <div class="field">
+            <label for="tq_basketSmall">Basket, small</label>
+            <input type="number" id="tq_basketSmall" min="0" step="1" value="0">
+          </div>
+        </div>
+        <div class="field-grid">
+          <div class="field">
+            <label for="tq_basketThai">Basket, Thai</label>
+            <input type="number" id="tq_basketThai" min="0" step="1" value="0">
+          </div>
+          <div class="field">
+            <label for="tq_roBottles">RO bottles</label>
+            <input type="number" id="tq_roBottles" min="0" step="1" value="0">
+          </div>
+        </div>
+        <div class="field-grid">
+          <div class="field">
+            <label for="tq_others">Others (qty)</label>
+            <input type="number" id="tq_others" min="0" step="1" value="0">
+          </div>
+          <div class="field">
+            <label for="tq_othersNote">Others — description</label>
+            <input type="text" id="tq_othersNote" placeholder="Optional">
+          </div>
+        </div>
+      </fieldset>
+      <div class="modal-actions">
+        <button type="button" class="btn btn-ghost" data-close="truckModal">Cancel</button>
+        <button type="submit" class="btn btn-primary">Save record</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<datalist id="vesselOptions"></datalist>
+<datalist id="trailerOptions"></datalist>
+<datalist id="driverOptions"></datalist>
+<datalist id="placeOptions"></datalist>
+<datalist id="truckOptions"></datalist>
+
+<!-- Admin PIN entry -->
+<div class="modal-backdrop hidden" id="adminPinModal">
+  <div class="modal" style="max-width:380px;">
+    <h2 id="adminPinTitle">Admin access</h2>
+    <p class="modal-sub" id="adminPinSub">Enter the admin PIN to manage driver access.</p>
+    <form id="adminPinForm">
+      <div class="field">
+        <label for="admin_pin_input">Admin PIN</label>
+        <input type="password" id="admin_pin_input" inputmode="numeric" required placeholder="PIN">
+      </div>
+      <div class="field hidden" id="adminPinConfirmField">
+        <label for="admin_pin_confirm">Confirm PIN</label>
+        <input type="password" id="admin_pin_confirm" inputmode="numeric" placeholder="Re-enter PIN">
+      </div>
+      <p class="modal-sub" id="adminPinError" style="min-height:1.2em;color:var(--red);"></p>
+      <div class="modal-actions">
+        <button type="button" class="btn btn-ghost" data-close="adminPinModal">Cancel</button>
+        <button type="submit" class="btn btn-primary" id="adminPinSubmitBtn">Continue</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Admin: manage drivers -->
+<div class="modal-backdrop hidden" id="adminModal">
+  <div class="modal" style="max-width:640px;">
+    <h2>Manage driver access</h2>
+    <p class="modal-sub">
+      Drivers sign in with the ID and PIN below before they can use the app.
+      Deleting a driver here removes their sign-in immediately — the next
+      time they (or their device) try to use the app, that ID no longer works.
+    </p>
+
+    <form id="addDriverForm" style="border:1px solid var(--line);border-radius:var(--radius);padding:14px 16px;margin-bottom:16px;">
+      <div class="field-grid">
+        <div class="field">
+          <label for="new_driver_name">Driver name</label>
+          <input type="text" id="new_driver_name" required placeholder="Full name">
+        </div>
+        <div class="field">
+          <label for="new_driver_pin">Set PIN</label>
+          <input type="text" id="new_driver_pin" inputmode="numeric" required placeholder="4–6 digit PIN">
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary btn-sm">+ Add driver</button>
+    </form>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Driver ID</th><th>Name</th><th>Added</th><th>Actions</th></tr></thead>
+        <tbody id="driversBody"></tbody>
+      </table>
+    </div>
+    <p class="empty hidden" id="driversEmpty">No driver accounts yet — the app is open to anyone until you add one.</p>
+
+    <div class="modal-actions" style="justify-content:space-between;margin-top:18px;">
+      <button type="button" class="btn btn-ghost" id="changeAdminPinBtn">Change admin PIN</button>
+      <button type="button" class="btn btn-primary" data-close="adminModal">Done</button>
+    </div>
+  </div>
+</div>
+
+<!-- GitHub sync settings -->
+<div class="modal-backdrop hidden" id="syncModal">
+  <div class="modal">
+    <h2>Sync settings</h2>
+    <p class="modal-sub">
+      <strong>Admins only.</strong> If the app has a shared sync address set in
+      <code>config.json</code>, regular devices already sync with no setup — a token here
+      just connects <em>this</em> device straight to GitHub instead.<br><br>
+      Connect a GitHub repo to store data centrally — every device that opens this app
+      with the same settings reads and writes the same file. Use a
+      <strong>fine-grained personal access token</strong> scoped to just this one repo,
+      with <strong>Contents: Read and write</strong> permission and nothing else.
+      The token is stored only in this browser's local storage — never sent anywhere but
+      GitHub's API. Each browser/device needs to be connected separately (this includes an
+      "Add to Home Screen" icon, which can have its own separate storage from the regular
+      browser on some phones — if data looks missing right after installing the icon, this
+      screen is where you reconnect it). See the README for a link format that pre-fills
+      everything but the token, to make that quick.
+    </p>
+    <form id="syncForm">
+      <div class="field">
+        <label for="gh_token">Personal access token</label>
+        <input type="password" id="gh_token" placeholder="github_pat_…" autocomplete="off">
+      </div>
+      <div class="field-grid">
+        <div class="field">
+          <label for="gh_owner">Repo owner</label>
+          <input type="text" id="gh_owner" placeholder="e.g. your-username">
+        </div>
+        <div class="field">
+          <label for="gh_repo">Repo name</label>
+          <input type="text" id="gh_repo" placeholder="e.g. container-log-data">
+        </div>
+      </div>
+      <div class="field-grid">
+        <div class="field">
+          <label for="gh_branch">Branch</label>
+          <input type="text" id="gh_branch" placeholder="main">
+        </div>
+        <div class="field">
+          <label for="gh_path">Data file path</label>
+          <input type="text" id="gh_path" placeholder="data.json">
+        </div>
+      </div>
+      <div class="modal-actions" style="justify-content:space-between;">
+        <button type="button" class="btn btn-danger" id="syncDisconnectBtn">Disconnect</button>
+        <div style="display:flex;gap:10px;">
+          <button type="button" class="btn btn-ghost" data-close="syncModal">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save &amp; connect</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Confirm dialog (custom, so it matches the app's styling instead of the browser's native confirm()) -->
+<div class="modal-backdrop hidden" id="confirmModal">
+  <div class="modal" style="max-width:420px;">
+    <h2 id="confirmTitle">Please confirm</h2>
+    <p class="modal-sub" id="confirmMessage"></p>
+    <div class="modal-actions">
+      <button type="button" class="btn btn-ghost" id="confirmCancelBtn">Cancel</button>
+      <button type="button" class="btn btn-danger" id="confirmOkBtn">Confirm</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast hidden" id="toast"></div>
+
+<script>
+(function(){
+  "use strict";
+
+  // ---------- data layer ----------
+  var STORAGE_KEY = "containerLogV1";
+  var GH_CONFIG_KEY = "containerLogGitHubConfig";
+  var db = { containers:{}, history:[], truckRecords:[] };
+  var ghConfig = null;   // {token, owner, repo, branch, path} (direct), {proxy} (shared), or null = local-only
+  var sharedCfg = null;  // {proxy} when config.json provides a shared sync address
+  var ghActive = false;  // true once a GitHub config is loaded and reachable
+  var ghSha = null;      // last-known file SHA, for GitHub's optimistic-concurrency check
+  var ghSaveTimer = null;
+  var ghSaving = false;
+  var ghSaveAgainAfter = false;
+  var ghSavePending = false; // true whenever a debounced save hasn't been pushed yet
+
+  function loadDataLocal(){
+    try{
+      var raw = localStorage.getItem(STORAGE_KEY);
+      if(raw){
+        var parsed = JSON.parse(raw);
+        if(parsed && typeof parsed === "object"){
+          var out = {
+            containers: (parsed.containers && typeof parsed.containers === "object") ? parsed.containers : {},
+            history: Array.isArray(parsed.history) ? parsed.history : [],
+            truckRecords: Array.isArray(parsed.truckRecords) ? parsed.truckRecords : [],
+            drivers: (parsed.drivers && typeof parsed.drivers === "object") ? parsed.drivers : {},
+            adminPinHash: typeof parsed.adminPinHash === "string" ? parsed.adminPinHash : ""
+          };
+          out.history.forEach(function(h){
+            if(!h.date){ h.date = h.timestamp ? String(h.timestamp).slice(0,10) : todayISO(); }
+            if(!h.recordedAt){ h.recordedAt = h.timestamp || h.date + "T00:00:00.000Z"; }
+          });
+          return out;
+        }
+      }
+    }catch(e){ /* fall through to fresh store */ }
+    return { containers:{}, history:[], truckRecords:[], drivers:{}, adminPinHash:"" };
+  }
+
+  // saveData(): always caches to this browser (so the app still has its
+  // last-known data if GitHub is unreachable), and — when a GitHub repo
+  // is configured — schedules a debounced push to it.
+  function saveData(){
+    try{
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(db));
+    }catch(e){
+      showToast("Could not save locally — browser storage may be full.", true);
+    }
+    refreshDatalists();
+    if(ghActive) scheduleGhSave();
+  }
+
+  function uid(){
+    if(window.crypto && crypto.randomUUID) return crypto.randomUUID();
+    return "id-" + Date.now() + "-" + Math.random().toString(16).slice(2);
+  }
+
+  function pad2(n){ return String(n).padStart(2,"0"); }
+  function todayISO(){
+    var d = new Date();
+    return d.getFullYear() + "-" + pad2(d.getMonth()+1) + "-" + pad2(d.getDate());
+  }
+
+  var STATUS_LABEL = {
+    backloaded: "Backloaded (in yard)",
+    reserved: "Reserved for loading",
+    loaded: "Loaded",
+    reserved_next: "Reserved for next loading"
+  };
+  var ACTION_LABEL = {
+    created: "Container added",
+    edited: "Specifications edited",
+    backloaded: "Backloaded",
+    reserved: "Reserved for loading",
+    loaded: "Loaded",
+    reserved_next: "Reserved for next loading",
+    deleted: "Container removed"
+  };
+
+  function addHistory(entry){
+    entry.id = uid();
+    entry.recordedAt = new Date().toISOString();
+    if(!entry.date) entry.date = todayISO();
+    db.history.push(entry);
+  }
+
+  // These are called from the mutation handlers below; with GitHub sync
+  // the whole store is saved together via saveData(), so these are now
+  // no-ops kept only so those call sites don't need to change.
+  function pushContainer(){}
+  function pushContainerDelete(){}
+  function pushHistoryEntry(){}
+  function pushHistoryDeleteForSerial(){}
+  function pushTruck(){}
+  function pushTruckDelete(){}
+
+  // ---------- GitHub sync (Contents API) ----------
+  function b64EncodeUnicode(str){
+    var bytes = new TextEncoder().encode(str);
+    var bin = "";
+    bytes.forEach(function(b){ bin += String.fromCharCode(b); });
+    return btoa(bin);
+  }
+  function b64DecodeUnicode(b64){
+    var bin = atob(b64.replace(/\n/g, ""));
+    var bytes = new Uint8Array(bin.length);
+    for(var i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+    return new TextDecoder().decode(bytes);
+  }
+
+  // Reads config.json (same folder as the app) for the shared sync address.
+  async function loadSharedConfig(){
+    sharedCfg = null;
+    try{
+      var r = await fetch("config.json", { cache: "no-store" });
+      if(!r.ok) return;
+      var c = await r.json();
+      var u = c && typeof c.syncUrl === "string" ? c.syncUrl.trim().replace(/\/+$/, "") : "";
+      if(/^https:\/\//i.test(u)) sharedCfg = { proxy: u };
+    }catch(e){ /* no config.json, or opened offline — fine */ }
+  }
+  function hasTokenConfig(c){ return !!(c && c.token && c.owner && c.repo); }
+  // A token saved on this device (admin, direct) wins; otherwise the shared address; otherwise local-only.
+  function resolveGhConfig(){
+    var saved = loadGhConfig();
+    if(hasTokenConfig(saved)) return saved;
+    return sharedCfg;
+  }
+
+  function loadGhConfig(){
+    try{
+      var raw = localStorage.getItem(GH_CONFIG_KEY);
+      return raw ? JSON.parse(raw) : null;
+    }catch(e){ return null; }
+  }
+  function saveGhConfig(cfg){
+    localStorage.setItem(GH_CONFIG_KEY, JSON.stringify(cfg));
+  }
+  function clearGhConfig(){
+    localStorage.removeItem(GH_CONFIG_KEY);
+  }
+
+  function ghUrl(cfg){
+    if(cfg.proxy) return cfg.proxy + "/data";
+    return "https://api.github.com/repos/" + encodeURIComponent(cfg.owner) + "/" +
+      encodeURIComponent(cfg.repo) + "/contents/" + cfg.path.split("/").map(encodeURIComponent).join("/");
+  }
+  function ghHeaders(cfg){
+    if(cfg.proxy) return {}; // the shared-sync Worker holds the token, not this device
+    return {
+      "Authorization": "Bearer " + cfg.token,
+      "Accept": "application/vnd.github+json",
+      "X-GitHub-Api-Version": "2022-11-28"
+    };
+  }
+
+  function setSyncBadge(mode){
+    var el = document.getElementById("syncBadge");
+    if(!el) return;
+    if(mode === "synced"){
+      el.textContent = "● Synced (GitHub)";
+      el.className = "sync-badge synced";
+      el.title = "Data is stored in your GitHub repo. Refresh to pull in changes made elsewhere.";
+    } else if(mode === "saving"){
+      el.textContent = "○ Saving…";
+      el.className = "sync-badge connecting";
+      el.title = "Pushing your latest change to GitHub.";
+    } else if(mode === "connecting"){
+      el.textContent = "○ Connecting…";
+      el.className = "sync-badge connecting";
+      el.title = "Loading data from GitHub.";
+    } else if(mode === "error"){
+      el.textContent = "⚠ Sync error";
+      el.className = "sync-badge error";
+      el.title = "Could not reach GitHub. Check the token, repo and network, then refresh.";
+    } else {
+      el.textContent = "○ Local only";
+      el.className = "sync-badge local";
+      el.title = "No GitHub repo connected — data is saved to this device only. Open Sync settings to connect one.";
+    }
+  }
+
+  async function ghFetchFile(cfg){
+    var resp = await fetch(ghUrl(cfg) + (cfg.proxy ? "" : "?ref=" + encodeURIComponent(cfg.branch || "main")), {
+      headers: ghHeaders(cfg),
+      cache: "no-store"
+    });
+    if(resp.status === 404) return { exists: false };
+    if(!resp.ok) throw new Error("GitHub read failed (" + resp.status + ")");
+    var body = await resp.json();
+    return { exists: true, sha: body.sha, data: JSON.parse(b64DecodeUnicode(body.content)) };
+  }
+
+  async function ghPutFile(cfg, dataObj, sha, message){
+    var resp = await fetch(ghUrl(cfg), {
+      method: "PUT",
+      headers: Object.assign({ "Content-Type": "application/json" }, ghHeaders(cfg)),
+      body: JSON.stringify({
+        message: message || "Update container log data",
+        content: b64EncodeUnicode(JSON.stringify(dataObj, null, 2)),
+        branch: cfg.branch || "main",
+        sha: sha || undefined
+      })
+    });
+    if(resp.status === 409){
+      var err = new Error("conflict");
+      err.code = "conflict";
+      throw err;
+    }
+    if(!resp.ok){
+      var body = await resp.json().catch(function(){ return {}; });
+      var e2 = new Error(body.message || ("GitHub write failed (" + resp.status + ")"));
+      e2.code = "write_failed";
+      throw e2;
+    }
+    var result = await resp.json();
+    return result.content.sha;
+  }
+
+  function scheduleGhSave(){
+    ghSavePending = true;
+    clearTimeout(ghSaveTimer);
+    ghSaveTimer = setTimeout(performGhSave, 1500);
+  }
+
+  async function performGhSave(){
+    ghSavePending = false;
+    if(!ghActive || !ghConfig) return;
+    if(ghSaving){ ghSaveAgainAfter = true; return; }
+    ghSaving = true;
+    setSyncBadge("saving");
+    try{
+      var newSha = await ghPutFile(ghConfig, db, ghSha, "Update container log data");
+      ghSha = newSha;
+      setSyncBadge("synced");
+    }catch(err){
+      if(err && err.code === "conflict"){
+        showToast("Someone else saved changes first — pulling the latest version. Please redo your last change if needed.", true);
+        await ghRefresh();
+      } else {
+        showToast("Could not save to GitHub. Your change is kept on this device — try Refresh once you're back online.", true);
+        setSyncBadge("error");
+      }
+    }finally{
+      ghSaving = false;
+      if(ghSaveAgainAfter){
+        ghSaveAgainAfter = false;
+        scheduleGhSave();
+      }
+    }
+  }
+
+  // Connects using the current ghConfig, fetching whatever's already in
+  // the repo. seedFromLocalIfNew: when the remote file doesn't exist yet,
+  // seed it from this browser's cached copy (used on first-ever connect)
+  // rather than starting empty (used on a plain Refresh).
+  async function connectGh(seedFromLocalIfNew){
+    var pendingSeedPush = false;
+    setSyncBadge("connecting");
+    try{
+      var result = await ghFetchFile(ghConfig);
+      if(result.exists){
+        var remote = result.data || {};
+        var remoteEmpty = objEmpty(remote.containers) && arrEmpty(remote.history) && arrEmpty(remote.truckRecords);
+        var seededFromLocal = false;
+        if(remoteEmpty){
+          var local = loadDataLocal();
+          var localHasData = !objEmpty(local.containers) || !arrEmpty(local.history) || !arrEmpty(local.truckRecords);
+          if(localHasData){
+            if(seedFromLocalIfNew){
+              // First connect, repo file is the empty starter data.json:
+              // upload this device's existing data instead of wiping it.
+              // (but keep any driver accounts / admin PIN already in the repo)
+              var remoteAuth = result.data || {};
+              remote = local;
+              if(!objEmpty(remoteAuth.drivers)) remote.drivers = remoteAuth.drivers;
+              if(remoteAuth.adminPinHash) remote.adminPinHash = remoteAuth.adminPinHash;
+              seededFromLocal = true;
+            } else {
+              showToast("Heads up: the file in your GitHub repo is empty, but this device has local data. Showing the GitHub copy, as usual — check the repo/path in Sync settings if that's unexpected, or use ⟳ Refresh once you've fixed it.", true);
+            }
+          }
+        }
+        db = remote;
+        if(!db.containers) db.containers = {};
+        if(!db.history) db.history = [];
+        if(!db.truckRecords) db.truckRecords = [];
+        ghSha = result.sha;
+        if(seededFromLocal) pendingSeedPush = true;
+      } else {
+        db = seedFromLocalIfNew ? loadDataLocal() : { containers:{}, history:[], truckRecords:[] };
+        ghSha = null; // file doesn't exist yet — the next save creates it
+      }
+      ghActive = true;
+      setSyncBadge("synced");
+      if(pendingSeedPush){ pendingSeedPush = false; scheduleGhSave(); }
+    }catch(err){
+      ghActive = false;
+      setSyncBadge("error");
+      showToast("Could not connect to GitHub. Working from this device's local copy — check Sync settings.", true);
+      db = loadDataLocal();
+    }
+    refreshDatalists();
+    renderContainers();
+    renderHistory();
+    renderTrucks();
+    normalizeAuthData();
+    checkLoginGate();
+  }
+
+  function objEmpty(o){ return !o || Object.keys(o).length === 0; }
+  function arrEmpty(a){ return !Array.isArray(a) || a.length === 0; }
+
+  function ghRefresh(){
+    if(!ghConfig){
+      showToast("Connect a GitHub repo in Sync settings to enable Refresh.", true);
+      return Promise.resolve();
+    }
+    return connectGh(false);
+  }
+
+  // ---------- background auto-sync ----------
+  // Keeps everyone's screen current without anyone touching Sync settings:
+  // polls GitHub on an interval, and again whenever the tab/app regains
+  // focus (covers "switched back from another app" and "switched tabs").
+  // Skips a refresh if: sync isn't on, a modal is open (don't yank data
+  // out from under someone mid-edit), or a local save is about to fire /
+  // in flight (don't clobber a change that hasn't reached GitHub yet).
+  var GH_POLL_INTERVAL_MS = 30000; // 30s — adjust to taste; see README
+  var GH_MIN_REFRESH_GAP_MS = 8000; // don't refetch more than this often
+  var lastAutoRefreshAt = 0;
+
+  function isAnyModalOpen(){
+    return !!document.querySelector(".modal-backdrop:not(.hidden)");
+  }
+
+  function autoRefreshIfSafe(){
+    if(!ghActive || !ghConfig) return;
+    if(ghSaving || ghSavePending) return;     // a local change hasn't been pushed yet
+    if(isAnyModalOpen()) return;               // don't disrupt someone mid-form
+    var now = Date.now();
+    if(now - lastAutoRefreshAt < GH_MIN_REFRESH_GAP_MS) return;
+    lastAutoRefreshAt = now;
+    connectGh(false); // same as ghRefresh(), without the "not connected" toast
+  }
+
+  setInterval(autoRefreshIfSafe, GH_POLL_INTERVAL_MS);
+
+  document.addEventListener("visibilitychange", function(){
+    if(document.visibilityState === "visible") autoRefreshIfSafe();
+  });
+  window.addEventListener("focus", autoRefreshIfSafe);
+
+  async function initGitHubSync(){
+    await loadSharedConfig();
+    ghConfig = resolveGhConfig();
+    if(!ghConfig){
+      db = loadDataLocal();
+      ghActive = false;
+      setSyncBadge("local");
+      refreshDatalists();
+      renderContainers();
+      renderHistory();
+      renderTrucks();
+      normalizeAuthData();
+      checkLoginGate();
+      return;
+    }
+    await connectGh(true);
+  }
+
+  // ---------- driver login & admin lock ----------
+  // NOTE ON SECURITY: this is a static, serverless app — there is no
+  // server to enforce access control. This login is a practical access
+  // gate (identify who's using the app, and let an admin revoke an ID so
+  // it stops working) rather than hardened security: anyone with the
+  // browser's developer tools, or direct access to the data file, could
+  // bypass it. PINs are SHA-256 hashed (not stored in plain text) before
+  // saving, but that's basic hygiene, not strong protection — use PINs
+  // that aren't easily guessed, and don't treat this as a substitute for
+  // keeping the data repo private if the data itself is sensitive.
+
+  var CURRENT_DRIVER_KEY = "containerLogCurrentDriver";
+  var ADMIN_SESSION_KEY = "containerLogAdminSession";
+  var currentDriver = null; // { id, name } while a driver is signed in
+  var adminUnlocked = false; // mirrors ADMIN_SESSION_KEY once checkLoginGate() has run
+
+  function normalizeAuthData(){
+    if(!db.drivers) db.drivers = {};
+    if(typeof db.adminPinHash !== "string") db.adminPinHash = "";
+  }
+
+  async function sha256Hex(str){
+    var enc = new TextEncoder().encode(str);
+    var buf = await crypto.subtle.digest("SHA-256", enc);
+    return Array.from(new Uint8Array(buf)).map(function(b){ return b.toString(16).padStart(2, "0"); }).join("");
+  }
+
+  function loadCurrentDriver(){
+    try{
+      var raw = localStorage.getItem(CURRENT_DRIVER_KEY);
+      return raw ? JSON.parse(raw) : null;
+    }catch(e){ return null; }
+  }
+  function saveCurrentDriver(d){
+    if(d) localStorage.setItem(CURRENT_DRIVER_KEY, JSON.stringify(d));
+    else localStorage.removeItem(CURRENT_DRIVER_KEY);
+  }
+  function saveAdminSession(on){
+    if(on) localStorage.setItem(ADMIN_SESSION_KEY, db.adminPinHash);
+    else localStorage.removeItem(ADMIN_SESSION_KEY);
+  }
+
+  // Shows/hides the sign-in screen based on whether driver accounts
+  // exist and whether this device has a still-valid session.
+  // In shared mode, only admins (or a device already holding a token) see Sync settings.
+  function updateSyncBtn(){
+    var show = !sharedCfg || adminUnlocked || hasTokenConfig(loadGhConfig());
+    document.getElementById("syncSettingsBtn").classList.toggle("hidden", !show);
+  }
+  function checkLoginGate(){
+    checkLoginGateCore();
+    updateSyncBtn();
+  }
+  function checkLoginGateCore(){
+    normalizeAuthData();
+    var driverIds = Object.keys(db.drivers);
+    var gate = document.getElementById("loginGate");
+    var driverBadge = document.getElementById("driverBadge");
+    var logoutBtn = document.getElementById("logoutBtn");
+
+    var savedAdminHash = localStorage.getItem(ADMIN_SESSION_KEY);
+    if(adminUnlocked || (savedAdminHash && db.adminPinHash && savedAdminHash === db.adminPinHash)){
+      // Admin verified their PIN (this session, or a prior one on this
+      // device/browser, for the PIN currently in effect) — full access,
+      // no driver ID needed.
+      adminUnlocked = true;
+      gate.classList.add("hidden");
+      driverBadge.textContent = "Admin";
+      driverBadge.classList.remove("hidden");
+      logoutBtn.classList.remove("hidden");
+      return;
+    }
+
+    if(driverIds.length === 0){
+      // No driver accounts set up — app is open to everyone.
+      gate.classList.add("hidden");
+      driverBadge.classList.add("hidden");
+      logoutBtn.classList.add("hidden");
+      return;
+    }
+
+    var saved = loadCurrentDriver();
+    var stillValid = saved && db.drivers[saved.id] && db.drivers[saved.id].active !== false;
+
+    if(stillValid){
+      currentDriver = { id: saved.id, name: db.drivers[saved.id].name };
+      gate.classList.add("hidden");
+      driverBadge.textContent = "Driver: " + currentDriver.name;
+      driverBadge.classList.remove("hidden");
+      logoutBtn.classList.remove("hidden");
+    } else {
+      if(saved) saveCurrentDriver(null); // stale/revoked session — clear it
+      currentDriver = null;
+      driverBadge.classList.add("hidden");
+      logoutBtn.classList.add("hidden");
+      renderLoginOptions();
+      gate.classList.remove("hidden");
+    }
+  }
+
+  function renderLoginOptions(){
+    var sel = document.getElementById("login_driver");
+    var active = Object.keys(db.drivers).filter(function(id){ return db.drivers[id].active !== false; });
+    if(active.length === 0){
+      sel.innerHTML = '<option value="">No active driver accounts</option>';
+      return;
+    }
+    sel.innerHTML = active.sort(function(a, b){
+      return db.drivers[a].name.localeCompare(db.drivers[b].name);
+    }).map(function(id){
+      return '<option value="' + escapeHtml(id) + '">' + escapeHtml(db.drivers[id].name) + '</option>';
+    }).join("");
+  }
+
+  document.getElementById("loginForm").addEventListener("submit", async function(e){
+    e.preventDefault();
+    var id = document.getElementById("login_driver").value;
+    var pin = document.getElementById("login_pin").value;
+    var errEl = document.getElementById("loginError");
+    errEl.textContent = "";
+    var driver = db.drivers[id];
+    if(!driver || driver.active === false){
+      errEl.textContent = "That driver account is no longer active.";
+      return;
+    }
+    var hash = await sha256Hex(pin);
+    if(hash !== driver.pinHash){
+      errEl.textContent = "Incorrect PIN.";
+      document.getElementById("login_pin").value = "";
+      return;
+    }
+    currentDriver = { id: id, name: driver.name };
+    saveCurrentDriver(currentDriver);
+    document.getElementById("loginForm").reset();
+    checkLoginGate();
+    showToast("Signed in as " + driver.name + ".");
+  });
+
+  document.getElementById("logoutBtn").addEventListener("click", function(){
+    saveCurrentDriver(null);
+    saveAdminSession(false);
+    currentDriver = null;
+    adminUnlocked = false;
+    checkLoginGate();
+  });
+
+  // ---------- admin: PIN gate ----------
+  var forceNewAdminPin = false;
+
+  function openAdminPinFlow(){
+    var settingUp = !db.adminPinHash || forceNewAdminPin;
+    document.getElementById("adminPinTitle").textContent = settingUp ? "Set an admin PIN" : "Admin access";
+    document.getElementById("adminPinSub").textContent = settingUp
+      ? (db.adminPinHash ? "Choose a new admin PIN." : "No admin PIN is set yet. Choose one now — you'll need it to manage driver access from here on.")
+      : "Enter the admin PIN to manage driver access.";
+    document.getElementById("adminPinConfirmField").classList.toggle("hidden", !settingUp);
+    document.getElementById("adminPinSubmitBtn").textContent = settingUp ? "Set PIN" : "Continue";
+    document.getElementById("adminPinError").textContent = "";
+    document.getElementById("adminPinForm").reset();
+    openModal("adminPinModal");
+  }
+
+  document.getElementById("adminBtn").addEventListener("click", function(){
+    forceNewAdminPin = false;
+    openAdminPinFlow();
+  });
+  document.getElementById("loginAdminLink").addEventListener("click", function(){
+    forceNewAdminPin = false;
+    openAdminPinFlow();
+  });
+
+  document.getElementById("adminPinForm").addEventListener("submit", async function(e){
+    e.preventDefault();
+    var errEl = document.getElementById("adminPinError");
+    errEl.textContent = "";
+    var pin = document.getElementById("admin_pin_input").value;
+    var settingUp = !db.adminPinHash || forceNewAdminPin;
+
+    if(settingUp){
+      var confirmPin = document.getElementById("admin_pin_confirm").value;
+      if(pin.length < 4){ errEl.textContent = "Use at least 4 digits."; return; }
+      if(pin !== confirmPin){ errEl.textContent = "PINs don't match."; return; }
+      db.adminPinHash = await sha256Hex(pin);
+      forceNewAdminPin = false;
+      saveData();
+      adminUnlocked = true;
+      saveAdminSession(true);
+      checkLoginGate();
+      closeModal("adminPinModal");
+      openAdminPanel();
+      showToast("Admin PIN set.");
+    } else {
+      var hash = await sha256Hex(pin);
+      if(hash !== db.adminPinHash){
+        errEl.textContent = "Incorrect PIN.";
+        return;
+      }
+      adminUnlocked = true;
+      saveAdminSession(true);
+      checkLoginGate();
+      closeModal("adminPinModal");
+      openAdminPanel();
+    }
+  });
+
+  document.getElementById("changeAdminPinBtn").addEventListener("click", function(){
+    // Already authenticated to be in the admin panel — go straight to "set a new PIN".
+    forceNewAdminPin = true;
+    openAdminPinFlow();
+  });
+
+  // ---------- admin: manage drivers ----------
+  function openAdminPanel(){
+    renderDrivers();
+    openModal("adminModal");
+  }
+
+  function renderDrivers(){
+    var body = document.getElementById("driversBody");
+    var ids = Object.keys(db.drivers);
+    body.innerHTML = "";
+    document.getElementById("driversEmpty").classList.toggle("hidden", ids.length !== 0);
+
+    ids.sort(function(a, b){ return db.drivers[a].name.localeCompare(db.drivers[b].name); })
+       .forEach(function(id){
+      var d = db.drivers[id];
+      var tr = document.createElement("tr");
+      tr.innerHTML =
+        '<td class="mono">' + escapeHtml(id) + '</td>' +
+        '<td>' + escapeHtml(d.name) + (d.active === false ? ' <span class="subtext">(inactive)</span>' : '') + '</td>' +
+        '<td class="mono">' + (d.createdAt ? formatDMY(d.createdAt.slice(0,10)) : "—") + '</td>' +
+        '<td><div class="row-actions">' +
+          '<button class="btn btn-sm btn-ghost" data-reset-pin="' + id + '">Reset PIN</button>' +
+          '<button class="btn btn-sm btn-danger" data-delete-driver="' + id + '">Delete</button>' +
+        '</div></td>';
+      body.appendChild(tr);
+    });
+
+    body.querySelectorAll("[data-delete-driver]").forEach(function(b){
+      b.addEventListener("click", async function(){
+        var id = b.dataset.deleteDriver;
+        var name = db.drivers[id] ? db.drivers[id].name : id;
+        var ok = await showConfirm("Delete driver", "Delete " + name + "'s access? They (and their device) will no longer be able to sign in.");
+        if(!ok) return;
+        delete db.drivers[id];
+        saveData();
+        renderDrivers();
+        checkLoginGate();
+        showToast(name + "'s access was removed.");
+      });
+    });
+    body.querySelectorAll("[data-reset-pin]").forEach(function(b){
+      b.addEventListener("click", async function(){
+        var id = b.dataset.resetPin;
+        var d = db.drivers[id];
+        if(!d) return;
+        var newPin = prompt("New PIN for " + d.name + " (4–6 digits):");
+        if(newPin === null) return;
+        if(newPin.length < 4){ showToast("PIN must be at least 4 digits.", true); return; }
+        d.pinHash = await sha256Hex(newPin);
+        saveData();
+        showToast("PIN reset for " + d.name + ".");
+      });
+    });
+  }
+
+  document.getElementById("addDriverForm").addEventListener("submit", async function(e){
+    e.preventDefault();
+    var name = document.getElementById("new_driver_name").value.trim();
+    var pin = document.getElementById("new_driver_pin").value.trim();
+    if(!name){ showToast("Driver name is required.", true); return; }
+    if(pin.length < 4){ showToast("PIN must be at least 4 digits.", true); return; }
+
+    var base = name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "") || "driver";
+    var id = base, n = 1;
+    while(db.drivers[id]){ id = base + "-" + (++n); }
+
+    db.drivers[id] = {
+      id: id,
+      name: name,
+      pinHash: await sha256Hex(pin),
+      active: true,
+      createdAt: new Date().toISOString()
+    };
+    saveData();
+    document.getElementById("addDriverForm").reset();
+    renderDrivers();
+    checkLoginGate();
+    showToast("Added driver " + name + " (ID: " + id + ").");
+  });
+
+  // ---------- toast ----------
+  var toastEl = document.getElementById("toast");
+  var toastTimer = null;
+  function showToast(msg, isError){
+    toastEl.textContent = msg;
+    toastEl.classList.toggle("error", !!isError);
+    toastEl.classList.remove("hidden");
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function(){ toastEl.classList.add("hidden"); }, 3200);
+  }
+
+  // ---------- tabs ----------
+  var currentTab = "containers";
+  function activateTab(name){
+    currentTab = name;
+    document.querySelectorAll(".tab").forEach(function(b){ b.classList.toggle("active", b.dataset.tab === name); });
+    document.querySelectorAll(".view").forEach(function(v){ v.classList.remove("active"); });
+    document.getElementById(name + "View").classList.add("active");
+    if(name === "history") renderHistory();
+    if(name === "trucks") renderTrucks();
+
+    var addBtn = document.getElementById("addContainerBtn");
+    if(name === "containers"){
+      addBtn.textContent = "+ Add container";
+      addBtn.classList.remove("hidden");
+    } else if(name === "trucks"){
+      addBtn.textContent = "+ Add delivery";
+      addBtn.classList.remove("hidden");
+    } else {
+      addBtn.classList.add("hidden");
+    }
+  }
+  document.querySelectorAll(".tab").forEach(function(btn){
+    btn.addEventListener("click", function(){ activateTab(btn.dataset.tab); });
+  });
+
+  // ---------- modal helpers ----------
+  function openModal(id){ document.getElementById(id).classList.remove("hidden"); }
+  function closeModal(id){ document.getElementById(id).classList.add("hidden"); }
+  document.querySelectorAll("[data-close]").forEach(function(btn){
+    btn.addEventListener("click", function(){ closeModal(btn.dataset.close); });
+  });
+
+  function showConfirm(title, message){
+    return new Promise(function(resolve){
+      document.getElementById("confirmTitle").textContent = title;
+      document.getElementById("confirmMessage").textContent = message;
+      openModal("confirmModal");
+      var okBtn = document.getElementById("confirmOkBtn");
+      var cancelBtn = document.getElementById("confirmCancelBtn");
+      var backdrop = document.getElementById("confirmModal");
+      function cleanup(result){
+        okBtn.removeEventListener("click", onOk);
+        cancelBtn.removeEventListener("click", onCancel);
+        backdrop.removeEventListener("click", onBackdrop);
+        closeModal("confirmModal");
+        resolve(result);
+      }
+      function onOk(){ cleanup(true); }
+      function onCancel(){ cleanup(false); }
+      function onBackdrop(e){ if(e.target === backdrop) cleanup(false); }
+      okBtn.addEventListener("click", onOk);
+      cancelBtn.addEventListener("click", onCancel);
+      backdrop.addEventListener("click", onBackdrop);
+    });
+  }
+  document.querySelectorAll(".modal-backdrop").forEach(function(bd){
+    bd.addEventListener("click", function(e){ if(e.target === bd) bd.classList.add("hidden"); });
+  });
+
+  // ---------- add / edit container ----------
+  var containerForm = document.getElementById("containerForm");
+  var editingSerial = null;
+
+  function attachDateMask(id){
+    var el = document.getElementById(id);
+    if(!el) return;
+    el.addEventListener("input", function(){
+      var digits = this.value.replace(/\D/g,"").slice(0,8);
+      var out = digits.slice(0,2);
+      if(digits.length > 2) out += "/" + digits.slice(2,4);
+      if(digits.length > 4) out += "/" + digits.slice(4,8);
+      this.value = out;
+    });
+  }
+  ["f_expiry","filterFrom","filterTo","f_date_loaded","f_date_backloaded","t_date"].forEach(attachDateMask);
+
+  // ---------- sync settings ----------
+  document.getElementById("refreshDataBtn").addEventListener("click", function(){
+    ghRefresh();
+  });
+
+  function getUrlGhDefaults(){
+    var params = new URLSearchParams(window.location.search);
+    // On GitHub Pages (https://OWNER.github.io/REPO/) the owner and repo
+    // can be read from the address itself, so only the token is needed.
+    var pagesOwner = "", pagesRepo = "";
+    var host = window.location.hostname;
+    if(/\.github\.io$/i.test(host)){
+      pagesOwner = host.split(".")[0];
+      pagesRepo = window.location.pathname.split("/").filter(Boolean)[0] || "";
+      if(/\.[a-z0-9]+$/i.test(pagesRepo)) pagesRepo = ""; // e.g. index.html at a user-site root
+    }
+    return {
+      owner: params.get("gh_owner") || pagesOwner,
+      repo: params.get("gh_repo") || pagesRepo,
+      branch: params.get("gh_branch") || "",
+      path: params.get("gh_path") || ""
+    };
+  }
+
+  document.getElementById("syncSettingsBtn").addEventListener("click", function(){
+    var cfg = ghConfig || {};
+    var urlDefaults = getUrlGhDefaults();
+    document.getElementById("gh_token").value = cfg.token || "";
+    document.getElementById("gh_owner").value = cfg.owner || urlDefaults.owner || "";
+    document.getElementById("gh_repo").value = cfg.repo || urlDefaults.repo || "";
+    document.getElementById("gh_branch").value = cfg.branch || urlDefaults.branch || "main";
+    document.getElementById("gh_path").value = cfg.path || urlDefaults.path || "data.json";
+    openModal("syncModal");
+  });
+
+  document.getElementById("syncForm").addEventListener("submit", async function(e){
+    e.preventDefault();
+    var token = document.getElementById("gh_token").value.trim();
+    var owner = document.getElementById("gh_owner").value.trim();
+    var repo = document.getElementById("gh_repo").value.trim();
+    var branch = document.getElementById("gh_branch").value.trim() || "main";
+    var path = document.getElementById("gh_path").value.trim() || "data.json";
+    if(!token || !owner || !repo){
+      showToast("Token, repo owner and repo name are required.", true);
+      return;
+    }
+    ghConfig = { token: token, owner: owner, repo: repo, branch: branch, path: path };
+    saveGhConfig(ghConfig);
+    closeModal("syncModal");
+    await connectGh(true);
+    if(ghActive) showToast("Connected to " + owner + "/" + repo + ".");
+  });
+
+  document.getElementById("syncDisconnectBtn").addEventListener("click", async function(){
+    var ok = await showConfirm("Disconnect GitHub sync",
+      sharedCfg
+        ? "Remove this device's token? It will go back to the shared connection, which needs no token."
+        : "Stop syncing with GitHub? Data already saved to this browser stays here, but stops sharing with other devices.");
+    if(!ok) return;
+    clearGhConfig();
+    ghConfig = resolveGhConfig();
+    ghActive = false;
+    ghSha = null;
+    if(ghConfig){
+      closeModal("syncModal");
+      await connectGh(false);
+      updateSyncBtn();
+      showToast("Back on the shared connection.");
+      return;
+    }
+    db = loadDataLocal();
+    setSyncBadge("local");
+    refreshDatalists();
+    renderContainers();
+    renderHistory();
+    renderTrucks();
+    closeModal("syncModal");
+    showToast("Disconnected — working locally on this device.");
+  });
+
+  document.getElementById("addContainerBtn").addEventListener("click", function(){
+    if(currentTab === "trucks"){
+      editingTruckId = null;
+      document.getElementById("truckModalTitle").textContent = "Add delivery";
+      resetTruckForm();
+      openModal("truckModal");
+      return;
+    }
+    editingSerial = null;
+    containerForm.reset();
+    document.getElementById("containerModalTitle").textContent = "Add container";
+    document.getElementById("f_serial").disabled = false;
+    openModal("containerModal");
+  });
+
+  function openEditContainer(serial){
+    var c = db.containers[serial];
+    if(!c) return;
+    editingSerial = serial;
+    document.getElementById("containerModalTitle").textContent = "Edit container specifications";
+    document.getElementById("f_serial").value = c.serial;
+    document.getElementById("f_serial").disabled = true;
+    document.getElementById("f_length").value = c.length;
+    document.getElementById("f_width").value = c.width;
+    document.getElementById("f_height").value = c.height;
+    document.getElementById("f_expiry").value = formatDMY(c.expiry);
+    document.getElementById("f_tare").value = c.tare;
+    document.getElementById("f_payload").value = c.payload;
+    document.getElementById("f_maxgross").value = c.maxGross;
+    openModal("containerModal");
+  }
+
+  containerForm.addEventListener("submit", function(e){
+    e.preventDefault();
+    var serial = document.getElementById("f_serial").value.trim().toUpperCase();
+    if(!serial){ showToast("Serial number is required.", true); return; }
+
+    var expiryIso = parseDMY(document.getElementById("f_expiry").value);
+    if(!expiryIso){ showToast("Enter a valid expiry date as dd/mm/yyyy.", true); return; }
+
+    var spec = {
+      length: parseFloat(document.getElementById("f_length").value),
+      width: parseFloat(document.getElementById("f_width").value),
+      height: parseFloat(document.getElementById("f_height").value),
+      expiry: expiryIso,
+      tare: parseFloat(document.getElementById("f_tare").value),
+      payload: parseFloat(document.getElementById("f_payload").value),
+      maxGross: parseFloat(document.getElementById("f_maxgross").value)
+    };
+
+    if(editingSerial){
+      var existing = db.containers[editingSerial];
+      Object.assign(existing, spec);
+      existing.updatedAt = new Date().toISOString();
+      addHistory({ serial: editingSerial, action: "edited", vessel: "" });
+      pushContainer(editingSerial);
+      showToast("Container " + editingSerial + " updated.");
+    } else {
+      if(db.containers[serial]){
+        showToast("A container with that serial already exists.", true);
+        return;
+      }
+      db.containers[serial] = Object.assign({
+        serial: serial,
+        status: "backloaded",
+        vessel: "",
+        nextVessel: "",
+        lastQuantities: null,
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString()
+      }, spec);
+      addHistory({ serial: serial, action: "created", vessel: "" });
+      pushContainer(serial);
+      showToast("Container " + serial + " added.");
+    }
+
+    saveData();
+    closeModal("containerModal");
+    renderContainers();
+    renderHistory();
+  });
+
+  // ---------- delete container ----------
+  async function deleteContainer(serial){
+    var ok = await showConfirm(
+      "Remove container",
+      "Remove container " + serial + "? This also clears its history record. This cannot be undone."
+    );
+    if(!ok) return;
+    delete db.containers[serial];
+    db.history = db.history.filter(function(h){ return h.serial !== serial; });
+    pushContainerDelete(serial);
+    pushHistoryDeleteForSerial(serial);
+    saveData();
+    renderContainers();
+    renderHistory();
+    showToast("Container " + serial + " and its history were removed.");
+  }
+
+  // ---------- status modal ----------
+  var statusForm = document.getElementById("statusForm");
+  var statusSerial = null;
+
+  function openStatusModal(serial){
+    var c = db.containers[serial];
+    if(!c) return;
+    statusSerial = serial;
+    document.getElementById("statusModalSerial").textContent = serial;
+    statusForm.reset();
+    document.querySelectorAll(".status-detail").forEach(function(d){ d.classList.remove("active"); });
+
+    // preselect current status and prefill fields sensibly
+    var radios = statusForm.querySelectorAll('input[name="statusChoice"]');
+    radios.forEach(function(r){ r.checked = (r.value === c.status); });
+
+    document.getElementById("f_vessel_reserved").value = c.nextVessel || c.vessel || "";
+    document.getElementById("f_vessel_loaded").value = c.vessel || "";
+    document.getElementById("f_vessel_next").value = c.nextVessel || "";
+    document.getElementById("currentVesselNote").textContent = c.vessel
+      ? "Currently loaded on: " + c.vessel
+      : "No current vessel on record.";
+    document.getElementById("f_date_loaded").value = formatDMY(todayISO());
+    document.getElementById("f_date_backloaded").value = formatDMY(todayISO());
+    document.getElementById("f_trailer_loaded").value = "";
+    document.getElementById("f_trailer_backloaded").value = "";
+
+    showStatusDetail(c.status || "backloaded");
+    openModal("statusModal");
+  }
+
+  function showStatusDetail(val){
+    document.querySelectorAll(".status-detail").forEach(function(d){ d.classList.remove("active"); });
+    var el = document.getElementById("detail_" + val);
+    if(el) el.classList.add("active");
+  }
+
+  statusForm.querySelectorAll('input[name="statusChoice"]').forEach(function(r){
+    r.addEventListener("change", function(){ showStatusDetail(r.value); });
+  });
+
+  statusForm.addEventListener("submit", function(e){
+    e.preventDefault();
+    var choice = statusForm.querySelector('input[name="statusChoice"]:checked');
+    if(!choice){ showToast("Choose a status.", true); return; }
+    var val = choice.value;
+    var c = db.containers[statusSerial];
+    if(!c) return;
+
+    if(val === "reserved"){
+      var v = document.getElementById("f_vessel_reserved").value.trim();
+      if(!v){ showToast("Vessel name is required for a loading reservation.", true); return; }
+      c.status = "reserved";
+      c.vessel = v;
+      c.nextVessel = "";
+      addHistory({ serial: statusSerial, action: "reserved", vessel: v });
+
+    } else if(val === "loaded"){
+      var v2 = document.getElementById("f_vessel_loaded").value.trim();
+      if(!v2){ showToast("Vessel name is required to mark as loaded.", true); return; }
+      var loadDate = parseDMY(document.getElementById("f_date_loaded").value);
+      if(!loadDate){ showToast("Enter a valid loading date as dd/mm/yyyy.", true); return; }
+      var loadTrailer = document.getElementById("f_trailer_loaded").value.trim();
+      c.status = "loaded";
+      c.vessel = v2;
+      addHistory({ serial: statusSerial, action: "loaded", vessel: v2, date: loadDate, trailerPlate: loadTrailer });
+
+    } else if(val === "reserved_next"){
+      var v3 = document.getElementById("f_vessel_next").value.trim();
+      if(!v3){ showToast("Next vessel name is required.", true); return; }
+      c.status = "reserved_next";
+      c.nextVessel = v3;
+      addHistory({ serial: statusSerial, action: "reserved_next", vessel: v3 });
+
+    } else if(val === "backloaded"){
+      var backDate = parseDMY(document.getElementById("f_date_backloaded").value);
+      if(!backDate){ showToast("Enter a valid backload date as dd/mm/yyyy.", true); return; }
+      var backTrailer = document.getElementById("f_trailer_backloaded").value.trim();
+      var q = {
+        basketLarge: parseInt(document.getElementById("q_basketLarge").value, 10) || 0,
+        basketSmall: parseInt(document.getElementById("q_basketSmall").value, 10) || 0,
+        basketThai: parseInt(document.getElementById("q_basketThai").value, 10) || 0,
+        roBottles: parseInt(document.getElementById("q_roBottles").value, 10) || 0,
+        others: parseInt(document.getElementById("q_others").value, 10) || 0,
+        othersNote: document.getElementById("q_othersNote").value.trim()
+      };
+      c.status = "backloaded";
+      c.vessel = "";
+      c.lastQuantities = q;
+      addHistory({ serial: statusSerial, action: "backloaded", vessel: "", date: backDate, trailerPlate: backTrailer, quantities: q });
+    }
+
+    c.updatedAt = new Date().toISOString();
+    pushContainer(statusSerial);
+    saveData();
+    closeModal("statusModal");
+    renderContainers();
+    renderHistory();
+    showToast("Status updated for " + statusSerial + ".");
+  });
+
+  // ---------- render: containers ----------
+  function fmtNum(n){
+    if(n === undefined || n === null || isNaN(n)) return "—";
+    return Number(n).toLocaleString();
+  }
+
+  function fmtDim(n){
+    if(n === undefined || n === null || isNaN(n)) return "—";
+    return Number(n).toFixed(3);
+  }
+
+  function expiryClass(expiry){
+    if(!expiry) return "";
+    var d = new Date(expiry + "T00:00:00");
+    var soon = new Date();
+    soon.setDate(soon.getDate() + 60);
+    return d < soon ? "expiry-warn" : "";
+  }
+
+  function renderSummary(){
+    var list = Object.keys(db.containers).map(function(k){ return db.containers[k]; });
+    var soon = new Date();
+    soon.setDate(soon.getDate() + 60);
+
+    var yard = 0, loaded = 0, reserved = 0, expiring = 0;
+    list.forEach(function(c){
+      if(c.status === "backloaded") yard++;
+      if(c.status === "loaded" || c.status === "reserved_next") loaded++;
+      if(c.status === "reserved") reserved++;
+      if(c.expiry && new Date(c.expiry + "T00:00:00") < soon) expiring++;
+    });
+
+    document.getElementById("sumYard").textContent = yard;
+    document.getElementById("sumLoaded").textContent = loaded;
+    document.getElementById("sumReserved").textContent = reserved;
+    document.getElementById("sumExpiring").textContent = expiring;
+
+    var statusF = document.getElementById("statusFilter").value;
+    var expiringOn = document.getElementById("expiringFilter").checked;
+    document.getElementById("cardYard").classList.toggle("active", !expiringOn && statusF === "backloaded");
+    document.getElementById("cardLoaded").classList.toggle("active", !expiringOn && statusF === "loaded_group");
+    document.getElementById("cardReserved").classList.toggle("active", !expiringOn && statusF === "reserved");
+    document.getElementById("cardExpiring").classList.toggle("active", expiringOn);
+  }
+
+  // dd/mm/yyyy <-> ISO (yyyy-mm-dd, used internally for storage/sorting)
+  function parseDMY(str){
+    if(!str) return null;
+    var m = String(str).trim().match(/^(\d{2})\/(\d{2})\/(\d{4})$/);
+    if(!m) return null;
+    var day = parseInt(m[1],10), month = parseInt(m[2],10), year = parseInt(m[3],10);
+    if(month < 1 || month > 12 || day < 1 || day > 31) return null;
+    var d = new Date(year, month - 1, day);
+    if(d.getFullYear() !== year || d.getMonth() !== month - 1 || d.getDate() !== day) return null;
+    var mm = String(month).padStart(2,"0"), dd = String(day).padStart(2,"0");
+    return year + "-" + mm + "-" + dd;
+  }
+
+  function formatDMY(iso){
+    if(!iso) return "";
+    var parts = iso.split("-");
+    if(parts.length !== 3) return "";
+    return parts[2] + "/" + parts[1] + "/" + parts[0];
+  }
+
+  function statusBadge(c){
+    var label = STATUS_LABEL[c.status] || c.status;
+    var sub = "";
+    if(c.status === "reserved" && c.vessel) sub = "Vessel: " + c.vessel;
+    else if(c.status === "loaded" && c.vessel) sub = "Vessel: " + c.vessel;
+    else if(c.status === "reserved_next" && c.nextVessel) sub = "Next: " + c.nextVessel + (c.vessel ? " · on " + c.vessel : "");
+    else if(c.status === "backloaded" && c.nextVessel) sub = "Next: " + c.nextVessel;
+    return '<span class="badge ' + c.status + '">' + label + '</span>' + (sub ? '<span class="subtext">' + escapeHtml(sub) + '</span>' : "");
+  }
+
+  function escapeHtml(s){
+    return String(s).replace(/[&<>"']/g, function(ch){
+      return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[ch];
+    });
+  }
+
+  function refreshDatalists(){
+    var vesselList = document.getElementById("vesselOptions");
+    var trailerList = document.getElementById("trailerOptions");
+    var driverList = document.getElementById("driverOptions");
+    var placeList = document.getElementById("placeOptions");
+    var truckList = document.getElementById("truckOptions");
+    if(!vesselList || !trailerList) return; // called before DOM is ready
+
+    var vessels = new Set();
+    Object.keys(db.containers).forEach(function(s){
+      var c = db.containers[s];
+      if(c.vessel) vessels.add(c.vessel);
+      if(c.nextVessel) vessels.add(c.nextVessel);
+    });
+    db.history.forEach(function(h){ if(h.vessel) vessels.add(h.vessel); });
+    (db.truckRecords || []).forEach(function(t){ if(t.vessel) vessels.add(t.vessel); });
+    vesselList.innerHTML = Array.from(vessels).sort().map(function(v){
+      return '<option value="' + escapeHtml(v) + '"></option>';
+    }).join("");
+
+    var trailers = new Set();
+    db.history.forEach(function(h){ if(h.trailerPlate) trailers.add(h.trailerPlate); });
+    trailerList.innerHTML = Array.from(trailers).sort().map(function(t){
+      return '<option value="' + escapeHtml(t) + '"></option>';
+    }).join("");
+
+    if(driverList && placeList && truckList){
+      var drivers = new Set(), places = new Set(), trucks = new Set();
+      (db.truckRecords || []).forEach(function(t){
+        if(t.driver) drivers.add(t.driver);
+        if(t.truckPlate) trucks.add(t.truckPlate);
+        if(t.place) places.add(t.place);
+      });
+      driverList.innerHTML = Array.from(drivers).sort().map(function(v){ return '<option value="' + escapeHtml(v) + '"></option>'; }).join("");
+      placeList.innerHTML = Array.from(places).sort().map(function(v){ return '<option value="' + escapeHtml(v) + '"></option>'; }).join("");
+      truckList.innerHTML = Array.from(trucks).sort().map(function(v){ return '<option value="' + escapeHtml(v) + '"></option>'; }).join("");
+    }
+  }
+
+  function renderContainers(){
+    var body = document.getElementById("containersBody");
+    var search = document.getElementById("containerSearch").value.trim().toLowerCase();
+    var statusF = document.getElementById("statusFilter").value;
+
+    var list = Object.keys(db.containers).map(function(k){ return db.containers[k]; })
+      .sort(function(a,b){ return a.serial.localeCompare(b.serial); });
+
+    if(search){
+      list = list.filter(function(c){
+        return c.serial.toLowerCase().indexOf(search) > -1 ||
+          (c.vessel || "").toLowerCase().indexOf(search) > -1 ||
+          (c.nextVessel || "").toLowerCase().indexOf(search) > -1;
+      });
+    }
+    if(statusF === "loaded_group"){
+      list = list.filter(function(c){ return c.status === "loaded" || c.status === "reserved_next"; });
+    } else if(statusF){
+      list = list.filter(function(c){ return c.status === statusF; });
+    }
+    if(document.getElementById("expiringFilter").checked){
+      var soon = new Date();
+      soon.setDate(soon.getDate() + 60);
+      list = list.filter(function(c){ return c.expiry && new Date(c.expiry + "T00:00:00") < soon; });
+    }
+
+    body.innerHTML = "";
+    document.getElementById("containerCount").textContent = list.length + " container" + (list.length === 1 ? "" : "s");
+    document.getElementById("containersEmpty").classList.toggle("hidden", list.length !== 0);
+    renderSummary();
+
+    list.forEach(function(c){
+      var tr = document.createElement("tr");
+      tr.innerHTML =
+        '<td><span class="serial">' + escapeHtml(c.serial) + '</span></td>' +
+        '<td class="dim-block">' + fmtDim(c.length) + ' × ' + fmtDim(c.width) + ' × ' + fmtDim(c.height) + '</td>' +
+        '<td class="mono">' + fmtNum(c.tare) + ' / ' + fmtNum(c.payload) + ' / ' + fmtNum(c.maxGross) + '</td>' +
+        '<td class="' + expiryClass(c.expiry) + '">' + (c.expiry ? formatDMY(c.expiry) : "—") + '</td>' +
+        '<td>' + statusBadge(c) + '</td>' +
+        '<td><div class="row-actions">' +
+          '<button class="btn btn-sm" data-status="' + c.serial + '">Update status</button>' +
+          '<button class="btn btn-sm btn-ghost" data-edit="' + c.serial + '">Edit</button>' +
+          '<button class="btn btn-sm btn-danger" data-delete="' + c.serial + '">Remove</button>' +
+        '</div></td>';
+      body.appendChild(tr);
+    });
+
+    body.querySelectorAll("[data-status]").forEach(function(b){
+      b.addEventListener("click", function(){ openStatusModal(b.dataset.status); });
+    });
+    body.querySelectorAll("[data-edit]").forEach(function(b){
+      b.addEventListener("click", function(){ openEditContainer(b.dataset.edit); });
+    });
+    body.querySelectorAll("[data-delete]").forEach(function(b){
+      b.addEventListener("click", function(){ deleteContainer(b.dataset.delete); });
+    });
+  }
+
+  document.getElementById("containerSearch").addEventListener("input", renderContainers);
+  document.getElementById("statusFilter").addEventListener("change", renderContainers);
+  document.getElementById("expiringFilter").addEventListener("change", function(){
+    if(this.checked) document.getElementById("statusFilter").value = "";
+    renderContainers();
+  });
+
+  document.querySelectorAll(".summary-card").forEach(function(card){
+    card.addEventListener("click", function(){
+      activateTab("containers");
+      var filter = card.dataset.filter;
+      var statusSel = document.getElementById("statusFilter");
+      var expiringCb = document.getElementById("expiringFilter");
+      if(filter === "expiring"){
+        var turningOn = !expiringCb.checked;
+        expiringCb.checked = turningOn;
+        if(turningOn) statusSel.value = "";
+      } else {
+        var turningOn2 = statusSel.value !== filter;
+        expiringCb.checked = false;
+        statusSel.value = turningOn2 ? filter : "";
+      }
+      renderContainers();
+    });
+  });
+
+  // ---------- render: history ----------
+  function populateSerialFilter(){
+    var sel = document.getElementById("filterSerial");
+    var current = sel.value;
+    var serials = new Set();
+    Object.keys(db.containers).forEach(function(s){ serials.add(s); });
+    db.history.forEach(function(h){ serials.add(h.serial); });
+    var sorted = Array.from(serials).sort();
+    sel.innerHTML = '<option value="">All containers</option>' +
+      sorted.map(function(s){ return '<option value="' + escapeHtml(s) + '">' + escapeHtml(s) + '</option>'; }).join("");
+    if(sorted.indexOf(current) > -1) sel.value = current;
+  }
+
+  function getFilteredHistory(){
+    var from = parseDMY(document.getElementById("filterFrom").value);
+    var to = parseDMY(document.getElementById("filterTo").value);
+    var serial = document.getElementById("filterSerial").value;
+    var vessel = document.getElementById("filterVessel").value.trim().toLowerCase();
+
+    return db.history.filter(function(h){
+      var d = h.date;
+      if(from && d < from) return false;
+      if(to && d > to) return false;
+      if(serial && h.serial !== serial) return false;
+      if(vessel && (h.vessel || "").toLowerCase().indexOf(vessel) === -1) return false;
+      return true;
+    }).sort(function(a,b){
+      if(a.date !== b.date) return b.date.localeCompare(a.date);
+      return (b.recordedAt || "").localeCompare(a.recordedAt || "");
+    });
+  }
+
+  function renderHistory(){
+    populateSerialFilter();
+    var body = document.getElementById("historyBody");
+    var rows = getFilteredHistory();
+    body.innerHTML = "";
+    document.getElementById("historyCount").textContent = rows.length + " entr" + (rows.length === 1 ? "y" : "ies");
+    document.getElementById("historyEmpty").classList.toggle("hidden", rows.length !== 0);
+
+    rows.forEach(function(h){
+      var q = h.quantities || {};
+      var othersCell = (q.others || h.action === "backloaded") ? (fmtQty(q.others) + (q.othersNote ? " (" + escapeHtml(q.othersNote) + ")" : "")) : "—";
+      var tr = document.createElement("tr");
+      tr.innerHTML =
+        '<td class="mono">' + formatDMY(h.date) + '</td>' +
+        '<td class="serial">' + escapeHtml(h.serial) + '</td>' +
+        '<td>' + (ACTION_LABEL[h.action] || h.action) + '</td>' +
+        '<td>' + (h.vessel ? escapeHtml(h.vessel) : "—") + '</td>' +
+        '<td class="mono">' + (h.trailerPlate ? escapeHtml(h.trailerPlate) : "—") + '</td>' +
+        '<td class="mono">' + fmtQty(q.basketLarge) + '</td>' +
+        '<td class="mono">' + fmtQty(q.basketSmall) + '</td>' +
+        '<td class="mono">' + fmtQty(q.basketThai) + '</td>' +
+        '<td class="mono">' + fmtQty(q.roBottles) + '</td>' +
+        '<td class="mono">' + othersCell + '</td>';
+      body.appendChild(tr);
+    });
+  }
+
+  function fmtQty(n){
+    return (n === undefined || n === null) ? "—" : String(n);
+  }
+
+  ["filterFrom","filterTo","filterSerial","filterVessel"].forEach(function(id){
+    document.getElementById(id).addEventListener("input", renderHistory);
+    document.getElementById(id).addEventListener("change", renderHistory);
+  });
+
+  document.getElementById("clearFilters").addEventListener("click", function(){
+    document.getElementById("filterFrom").value = "";
+    document.getElementById("filterTo").value = "";
+    document.getElementById("filterSerial").value = "";
+    document.getElementById("filterVessel").value = "";
+    renderHistory();
+  });
+
+  // ---------- export to excel ----------
+  function exportToExcel(sheetRows, colWidths, sheetName, filenamePrefix){
+    if(sheetRows.length === 0){ showToast("No rows match the current filter.", true); return; }
+    if(typeof XLSX === "undefined"){ showToast("Excel library did not load. Check your connection and try again.", true); return; }
+
+    var wb = XLSX.utils.book_new();
+    var ws = XLSX.utils.json_to_sheet(sheetRows);
+    ws["!cols"] = colWidths;
+    XLSX.utils.book_append_sheet(wb, ws, sheetName);
+    var arrayBuf = XLSX.write(wb, { type: "array", bookType: "xlsx" });
+
+    var filename = filenamePrefix + "-" + new Date().toISOString().slice(0,10) + ".xlsx";
+    try{
+      var blob = new Blob([arrayBuf], { type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" });
+      var url = URL.createObjectURL(blob);
+      var a = document.createElement("a");
+      a.href = url;
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      setTimeout(function(){ URL.revokeObjectURL(url); }, 4000);
+      showToast("Exported " + sheetRows.length + " row" + (sheetRows.length===1?"":"s") + " to " + filename);
+    }catch(err){
+      showToast("Export failed. Please try again.", true);
+    }
+  }
+
+  document.getElementById("exportExcel").addEventListener("click", function(){
+    var rows = getFilteredHistory();
+    var sheetRows = rows.map(function(h){
+      var q = h.quantities || {};
+      return {
+        "Date": formatDMY(h.date),
+        "Container Serial": h.serial,
+        "Action": ACTION_LABEL[h.action] || h.action,
+        "Vessel": h.vessel || "",
+        "Trailer Plate": h.trailerPlate || "",
+        "Basket Large": q.basketLarge != null ? q.basketLarge : "",
+        "Basket Small": q.basketSmall != null ? q.basketSmall : "",
+        "Basket Thai": q.basketThai != null ? q.basketThai : "",
+        "RO Bottles": q.roBottles != null ? q.roBottles : "",
+        "Others Qty": q.others != null ? q.others : "",
+        "Others Note": q.othersNote || ""
+      };
+    });
+    var cols = [{wch:12},{wch:16},{wch:22},{wch:18},{wch:14},{wch:12},{wch:12},{wch:12},{wch:12},{wch:10},{wch:22}];
+    exportToExcel(sheetRows, cols, "Container History", "container-history");
+  });
+
+  // ---------- trucks ----------
+  var truckForm = document.getElementById("truckForm");
+  var editingTruckId = null;
+
+  function resetTruckForm(){
+    truckForm.reset();
+    document.getElementById("t_date").value = formatDMY(todayISO());
+    if(currentDriver) document.getElementById("t_driver").value = currentDriver.name;
+  }
+
+  function openEditTruck(id){
+    var t = (db.truckRecords || []).find(function(r){ return r.id === id; });
+    if(!t) return;
+    editingTruckId = id;
+    document.getElementById("truckModalTitle").textContent = "Edit truck record";
+    document.getElementById("t_driver").value = t.driver || "";
+    document.getElementById("t_laborers").value = t.laborers || "";
+    document.getElementById("t_vessel").value = t.vessel || "";
+    document.getElementById("t_place").value = t.place || "";
+    document.getElementById("t_truckPlate").value = t.truckPlate || "";
+    document.getElementById("t_date").value = formatDMY(t.date);
+    document.getElementById("t_timeDelivery").value = t.timeDelivery || "";
+    document.getElementById("t_timeBack").value = t.timeBack || "";
+    var items = t.items || {};
+    document.getElementById("tq_basketLarge").value = items.basketLarge || 0;
+    document.getElementById("tq_basketSmall").value = items.basketSmall || 0;
+    document.getElementById("tq_basketThai").value = items.basketThai || 0;
+    document.getElementById("tq_roBottles").value = items.roBottles || 0;
+    document.getElementById("tq_others").value = items.others || 0;
+    document.getElementById("tq_othersNote").value = items.othersNote || "";
+    openModal("truckModal");
+  }
+
+  async function deleteTruck(id){
+    var ok = await showConfirm("Remove truck record", "Remove this truck record? This cannot be undone.");
+    if(!ok) return;
+    db.truckRecords = (db.truckRecords || []).filter(function(r){ return r.id !== id; });
+    pushTruckDelete(id);
+    saveData();
+    renderTrucks();
+    showToast("Truck record removed.");
+  }
+
+  truckForm.addEventListener("submit", function(e){
+    e.preventDefault();
+    var driver = document.getElementById("t_driver").value.trim();
+    var vessel = document.getElementById("t_vessel").value.trim();
+    if(!driver){ showToast("Driver is required.", true); return; }
+    if(!vessel){ showToast("Vessel is required.", true); return; }
+    var dateIso = parseDMY(document.getElementById("t_date").value);
+    if(!dateIso){ showToast("Enter a valid delivery date as dd/mm/yyyy.", true); return; }
+
+    var record = {
+      driver: driver,
+      laborers: document.getElementById("t_laborers").value.trim(),
+      vessel: vessel,
+      place: document.getElementById("t_place").value.trim(),
+      truckPlate: document.getElementById("t_truckPlate").value.trim(),
+      date: dateIso,
+      timeDelivery: document.getElementById("t_timeDelivery").value,
+      timeBack: document.getElementById("t_timeBack").value,
+      items: {
+        basketLarge: parseInt(document.getElementById("tq_basketLarge").value, 10) || 0,
+        basketSmall: parseInt(document.getElementById("tq_basketSmall").value, 10) || 0,
+        basketThai: parseInt(document.getElementById("tq_basketThai").value, 10) || 0,
+        roBottles: parseInt(document.getElementById("tq_roBottles").value, 10) || 0,
+        others: parseInt(document.getElementById("tq_others").value, 10) || 0,
+        othersNote: document.getElementById("tq_othersNote").value.trim()
+      }
+    };
+
+    if(!db.truckRecords) db.truckRecords = [];
+
+    if(editingTruckId){
+      var existing = db.truckRecords.find(function(r){ return r.id === editingTruckId; });
+      if(existing) Object.assign(existing, record);
+      pushTruck(editingTruckId);
+      showToast("Truck record updated.");
+    } else {
+      record.id = uid();
+      record.recordedAt = new Date().toISOString();
+      db.truckRecords.push(record);
+      pushTruck(record.id);
+      showToast("Truck record added.");
+    }
+
+    saveData();
+    closeModal("truckModal");
+    renderTrucks();
+  });
+
+  function fmtItems(items){
+    if(!items) return "—";
+    var parts = [];
+    if(items.basketLarge) parts.push("BL " + items.basketLarge);
+    if(items.basketSmall) parts.push("BS " + items.basketSmall);
+    if(items.basketThai) parts.push("Thai " + items.basketThai);
+    if(items.roBottles) parts.push("RO " + items.roBottles);
+    if(items.others) parts.push("Others " + items.others + (items.othersNote ? " (" + escapeHtml(items.othersNote) + ")" : ""));
+    return parts.length ? parts.join(", ") : "—";
+  }
+
+  function renderTrucks(){
+    var body = document.getElementById("trucksBody");
+    var search = document.getElementById("truckSearch").value.trim().toLowerCase();
+    var list = (db.truckRecords || []).slice().sort(function(a,b){
+      if(a.date !== b.date) return b.date.localeCompare(a.date);
+      return (b.recordedAt || "").localeCompare(a.recordedAt || "");
+    });
+
+    if(search){
+      list = list.filter(function(t){
+        return (t.driver || "").toLowerCase().indexOf(search) > -1 ||
+          (t.laborers || "").toLowerCase().indexOf(search) > -1 ||
+          (t.vessel || "").toLowerCase().indexOf(search) > -1 ||
+          (t.place || "").toLowerCase().indexOf(search) > -1 ||
+          (t.truckPlate || "").toLowerCase().indexOf(search) > -1;
+      });
+    }
+
+    body.innerHTML = "";
+    document.getElementById("truckCount").textContent = list.length + " record" + (list.length === 1 ? "" : "s");
+    document.getElementById("trucksEmpty").classList.toggle("hidden", list.length !== 0);
+
+    list.forEach(function(t){
+      var tr = document.createElement("tr");
+      tr.innerHTML =
+        '<td class="mono">' + formatDMY(t.date) + '</td>' +
+        '<td>' + escapeHtml(t.driver || "—") + '</td>' +
+        '<td>' + escapeHtml(t.laborers || "—") + '</td>' +
+        '<td>' + escapeHtml(t.vessel || "—") + '</td>' +
+        '<td>' + escapeHtml(t.place || "—") + '</td>' +
+        '<td class="mono">' + escapeHtml(t.truckPlate || "—") + '</td>' +
+        '<td class="mono">' + (t.timeDelivery || "—") + '</td>' +
+        '<td class="mono">' + (t.timeBack || "—") + '</td>' +
+        '<td>' + fmtItems(t.items) + '</td>' +
+        '<td><div class="row-actions">' +
+          '<button class="btn btn-sm btn-ghost" data-truck-edit="' + t.id + '">Edit</button>' +
+          '<button class="btn btn-sm btn-danger" data-truck-delete="' + t.id + '">Remove</button>' +
+        '</div></td>';
+      body.appendChild(tr);
+    });
+
+    body.querySelectorAll("[data-truck-edit]").forEach(function(b){
+      b.addEventListener("click", function(){ openEditTruck(b.dataset.truckEdit); });
+    });
+    body.querySelectorAll("[data-truck-delete]").forEach(function(b){
+      b.addEventListener("click", function(){ deleteTruck(b.dataset.truckDelete); });
+    });
+  }
+
+  document.getElementById("truckSearch").addEventListener("input", renderTrucks);
+
+  document.getElementById("exportTrucksExcel").addEventListener("click", function(){
+    var search = document.getElementById("truckSearch").value.trim().toLowerCase();
+    var rows = (db.truckRecords || []).filter(function(t){
+      if(!search) return true;
+      return (t.driver || "").toLowerCase().indexOf(search) > -1 ||
+        (t.laborers || "").toLowerCase().indexOf(search) > -1 ||
+        (t.vessel || "").toLowerCase().indexOf(search) > -1 ||
+        (t.place || "").toLowerCase().indexOf(search) > -1 ||
+        (t.truckPlate || "").toLowerCase().indexOf(search) > -1;
+    });
+    var sheetRows = rows.map(function(t){
+      var items = t.items || {};
+      return {
+        "Date": formatDMY(t.date),
+        "Driver": t.driver || "",
+        "Laborer(s)": t.laborers || "",
+        "Vessel": t.vessel || "",
+        "Place of Delivery": t.place || "",
+        "Truck / Plate": t.truckPlate || "",
+        "Delivery Time": t.timeDelivery || "",
+        "Back To Yard": t.timeBack || "",
+        "Basket Large": items.basketLarge || 0,
+        "Basket Small": items.basketSmall || 0,
+        "Basket Thai": items.basketThai || 0,
+        "RO Bottles": items.roBottles || 0,
+        "Others Qty": items.others || 0,
+        "Others Note": items.othersNote || ""
+      };
+    });
+    var cols = [{wch:12},{wch:16},{wch:20},{wch:18},{wch:18},{wch:14},{wch:12},{wch:12},{wch:12},{wch:12},{wch:12},{wch:12},{wch:10},{wch:22}];
+    exportToExcel(sheetRows, cols, "Truck Records", "truck-records");
+  });
+
+  // ---------- init ----------
+  initGitHubSync();
+})();
+</script>
+<script>
+  if("serviceWorker" in navigator){
+    window.addEventListener("load", function(){
+      navigator.serviceWorker.register("service-worker.js").catch(function(){ /* offline shell unavailable — app still works online */ });
+    });
+  }
+</script>
+</body>
+</html>
