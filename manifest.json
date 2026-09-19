@@ -1,7 +1,7 @@
 {
   "id": "./",
-  "name": "Container Log",
-  "short_name": "Container Log",
+  "name": "Delivery Record",
+  "short_name": "Delivery Record",
   "description": "Track containers, loading history and truck deliveries. Data is shared through GitHub.",
   "start_url": "./",
   "scope": "./",
