@@ -1,4 +1,4 @@
-/* Container Log — service worker
+/* Delivery Record — service worker
  *
  * Purpose: let the app open (and install to the home screen) even with a poor
  * or no connection. It caches the app shell only.
@@ -11,7 +11,7 @@
  * When you upload a new version of index.html, bump CACHE_VERSION below so
  * devices drop the old cached copy.
  */
-const CACHE_VERSION = "container-log-v3";
+const CACHE_VERSION = "delivery-record-v5";
 const CACHEABLE_HOSTS = ["fonts.googleapis.com", "fonts.gstatic.com", "cdnjs.cloudflare.com"];
 const SHELL = [
   "./",

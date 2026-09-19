@@ -1,4 +1,4 @@
-# Container Log
+# Delivery Record
 
 Installable web app (PWA). All data lives in `data.json` in your GitHub repo, so every device sees the same information.
 
@@ -27,7 +27,7 @@ GitHub → *Settings → Developer settings → Personal access tokens → Fine-
 - Copy the `github_pat_…` value.
 
 ### 3. Create the Worker (free Cloudflare account)
-1. dash.cloudflare.com → *Workers & Pages → Create → Create Worker* → name it e.g. `container-log-sync` → *Deploy*.
+1. dash.cloudflare.com → *Workers & Pages → Create → Create Worker* → name it e.g. `delivery-record-sync` → *Deploy*.
 2. *Edit code* → delete the sample → paste the contents of `worker.js` → *Deploy*.
 3. *Settings → Variables and Secrets* → add:
 
@@ -40,13 +40,13 @@ GitHub → *Settings → Developer settings → Personal access tokens → Fine-
 | `GITHUB_BRANCH` | Text | optional — only if not `main` |
 | `DATA_PATH` | Text | optional — only if not `data.json` |
 
-4. Test: open `https://container-log-sync.YOUR-SUBDOMAIN.workers.dev/data` in a browser. You should see text starting `{"sha":"…","content":"…"}`. If you see an error message, it says which setting is wrong.
+4. Test: open `https://delivery-record-sync.YOUR-SUBDOMAIN.workers.dev/data` in a browser. You should see text starting `{"sha":"…","content":"…"}`. If you see an error message, it says which setting is wrong.
 
 ### 4. Point the app at the Worker
 In your GitHub repo, open `config.json` → pencil icon → set:
 ```json
 {
-  "syncUrl": "https://container-log-sync.YOUR-SUBDOMAIN.workers.dev"
+  "syncUrl": "https://delivery-record-sync.YOUR-SUBDOMAIN.workers.dev"
 }
 ```
 (no `/data` on the end) → *Commit*. Wait ~1 minute for Pages to update.
@@ -70,5 +70,5 @@ Open the app URL on any device — it connects automatically (badge shows **Sync
 - **Not hardened security.** Anyone who has the app address can read and change the data; the driver/admin PINs control the *screens*, not the file. `ALLOWED_ORIGIN` blocks other websites, not determined people. Every save is a GitHub commit, so a bad change can be restored from the repo's *History* on `data.json`.
 - A public repo means `data.json` is readable by anyone. Keep the repo private if the data is sensitive (GitHub Pages on private repos needs a paid plan).
 - If two devices save at nearly the same moment, the second one is asked to redo its change.
-- After uploading a new `index.html`, change `CACHE_VERSION` in `service-worker.js` (e.g. `v2` → `v3`) so installed copies update.
+- After uploading a new `index.html`, change `CACHE_VERSION` in `service-worker.js` (e.g. `v5` → `v6`) so installed copies update.
 - No Worker? Leave `syncUrl` empty and the app works the old way: each device pastes a token in ⚙ Sync settings.

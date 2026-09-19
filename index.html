@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Container Log</title>
+<title>Delivery Record</title>
 
 <!-- Add to Home Screen / installable PWA support -->
 <link rel="manifest" href="manifest.json">
@@ -13,7 +13,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="Container Log">
+<meta name="apple-mobile-web-app-title" content="Delivery Record">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -354,7 +354,7 @@
 <body>
 
 <header class="topbar">
-  <div class="plate">CONTAINER LOG</div>
+  <div class="plate">DELIVERY RECORD</div>
   <nav class="tabs">
     <button class="tab active" data-tab="containers">Containers</button>
     <button class="tab" data-tab="trucks">Trucks</button>
@@ -373,7 +373,7 @@
      Admin signs in with ID "admin"; drivers use the ID the admin created for them. -->
 <div class="login-gate" id="loginGate">
   <div class="login-card">
-    <div class="plate" style="display:inline-block;">CONTAINER LOG</div>
+    <div class="plate" style="display:inline-block;">DELIVERY RECORD</div>
     <h2 id="loginTitle" style="margin:16px 0 4px;">Sign in</h2>
     <p class="modal-sub" id="loginHint">Enter the ID and PIN you were given by the admin.</p>
     <p class="modal-sub" id="loginError" style="min-height:1.2em;color:var(--red);font-weight:600;">Loading…</p>
@@ -912,7 +912,7 @@
         </div>
         <div class="field">
           <label for="gh_repo">Repo name</label>
-          <input type="text" id="gh_repo" placeholder="e.g. container-log-data">
+          <input type="text" id="gh_repo" placeholder="e.g. delivery-record-data">
         </div>
       </div>
       <div class="field-grid">
@@ -1150,7 +1150,7 @@
       method: "PUT",
       headers: Object.assign({ "Content-Type": "application/json" }, ghHeaders(cfg)),
       body: JSON.stringify({
-        message: message || "Update container log data",
+        message: message || "Update delivery record data",
         content: b64EncodeUnicode(JSON.stringify(dataObj, null, 2)),
         branch: cfg.branch || "main",
         sha: sha || undefined
@@ -1184,7 +1184,7 @@
     ghSaving = true;
     setSyncBadge("saving");
     try{
-      var newSha = await ghPutFile(ghConfig, db, ghSha, "Update container log data");
+      var newSha = await ghPutFile(ghConfig, db, ghSha, "Update delivery record data");
       ghSha = newSha;
       setSyncBadge("synced");
     }catch(err){
@@ -1693,6 +1693,7 @@
     document.querySelectorAll(".tab").forEach(function(b){ b.classList.toggle("active", b.dataset.tab === name); });
     document.querySelectorAll(".view").forEach(function(v){ v.classList.remove("active"); });
     document.getElementById(name + "View").classList.add("active");
+    document.getElementById("summaryBar").classList.toggle("hidden", name !== "containers");
     if(name === "history") renderHistory();
     if(name === "trucks") renderTrucks();
 
