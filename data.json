@@ -12,10 +12,10 @@
       "timeDelivery": "08:00",
       "timeBack": "10:00",
       "items": {
-        "basketLarge": 0,
-        "basketSmall": 0,
-        "basketThai": 0,
-        "roBottles": 0,
+        "basketLarge": 2,
+        "basketSmall": 2,
+        "basketThai": 2,
+        "roBottles": 2,
         "others": 0,
         "othersNote": ""
       },
