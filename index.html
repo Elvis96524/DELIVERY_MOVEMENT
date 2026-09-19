@@ -369,24 +369,39 @@
   <button class="btn btn-primary" id="addContainerBtn">+ Add container</button>
 </header>
 
-<!-- Driver login gate — shown whenever driver accounts exist and no one is logged in -->
-<div class="login-gate hidden" id="loginGate">
+<!-- Login gate — visible from the first moment; hides only once someone has signed in.
+     Admin signs in with ID "admin"; drivers use the ID the admin created for them. -->
+<div class="login-gate" id="loginGate">
   <div class="login-card">
     <div class="plate" style="display:inline-block;">CONTAINER LOG</div>
-    <h2 style="margin:16px 0 4px;">Driver sign-in</h2>
-    <p class="modal-sub" id="loginError" style="min-height:1.2em;"></p>
+    <h2 id="loginTitle" style="margin:16px 0 4px;">Sign in</h2>
+    <p class="modal-sub" id="loginHint">Enter the ID and PIN you were given by the admin.</p>
+    <p class="modal-sub" id="loginError" style="min-height:1.2em;color:var(--red);font-weight:600;">Loading…</p>
+
     <form id="loginForm">
       <div class="field">
-        <label for="login_driver">Driver</label>
-        <select id="login_driver" required></select>
+        <label for="login_id">ID</label>
+        <input type="text" id="login_id" required placeholder="Your ID" autocomplete="username"
+               autocapitalize="none" autocorrect="off" spellcheck="false">
       </div>
       <div class="field">
         <label for="login_pin">PIN</label>
-        <input type="password" id="login_pin" inputmode="numeric" placeholder="PIN" required>
+        <input type="password" id="login_pin" required inputmode="numeric" placeholder="PIN" autocomplete="current-password">
       </div>
       <button type="submit" class="btn btn-primary" style="width:100%;">Sign in</button>
     </form>
-    <button type="button" class="btn btn-ghost" id="loginAdminLink" style="margin-top:14px;width:100%;">Admin access</button>
+
+    <form id="setupForm" class="hidden">
+      <div class="field">
+        <label for="setup_pin">New admin PIN</label>
+        <input type="password" id="setup_pin" inputmode="numeric" placeholder="At least 4 digits" autocomplete="new-password">
+      </div>
+      <div class="field">
+        <label for="setup_pin2">Confirm PIN</label>
+        <input type="password" id="setup_pin2" inputmode="numeric" placeholder="Re-enter PIN" autocomplete="new-password">
+      </div>
+      <button type="submit" class="btn btn-primary" style="width:100%;">Create admin &amp; continue</button>
+    </form>
   </div>
 </div>
 
@@ -826,21 +841,27 @@
   <div class="modal" style="max-width:640px;">
     <h2>Manage driver access</h2>
     <p class="modal-sub">
-      Drivers sign in with the ID and PIN below before they can use the app.
-      Deleting a driver here removes their sign-in immediately — the next
-      time they (or their device) try to use the app, that ID no longer works.
+      Create an ID and PIN for each driver and give them to the driver. Everyone
+      must sign in with an ID and PIN each time they open the app. Deleting a
+      driver here removes their sign-in immediately — the next time they (or their
+      device) refresh, that ID no longer works. (The ID <strong>admin</strong> is
+      reserved for you.)
     </p>
 
     <form id="addDriverForm" style="border:1px solid var(--line);border-radius:var(--radius);padding:14px 16px;margin-bottom:16px;">
       <div class="field-grid">
         <div class="field">
+          <label for="new_driver_id">Driver ID</label>
+          <input type="text" id="new_driver_id" required placeholder="e.g. ahmad01" autocapitalize="none" autocorrect="off" spellcheck="false" maxlength="20">
+        </div>
+        <div class="field">
           <label for="new_driver_name">Driver name</label>
           <input type="text" id="new_driver_name" required placeholder="Full name">
         </div>
-        <div class="field">
-          <label for="new_driver_pin">Set PIN</label>
-          <input type="text" id="new_driver_pin" inputmode="numeric" required placeholder="4–6 digit PIN">
-        </div>
+      </div>
+      <div class="field" style="max-width:calc(50% - 6px);">
+        <label for="new_driver_pin">Set PIN</label>
+        <input type="text" id="new_driver_pin" inputmode="numeric" required placeholder="4–6 digit PIN">
       </div>
       <button type="submit" class="btn btn-primary btn-sm">+ Add driver</button>
     </form>
@@ -851,7 +872,7 @@
         <tbody id="driversBody"></tbody>
       </table>
     </div>
-    <p class="empty hidden" id="driversEmpty">No driver accounts yet — the app is open to anyone until you add one.</p>
+    <p class="empty hidden" id="driversEmpty">No driver accounts yet — only the admin can sign in until you add one.</p>
 
     <div class="modal-actions" style="justify-content:space-between;margin-top:18px;">
       <button type="button" class="btn btn-ghost" id="changeAdminPinBtn">Change admin PIN</button>
@@ -1315,6 +1336,19 @@
 
   var CURRENT_DRIVER_KEY = "containerLogCurrentDriver";
   var ADMIN_SESSION_KEY = "containerLogAdminSession";
+  var ADMIN_ID = "admin";   // reserved sign-in ID for the admin
+  var authReady = false;    // true once data has loaded and the gate has been evaluated
+  // Sign-in lasts until the app/tab is closed, so the login page appears every
+  // time the app is opened. To keep people signed in between visits instead,
+  // change "sessionStorage" to "localStorage" on the next line.
+  var sessionStore = (function(){ try{ return window.sessionStorage; }catch(e){ return window.localStorage; } })();
+  try{
+    if(sessionStore !== window.localStorage){
+      // drop any long-lived sign-in left over from earlier versions of the app
+      localStorage.removeItem("containerLogCurrentDriver");
+      localStorage.removeItem("containerLogAdminSession");
+    }
+  }catch(e){}
   var currentDriver = null; // { id, name } while a driver is signed in
   var adminUnlocked = false; // mirrors ADMIN_SESSION_KEY once checkLoginGate() has run
 
@@ -1331,17 +1365,17 @@
 
   function loadCurrentDriver(){
     try{
-      var raw = localStorage.getItem(CURRENT_DRIVER_KEY);
+      var raw = sessionStore.getItem(CURRENT_DRIVER_KEY);
       return raw ? JSON.parse(raw) : null;
     }catch(e){ return null; }
   }
   function saveCurrentDriver(d){
-    if(d) localStorage.setItem(CURRENT_DRIVER_KEY, JSON.stringify(d));
-    else localStorage.removeItem(CURRENT_DRIVER_KEY);
+    if(d) sessionStore.setItem(CURRENT_DRIVER_KEY, JSON.stringify(d));
+    else sessionStore.removeItem(CURRENT_DRIVER_KEY);
   }
   function saveAdminSession(on){
-    if(on) localStorage.setItem(ADMIN_SESSION_KEY, db.adminPinHash);
-    else localStorage.removeItem(ADMIN_SESSION_KEY);
+    if(on) sessionStore.setItem(ADMIN_SESSION_KEY, db.adminPinHash);
+    else sessionStore.removeItem(ADMIN_SESSION_KEY);
   }
 
   // Shows/hides the sign-in screen based on whether driver accounts
@@ -1357,12 +1391,16 @@
   }
   function checkLoginGateCore(){
     normalizeAuthData();
-    var driverIds = Object.keys(db.drivers);
     var gate = document.getElementById("loginGate");
     var driverBadge = document.getElementById("driverBadge");
     var logoutBtn = document.getElementById("logoutBtn");
 
-    var savedAdminHash = localStorage.getItem(ADMIN_SESSION_KEY);
+    if(!authReady){
+      authReady = true;
+      document.getElementById("loginError").textContent = "";
+    }
+
+    var savedAdminHash = sessionStore.getItem(ADMIN_SESSION_KEY);
     if(adminUnlocked || (savedAdminHash && db.adminPinHash && savedAdminHash === db.adminPinHash)){
       // Admin verified their PIN (this session, or a prior one on this
       // device/browser, for the PIN currently in effect) — full access,
@@ -1372,14 +1410,6 @@
       driverBadge.textContent = "Admin";
       driverBadge.classList.remove("hidden");
       logoutBtn.classList.remove("hidden");
-      return;
-    }
-
-    if(driverIds.length === 0){
-      // No driver accounts set up — app is open to everyone.
-      gate.classList.add("hidden");
-      driverBadge.classList.add("hidden");
-      logoutBtn.classList.add("hidden");
       return;
     }
 
@@ -1397,40 +1427,66 @@
       currentDriver = null;
       driverBadge.classList.add("hidden");
       logoutBtn.classList.add("hidden");
-      renderLoginOptions();
+      renderGate();
       gate.classList.remove("hidden");
     }
   }
 
-  function renderLoginOptions(){
-    var sel = document.getElementById("login_driver");
-    var active = Object.keys(db.drivers).filter(function(id){ return db.drivers[id].active !== false; });
-    if(active.length === 0){
-      sel.innerHTML = '<option value="">No active driver accounts</option>';
-      return;
+  // Chooses which form the gate shows. Only switches forms — it never clears
+  // what someone is typing, because background refreshes call it too.
+  function renderGate(){
+    var needsSetup = !db.adminPinHash;
+    document.getElementById("loginForm").classList.toggle("hidden", needsSetup);
+    document.getElementById("setupForm").classList.toggle("hidden", !needsSetup);
+    document.getElementById("loginTitle").textContent = needsSetup ? "First-time setup" : "Sign in";
+    document.getElementById("loginHint").textContent = needsSetup
+      ? "No admin PIN has been set yet. Create one now — you will sign in with the ID “admin” and this PIN, and use it to create driver IDs."
+      : "Enter the ID and PIN you were given by the admin.";
+  }
+
+  function findDriverId(typed){
+    var keys = Object.keys(db.drivers);
+    for(var i = 0; i < keys.length; i++){
+      if(keys[i].toLowerCase() === typed) return keys[i];
     }
-    sel.innerHTML = active.sort(function(a, b){
-      return db.drivers[a].name.localeCompare(db.drivers[b].name);
-    }).map(function(id){
-      return '<option value="' + escapeHtml(id) + '">' + escapeHtml(db.drivers[id].name) + '</option>';
-    }).join("");
+    return null;
   }
 
   document.getElementById("loginForm").addEventListener("submit", async function(e){
     e.preventDefault();
-    var id = document.getElementById("login_driver").value;
-    var pin = document.getElementById("login_pin").value;
     var errEl = document.getElementById("loginError");
     errEl.textContent = "";
-    var driver = db.drivers[id];
-    if(!driver || driver.active === false){
-      errEl.textContent = "That driver account is no longer active.";
+    if(!authReady){ errEl.textContent = "Still loading — try again in a moment."; return; }
+    var typed = document.getElementById("login_id").value.trim().toLowerCase();
+    var pinEl = document.getElementById("login_pin");
+    var hash = await sha256Hex(pinEl.value);
+
+    if(typed === ADMIN_ID){
+      if(!db.adminPinHash || hash !== db.adminPinHash){
+        errEl.textContent = "Incorrect ID or PIN.";
+        pinEl.value = "";
+        return;
+      }
+      adminUnlocked = true;
+      saveAdminSession(true);
+      currentDriver = null;
+      saveCurrentDriver(null);
+      document.getElementById("loginForm").reset();
+      checkLoginGate();
+      showToast("Signed in as admin.");
       return;
     }
-    var hash = await sha256Hex(pin);
-    if(hash !== driver.pinHash){
-      errEl.textContent = "Incorrect PIN.";
-      document.getElementById("login_pin").value = "";
+
+    var id = findDriverId(typed);
+    var driver = id ? db.drivers[id] : null;
+    if(!driver || hash !== driver.pinHash){
+      errEl.textContent = "Incorrect ID or PIN.";
+      pinEl.value = "";
+      return;
+    }
+    if(driver.active === false){
+      errEl.textContent = "This ID is no longer active. Ask the admin.";
+      pinEl.value = "";
       return;
     }
     currentDriver = { id: id, name: driver.name };
@@ -1440,11 +1496,37 @@
     showToast("Signed in as " + driver.name + ".");
   });
 
+  // First-time setup: the first person to open a brand-new app creates the admin PIN.
+  document.getElementById("setupForm").addEventListener("submit", async function(e){
+    e.preventDefault();
+    var errEl = document.getElementById("loginError");
+    errEl.textContent = "";
+    if(!authReady){ errEl.textContent = "Still loading — try again in a moment."; return; }
+    if(ghConfig && !ghActive){
+      errEl.textContent = "Can't reach the shared data right now. Check your connection, reload, and try again.";
+      return;
+    }
+    var pin = document.getElementById("setup_pin").value;
+    var pin2 = document.getElementById("setup_pin2").value;
+    if(pin.length < 4){ errEl.textContent = "Use at least 4 digits."; return; }
+    if(pin !== pin2){ errEl.textContent = "PINs don't match."; return; }
+    db.adminPinHash = await sha256Hex(pin);
+    saveData();
+    adminUnlocked = true;
+    saveAdminSession(true);
+    document.getElementById("setupForm").reset();
+    checkLoginGate();
+    showToast("Admin PIN set. Now add your drivers.");
+    openAdminPanel();
+  });
+
   document.getElementById("logoutBtn").addEventListener("click", function(){
     saveCurrentDriver(null);
     saveAdminSession(false);
     currentDriver = null;
     adminUnlocked = false;
+    document.getElementById("loginForm").reset();
+    document.getElementById("loginError").textContent = "";
     checkLoginGate();
   });
 
@@ -1465,10 +1547,7 @@
   }
 
   document.getElementById("adminBtn").addEventListener("click", function(){
-    forceNewAdminPin = false;
-    openAdminPinFlow();
-  });
-  document.getElementById("loginAdminLink").addEventListener("click", function(){
+    if(adminUnlocked){ openAdminPanel(); return; }
     forceNewAdminPin = false;
     openAdminPinFlow();
   });
@@ -1570,14 +1649,17 @@
 
   document.getElementById("addDriverForm").addEventListener("submit", async function(e){
     e.preventDefault();
+    var id = document.getElementById("new_driver_id").value.trim().toLowerCase();
     var name = document.getElementById("new_driver_name").value.trim();
     var pin = document.getElementById("new_driver_pin").value.trim();
+    if(!/^[a-z0-9][a-z0-9._-]{2,19}$/.test(id)){
+      showToast("Driver ID must be 3–20 characters: letters, numbers, dot, dash or underscore.", true);
+      return;
+    }
+    if(id === ADMIN_ID){ showToast("The ID “admin” is reserved. Choose another.", true); return; }
+    if(findDriverId(id)){ showToast("That ID is already used. Choose another.", true); return; }
     if(!name){ showToast("Driver name is required.", true); return; }
     if(pin.length < 4){ showToast("PIN must be at least 4 digits.", true); return; }
-
-    var base = name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "") || "driver";
-    var id = base, n = 1;
-    while(db.drivers[id]){ id = base + "-" + (++n); }
 
     db.drivers[id] = {
       id: id,

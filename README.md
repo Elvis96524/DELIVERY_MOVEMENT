@@ -52,7 +52,17 @@ In your GitHub repo, open `config.json` → pencil icon → set:
 (no `/data` on the end) → *Commit*. Wait ~1 minute for Pages to update.
 
 ### 5. Use it
-Open the app URL on any device — it connects automatically (badge shows **Synced**). Then *Add to Home Screen / Install app*. First time only: open **🔒 Admin** and set an admin PIN, then add drivers.
+Open the app URL on any device — it connects automatically (badge shows **Synced**). Then *Add to Home Screen / Install app*.
+
+**First time only:** the sign-in page asks you to create the **admin PIN**. Do this yourself right away — whoever opens a brand-new app first gets to set it. Then add your drivers (next section).
+
+## Sign-in (IDs and PINs)
+
+- The sign-in page appears **every time the app is opened** — nobody gets in without an ID and PIN.
+- **Admin:** ID is `admin`, plus the admin PIN you created. After signing in, tap **🔒 Admin** to manage drivers.
+- **Drivers:** in **🔒 Admin → Manage driver access**, create a **Driver ID** (3–20 letters/numbers, e.g. `ahmad01`), the driver's name and a 4–6 digit PIN. Give the ID and PIN to the driver. IDs are not case-sensitive.
+- **Reset PIN** or **Delete** a driver from the same screen. A deleted driver is locked out the next time their device refreshes.
+- Sign-in lasts until the app is closed. To keep people signed in between visits, change `sessionStorage` to `localStorage` in `index.html` (search for `var sessionStore`).
 
 ## Good to know
 
