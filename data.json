@@ -1,7 +1,28 @@
 {
   "containers": {},
   "history": [],
-  "truckRecords": [],
+  "truckRecords": [
+    {
+      "driver": "SHAH",
+      "laborers": "WAN",
+      "vessel": "SK PLENTY",
+      "place": "ASB",
+      "truckPlate": "QMU6228",
+      "date": "2026-09-19",
+      "timeDelivery": "08:00",
+      "timeBack": "10:00",
+      "items": {
+        "basketLarge": 0,
+        "basketSmall": 0,
+        "basketThai": 0,
+        "roBottles": 0,
+        "others": 0,
+        "othersNote": ""
+      },
+      "id": "cdc8908c-9e8a-4df1-96c2-c4d019bf1931",
+      "recordedAt": "2026-09-19T15:36:36.816Z"
+    }
+  ],
   "drivers": {},
   "adminPinHash": ""
 }
