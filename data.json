@@ -1,28 +1,7 @@
 {
   "containers": {},
   "history": [],
-  "truckRecords": [
-    {
-      "driver": "Shah",
-      "laborers": "Wan",
-      "vessel": "Kw",
-      "place": "Asb",
-      "truckPlate": "SK8226E",
-      "date": "2026-09-20",
-      "timeDelivery": "08:40",
-      "timeBack": "15:00",
-      "items": {
-        "basketLarge": 0,
-        "basketSmall": 0,
-        "basketThai": 0,
-        "roBottles": 30,
-        "others": 0,
-        "othersNote": ""
-      },
-      "id": "9267ebe8-3368-40ac-8762-c0859b38a198",
-      "recordedAt": "2026-09-20T04:15:43.403Z"
-    }
-  ],
+  "truckRecords": [],
   "drivers": {},
   "adminPinHash": "f5b216edf81ff958e5dfff56610833056e084f8b609c745e73393410447bf27b"
 }
