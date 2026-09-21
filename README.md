@@ -58,11 +58,11 @@ Open the app URL on any device — it connects automatically (badge shows **Sync
 
 ## Sign-in (IDs and PINs)
 
-- The sign-in page appears **every time the app is opened** — nobody gets in without an ID and PIN.
+- Nobody gets in without an ID and PIN: the sign-in page appears on any device that isn't signed in.
 - **Admin:** ID is `admin`, plus the admin PIN you created. After signing in, tap **🔒 Admin** to manage drivers.
 - **Drivers:** in **🔒 Admin → Manage driver access**, create a **Driver ID** (3–20 letters/numbers, e.g. `ahmad01`), the driver's name and a 4–6 digit PIN. Give the ID and PIN to the driver. IDs are not case-sensitive.
 - **Reset PIN** or **Delete** a driver from the same screen. A deleted driver is locked out the next time their device refreshes.
-- Sign-in lasts until the app is closed. To keep people signed in between visits, change `sessionStorage` to `localStorage` in `index.html` (search for `var sessionStore`).
+- Once signed in, a device **stays signed in until someone taps Log out** (even after closing the app). A driver is signed out automatically only if the admin deletes their ID, and the admin is signed out if the admin PIN is changed.
 
 ## Good to know
 
@@ -70,5 +70,5 @@ Open the app URL on any device — it connects automatically (badge shows **Sync
 - **Not hardened security.** Anyone who has the app address can read and change the data; the driver/admin PINs control the *screens*, not the file. `ALLOWED_ORIGIN` blocks other websites, not determined people. Every save is a GitHub commit, so a bad change can be restored from the repo's *History* on `data.json`.
 - A public repo means `data.json` is readable by anyone. Keep the repo private if the data is sensitive (GitHub Pages on private repos needs a paid plan).
 - If two devices save at nearly the same moment, the second one is asked to redo its change.
-- After uploading a new `index.html`, change `CACHE_VERSION` in `service-worker.js` (e.g. `v5` → `v6`) so installed copies update.
+- After uploading a new `index.html`, change `CACHE_VERSION` in `service-worker.js` (e.g. `v6` → `v7`) so installed copies update.
 - No Worker? Leave `syncUrl` empty and the app works the old way: each device pastes a token in ⚙ Sync settings.

@@ -1338,17 +1338,9 @@
   var ADMIN_SESSION_KEY = "containerLogAdminSession";
   var ADMIN_ID = "admin";   // reserved sign-in ID for the admin
   var authReady = false;    // true once data has loaded and the gate has been evaluated
-  // Sign-in lasts until the app/tab is closed, so the login page appears every
-  // time the app is opened. To keep people signed in between visits instead,
-  // change "sessionStorage" to "localStorage" on the next line.
-  var sessionStore = (function(){ try{ return window.sessionStorage; }catch(e){ return window.localStorage; } })();
-  try{
-    if(sessionStore !== window.localStorage){
-      // drop any long-lived sign-in left over from earlier versions of the app
-      localStorage.removeItem("containerLogCurrentDriver");
-      localStorage.removeItem("containerLogAdminSession");
-    }
-  }catch(e){}
+  // Sign-in is remembered on this device until the person taps "Log out"
+  // (or the admin deletes/deactivates their ID, or the admin PIN changes).
+  var sessionStore = (function(){ try{ return window.localStorage; }catch(e){ return window.sessionStorage; } })();
   var currentDriver = null; // { id, name } while a driver is signed in
   var adminUnlocked = false; // mirrors ADMIN_SESSION_KEY once checkLoginGate() has run
 

@@ -11,7 +11,7 @@
  * When you upload a new version of index.html, bump CACHE_VERSION below so
  * devices drop the old cached copy.
  */
-const CACHE_VERSION = "delivery-record-v5";
+const CACHE_VERSION = "delivery-record-v6";
 const CACHEABLE_HOSTS = ["fonts.googleapis.com", "fonts.gstatic.com", "cdnjs.cloudflare.com"];
 const SHELL = [
   "./",
