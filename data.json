@@ -2495,6 +2495,26 @@
       },
       "id": "d641680b-f1bb-467c-b340-f5d773993830",
       "recordedAt": "2026-09-21T08:04:53.675Z"
+    },
+    {
+      "driver": "SYAH",
+      "laborers": "",
+      "vessel": "Secret recipe",
+      "place": "Paragon",
+      "truckPlate": "Wgs 2831",
+      "date": "2026-09-21",
+      "timeDelivery": "14:45",
+      "timeBack": "15:45",
+      "items": {
+        "basketLarge": 0,
+        "basketSmall": 0,
+        "basketThai": 0,
+        "roBottles": 0,
+        "others": 0,
+        "othersNote": ""
+      },
+      "id": "ccaa8a80-5ea1-4e29-ac02-1b1fd6ebe4ae",
+      "recordedAt": "2026-09-21T09:02:40.251Z"
     }
   ],
   "drivers": {
