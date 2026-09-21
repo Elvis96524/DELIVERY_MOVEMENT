@@ -1476,14 +1476,14 @@
       "truckPlate": "SK8226E",
       "date": "2026-09-21",
       "timeDelivery": "14:40",
-      "timeBack": "",
+      "timeBack": "16:32",
       "items": {
         "basketLarge": 0,
         "basketSmall": 0,
-        "basketThai": 0,
+        "basketThai": 13,
         "roBottles": 0,
         "others": 0,
-        "othersNote": ""
+        "othersNote": "Timun jepun return"
       },
       "id": "d641680b-f1bb-467c-b340-f5d773993830",
       "recordedAt": "2026-09-21T08:04:53.675Z"
