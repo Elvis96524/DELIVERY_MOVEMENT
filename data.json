@@ -9,6 +9,13 @@
       "pinHash": "bcb15f821479b4d5772bd0ca866c00ad5f926e3580720659cc80d39c9d09802a",
       "active": true,
       "createdAt": "2026-09-21T00:28:03.941Z"
+    },
+    "shahrin": {
+      "id": "shahrin",
+      "name": "SHAHRIN",
+      "pinHash": "4cc8f4d609b717356701c57a03e737e5ac8fe885da8c7163d3de47e01849c635",
+      "active": true,
+      "createdAt": "2026-09-21T00:28:21.832Z"
     }
   },
   "adminPinHash": "f5b216edf81ff958e5dfff56610833056e084f8b609c745e73393410447bf27b"
