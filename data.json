@@ -255,6 +255,22 @@
       "tare": 2730,
       "payload": 7270,
       "maxGross": 10000
+    },
+    "FSE-CF-12": {
+      "serial": "FSE-CF-12",
+      "status": "backloaded",
+      "vessel": "",
+      "nextVessel": "",
+      "lastQuantities": null,
+      "createdAt": "2026-09-21T02:23:48.060Z",
+      "updatedAt": "2026-09-21T02:23:48.060Z",
+      "length": 2.438,
+      "width": 2.438,
+      "height": 2.76,
+      "expiry": "2027-04-08",
+      "tare": 2700,
+      "payload": 5300,
+      "maxGross": 8000
     }
   },
   "history": [
@@ -384,6 +400,14 @@
       "vessel": "",
       "id": "82d083a6-10d3-451b-aa3f-b240e2117809",
       "recordedAt": "2026-09-21T02:23:28.588Z",
+      "date": "2026-09-21"
+    },
+    {
+      "serial": "FSE-CF-12",
+      "action": "created",
+      "vessel": "",
+      "id": "6a33c265-bce1-4e3f-8e2f-d7f97c9b90d9",
+      "recordedAt": "2026-09-21T02:23:48.060Z",
       "date": "2026-09-21"
     }
   ],
