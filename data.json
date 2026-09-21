@@ -1519,6 +1519,22 @@
       "tare": 1950,
       "payload": 8050,
       "maxGross": 10000
+    },
+    "FSE-DC-41": {
+      "serial": "FSE-DC-41",
+      "status": "backloaded",
+      "vessel": "",
+      "nextVessel": "",
+      "lastQuantities": null,
+      "createdAt": "2026-09-21T08:59:33.585Z",
+      "updatedAt": "2026-09-21T08:59:33.585Z",
+      "length": 2.991,
+      "width": 2.438,
+      "height": 2.591,
+      "expiry": "2027-08-19",
+      "tare": 1950,
+      "payload": 8050,
+      "maxGross": 10000
     }
   },
   "history": [
@@ -2280,6 +2296,14 @@
       "vessel": "",
       "id": "371a3cd8-c2da-468b-b518-307a84e1666e",
       "recordedAt": "2026-09-21T08:59:21.729Z",
+      "date": "2026-09-21"
+    },
+    {
+      "serial": "FSE-DC-41",
+      "action": "created",
+      "vessel": "",
+      "id": "387ed028-5b6a-44db-aef7-794e452e898c",
+      "recordedAt": "2026-09-21T08:59:33.585Z",
       "date": "2026-09-21"
     }
   ],
