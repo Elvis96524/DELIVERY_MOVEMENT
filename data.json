@@ -1,6 +1,32 @@
 {
-  "containers": {},
-  "history": [],
+  "containers": {
+    "CFC-006": {
+      "serial": "CFC-006",
+      "status": "backloaded",
+      "vessel": "",
+      "nextVessel": "",
+      "lastQuantities": null,
+      "createdAt": "2026-09-21T02:07:59.902Z",
+      "updatedAt": "2026-09-21T02:07:59.902Z",
+      "length": 2.44,
+      "width": 2.44,
+      "height": 2.5,
+      "expiry": "2027-04-08",
+      "tare": 2750,
+      "payload": 5000,
+      "maxGross": 7750
+    }
+  },
+  "history": [
+    {
+      "serial": "CFC-006",
+      "action": "created",
+      "vessel": "",
+      "id": "1567d03c-c5f5-4075-a240-8d44f033ab81",
+      "recordedAt": "2026-09-21T02:07:59.903Z",
+      "date": "2026-09-21"
+    }
+  ],
   "truckRecords": [],
   "drivers": {
     "saiful": {
