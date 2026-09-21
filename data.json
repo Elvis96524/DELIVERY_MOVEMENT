@@ -1327,6 +1327,22 @@
       "tare": 1950,
       "payload": 8050,
       "maxGross": 10000
+    },
+    "FSE-DC-29": {
+      "serial": "FSE-DC-29",
+      "status": "backloaded",
+      "vessel": "",
+      "nextVessel": "",
+      "lastQuantities": null,
+      "createdAt": "2026-09-21T08:56:45.377Z",
+      "updatedAt": "2026-09-21T08:56:45.377Z",
+      "length": 2.991,
+      "width": 2.235,
+      "height": 2.565,
+      "expiry": "2027-08-19",
+      "tare": 1950,
+      "payload": 8050,
+      "maxGross": 10000
     }
   },
   "history": [
@@ -1992,6 +2008,14 @@
       "vessel": "",
       "id": "fa67229b-077f-48b0-b08f-df79edbd8fe3",
       "recordedAt": "2026-09-21T08:56:29.393Z",
+      "date": "2026-09-21"
+    },
+    {
+      "serial": "FSE-DC-29",
+      "action": "created",
+      "vessel": "",
+      "id": "c246c010-17a3-411d-a818-0d74c2087189",
+      "recordedAt": "2026-09-21T08:56:45.377Z",
       "date": "2026-09-21"
     }
   ],
