@@ -1467,7 +1467,28 @@
       "date": "2026-09-21"
     }
   ],
-  "truckRecords": [],
+  "truckRecords": [
+    {
+      "driver": "SAIFUL",
+      "laborers": "Alip",
+      "vessel": "Borneo mart, Borneo grocery",
+      "place": "",
+      "truckPlate": "SK8226E",
+      "date": "2026-09-21",
+      "timeDelivery": "14:40",
+      "timeBack": "",
+      "items": {
+        "basketLarge": 0,
+        "basketSmall": 0,
+        "basketThai": 0,
+        "roBottles": 0,
+        "others": 0,
+        "othersNote": ""
+      },
+      "id": "d641680b-f1bb-467c-b340-f5d773993830",
+      "recordedAt": "2026-09-21T08:04:53.675Z"
+    }
+  ],
   "drivers": {
     "saiful": {
       "id": "saiful",
