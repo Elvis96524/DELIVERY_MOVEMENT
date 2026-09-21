@@ -63,6 +63,22 @@
       "tare": 2500,
       "payload": 5000,
       "maxGross": 7500
+    },
+    "DF-02": {
+      "serial": "DF-02",
+      "status": "backloaded",
+      "vessel": "",
+      "nextVessel": "",
+      "lastQuantities": null,
+      "createdAt": "2026-09-21T02:18:23.156Z",
+      "updatedAt": "2026-09-21T02:18:23.156Z",
+      "length": 2.438,
+      "width": 2.438,
+      "height": 2.76,
+      "expiry": "2026-11-19",
+      "tare": 2500,
+      "payload": 5500,
+      "maxGross": 8000
     }
   },
   "history": [
@@ -96,6 +112,14 @@
       "vessel": "",
       "id": "a95c26f4-28a9-48fc-a017-b05457c6c9a4",
       "recordedAt": "2026-09-21T02:08:55.268Z",
+      "date": "2026-09-21"
+    },
+    {
+      "serial": "DF-02",
+      "action": "created",
+      "vessel": "",
+      "id": "7c5b7fad-3061-4ad9-9394-c2cf7ef8b268",
+      "recordedAt": "2026-09-21T02:18:23.156Z",
       "date": "2026-09-21"
     }
   ],
