@@ -303,6 +303,22 @@
       "tare": 2700,
       "payload": 5300,
       "maxGross": 8000
+    },
+    "FSE-CF-15": {
+      "serial": "FSE-CF-15",
+      "status": "backloaded",
+      "vessel": "",
+      "nextVessel": "",
+      "lastQuantities": null,
+      "createdAt": "2026-09-21T02:24:36.596Z",
+      "updatedAt": "2026-09-21T02:24:36.596Z",
+      "length": 2.438,
+      "width": 2.438,
+      "height": 2.76,
+      "expiry": "2026-08-06",
+      "tare": 2700,
+      "payload": 5300,
+      "maxGross": 8000
     }
   },
   "history": [
@@ -456,6 +472,14 @@
       "vessel": "",
       "id": "adab9025-0b6f-42af-b18d-2b0606a1aeb1",
       "recordedAt": "2026-09-21T02:24:16.388Z",
+      "date": "2026-09-21"
+    },
+    {
+      "serial": "FSE-CF-15",
+      "action": "created",
+      "vessel": "",
+      "id": "9c14cca2-019e-4c80-81a7-2dc936e1b233",
+      "recordedAt": "2026-09-21T02:24:36.596Z",
       "date": "2026-09-21"
     }
   ],
