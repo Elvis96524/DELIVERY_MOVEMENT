@@ -1390,29 +1390,6 @@
       "payload": 8050,
       "maxGross": 10000
     },
-    "FSE-DC-32": {
-      "serial": "FSE-DC-32",
-      "status": "backloaded",
-      "vessel": "",
-      "nextVessel": "",
-      "lastQuantities": {
-        "basketLarge": 0,
-        "basketSmall": 0,
-        "basketThai": 0,
-        "roBottles": 0,
-        "others": 0,
-        "othersNote": ""
-      },
-      "createdAt": "2026-09-21T08:57:23.361Z",
-      "updatedAt": "2026-09-22T07:35:07.683Z",
-      "length": 2.991,
-      "width": 2.235,
-      "height": 2.565,
-      "expiry": "2027-07-14",
-      "tare": 1950,
-      "payload": 8050,
-      "maxGross": 10000
-    },
     "FSE-DC-33": {
       "serial": "FSE-DC-33",
       "status": "loaded",
@@ -2760,14 +2737,6 @@
       "date": "2026-09-21"
     },
     {
-      "serial": "FSE-DC-32",
-      "action": "created",
-      "vessel": "",
-      "id": "ecc9b853-3d65-410a-9b09-ad3c04133424",
-      "recordedAt": "2026-09-21T08:57:23.361Z",
-      "date": "2026-09-21"
-    },
-    {
       "serial": "FSE-DC-33",
       "action": "created",
       "vessel": "",
@@ -3679,32 +3648,6 @@
       "trailerPlate": "BPY9993",
       "id": "c79e6dbb-0fbb-4e2d-adb4-d1e6cb98e134",
       "recordedAt": "2026-09-22T07:32:43.236Z"
-    },
-    {
-      "serial": "FSE-DC-32",
-      "action": "loaded",
-      "vessel": "HELANG INTEGRATED PLATFORM",
-      "date": "2026-09-04",
-      "trailerPlate": "",
-      "id": "c69b9be1-fec2-4c9b-98ef-3f8d088e18d3",
-      "recordedAt": "2026-09-22T07:34:25.683Z"
-    },
-    {
-      "serial": "FSE-DC-32",
-      "action": "backloaded",
-      "vessel": "",
-      "date": "2026-09-19",
-      "trailerPlate": "",
-      "quantities": {
-        "basketLarge": 0,
-        "basketSmall": 0,
-        "basketThai": 0,
-        "roBottles": 0,
-        "others": 0,
-        "othersNote": ""
-      },
-      "id": "122542bf-91db-4954-940a-70f54456dc7a",
-      "recordedAt": "2026-09-22T07:35:07.683Z"
     },
     {
       "serial": "FSE-CF-29",
