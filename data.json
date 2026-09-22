@@ -1863,12 +1863,12 @@
     },
     "TK-4004": {
       "serial": "TK-4004",
-      "status": "backloaded",
-      "vessel": "",
+      "status": "reserved",
+      "vessel": "OS ONE",
       "nextVessel": "",
       "lastQuantities": null,
       "createdAt": "2026-09-22T03:46:56.539Z",
-      "updatedAt": "2026-09-22T03:46:56.539Z",
+      "updatedAt": "2026-09-22T08:51:52.119Z",
       "length": 2.5,
       "width": 2.44,
       "height": 2.75,
@@ -3818,6 +3818,14 @@
       "vessel": "OS ONE",
       "id": "85ee69fa-a585-4206-841c-0f8554057618",
       "recordedAt": "2026-09-22T08:51:40.150Z",
+      "date": "2026-09-22"
+    },
+    {
+      "serial": "TK-4004",
+      "action": "reserved",
+      "vessel": "OS ONE",
+      "id": "41502164-72e4-41cf-ab27-0c55adb695ab",
+      "recordedAt": "2026-09-22T08:51:52.119Z",
       "date": "2026-09-22"
     }
   ],
