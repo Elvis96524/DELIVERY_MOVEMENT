@@ -866,12 +866,12 @@
     },
     "FSE-CF-50": {
       "serial": "FSE-CF-50",
-      "status": "backloaded",
-      "vessel": "",
+      "status": "loaded",
+      "vessel": "ETK PLATFORM",
       "nextVessel": "",
       "lastQuantities": null,
       "createdAt": "2026-09-21T07:48:33.254Z",
-      "updatedAt": "2026-09-21T07:48:33.254Z",
+      "updatedAt": "2026-09-22T07:04:45.453Z",
       "length": 2.991,
       "width": 2.286,
       "height": 2.519,
@@ -3568,6 +3568,15 @@
       "trailerPlate": "QTT9717",
       "id": "87f89652-4463-42e3-ab18-1d5aa34bc93c",
       "recordedAt": "2026-09-22T07:04:24.870Z"
+    },
+    {
+      "serial": "FSE-CF-50",
+      "action": "loaded",
+      "vessel": "ETK PLATFORM",
+      "date": "2026-09-18",
+      "trailerPlate": "QTT9717",
+      "id": "e58f3143-df0a-4c2b-8442-8b32b71baf02",
+      "recordedAt": "2026-09-22T07:04:45.453Z"
     }
   ],
   "truckRecords": [
