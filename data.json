@@ -1778,12 +1778,12 @@
     },
     "PTSB100030-0": {
       "serial": "PTSB100030-0",
-      "status": "backloaded",
-      "vessel": "",
+      "status": "loaded",
+      "vessel": "TWO TEJA",
       "nextVessel": "",
       "lastQuantities": null,
       "createdAt": "2026-09-22T03:44:11.731Z",
-      "updatedAt": "2026-09-22T03:44:11.731Z",
+      "updatedAt": "2026-09-22T07:05:33.694Z",
       "length": 2.991,
       "width": 2.438,
       "height": 2.591,
@@ -3586,6 +3586,15 @@
       "trailerPlate": "PQW6663",
       "id": "2880d74e-08fc-4bba-884e-9c83d21f303f",
       "recordedAt": "2026-09-22T07:05:08.925Z"
+    },
+    {
+      "serial": "PTSB100030-0",
+      "action": "loaded",
+      "vessel": "TWO TEJA",
+      "date": "2026-09-21",
+      "trailerPlate": "",
+      "id": "51b4f808-cfd6-445d-a2cc-e3b3fd45d64c",
+      "recordedAt": "2026-09-22T07:05:33.694Z"
     }
   ],
   "truckRecords": [
