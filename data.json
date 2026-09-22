@@ -802,12 +802,12 @@
     },
     "FSE-CF-46": {
       "serial": "FSE-CF-46",
-      "status": "backloaded",
-      "vessel": "",
+      "status": "loaded",
+      "vessel": "TWO TEJA",
       "nextVessel": "",
       "lastQuantities": null,
       "createdAt": "2026-09-21T07:46:29.606Z",
-      "updatedAt": "2026-09-21T07:46:29.606Z",
+      "updatedAt": "2026-09-22T06:49:39.206Z",
       "length": 2.991,
       "width": 2.438,
       "height": 2.591,
@@ -3280,6 +3280,15 @@
       "trailerPlate": "SU9717J",
       "id": "b26ac002-8de6-4c48-9f6d-34ac521e8730",
       "recordedAt": "2026-09-22T06:49:03.286Z"
+    },
+    {
+      "serial": "FSE-CF-46",
+      "action": "loaded",
+      "vessel": "TWO TEJA",
+      "date": "2026-08-20",
+      "trailerPlate": "QTV9993",
+      "id": "c3a3caf7-d45c-4421-a3d3-cdccefe53fcc",
+      "recordedAt": "2026-09-22T06:49:39.206Z"
     }
   ],
   "truckRecords": [
