@@ -2,12 +2,12 @@
   "containers": {
     "CFC-006": {
       "serial": "CFC-006",
-      "status": "backloaded",
-      "vessel": "",
+      "status": "loaded",
+      "vessel": "OS ONE",
       "nextVessel": "",
       "lastQuantities": null,
       "createdAt": "2026-09-21T02:07:59.902Z",
-      "updatedAt": "2026-09-21T02:07:59.902Z",
+      "updatedAt": "2026-09-22T07:03:44.933Z",
       "length": 2.44,
       "width": 2.44,
       "height": 2.5,
@@ -3541,6 +3541,15 @@
       "trailerPlate": "SK3666B",
       "id": "c0e1374c-6704-4278-bec4-1eb9e586fcbe",
       "recordedAt": "2026-09-22T07:03:28.446Z"
+    },
+    {
+      "serial": "CFC-006",
+      "action": "loaded",
+      "vessel": "OS ONE",
+      "date": "2026-09-17",
+      "trailerPlate": "SK3666B",
+      "id": "5181eb6f-e4d7-46a6-a187-d38d52595888",
+      "recordedAt": "2026-09-22T07:03:44.933Z"
     }
   ],
   "truckRecords": [
