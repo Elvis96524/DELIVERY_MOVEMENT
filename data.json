@@ -1959,12 +1959,12 @@
     },
     "TK-5006": {
       "serial": "TK-5006",
-      "status": "loaded",
+      "status": "reserved_next",
       "vessel": "KINABALU PLATFORM",
-      "nextVessel": "",
+      "nextVessel": "KINABALU PLATFORM",
       "lastQuantities": null,
       "createdAt": "2026-09-22T03:48:25.963Z",
-      "updatedAt": "2026-09-22T07:02:14.765Z",
+      "updatedAt": "2026-09-22T08:50:56.262Z",
       "length": 2.5,
       "width": 2.44,
       "height": 2.75,
@@ -3778,6 +3778,14 @@
       "vessel": "SUMANDAK PLATFORM",
       "id": "1c6ff85d-af0f-4ab5-a434-2860bf319ef9",
       "recordedAt": "2026-09-22T08:50:47.854Z",
+      "date": "2026-09-22"
+    },
+    {
+      "serial": "TK-5006",
+      "action": "reserved_next",
+      "vessel": "KINABALU PLATFORM",
+      "id": "38e07eb5-73a6-44c0-b91a-eedf519d4a78",
+      "recordedAt": "2026-09-22T08:50:56.262Z",
       "date": "2026-09-22"
     }
   ],
