@@ -850,12 +850,12 @@
     },
     "FSE-CF-49": {
       "serial": "FSE-CF-49",
-      "status": "backloaded",
-      "vessel": "",
+      "status": "loaded",
+      "vessel": "SUMANDAK PLATFORM",
       "nextVessel": "",
       "lastQuantities": null,
       "createdAt": "2026-09-21T07:48:18.054Z",
-      "updatedAt": "2026-09-21T07:48:18.054Z",
+      "updatedAt": "2026-09-22T07:01:23.110Z",
       "length": 2.991,
       "width": 2.286,
       "height": 2.519,
@@ -3478,6 +3478,15 @@
       "trailerPlate": "TDC6717",
       "id": "ce898b50-7f4e-4e43-8a57-6324c05a1e16",
       "recordedAt": "2026-09-22T07:00:57.941Z"
+    },
+    {
+      "serial": "FSE-CF-49",
+      "action": "loaded",
+      "vessel": "SUMANDAK PLATFORM",
+      "date": "2026-09-17",
+      "trailerPlate": "QTT9717",
+      "id": "18ef67e1-2994-417b-aaf6-dd5105c308f1",
+      "recordedAt": "2026-09-22T07:01:23.110Z"
     }
   ],
   "truckRecords": [
