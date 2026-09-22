@@ -1951,6 +1951,22 @@
       "tare": 2600,
       "payload": 5500,
       "maxGross": 8100
+    },
+    "TK-5006": {
+      "serial": "TK-5006",
+      "status": "backloaded",
+      "vessel": "",
+      "nextVessel": "",
+      "lastQuantities": null,
+      "createdAt": "2026-09-22T03:48:25.963Z",
+      "updatedAt": "2026-09-22T03:48:25.963Z",
+      "length": 2.5,
+      "width": 2.44,
+      "height": 2.75,
+      "expiry": "2027-03-29",
+      "tare": 2600,
+      "payload": 5500,
+      "maxGross": 8100
     }
   },
   "history": [
@@ -2928,6 +2944,14 @@
       "vessel": "",
       "id": "583a1e11-fb1c-4ef7-ba05-9ebf3486076e",
       "recordedAt": "2026-09-22T03:48:12.938Z",
+      "date": "2026-09-22"
+    },
+    {
+      "serial": "TK-5006",
+      "action": "created",
+      "vessel": "",
+      "id": "3e482574-324e-459e-81c6-6da87a827d98",
+      "recordedAt": "2026-09-22T03:48:25.963Z",
       "date": "2026-09-22"
     }
   ],
