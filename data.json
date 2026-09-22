@@ -1415,12 +1415,12 @@
     },
     "FSE-DC-34": {
       "serial": "FSE-DC-34",
-      "status": "backloaded",
-      "vessel": "",
+      "status": "reserved",
+      "vessel": "OS ONE",
       "nextVessel": "",
       "lastQuantities": null,
       "createdAt": "2026-09-21T08:57:59.961Z",
-      "updatedAt": "2026-09-21T08:57:59.961Z",
+      "updatedAt": "2026-09-22T08:51:30.230Z",
       "length": 2.991,
       "width": 2.235,
       "height": 2.565,
@@ -3802,6 +3802,14 @@
       "vessel": "KINABALU PLATFORM",
       "id": "735aab3a-cbce-4ef0-a160-ef6c3705a9e7",
       "recordedAt": "2026-09-22T08:51:18.574Z",
+      "date": "2026-09-22"
+    },
+    {
+      "serial": "FSE-DC-34",
+      "action": "reserved",
+      "vessel": "OS ONE",
+      "id": "68ac1322-0428-4358-936c-0bac84f3f895",
+      "recordedAt": "2026-09-22T08:51:30.230Z",
       "date": "2026-09-22"
     }
   ],
