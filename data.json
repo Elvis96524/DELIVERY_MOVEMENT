@@ -1394,12 +1394,12 @@
     },
     "FSE-DC-33": {
       "serial": "FSE-DC-33",
-      "status": "backloaded",
-      "vessel": "",
+      "status": "loaded",
+      "vessel": "KEYFIELD JOYFUL",
       "nextVessel": "",
       "lastQuantities": null,
       "createdAt": "2026-09-21T08:57:38.569Z",
-      "updatedAt": "2026-09-21T08:57:38.569Z",
+      "updatedAt": "2026-09-22T07:05:08.925Z",
       "length": 2.991,
       "width": 2.235,
       "height": 2.565,
@@ -3577,6 +3577,15 @@
       "trailerPlate": "QTT9717",
       "id": "e58f3143-df0a-4c2b-8442-8b32b71baf02",
       "recordedAt": "2026-09-22T07:04:45.453Z"
+    },
+    {
+      "serial": "FSE-DC-33",
+      "action": "loaded",
+      "vessel": "KEYFIELD JOYFUL",
+      "date": "2026-09-21",
+      "trailerPlate": "PQW6663",
+      "id": "2880d74e-08fc-4bba-884e-9c83d21f303f",
+      "recordedAt": "2026-09-22T07:05:08.925Z"
     }
   ],
   "truckRecords": [
