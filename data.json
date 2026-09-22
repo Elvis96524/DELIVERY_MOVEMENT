@@ -1839,6 +1839,22 @@
       "tare": 1960,
       "payload": 9540,
       "maxGross": 11500
+    },
+    "TK-4003": {
+      "serial": "TK-4003",
+      "status": "backloaded",
+      "vessel": "",
+      "nextVessel": "",
+      "lastQuantities": null,
+      "createdAt": "2026-09-22T03:46:43.347Z",
+      "updatedAt": "2026-09-22T03:46:43.347Z",
+      "length": 2.5,
+      "width": 2.44,
+      "height": 2.75,
+      "expiry": "2026-08-06",
+      "tare": 2750,
+      "payload": 5500,
+      "maxGross": 8250
     }
   },
   "history": [
@@ -2760,6 +2776,14 @@
       "vessel": "",
       "id": "fac6882b-03cf-4619-bda3-509c3e8d3b23",
       "recordedAt": "2026-09-22T03:45:38.875Z",
+      "date": "2026-09-22"
+    },
+    {
+      "serial": "TK-4003",
+      "action": "created",
+      "vessel": "",
+      "id": "a2354691-55f7-4989-add4-1f0c88039bc0",
+      "recordedAt": "2026-09-22T03:46:43.347Z",
       "date": "2026-09-22"
     }
   ],
