@@ -855,12 +855,12 @@
     },
     "FSE-CF-48": {
       "serial": "FSE-CF-48",
-      "status": "backloaded",
-      "vessel": "",
+      "status": "reserved",
+      "vessel": "SK PURPOSE",
       "nextVessel": "",
       "lastQuantities": null,
       "createdAt": "2026-09-21T07:48:04.174Z",
-      "updatedAt": "2026-09-21T07:48:04.174Z",
+      "updatedAt": "2026-09-22T08:52:59.742Z",
       "length": 2.991,
       "width": 2.286,
       "height": 2.519,
@@ -3874,6 +3874,14 @@
       "vessel": "SK PURPOSE",
       "id": "2f6ef4fb-3f92-4b63-b043-0128a6dd9ab3",
       "recordedAt": "2026-09-22T08:52:49.646Z",
+      "date": "2026-09-22"
+    },
+    {
+      "serial": "FSE-CF-48",
+      "action": "reserved",
+      "vessel": "SK PURPOSE",
+      "id": "cd2760ce-9d7e-4248-8328-609ce4235aba",
+      "recordedAt": "2026-09-22T08:52:59.742Z",
       "date": "2026-09-22"
     }
   ],
