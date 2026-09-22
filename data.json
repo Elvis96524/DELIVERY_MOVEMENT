@@ -887,12 +887,12 @@
     },
     "FSE-CF-50": {
       "serial": "FSE-CF-50",
-      "status": "loaded",
+      "status": "reserved_next",
       "vessel": "ETK PLATFORM",
-      "nextVessel": "",
+      "nextVessel": "ETK PLATFORM",
       "lastQuantities": null,
       "createdAt": "2026-09-21T07:48:33.254Z",
-      "updatedAt": "2026-09-22T07:04:45.453Z",
+      "updatedAt": "2026-09-22T08:54:42.990Z",
       "length": 2.991,
       "width": 2.286,
       "height": 2.519,
@@ -3954,6 +3954,14 @@
       "vessel": "ETK PLATFORM",
       "id": "3df1da53-ac22-4525-b97c-91a2da688b0b",
       "recordedAt": "2026-09-22T08:54:32.878Z",
+      "date": "2026-09-22"
+    },
+    {
+      "serial": "FSE-CF-50",
+      "action": "reserved_next",
+      "vessel": "ETK PLATFORM",
+      "id": "6087280a-86d1-493d-a861-0ecb9eb0850e",
+      "recordedAt": "2026-09-22T08:54:42.990Z",
       "date": "2026-09-22"
     }
   ],
