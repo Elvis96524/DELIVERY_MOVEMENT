@@ -1698,12 +1698,12 @@
     },
     "GV-01": {
       "serial": "GV-01",
-      "status": "backloaded",
-      "vessel": "",
+      "status": "loaded",
+      "vessel": "KINABALU PLATFORM",
       "nextVessel": "",
       "lastQuantities": null,
       "createdAt": "2026-09-22T03:42:45.643Z",
-      "updatedAt": "2026-09-22T03:42:45.643Z",
+      "updatedAt": "2026-09-22T07:02:31.325Z",
       "length": 2.48,
       "width": 2.48,
       "height": 2.73,
@@ -3505,6 +3505,15 @@
       "trailerPlate": "QPC9717",
       "id": "d35902bb-6bbd-47a3-aeac-79888b51cd7b",
       "recordedAt": "2026-09-22T07:02:14.765Z"
+    },
+    {
+      "serial": "GV-01",
+      "action": "loaded",
+      "vessel": "KINABALU PLATFORM",
+      "date": "2026-09-17",
+      "trailerPlate": "QPC9717",
+      "id": "a8583e7a-513b-4580-9d13-2d4347cada0d",
+      "recordedAt": "2026-09-22T07:02:31.325Z"
     }
   ],
   "truckRecords": [
