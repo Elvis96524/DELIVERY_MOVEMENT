@@ -1351,12 +1351,12 @@
     },
     "FSE-DC-29": {
       "serial": "FSE-DC-29",
-      "status": "backloaded",
-      "vessel": "",
+      "status": "reserved",
+      "vessel": "PETRO DIAMOND",
       "nextVessel": "",
       "lastQuantities": null,
       "createdAt": "2026-09-21T08:56:45.377Z",
-      "updatedAt": "2026-09-21T08:56:45.377Z",
+      "updatedAt": "2026-09-22T08:53:20.047Z",
       "length": 2.991,
       "width": 2.235,
       "height": 2.565,
@@ -3890,6 +3890,14 @@
       "vessel": "SK PURPOSE",
       "id": "4d8a5600-c802-4176-b3fb-502e23718051",
       "recordedAt": "2026-09-22T08:53:10.046Z",
+      "date": "2026-09-22"
+    },
+    {
+      "serial": "FSE-DC-29",
+      "action": "reserved",
+      "vessel": "PETRO DIAMOND",
+      "id": "78590c47-f5f5-4a9e-ae6f-55a9c1cf1bde",
+      "recordedAt": "2026-09-22T08:53:20.047Z",
       "date": "2026-09-22"
     }
   ],
