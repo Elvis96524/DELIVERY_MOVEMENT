@@ -983,12 +983,12 @@
     },
     "FSE-DC-06": {
       "serial": "FSE-DC-06",
-      "status": "loaded",
+      "status": "reserved_next",
       "vessel": "SAMARANG PLATFORM",
-      "nextVessel": "",
+      "nextVessel": "SAMARANG PLATFORM",
       "lastQuantities": null,
       "createdAt": "2026-09-21T07:51:50.389Z",
-      "updatedAt": "2026-09-22T07:00:16.790Z",
+      "updatedAt": "2026-09-22T08:49:54.662Z",
       "length": 2.44,
       "width": 2.44,
       "height": 2.65,
@@ -3739,6 +3739,14 @@
       },
       "id": "fed68299-88c0-4755-abc1-6717c0ae7d54",
       "recordedAt": "2026-09-22T07:44:02.883Z"
+    },
+    {
+      "serial": "FSE-DC-06",
+      "action": "reserved_next",
+      "vessel": "SAMARANG PLATFORM",
+      "id": "d76d6248-8a35-4deb-b88a-e73b9f214e38",
+      "recordedAt": "2026-09-22T08:49:54.662Z",
+      "date": "2026-09-22"
     }
   ],
   "truckRecords": [
