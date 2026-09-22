@@ -178,12 +178,12 @@
     },
     "FSE-CF-07": {
       "serial": "FSE-CF-07",
-      "status": "loaded",
+      "status": "reserved_next",
       "vessel": "SAMARANG PLATFORM",
-      "nextVessel": "",
+      "nextVessel": "SAMARANG PLATFORM",
       "lastQuantities": null,
       "createdAt": "2026-09-21T02:21:28.772Z",
-      "updatedAt": "2026-09-22T07:00:57.941Z",
+      "updatedAt": "2026-09-22T08:50:14.462Z",
       "length": 2.44,
       "width": 2.44,
       "height": 2.5,
@@ -3754,6 +3754,14 @@
       "vessel": "SAMARANG PLATFORM",
       "id": "2423c086-d216-4304-bcea-3f78bb8a8d91",
       "recordedAt": "2026-09-22T08:50:06.406Z",
+      "date": "2026-09-22"
+    },
+    {
+      "serial": "FSE-CF-07",
+      "action": "reserved_next",
+      "vessel": "SAMARANG PLATFORM",
+      "id": "7a2e31f9-101e-4d37-9ec9-3ab68b72d59a",
+      "recordedAt": "2026-09-22T08:50:14.462Z",
       "date": "2026-09-22"
     }
   ],
