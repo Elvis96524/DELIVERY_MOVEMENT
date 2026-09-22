@@ -871,12 +871,12 @@
     },
     "FSE-CF-49": {
       "serial": "FSE-CF-49",
-      "status": "loaded",
+      "status": "reserved_next",
       "vessel": "SUMANDAK PLATFORM",
-      "nextVessel": "",
+      "nextVessel": "SUMANDAK PLATFORM",
       "lastQuantities": null,
       "createdAt": "2026-09-21T07:48:18.054Z",
-      "updatedAt": "2026-09-22T07:01:23.110Z",
+      "updatedAt": "2026-09-22T08:50:47.854Z",
       "length": 2.991,
       "width": 2.286,
       "height": 2.519,
@@ -3770,6 +3770,14 @@
       "vessel": "SUMANDAK PLATFORM",
       "id": "5b40c984-ad86-4e89-8422-9fb3f119aba8",
       "recordedAt": "2026-09-22T08:50:39.302Z",
+      "date": "2026-09-22"
+    },
+    {
+      "serial": "FSE-CF-49",
+      "action": "reserved_next",
+      "vessel": "SUMANDAK PLATFORM",
+      "id": "1c6ff85d-af0f-4ab5-a434-2860bf319ef9",
+      "recordedAt": "2026-09-22T08:50:47.854Z",
       "date": "2026-09-22"
     }
   ],
