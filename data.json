@@ -1826,12 +1826,12 @@
     },
     "PTSB100034-2": {
       "serial": "PTSB100034-2",
-      "status": "backloaded",
-      "vessel": "",
+      "status": "loaded",
+      "vessel": "BINTULU",
       "nextVessel": "",
       "lastQuantities": null,
       "createdAt": "2026-09-22T03:45:38.875Z",
-      "updatedAt": "2026-09-22T03:45:38.875Z",
+      "updatedAt": "2026-09-22T06:41:51.271Z",
       "length": 2.991,
       "width": 2.438,
       "height": 2.591,
@@ -3190,6 +3190,15 @@
       "trailerPlate": "DED9717",
       "id": "9ccfe1fa-b5a5-49fa-92be-2e1b54dbd2fd",
       "recordedAt": "2026-09-22T06:40:02.919Z"
+    },
+    {
+      "serial": "PTSB100034-2",
+      "action": "loaded",
+      "vessel": "BINTULU",
+      "date": "2025-04-10",
+      "trailerPlate": "SS9993W",
+      "id": "49426a68-f00e-438f-8602-5b5ee15d84d5",
+      "recordedAt": "2026-09-22T06:41:51.271Z"
     }
   ],
   "truckRecords": [
