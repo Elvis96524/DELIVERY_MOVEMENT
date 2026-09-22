@@ -1671,12 +1671,12 @@
     },
     "GO-CF-15": {
       "serial": "GO-CF-15",
-      "status": "loaded",
+      "status": "reserved_next",
       "vessel": "ETK PLATFORM",
-      "nextVessel": "",
+      "nextVessel": "ETK PLATFORM",
       "lastQuantities": null,
       "createdAt": "2026-09-22T03:42:12.227Z",
-      "updatedAt": "2026-09-22T07:04:24.870Z",
+      "updatedAt": "2026-09-22T08:54:32.878Z",
       "length": 2.04,
       "width": 2.04,
       "height": 2.51,
@@ -3946,6 +3946,14 @@
       "vessel": "ETK PLATFORM",
       "id": "36991c48-ee60-4110-8a06-69b3559c25d4",
       "recordedAt": "2026-09-22T08:54:20.910Z",
+      "date": "2026-09-22"
+    },
+    {
+      "serial": "GO-CF-15",
+      "action": "reserved_next",
+      "vessel": "ETK PLATFORM",
+      "id": "3df1da53-ac22-4525-b97c-91a2da688b0b",
+      "recordedAt": "2026-09-22T08:54:32.878Z",
       "date": "2026-09-22"
     }
   ],
