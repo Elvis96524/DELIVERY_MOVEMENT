@@ -818,12 +818,12 @@
     },
     "FSE-CF-47": {
       "serial": "FSE-CF-47",
-      "status": "backloaded",
-      "vessel": "",
+      "status": "loaded",
+      "vessel": "SAMARANG PLATFORM",
       "nextVessel": "",
       "lastQuantities": null,
       "createdAt": "2026-09-21T07:46:54.918Z",
-      "updatedAt": "2026-09-21T07:46:54.918Z",
+      "updatedAt": "2026-09-22T07:00:34.734Z",
       "length": 2.991,
       "width": 2.286,
       "height": 2.519,
@@ -3460,6 +3460,15 @@
       "trailerPlate": "TDC6717",
       "id": "5a7b6c7c-0752-4c05-84c1-eb8e20a50e2e",
       "recordedAt": "2026-09-22T07:00:16.790Z"
+    },
+    {
+      "serial": "FSE-CF-47",
+      "action": "loaded",
+      "vessel": "SAMARANG PLATFORM",
+      "date": "2026-09-17",
+      "trailerPlate": "QTT9717",
+      "id": "9723ba04-61a6-42bf-a157-43d5549b00b7",
+      "recordedAt": "2026-09-22T07:00:34.734Z"
     }
   ],
   "truckRecords": [
