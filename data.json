@@ -82,12 +82,12 @@
     },
     "FSE-CF-01": {
       "serial": "FSE-CF-01",
-      "status": "loaded",
+      "status": "reserved_next",
       "vessel": "KINABALU PLATFORM",
-      "nextVessel": "",
+      "nextVessel": "KINABALU PLATFORM",
       "lastQuantities": null,
       "createdAt": "2026-09-21T02:19:13.748Z",
-      "updatedAt": "2026-09-22T07:02:48.469Z",
+      "updatedAt": "2026-09-22T08:51:18.574Z",
       "length": 2.04,
       "width": 2.04,
       "height": 2.51,
@@ -3794,6 +3794,14 @@
       "vessel": "KINABALU PLATFORM",
       "id": "510102be-c456-4e08-9427-58fb745fa64e",
       "recordedAt": "2026-09-22T08:51:09.078Z",
+      "date": "2026-09-22"
+    },
+    {
+      "serial": "FSE-CF-01",
+      "action": "reserved_next",
+      "vessel": "KINABALU PLATFORM",
+      "id": "735aab3a-cbce-4ef0-a160-ef6c3705a9e7",
+      "recordedAt": "2026-09-22T08:51:18.574Z",
       "date": "2026-09-22"
     }
   ],
