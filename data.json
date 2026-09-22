@@ -66,12 +66,12 @@
     },
     "DF-02": {
       "serial": "DF-02",
-      "status": "backloaded",
-      "vessel": "",
+      "status": "reserved",
+      "vessel": "SK PURPOSE",
       "nextVessel": "",
       "lastQuantities": null,
       "createdAt": "2026-09-21T02:18:23.156Z",
-      "updatedAt": "2026-09-21T02:18:23.156Z",
+      "updatedAt": "2026-09-22T08:52:49.646Z",
       "length": 2.438,
       "width": 2.438,
       "height": 2.76,
@@ -3866,6 +3866,14 @@
       "vessel": "KEYFIELD WISDOM",
       "id": "e6bad005-a4e2-40f4-a16f-e4c15d48b3a5",
       "recordedAt": "2026-09-22T08:52:40.118Z",
+      "date": "2026-09-22"
+    },
+    {
+      "serial": "DF-02",
+      "action": "reserved",
+      "vessel": "SK PURPOSE",
+      "id": "2f6ef4fb-3f92-4b63-b043-0128a6dd9ab3",
+      "recordedAt": "2026-09-22T08:52:49.646Z",
       "date": "2026-09-22"
     }
   ],
