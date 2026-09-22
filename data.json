@@ -2515,6 +2515,26 @@
       },
       "id": "36c0ce5a-c97a-41aa-a514-6a064d9c47a0",
       "recordedAt": "2026-09-22T01:44:09.151Z"
+    },
+    {
+      "driver": "SYAH",
+      "laborers": "",
+      "vessel": "Sk majestic",
+      "place": "Mutiara",
+      "truckPlate": "QMU6228",
+      "date": "2026-09-22",
+      "timeDelivery": "10:15",
+      "timeBack": "",
+      "items": {
+        "basketLarge": 0,
+        "basketSmall": 0,
+        "basketThai": 0,
+        "roBottles": 0,
+        "others": 0,
+        "othersNote": ""
+      },
+      "id": "656e3e92-8797-4834-a2b7-8509d33177d3",
+      "recordedAt": "2026-09-22T02:15:30.800Z"
     }
   ],
   "drivers": {
