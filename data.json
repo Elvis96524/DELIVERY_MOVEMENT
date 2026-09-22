@@ -1695,6 +1695,22 @@
       "tare": 3000,
       "payload": 4000,
       "maxGross": 7000
+    },
+    "GV-01": {
+      "serial": "GV-01",
+      "status": "backloaded",
+      "vessel": "",
+      "nextVessel": "",
+      "lastQuantities": null,
+      "createdAt": "2026-09-22T03:42:45.643Z",
+      "updatedAt": "2026-09-22T03:42:45.643Z",
+      "length": 2.48,
+      "width": 2.48,
+      "height": 2.73,
+      "expiry": "2027-04-08",
+      "tare": 2770,
+      "payload": 5000,
+      "maxGross": 7770
     }
   },
   "history": [
@@ -2544,6 +2560,14 @@
       "vessel": "",
       "id": "d0635742-6ded-4e54-9c11-507387d94cdd",
       "recordedAt": "2026-09-22T03:42:25.739Z",
+      "date": "2026-09-22"
+    },
+    {
+      "serial": "GV-01",
+      "action": "created",
+      "vessel": "",
+      "id": "35c0888a-ef1c-4f9d-895a-b9272bde1762",
+      "recordedAt": "2026-09-22T03:42:45.643Z",
       "date": "2026-09-22"
     }
   ],
