@@ -34,12 +34,12 @@
     },
     "DC-006": {
       "serial": "DC-006",
-      "status": "loaded",
+      "status": "reserved_next",
       "vessel": "SAMARANG PLATFORM",
-      "nextVessel": "",
+      "nextVessel": "SUMANDAK PLATFORM",
       "lastQuantities": null,
       "createdAt": "2026-09-21T02:08:37.005Z",
-      "updatedAt": "2026-09-22T06:59:24.302Z",
+      "updatedAt": "2026-09-22T08:50:39.302Z",
       "length": 2.44,
       "width": 2.44,
       "height": 2.5,
@@ -3762,6 +3762,14 @@
       "vessel": "SAMARANG PLATFORM",
       "id": "7a2e31f9-101e-4d37-9ec9-3ab68b72d59a",
       "recordedAt": "2026-09-22T08:50:14.462Z",
+      "date": "2026-09-22"
+    },
+    {
+      "serial": "DC-006",
+      "action": "reserved_next",
+      "vessel": "SUMANDAK PLATFORM",
+      "id": "5b40c984-ad86-4e89-8422-9fb3f119aba8",
+      "recordedAt": "2026-09-22T08:50:39.302Z",
       "date": "2026-09-22"
     }
   ],
