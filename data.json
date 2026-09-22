@@ -2015,6 +2015,22 @@
       "tare": 2600,
       "payload": 5500,
       "maxGross": 8100
+    },
+    "UMW-N7-RC-001": {
+      "serial": "UMW-N7-RC-001",
+      "status": "backloaded",
+      "vessel": "",
+      "nextVessel": "",
+      "lastQuantities": null,
+      "createdAt": "2026-09-22T03:49:26.490Z",
+      "updatedAt": "2026-09-22T03:49:26.490Z",
+      "length": 3.048,
+      "width": 2.438,
+      "height": 2.621,
+      "expiry": "2027-03-29",
+      "tare": 2980,
+      "payload": 7180,
+      "maxGross": 10160
     }
   },
   "history": [
@@ -3024,6 +3040,14 @@
       "vessel": "",
       "id": "4b675fcb-8a76-4ba0-83b0-8d0f8332d224",
       "recordedAt": "2026-09-22T03:49:08.042Z",
+      "date": "2026-09-22"
+    },
+    {
+      "serial": "UMW-N7-RC-001",
+      "action": "created",
+      "vessel": "",
+      "id": "5d1143dc-0554-44ea-9d28-b0ea5711cb1e",
+      "recordedAt": "2026-09-22T03:49:26.491Z",
       "date": "2026-09-22"
     }
   ],
