@@ -402,12 +402,12 @@
     },
     "FSE-CF-21": {
       "serial": "FSE-CF-21",
-      "status": "backloaded",
-      "vessel": "",
+      "status": "loaded",
+      "vessel": "BINTULU",
       "nextVessel": "",
       "lastQuantities": null,
       "createdAt": "2026-09-21T02:26:12.027Z",
-      "updatedAt": "2026-09-21T02:26:12.028Z",
+      "updatedAt": "2026-09-22T06:40:02.919Z",
       "length": 2.5,
       "width": 2.44,
       "height": 2.75,
@@ -3181,6 +3181,15 @@
       "trailerPlate": "DED9717",
       "id": "a1ffb78f-d272-4f54-b356-0298bd94ae23",
       "recordedAt": "2026-09-22T06:39:19.175Z"
+    },
+    {
+      "serial": "FSE-CF-21",
+      "action": "loaded",
+      "vessel": "BINTULU",
+      "date": "2025-05-24",
+      "trailerPlate": "DED9717",
+      "id": "9ccfe1fa-b5a5-49fa-92be-2e1b54dbd2fd",
+      "recordedAt": "2026-09-22T06:40:02.919Z"
     }
   ],
   "truckRecords": [
