@@ -1954,12 +1954,12 @@
     },
     "TK-5006": {
       "serial": "TK-5006",
-      "status": "backloaded",
-      "vessel": "",
+      "status": "loaded",
+      "vessel": "KINABALU PLATFORM",
       "nextVessel": "",
       "lastQuantities": null,
       "createdAt": "2026-09-22T03:48:25.963Z",
-      "updatedAt": "2026-09-22T03:48:25.963Z",
+      "updatedAt": "2026-09-22T07:02:14.765Z",
       "length": 2.5,
       "width": 2.44,
       "height": 2.75,
@@ -3496,6 +3496,15 @@
       "trailerPlate": "TDC6717",
       "id": "7e4594b7-ee30-4cfb-a4e3-cf0b323e2a50",
       "recordedAt": "2026-09-22T07:01:51.950Z"
+    },
+    {
+      "serial": "TK-5006",
+      "action": "loaded",
+      "vessel": "KINABALU PLATFORM",
+      "date": "2026-09-17",
+      "trailerPlate": "QPC9717",
+      "id": "d35902bb-6bbd-47a3-aeac-79888b51cd7b",
+      "recordedAt": "2026-09-22T07:02:14.765Z"
     }
   ],
   "truckRecords": [
