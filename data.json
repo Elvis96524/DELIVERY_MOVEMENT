@@ -1794,12 +1794,12 @@
     },
     "PTSB100032-1": {
       "serial": "PTSB100032-1",
-      "status": "backloaded",
-      "vessel": "",
+      "status": "loaded",
+      "vessel": "BINTULU",
       "nextVessel": "",
       "lastQuantities": null,
       "createdAt": "2026-09-22T03:44:25.611Z",
-      "updatedAt": "2026-09-22T03:44:25.611Z",
+      "updatedAt": "2026-09-22T06:37:30.079Z",
       "length": 2.991,
       "width": 2.438,
       "height": 2.591,
@@ -3136,6 +3136,15 @@
       "trailerPlate": "PRP9900",
       "id": "387d14f8-e933-4642-b27c-b91cc1f8a4fd",
       "recordedAt": "2026-09-22T06:37:07.215Z"
+    },
+    {
+      "serial": "PTSB100032-1",
+      "action": "loaded",
+      "vessel": "BINTULU",
+      "date": "2025-04-22",
+      "trailerPlate": "PRP9900",
+      "id": "038cb900-0089-4883-ac95-8dc537bd29f7",
+      "recordedAt": "2026-09-22T06:37:30.079Z"
     }
   ],
   "truckRecords": [
