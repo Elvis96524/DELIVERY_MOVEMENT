@@ -1175,12 +1175,12 @@
     },
     "FSE-DC-18": {
       "serial": "FSE-DC-18",
-      "status": "loaded",
+      "status": "reserved_next",
       "vessel": "ETK PLATFORM",
-      "nextVessel": "",
+      "nextVessel": "ETK PLATFORM",
       "lastQuantities": null,
       "createdAt": "2026-09-21T08:52:55.233Z",
-      "updatedAt": "2026-09-22T07:04:06.677Z",
+      "updatedAt": "2026-09-22T08:54:20.910Z",
       "length": 2.5,
       "width": 2.44,
       "height": 2.75,
@@ -3938,6 +3938,14 @@
       "vessel": "HELANG INTEGRATED PLATFORM",
       "id": "58501ec7-2919-4d34-a48e-abb922c1ee81",
       "recordedAt": "2026-09-22T08:54:09.222Z",
+      "date": "2026-09-22"
+    },
+    {
+      "serial": "FSE-DC-18",
+      "action": "reserved_next",
+      "vessel": "ETK PLATFORM",
+      "id": "36991c48-ee60-4110-8a06-69b3559c25d4",
+      "recordedAt": "2026-09-22T08:54:20.910Z",
       "date": "2026-09-22"
     }
   ],
