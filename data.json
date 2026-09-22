@@ -1122,12 +1122,12 @@
     },
     "FSE-DC-16": {
       "serial": "FSE-DC-16",
-      "status": "backloaded",
-      "vessel": "",
+      "status": "loaded",
+      "vessel": "BINTULU",
       "nextVessel": "",
       "lastQuantities": null,
       "createdAt": "2026-09-21T08:52:11.505Z",
-      "updatedAt": "2026-09-21T08:52:11.505Z",
+      "updatedAt": "2026-09-22T06:38:38.047Z",
       "length": 3.103,
       "width": 2.438,
       "height": 2.922,
@@ -3154,6 +3154,15 @@
       "trailerPlate": "PRP9900",
       "id": "123b6151-a213-4da3-82cf-0c7c436aefd8",
       "recordedAt": "2026-09-22T06:37:51.887Z"
+    },
+    {
+      "serial": "FSE-DC-16",
+      "action": "loaded",
+      "vessel": "BINTULU",
+      "date": "2025-05-24",
+      "trailerPlate": "DED9717",
+      "id": "58e6db92-29b0-4817-8286-588d8b295dc4",
+      "recordedAt": "2026-09-22T06:38:38.047Z"
     }
   ],
   "truckRecords": [
