@@ -1047,12 +1047,12 @@
     },
     "FSE-DC-10": {
       "serial": "FSE-DC-10",
-      "status": "backloaded",
-      "vessel": "",
+      "status": "reserved",
+      "vessel": "HELANG INTEGRATED PLATFORM",
       "nextVessel": "",
       "lastQuantities": null,
       "createdAt": "2026-09-21T08:50:40.433Z",
-      "updatedAt": "2026-09-21T08:50:40.433Z",
+      "updatedAt": "2026-09-22T08:53:52.990Z",
       "length": 2.991,
       "width": 2.438,
       "height": 2.591,
@@ -3914,6 +3914,14 @@
       "vessel": "PETRO DIAMOND",
       "id": "1fb84f2f-39ea-49f3-a420-d5ecd8acade7",
       "recordedAt": "2026-09-22T08:53:43.958Z",
+      "date": "2026-09-22"
+    },
+    {
+      "serial": "FSE-DC-10",
+      "action": "reserved",
+      "vessel": "HELANG INTEGRATED PLATFORM",
+      "id": "594436e8-e05b-42df-ae1e-266b709df5cd",
+      "recordedAt": "2026-09-22T08:53:52.990Z",
       "date": "2026-09-22"
     }
   ],
