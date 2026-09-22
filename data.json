@@ -1890,12 +1890,12 @@
     },
     "TK-4013": {
       "serial": "TK-4013",
-      "status": "backloaded",
-      "vessel": "",
+      "status": "loaded",
+      "vessel": "KEYFIELD HELMS",
       "nextVessel": "",
       "lastQuantities": null,
       "createdAt": "2026-09-22T03:47:25.371Z",
-      "updatedAt": "2026-09-22T03:47:25.371Z",
+      "updatedAt": "2026-09-22T03:54:40.890Z",
       "length": 2.5,
       "width": 2.44,
       "height": 2.75,
@@ -3073,6 +3073,15 @@
       "id": "b2d95d7e-3d51-4c28-a0bc-fe109a196647",
       "recordedAt": "2026-09-22T03:49:45.963Z",
       "date": "2026-09-22"
+    },
+    {
+      "serial": "TK-4013",
+      "action": "loaded",
+      "vessel": "KEYFIELD HELMS",
+      "date": "2022-03-23",
+      "trailerPlate": "",
+      "id": "020ed807-8096-4343-8594-304efd295245",
+      "recordedAt": "2026-09-22T03:54:40.890Z"
     }
   ],
   "truckRecords": [
