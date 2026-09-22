@@ -1663,6 +1663,22 @@
       "tare": 3000,
       "payload": 4000,
       "maxGross": 7000
+    },
+    "GO-CF-15": {
+      "serial": "GO-CF-15",
+      "status": "backloaded",
+      "vessel": "",
+      "nextVessel": "",
+      "lastQuantities": null,
+      "createdAt": "2026-09-22T03:42:12.227Z",
+      "updatedAt": "2026-09-22T03:42:12.227Z",
+      "length": 2.04,
+      "width": 2.04,
+      "height": 2.51,
+      "expiry": "2027-08-04",
+      "tare": 3000,
+      "payload": 4000,
+      "maxGross": 7000
     }
   },
   "history": [
@@ -2496,6 +2512,14 @@
       "vessel": "",
       "id": "504084ef-1875-406c-ba48-6a03229ba1e2",
       "recordedAt": "2026-09-22T03:41:53.156Z",
+      "date": "2026-09-22"
+    },
+    {
+      "serial": "GO-CF-15",
+      "action": "created",
+      "vessel": "",
+      "id": "77e6da03-bc22-4ac3-aebc-bb67224fa224",
+      "recordedAt": "2026-09-22T03:42:12.227Z",
       "date": "2026-09-22"
     }
   ],
