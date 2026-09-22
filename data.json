@@ -482,12 +482,12 @@
     },
     "FSE-CF-26": {
       "serial": "FSE-CF-26",
-      "status": "backloaded",
-      "vessel": "",
+      "status": "reserved",
+      "vessel": "PETRO DIAMOND",
       "nextVessel": "",
       "lastQuantities": null,
       "createdAt": "2026-09-21T02:27:39.979Z",
-      "updatedAt": "2026-09-21T02:27:39.979Z",
+      "updatedAt": "2026-09-22T08:53:43.958Z",
       "length": 3,
       "width": 2.5,
       "height": 2.7,
@@ -3906,6 +3906,14 @@
       "vessel": "PETRO DIAMOND",
       "id": "8ebe1e97-0166-43d3-a193-c0d95cf34450",
       "recordedAt": "2026-09-22T08:53:35.654Z",
+      "date": "2026-09-22"
+    },
+    {
+      "serial": "FSE-CF-26",
+      "action": "reserved",
+      "vessel": "PETRO DIAMOND",
+      "id": "1fb84f2f-39ea-49f3-a420-d5ecd8acade7",
+      "recordedAt": "2026-09-22T08:53:43.958Z",
       "date": "2026-09-22"
     }
   ],
