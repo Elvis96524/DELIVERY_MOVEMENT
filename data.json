@@ -1727,6 +1727,22 @@
       "tare": 1960,
       "payload": 9540,
       "maxGross": 11500
+    },
+    "PTSB100027-6": {
+      "serial": "PTSB100027-6",
+      "status": "backloaded",
+      "vessel": "",
+      "nextVessel": "",
+      "lastQuantities": null,
+      "createdAt": "2026-09-22T03:43:19.771Z",
+      "updatedAt": "2026-09-22T03:43:19.771Z",
+      "length": 2.991,
+      "width": 2.438,
+      "height": 2.591,
+      "expiry": "2027-03-29",
+      "tare": 1960,
+      "payload": 9540,
+      "maxGross": 11500
     }
   },
   "history": [
@@ -2592,6 +2608,14 @@
       "vessel": "",
       "id": "ba518c85-660b-4e0b-b209-8f9601be182c",
       "recordedAt": "2026-09-22T03:43:04.331Z",
+      "date": "2026-09-22"
+    },
+    {
+      "serial": "PTSB100027-6",
+      "action": "created",
+      "vessel": "",
+      "id": "8b3a2dbf-859f-4078-a7fc-bbed156e0b00",
+      "recordedAt": "2026-09-22T03:43:19.771Z",
       "date": "2026-09-22"
     }
   ],
