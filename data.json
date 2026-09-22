@@ -2495,6 +2495,26 @@
       },
       "id": "d641680b-f1bb-467c-b340-f5d773993830",
       "recordedAt": "2026-09-21T08:04:53.675Z"
+    },
+    {
+      "driver": "SHAHRIN",
+      "laborers": "Boboi, Jun",
+      "vessel": "SK Paladin",
+      "place": "Mutiara",
+      "truckPlate": "WGS2831",
+      "date": "2026-09-22",
+      "timeDelivery": "09:30",
+      "timeBack": "",
+      "items": {
+        "basketLarge": 0,
+        "basketSmall": 0,
+        "basketThai": 0,
+        "roBottles": 0,
+        "others": 0,
+        "othersNote": ""
+      },
+      "id": "36c0ce5a-c97a-41aa-a514-6a064d9c47a0",
+      "recordedAt": "2026-09-22T01:44:09.151Z"
     }
   ],
   "drivers": {
