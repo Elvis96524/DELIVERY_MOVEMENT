@@ -354,12 +354,12 @@
     },
     "FSE-CF-18": {
       "serial": "FSE-CF-18",
-      "status": "backloaded",
-      "vessel": "",
+      "status": "loaded",
+      "vessel": "SAMARANG PLATFORM",
       "nextVessel": "",
       "lastQuantities": null,
       "createdAt": "2026-09-21T02:25:27.691Z",
-      "updatedAt": "2026-09-21T02:25:27.691Z",
+      "updatedAt": "2026-09-22T06:49:03.286Z",
       "length": 2.5,
       "width": 2.44,
       "height": 2.75,
@@ -3271,6 +3271,15 @@
       "trailerPlate": "QTV9993",
       "id": "1f7d81e8-0129-49fb-b51c-585e15d0d29d",
       "recordedAt": "2026-09-22T06:48:25.166Z"
+    },
+    {
+      "serial": "FSE-CF-18",
+      "action": "loaded",
+      "vessel": "SAMARANG PLATFORM",
+      "date": "2026-08-19",
+      "trailerPlate": "SU9717J",
+      "id": "b26ac002-8de6-4c48-9f6d-34ac521e8730",
+      "recordedAt": "2026-09-22T06:49:03.286Z"
     }
   ],
   "truckRecords": [
