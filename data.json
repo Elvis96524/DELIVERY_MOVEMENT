@@ -82,12 +82,12 @@
     },
     "FSE-CF-01": {
       "serial": "FSE-CF-01",
-      "status": "backloaded",
-      "vessel": "",
+      "status": "loaded",
+      "vessel": "KINABALU PLATFORM",
       "nextVessel": "",
       "lastQuantities": null,
       "createdAt": "2026-09-21T02:19:13.748Z",
-      "updatedAt": "2026-09-21T02:19:13.748Z",
+      "updatedAt": "2026-09-22T07:02:48.469Z",
       "length": 2.04,
       "width": 2.04,
       "height": 2.51,
@@ -3514,6 +3514,15 @@
       "trailerPlate": "QPC9717",
       "id": "a8583e7a-513b-4580-9d13-2d4347cada0d",
       "recordedAt": "2026-09-22T07:02:31.325Z"
+    },
+    {
+      "serial": "FSE-CF-01",
+      "action": "loaded",
+      "vessel": "KINABALU PLATFORM",
+      "date": "2026-09-17",
+      "trailerPlate": "QPC9717",
+      "id": "ad3505e9-07db-4590-9645-9f3f052ac10d",
+      "recordedAt": "2026-09-22T07:02:48.469Z"
     }
   ],
   "truckRecords": [
