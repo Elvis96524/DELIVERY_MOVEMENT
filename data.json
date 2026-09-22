@@ -2023,12 +2023,12 @@
     },
     "UMW-N7-RC-001": {
       "serial": "UMW-N7-RC-001",
-      "status": "backloaded",
-      "vessel": "",
+      "status": "reserved",
+      "vessel": "OS ONE",
       "nextVessel": "",
       "lastQuantities": null,
       "createdAt": "2026-09-22T03:49:26.490Z",
-      "updatedAt": "2026-09-22T03:49:26.490Z",
+      "updatedAt": "2026-09-22T08:51:40.150Z",
       "length": 3.048,
       "width": 2.438,
       "height": 2.621,
@@ -3810,6 +3810,14 @@
       "vessel": "OS ONE",
       "id": "68ac1322-0428-4358-936c-0bac84f3f895",
       "recordedAt": "2026-09-22T08:51:30.230Z",
+      "date": "2026-09-22"
+    },
+    {
+      "serial": "UMW-N7-RC-001",
+      "action": "reserved",
+      "vessel": "OS ONE",
+      "id": "85ee69fa-a585-4206-841c-0f8554057618",
+      "recordedAt": "2026-09-22T08:51:40.150Z",
       "date": "2026-09-22"
     }
   ],
