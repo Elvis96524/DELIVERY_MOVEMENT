@@ -1426,12 +1426,12 @@
     },
     "FSE-DC-35": {
       "serial": "FSE-DC-35",
-      "status": "backloaded",
-      "vessel": "",
+      "status": "loaded",
+      "vessel": "TWO TEJA",
       "nextVessel": "",
       "lastQuantities": null,
       "createdAt": "2026-09-21T08:58:11.953Z",
-      "updatedAt": "2026-09-21T08:58:11.953Z",
+      "updatedAt": "2026-09-22T06:55:29.222Z",
       "length": 2.991,
       "width": 2.235,
       "height": 2.565,
@@ -3370,6 +3370,15 @@
       "trailerPlate": "SK3666B",
       "id": "4da464e4-773d-4ef6-b4d0-b92ecb6ce9b3",
       "recordedAt": "2026-09-22T06:55:06.838Z"
+    },
+    {
+      "serial": "FSE-DC-35",
+      "action": "loaded",
+      "vessel": "TWO TEJA",
+      "date": "2026-09-11",
+      "trailerPlate": "SK3666B",
+      "id": "95c23ff0-2c8f-424c-9518-4cab241e92ed",
+      "recordedAt": "2026-09-22T06:55:29.222Z"
     }
   ],
   "truckRecords": [
