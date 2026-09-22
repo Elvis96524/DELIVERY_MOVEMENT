@@ -1666,12 +1666,12 @@
     },
     "GO-CF-15": {
       "serial": "GO-CF-15",
-      "status": "backloaded",
-      "vessel": "",
+      "status": "loaded",
+      "vessel": "ETK PLATFORM",
       "nextVessel": "",
       "lastQuantities": null,
       "createdAt": "2026-09-22T03:42:12.227Z",
-      "updatedAt": "2026-09-22T03:42:12.227Z",
+      "updatedAt": "2026-09-22T07:04:24.870Z",
       "length": 2.04,
       "width": 2.04,
       "height": 2.51,
@@ -3559,6 +3559,15 @@
       "trailerPlate": "QTT9717",
       "id": "adfe7ee0-a351-44f8-aedc-40956f30aa7c",
       "recordedAt": "2026-09-22T07:04:06.677Z"
+    },
+    {
+      "serial": "GO-CF-15",
+      "action": "loaded",
+      "vessel": "ETK PLATFORM",
+      "date": "2026-09-18",
+      "trailerPlate": "QTT9717",
+      "id": "87f89652-4463-42e3-ab18-1d5aa34bc93c",
+      "recordedAt": "2026-09-22T07:04:24.870Z"
     }
   ],
   "truckRecords": [
