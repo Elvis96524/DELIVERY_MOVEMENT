@@ -34,12 +34,12 @@
     },
     "DC-006": {
       "serial": "DC-006",
-      "status": "backloaded",
-      "vessel": "",
+      "status": "loaded",
+      "vessel": "SAMARANG PLATFORM",
       "nextVessel": "",
       "lastQuantities": null,
       "createdAt": "2026-09-21T02:08:37.005Z",
-      "updatedAt": "2026-09-21T02:08:37.005Z",
+      "updatedAt": "2026-09-22T06:59:24.302Z",
       "length": 2.44,
       "width": 2.44,
       "height": 2.5,
@@ -3442,6 +3442,15 @@
       "trailerPlate": "VMN6663",
       "id": "8f563944-9c4a-48c9-b2f1-1519d11c2f9d",
       "recordedAt": "2026-09-22T06:58:05.302Z"
+    },
+    {
+      "serial": "DC-006",
+      "action": "loaded",
+      "vessel": "SAMARANG PLATFORM",
+      "date": "2026-09-17",
+      "trailerPlate": "QTT9717",
+      "id": "b6c6fc8f-8fcf-409f-b9f5-20441c8afa5b",
+      "recordedAt": "2026-09-22T06:59:24.302Z"
     }
   ],
   "truckRecords": [
