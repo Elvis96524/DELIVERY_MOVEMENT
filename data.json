@@ -1746,12 +1746,12 @@
     },
     "PTSB100028-1": {
       "serial": "PTSB100028-1",
-      "status": "backloaded",
-      "vessel": "",
+      "status": "loaded",
+      "vessel": "KEYFIELD WISDOM",
       "nextVessel": "",
       "lastQuantities": null,
       "createdAt": "2026-09-22T03:43:34.651Z",
-      "updatedAt": "2026-09-22T03:43:34.651Z",
+      "updatedAt": "2026-09-22T06:50:40.086Z",
       "length": 2.991,
       "width": 2.438,
       "height": 2.591,
@@ -3298,6 +3298,15 @@
       "trailerPlate": "QTV9993",
       "id": "e1f92064-f951-4f05-b48b-5dacad734f80",
       "recordedAt": "2026-09-22T06:49:56.334Z"
+    },
+    {
+      "serial": "PTSB100028-1",
+      "action": "loaded",
+      "vessel": "KEYFIELD WISDOM",
+      "date": "2026-09-15",
+      "trailerPlate": "BPY9993",
+      "id": "744d6344-9cd1-4d53-a8d5-5b44fcfc1d30",
+      "recordedAt": "2026-09-22T06:50:40.086Z"
     }
   ],
   "truckRecords": [
