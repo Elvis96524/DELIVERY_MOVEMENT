@@ -274,12 +274,12 @@
     },
     "FSE-CF-13": {
       "serial": "FSE-CF-13",
-      "status": "backloaded",
-      "vessel": "",
+      "status": "loaded",
+      "vessel": "BINTULU",
       "nextVessel": "",
       "lastQuantities": null,
       "createdAt": "2026-09-21T02:24:02.012Z",
-      "updatedAt": "2026-09-21T02:24:02.012Z",
+      "updatedAt": "2026-09-22T06:42:41.743Z",
       "length": 2.438,
       "width": 2.438,
       "height": 2.76,
@@ -3208,6 +3208,15 @@
       "trailerPlate": "SS9993W",
       "id": "5d058c45-7a45-4c1a-be52-219c4d3526a2",
       "recordedAt": "2026-09-22T06:42:09.543Z"
+    },
+    {
+      "serial": "FSE-CF-13",
+      "action": "loaded",
+      "vessel": "BINTULU",
+      "date": "2025-04-10",
+      "trailerPlate": "SS9993W",
+      "id": "af3f888c-aec1-4139-8ba5-17714769d1c4",
+      "recordedAt": "2026-09-22T06:42:41.743Z"
     }
   ],
   "truckRecords": [
