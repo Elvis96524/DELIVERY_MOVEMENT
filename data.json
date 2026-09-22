@@ -722,12 +722,12 @@
     },
     "FSE-CF-41": {
       "serial": "FSE-CF-41",
-      "status": "backloaded",
-      "vessel": "",
+      "status": "loaded",
+      "vessel": "OS ONE",
       "nextVessel": "",
       "lastQuantities": null,
       "createdAt": "2026-09-21T07:45:14.150Z",
-      "updatedAt": "2026-09-21T07:45:14.150Z",
+      "updatedAt": "2026-09-22T07:03:28.446Z",
       "length": 2.991,
       "width": 2.286,
       "height": 2.519,
@@ -3532,6 +3532,15 @@
       "trailerPlate": "SK3666B",
       "id": "c2ec1131-eb1c-4572-bd44-fa257e09fa38",
       "recordedAt": "2026-09-22T07:03:08.949Z"
+    },
+    {
+      "serial": "FSE-CF-41",
+      "action": "loaded",
+      "vessel": "OS ONE",
+      "date": "2026-09-17",
+      "trailerPlate": "SK3666B",
+      "id": "c0e1374c-6704-4278-bec4-1eb9e586fcbe",
+      "recordedAt": "2026-09-22T07:03:28.446Z"
     }
   ],
   "truckRecords": [
