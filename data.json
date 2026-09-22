@@ -1911,12 +1911,12 @@
     },
     "TK-4014": {
       "serial": "TK-4014",
-      "status": "backloaded",
-      "vessel": "",
+      "status": "reserved",
+      "vessel": "SK PURPOSE",
       "nextVessel": "",
       "lastQuantities": null,
       "createdAt": "2026-09-22T03:47:46.499Z",
-      "updatedAt": "2026-09-22T03:47:46.499Z",
+      "updatedAt": "2026-09-22T08:53:10.046Z",
       "length": 2.5,
       "width": 2.44,
       "height": 2.75,
@@ -3882,6 +3882,14 @@
       "vessel": "SK PURPOSE",
       "id": "cd2760ce-9d7e-4248-8328-609ce4235aba",
       "recordedAt": "2026-09-22T08:52:59.742Z",
+      "date": "2026-09-22"
+    },
+    {
+      "serial": "TK-4014",
+      "action": "reserved",
+      "vessel": "SK PURPOSE",
+      "id": "4d8a5600-c802-4176-b3fb-502e23718051",
+      "recordedAt": "2026-09-22T08:53:10.046Z",
       "date": "2026-09-22"
     }
   ],
