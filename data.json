@@ -1842,12 +1842,12 @@
     },
     "TK-4003": {
       "serial": "TK-4003",
-      "status": "backloaded",
-      "vessel": "",
+      "status": "loaded",
+      "vessel": "SK PALADIN",
       "nextVessel": "",
       "lastQuantities": null,
       "createdAt": "2026-09-22T03:46:43.347Z",
-      "updatedAt": "2026-09-22T03:46:43.347Z",
+      "updatedAt": "2026-09-22T03:58:07.362Z",
       "length": 2.5,
       "width": 2.44,
       "height": 2.75,
@@ -3109,6 +3109,15 @@
       "trailerPlate": "",
       "id": "62aca1b8-ab50-47a5-b87d-f8acd1b63516",
       "recordedAt": "2026-09-22T03:55:55.442Z"
+    },
+    {
+      "serial": "TK-4003",
+      "action": "loaded",
+      "vessel": "SK PALADIN",
+      "date": "2026-05-11",
+      "trailerPlate": "",
+      "id": "2eb5a781-c278-40b4-8bb9-5d26756e270e",
+      "recordedAt": "2026-09-22T03:58:07.362Z"
     }
   ],
   "truckRecords": [
