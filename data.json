@@ -146,12 +146,12 @@
     },
     "FSE-CF-05": {
       "serial": "FSE-CF-05",
-      "status": "backloaded",
-      "vessel": "",
+      "status": "loaded",
+      "vessel": "SUMANDAK PLATFORM",
       "nextVessel": "",
       "lastQuantities": null,
       "createdAt": "2026-09-21T02:20:53.868Z",
-      "updatedAt": "2026-09-21T02:20:53.868Z",
+      "updatedAt": "2026-09-22T03:55:38.243Z",
       "length": 2.44,
       "width": 2.44,
       "height": 2.5,
@@ -3091,6 +3091,15 @@
       "trailerPlate": "",
       "id": "77706d42-7007-42c6-b0c7-b6b216a56643",
       "recordedAt": "2026-09-22T03:55:09.722Z"
+    },
+    {
+      "serial": "FSE-CF-05",
+      "action": "loaded",
+      "vessel": "SUMANDAK PLATFORM",
+      "date": "2026-04-01",
+      "trailerPlate": "",
+      "id": "d28e43b2-53c0-4355-b7ae-7ab8ab52580a",
+      "recordedAt": "2026-09-22T03:55:38.243Z"
     }
   ],
   "truckRecords": [
