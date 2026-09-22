@@ -1298,12 +1298,12 @@
     },
     "FSE-DC-27": {
       "serial": "FSE-DC-27",
-      "status": "backloaded",
-      "vessel": "",
+      "status": "loaded",
+      "vessel": "KEYFIELD HARMONY",
       "nextVessel": "",
       "lastQuantities": null,
       "createdAt": "2026-09-21T08:56:16.585Z",
-      "updatedAt": "2026-09-21T08:56:16.585Z",
+      "updatedAt": "2026-09-22T06:57:28.838Z",
       "length": 2.991,
       "width": 2.438,
       "height": 2.591,
@@ -3415,6 +3415,15 @@
       "trailerPlate": "",
       "id": "8bd8d881-6f41-48e6-87c0-d5089e6ba0e9",
       "recordedAt": "2026-09-22T06:57:00.174Z"
+    },
+    {
+      "serial": "FSE-DC-27",
+      "action": "loaded",
+      "vessel": "KEYFIELD HARMONY",
+      "date": "2026-09-17",
+      "trailerPlate": "VMN6663",
+      "id": "d6fd5cab-8f37-43ec-9424-5a7adcfa986f",
+      "recordedAt": "2026-09-22T06:57:28.838Z"
     }
   ],
   "truckRecords": [
