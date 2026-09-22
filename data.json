@@ -1154,12 +1154,12 @@
     },
     "FSE-DC-18": {
       "serial": "FSE-DC-18",
-      "status": "backloaded",
-      "vessel": "",
+      "status": "loaded",
+      "vessel": "ETK PLATFORM",
       "nextVessel": "",
       "lastQuantities": null,
       "createdAt": "2026-09-21T08:52:55.233Z",
-      "updatedAt": "2026-09-21T08:52:55.233Z",
+      "updatedAt": "2026-09-22T07:04:06.677Z",
       "length": 2.5,
       "width": 2.44,
       "height": 2.75,
@@ -3550,6 +3550,15 @@
       "trailerPlate": "SK3666B",
       "id": "5181eb6f-e4d7-46a6-a187-d38d52595888",
       "recordedAt": "2026-09-22T07:03:44.933Z"
+    },
+    {
+      "serial": "FSE-DC-18",
+      "action": "loaded",
+      "vessel": "ETK PLATFORM",
+      "date": "2026-09-18",
+      "trailerPlate": "QTT9717",
+      "id": "adfe7ee0-a351-44f8-aedc-40956f30aa7c",
+      "recordedAt": "2026-09-22T07:04:06.677Z"
     }
   ],
   "truckRecords": [
