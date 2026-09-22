@@ -1703,12 +1703,12 @@
     },
     "GV-01": {
       "serial": "GV-01",
-      "status": "loaded",
+      "status": "reserved_next",
       "vessel": "KINABALU PLATFORM",
-      "nextVessel": "",
+      "nextVessel": "KINABALU PLATFORM",
       "lastQuantities": null,
       "createdAt": "2026-09-22T03:42:45.643Z",
-      "updatedAt": "2026-09-22T07:02:31.325Z",
+      "updatedAt": "2026-09-22T08:51:09.078Z",
       "length": 2.48,
       "width": 2.48,
       "height": 2.73,
@@ -3786,6 +3786,14 @@
       "vessel": "KINABALU PLATFORM",
       "id": "38e07eb5-73a6-44c0-b91a-eedf519d4a78",
       "recordedAt": "2026-09-22T08:50:56.262Z",
+      "date": "2026-09-22"
+    },
+    {
+      "serial": "GV-01",
+      "action": "reserved_next",
+      "vessel": "KINABALU PLATFORM",
+      "id": "510102be-c456-4e08-9427-58fb745fa64e",
+      "recordedAt": "2026-09-22T08:51:09.078Z",
       "date": "2026-09-22"
     }
   ],
