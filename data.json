@@ -1970,12 +1970,12 @@
     },
     "TK-5007": {
       "serial": "TK-5007",
-      "status": "backloaded",
-      "vessel": "",
+      "status": "loaded",
+      "vessel": "OS ONE",
       "nextVessel": "",
       "lastQuantities": null,
       "createdAt": "2026-09-22T03:48:39.338Z",
-      "updatedAt": "2026-09-22T03:48:39.338Z",
+      "updatedAt": "2026-09-22T07:03:08.950Z",
       "length": 2.5,
       "width": 2.44,
       "height": 2.75,
@@ -3523,6 +3523,15 @@
       "trailerPlate": "QPC9717",
       "id": "ad3505e9-07db-4590-9645-9f3f052ac10d",
       "recordedAt": "2026-09-22T07:02:48.469Z"
+    },
+    {
+      "serial": "TK-5007",
+      "action": "loaded",
+      "vessel": "OS ONE",
+      "date": "2026-09-17",
+      "trailerPlate": "SK3666B",
+      "id": "c2ec1131-eb1c-4572-bd44-fa257e09fa38",
+      "recordedAt": "2026-09-22T07:03:08.949Z"
     }
   ],
   "truckRecords": [
