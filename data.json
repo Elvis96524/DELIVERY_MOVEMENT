@@ -4162,6 +4162,26 @@
       },
       "id": "2a3a37b6-5493-4bef-9e52-c8bcae276be0",
       "recordedAt": "2026-09-23T07:59:49.858Z"
+    },
+    {
+      "driver": "SYAH",
+      "laborers": "Alex,Osana",
+      "vessel": "SK PRELUDE",
+      "place": "Asb",
+      "truckPlate": "SAB9100K",
+      "date": "2026-09-23",
+      "timeDelivery": "21:15",
+      "timeBack": "",
+      "items": {
+        "basketLarge": 0,
+        "basketSmall": 0,
+        "basketThai": 0,
+        "roBottles": 0,
+        "others": 0,
+        "othersNote": ""
+      },
+      "id": "31da63b2-3fd8-4bb3-8f71-84d6fd1a624e",
+      "recordedAt": "2026-09-23T13:49:40.871Z"
     }
   ],
   "drivers": {
