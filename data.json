@@ -4045,6 +4045,26 @@
       },
       "id": "0827e08a-c6b5-46d0-9698-7b0c58d52895",
       "recordedAt": "2026-09-22T07:11:07.647Z"
+    },
+    {
+      "driver": "SYAH",
+      "laborers": "Syukri",
+      "vessel": "Tovud Koposizon Plt",
+      "place": "Kilang air",
+      "truckPlate": "QMU6228",
+      "date": "2026-09-23",
+      "timeDelivery": "08:30",
+      "timeBack": "09:00",
+      "items": {
+        "basketLarge": 0,
+        "basketSmall": 0,
+        "basketThai": 0,
+        "roBottles": 0,
+        "others": 0,
+        "othersNote": "RO 100 gln"
+      },
+      "id": "1e49a537-798a-435a-b1f8-63a3fcf8cadc",
+      "recordedAt": "2026-09-23T01:06:05.364Z"
     }
   ],
   "drivers": {
