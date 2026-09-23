@@ -4102,6 +4102,26 @@
       },
       "id": "44f257fd-5b8f-4c15-b2a2-5481407ab8e7",
       "recordedAt": "2026-09-23T01:53:35.346Z"
+    },
+    {
+      "driver": "SYAH",
+      "laborers": "Nasir",
+      "vessel": "SK PREMIER",
+      "place": "ASB",
+      "truckPlate": "QMU6228",
+      "date": "2026-09-23",
+      "timeDelivery": "13:17",
+      "timeBack": "",
+      "items": {
+        "basketLarge": 0,
+        "basketSmall": 0,
+        "basketThai": 0,
+        "roBottles": 0,
+        "others": 0,
+        "othersNote": ""
+      },
+      "id": "3ac6dfb6-f9c1-422f-8e37-9591fd9e0c09",
+      "recordedAt": "2026-09-23T05:45:56.801Z"
     }
   ],
   "drivers": {
