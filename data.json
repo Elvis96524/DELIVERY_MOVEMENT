@@ -4142,6 +4142,26 @@
       },
       "id": "14670cc5-88ff-442f-949b-88126087df57",
       "recordedAt": "2026-09-23T07:24:16.526Z"
+    },
+    {
+      "driver": "SYAH",
+      "laborers": "Syukri",
+      "vessel": "BORNEO GROCERY",
+      "place": "BANDAR",
+      "truckPlate": "QMU6228",
+      "date": "2026-09-23",
+      "timeDelivery": "15:45",
+      "timeBack": "",
+      "items": {
+        "basketLarge": 0,
+        "basketSmall": 0,
+        "basketThai": 0,
+        "roBottles": 0,
+        "others": 0,
+        "othersNote": ""
+      },
+      "id": "2a3a37b6-5493-4bef-9e52-c8bcae276be0",
+      "recordedAt": "2026-09-23T07:59:49.858Z"
     }
   ],
   "drivers": {
