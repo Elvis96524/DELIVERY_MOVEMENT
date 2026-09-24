@@ -4182,6 +4182,26 @@
       },
       "id": "31da63b2-3fd8-4bb3-8f71-84d6fd1a624e",
       "recordedAt": "2026-09-23T13:49:40.871Z"
+    },
+    {
+      "driver": "SAIFUL",
+      "laborers": "AMAT",
+      "vessel": "Tovud Koposizon Plt",
+      "place": "",
+      "truckPlate": "WGS2831",
+      "date": "2026-09-24",
+      "timeDelivery": "08:52",
+      "timeBack": "",
+      "items": {
+        "basketLarge": 0,
+        "basketSmall": 0,
+        "basketThai": 0,
+        "roBottles": 0,
+        "others": 0,
+        "othersNote": "Botol kosong"
+      },
+      "id": "4c7bb115-0638-487c-b732-a06ddbd7bf0c",
+      "recordedAt": "2026-09-24T00:52:37.325Z"
     }
   ],
   "drivers": {
