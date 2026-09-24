@@ -4242,6 +4242,26 @@
       },
       "id": "3b298eaf-e386-47e2-8669-a78707ecf814",
       "recordedAt": "2026-09-24T02:58:41.525Z"
+    },
+    {
+      "driver": "SAIFUL",
+      "laborers": "Amat",
+      "vessel": "SRI GANTI",
+      "place": "SK PALADIN",
+      "truckPlate": "SK8226E",
+      "date": "2026-09-24",
+      "timeDelivery": "13:39",
+      "timeBack": "",
+      "items": {
+        "basketLarge": 0,
+        "basketSmall": 0,
+        "basketThai": 0,
+        "roBottles": 0,
+        "others": 0,
+        "othersNote": ""
+      },
+      "id": "8a6bb372-e74b-4c4a-b324-2555f3c4309d",
+      "recordedAt": "2026-09-24T05:40:17.921Z"
     }
   ],
   "drivers": {
