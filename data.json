@@ -4262,6 +4262,26 @@
       },
       "id": "8a6bb372-e74b-4c4a-b324-2555f3c4309d",
       "recordedAt": "2026-09-24T05:40:17.921Z"
+    },
+    {
+      "driver": "SYAH",
+      "laborers": "Syukri",
+      "vessel": "Lee",
+      "place": "Lee supplier",
+      "truckPlate": "WGS2831",
+      "date": "2026-09-24",
+      "timeDelivery": "13:52",
+      "timeBack": "",
+      "items": {
+        "basketLarge": 0,
+        "basketSmall": 0,
+        "basketThai": 0,
+        "roBottles": 0,
+        "others": 0,
+        "othersNote": ""
+      },
+      "id": "cc807dcf-50ba-4519-8923-9ace14eb7dc0",
+      "recordedAt": "2026-09-24T05:52:16.762Z"
     }
   ],
   "drivers": {
