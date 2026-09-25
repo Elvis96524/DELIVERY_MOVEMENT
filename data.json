@@ -4302,6 +4302,26 @@
       },
       "id": "37bbd172-c97b-494c-9d97-231f816cd8f8",
       "recordedAt": "2026-09-25T03:29:20.492Z"
+    },
+    {
+      "driver": "SYAH",
+      "laborers": "Osana",
+      "vessel": "Tovud Koposizon Plt",
+      "place": "Kilang air",
+      "truckPlate": "WGS2831",
+      "date": "2026-09-25",
+      "timeDelivery": "14:10",
+      "timeBack": "",
+      "items": {
+        "basketLarge": 0,
+        "basketSmall": 0,
+        "basketThai": 0,
+        "roBottles": 0,
+        "others": 0,
+        "othersNote": ""
+      },
+      "id": "1bac019a-b02f-4b78-a8b0-834563414d79",
+      "recordedAt": "2026-09-25T06:05:47.499Z"
     }
   ],
   "drivers": {
