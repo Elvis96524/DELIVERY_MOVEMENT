@@ -4362,6 +4362,26 @@
       },
       "id": "6a2d526f-dff2-41b3-bc15-bac170a7339e",
       "recordedAt": "2026-09-25T07:19:18.702Z"
+    },
+    {
+      "driver": "SYAH",
+      "laborers": "Ahmad fadli",
+      "vessel": "Lee",
+      "place": "Lee supplier",
+      "truckPlate": "SK8226E",
+      "date": "2026-09-26",
+      "timeDelivery": "09:26",
+      "timeBack": "",
+      "items": {
+        "basketLarge": 0,
+        "basketSmall": 0,
+        "basketThai": 0,
+        "roBottles": 0,
+        "others": 0,
+        "othersNote": ""
+      },
+      "id": "8c84b171-44bf-4d51-ad64-ee152032fd95",
+      "recordedAt": "2026-09-26T01:26:17.915Z"
     }
   ],
   "drivers": {
