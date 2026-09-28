@@ -4402,6 +4402,26 @@
       },
       "id": "9fe1fba2-925c-4b89-a41f-3b76e83410f0",
       "recordedAt": "2026-09-26T05:58:22.183Z"
+    },
+    {
+      "driver": "SHAHRIN",
+      "laborers": "Syukri",
+      "vessel": "SK FALCON",
+      "place": "Asb",
+      "truckPlate": "SK8226E",
+      "date": "2026-09-28",
+      "timeDelivery": "13:11",
+      "timeBack": "",
+      "items": {
+        "basketLarge": 0,
+        "basketSmall": 0,
+        "basketThai": 0,
+        "roBottles": 0,
+        "others": 0,
+        "othersNote": ""
+      },
+      "id": "0f0f2af6-a72b-4198-ab7f-747d3b307b9d",
+      "recordedAt": "2026-09-28T05:10:56.124Z"
     }
   ],
   "drivers": {
