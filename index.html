@@ -391,6 +391,26 @@
       <button type="submit" class="btn btn-primary" style="width:100%;">Sign in</button>
     </form>
 
+    <form id="connectForm" class="hidden">
+      <div class="field">
+        <label for="connect_token">Access code</label>
+        <input type="password" id="connect_token" placeholder="Paste the code from the admin (github_pat_…)" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false">
+      </div>
+      <div id="connectRepoFields" class="hidden">
+        <div class="field-grid">
+          <div class="field">
+            <label for="connect_owner">Repo owner</label>
+            <input type="text" id="connect_owner" placeholder="GitHub username" autocapitalize="none" autocorrect="off" spellcheck="false">
+          </div>
+          <div class="field">
+            <label for="connect_repo">Repo name</label>
+            <input type="text" id="connect_repo" placeholder="Repository name" autocapitalize="none" autocorrect="off" spellcheck="false">
+          </div>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary" style="width:100%;" id="connectBtn">Connect this phone</button>
+    </form>
+
     <form id="setupForm" class="hidden">
       <div class="field">
         <label for="setup_pin">New admin PIN</label>
@@ -874,6 +894,21 @@
     </div>
     <p class="empty hidden" id="driversEmpty">No driver accounts yet — only the admin can sign in until you add one.</p>
 
+    <div id="setupLinkBox" class="hidden" style="border:1px solid var(--line);border-radius:var(--radius);padding:14px 16px;margin-top:18px;">
+      <strong>Connect a driver's phone</strong>
+      <p class="modal-sub" style="margin:6px 0 10px;">
+        Send this link to the driver (WhatsApp, SMS…). Opening it connects their phone to the shared
+        data automatically — after that they only sign in with their own ID and PIN.
+        <strong>Anyone who has this link can change your data</strong>, so only send it to people you trust.
+        If you ever need to cut access, create a new token on GitHub and send a new link.
+      </p>
+      <div class="field"><input type="text" id="setupLinkField" readonly></div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;">
+        <button type="button" class="btn btn-primary btn-sm" id="copySetupLinkBtn">Copy link</button>
+        <button type="button" class="btn btn-ghost btn-sm hidden" id="shareSetupLinkBtn">Share…</button>
+      </div>
+    </div>
+
     <div class="modal-actions" style="justify-content:space-between;margin-top:18px;">
       <button type="button" class="btn btn-ghost" id="changeAdminPinBtn">Change admin PIN</button>
       <button type="button" class="btn btn-primary" data-close="adminModal">Done</button>
@@ -886,19 +921,11 @@
   <div class="modal">
     <h2>Sync settings</h2>
     <p class="modal-sub">
-      <strong>Admins only.</strong> If the app has a shared sync address set in
-      <code>config.json</code>, regular devices already sync with no setup — a token here
-      just connects <em>this</em> device straight to GitHub instead.<br><br>
-      Connect a GitHub repo to store data centrally — every device that opens this app
-      with the same settings reads and writes the same file. Use a
-      <strong>fine-grained personal access token</strong> scoped to just this one repo,
-      with <strong>Contents: Read and write</strong> permission and nothing else.
-      The token is stored only in this browser's local storage — never sent anywhere but
-      GitHub's API. Each browser/device needs to be connected separately (this includes an
-      "Add to Home Screen" icon, which can have its own separate storage from the regular
-      browser on some phones — if data looks missing right after installing the icon, this
-      screen is where you reconnect it). See the README for a link format that pre-fills
-      everything but the token, to make that quick.
+      <strong>Admins only.</strong> This connects <em>this</em> phone to the shared data in your
+      GitHub repo. Use a <strong>fine-grained personal access token</strong> limited to this one
+      repo, with <strong>Contents: Read and write</strong> and nothing else. The token is kept only
+      in this browser. To connect a driver's phone, use <strong>🔒 Admin → Connect a driver's phone</strong>
+      to send them a one-tap setup link.
     </p>
     <form id="syncForm">
       <div class="field">
@@ -966,6 +993,11 @@
   var ghSaving = false;
   var ghSaveAgainAfter = false;
   var ghSavePending = false; // true whenever a debounced save hasn't been pushed yet
+  var ghRetryTimer = null;
+  var ghFailCount = 0;             // consecutive failed sync attempts (drives the retry delay)
+  var ghConnectToastShown = false; // only tell the person about a failed first connect once
+  var GH_BASE_KEY = "containerLogSyncBase";   // copy of the last version known to be in GitHub
+  var GH_DIRTY_KEY = "containerLogSyncDirty"; // "1" while this device has changes not yet in GitHub
 
   function loadDataLocal(){
     try{
@@ -1001,7 +1033,10 @@
       showToast("Could not save locally — browser storage may be full.", true);
     }
     refreshDatalists();
-    if(ghActive) scheduleGhSave();
+    if(ghConfig){
+      setDirty(true);       // remembered even if the app is closed before the upload finishes
+      scheduleGhSave();
+    }
   }
 
   function uid(){
@@ -1114,19 +1149,23 @@
     if(mode === "synced"){
       el.textContent = "● Synced (GitHub)";
       el.className = "sync-badge synced";
-      el.title = "Data is stored in your GitHub repo. Refresh to pull in changes made elsewhere.";
+      el.title = "Everything is saved to GitHub automatically, and this screen updates by itself when other devices make changes.";
     } else if(mode === "saving"){
       el.textContent = "○ Saving…";
       el.className = "sync-badge connecting";
-      el.title = "Pushing your latest change to GitHub.";
+      el.title = "Uploading your latest change.";
     } else if(mode === "connecting"){
       el.textContent = "○ Connecting…";
       el.className = "sync-badge connecting";
       el.title = "Loading data from GitHub.";
-    } else if(mode === "error"){
-      el.textContent = "⚠ Sync error";
+    } else if(mode === "auth"){
+      el.textContent = "⚠ Access problem";
       el.className = "sync-badge error";
-      el.title = "Could not reach GitHub. Check the token, repo and network, then refresh.";
+      el.title = "This phone's access code no longer works (it may have expired or been replaced). Ask the admin for a new setup link.";
+    } else if(mode === "error"){
+      el.textContent = "⚠ Offline — will retry";
+      el.className = "sync-badge error";
+      el.title = "Can't reach the shared data right now. Your changes are safe on this device and upload automatically when the connection is back.";
     } else {
       el.textContent = "○ Local only";
       el.className = "sync-badge local";
@@ -1140,23 +1179,52 @@
       cache: "no-store"
     });
     if(resp.status === 404) return { exists: false };
-    if(!resp.ok) throw new Error("GitHub read failed (" + resp.status + ")");
+    if(!resp.ok) throw ghStatusError("GitHub read failed", resp.status);
     var body = await resp.json();
-    return { exists: true, sha: body.sha, data: JSON.parse(b64DecodeUnicode(body.content)) };
+    var content = body.content;
+    if(!content && body.sha && body.size > 0 && !cfg.proxy){
+      // Files over 1 MB come back without content; fetch them as a blob instead.
+      var br = await fetch("https://api.github.com/repos/" + encodeURIComponent(cfg.owner) + "/" +
+        encodeURIComponent(cfg.repo) + "/git/blobs/" + body.sha, { headers: ghHeaders(cfg), cache: "no-store" });
+      if(!br.ok) throw ghStatusError("GitHub read failed", br.status);
+      content = (await br.json()).content;
+    }
+    return { exists: true, sha: body.sha, data: JSON.parse(b64DecodeUnicode(content)) };
+  }
+
+  function ghStatusError(prefix, status){
+    var e = new Error(prefix + " (" + status + ")");
+    e.status = status;
+    return e;
+  }
+
+  // Quick check used when connecting a phone: can this code open this repository?
+  async function verifyGhAccess(cfg){
+    var resp;
+    try{
+      resp = await fetch("https://api.github.com/repos/" + encodeURIComponent(cfg.owner) + "/" + encodeURIComponent(cfg.repo),
+        { headers: ghHeaders(cfg), cache: "no-store" });
+    }catch(e){
+      var n = new Error("network"); n.code = "network"; throw n;
+    }
+    if(resp.status === 401){ var e1 = new Error("bad token"); e1.code = "badtoken"; throw e1; }
+    if(!resp.ok){ var e2 = new Error("no repo"); e2.code = "norepo"; throw e2; }
   }
 
   async function ghPutFile(cfg, dataObj, sha, message){
+    var putBody = JSON.stringify({
+      message: message || "Update delivery record data",
+      content: b64EncodeUnicode(JSON.stringify(dataObj, null, 2)),
+      branch: cfg.branch || "main",
+      sha: sha || undefined
+    });
     var resp = await fetch(ghUrl(cfg), {
       method: "PUT",
       headers: Object.assign({ "Content-Type": "application/json" }, ghHeaders(cfg)),
-      body: JSON.stringify({
-        message: message || "Update delivery record data",
-        content: b64EncodeUnicode(JSON.stringify(dataObj, null, 2)),
-        branch: cfg.branch || "main",
-        sha: sha || undefined
-      })
+      body: putBody,
+      keepalive: putBody.length < 60000 // lets small uploads finish even as the app is being closed
     });
-    if(resp.status === 409){
+    if(resp.status === 409 || resp.status === 422){ // file changed since we read it (or we had no version yet)
       var err = new Error("conflict");
       err.code = "conflict";
       throw err;
@@ -1165,6 +1233,7 @@
       var body = await resp.json().catch(function(){ return {}; });
       var e2 = new Error(body.message || ("GitHub write failed (" + resp.status + ")"));
       e2.code = "write_failed";
+      e2.status = resp.status;
       throw e2;
     }
     var result = await resp.json();
@@ -1177,24 +1246,155 @@
     ghSaveTimer = setTimeout(performGhSave, 1500);
   }
 
+  // ---------- unsent-change tracking + merge ----------
+  function isDirty(){ try{ return localStorage.getItem(GH_DIRTY_KEY) === "1"; }catch(e){ return false; } }
+  function setDirty(on){
+    try{ if(on) localStorage.setItem(GH_DIRTY_KEY, "1"); else localStorage.removeItem(GH_DIRTY_KEY); }catch(e){}
+  }
+  function loadBase(){
+    try{ var r = localStorage.getItem(GH_BASE_KEY); return r ? JSON.parse(r) : null; }catch(e){ return null; }
+  }
+  function saveBase(obj){
+    try{ localStorage.setItem(GH_BASE_KEY, JSON.stringify(obj)); }catch(e){}
+  }
+  function persistLocalNow(){
+    try{ localStorage.setItem(STORAGE_KEY, JSON.stringify(db)); }catch(e){}
+  }
+  function rerenderAll(){
+    refreshDatalists();
+    renderContainers();
+    renderHistory();
+    renderTrucks();
+  }
+
+  // ---- MERGE START ----
+  // Three-way merge: "base" is the last version known to be in GitHub, "local" is this
+  // device's version, "remote" is what GitHub holds now. Anything this device changed
+  // (added, edited, deleted) is applied on top of remote; everything else follows remote.
+  // Result: two people saving at the same moment never lose each other's records.
+  function mergeHas(o, k){ return Object.prototype.hasOwnProperty.call(o, k); }
+  function mergeSame(a, b){ return JSON.stringify(a) === JSON.stringify(b); }
+  function mergeMap(base, local, remote){
+    base = base || {}; local = local || {}; remote = remote || {};
+    var keys = {}, out = {};
+    [base, local, remote].forEach(function(m){ Object.keys(m).forEach(function(k){ keys[k] = 1; }); });
+    Object.keys(keys).forEach(function(k){
+      var inB = mergeHas(base, k), inL = mergeHas(local, k), inR = mergeHas(remote, k);
+      var localChanged = (inL !== inB) || (inL && !mergeSame(local[k], base[k]));
+      if(localChanged){ if(inL) out[k] = local[k]; }
+      else if(inR){ out[k] = remote[k]; }
+    });
+    return out;
+  }
+  function mergeArrayById(base, local, remote){
+    function toMap(arr){
+      var m = {};
+      (Array.isArray(arr) ? arr : []).forEach(function(it){
+        var key = (it && it.id) ? String(it.id) : "j:" + JSON.stringify(it);
+        m[key] = it;
+      });
+      return m;
+    }
+    var merged = mergeMap(toMap(base), toMap(local), toMap(remote));
+    var out = [], used = {};
+    function take(arr){
+      (Array.isArray(arr) ? arr : []).forEach(function(it){
+        var key = (it && it.id) ? String(it.id) : "j:" + JSON.stringify(it);
+        if(mergeHas(merged, key) && !used[key]){ used[key] = 1; out.push(merged[key]); }
+      });
+    }
+    take(remote); take(local); // remote order first, then anything new from this device
+    return out;
+  }
+  function mergeData(base, local, remote){
+    base = base || {}; local = local || {}; remote = remote || {};
+    var keys = {}, out = {};
+    [base, local, remote].forEach(function(m){ Object.keys(m).forEach(function(k){ keys[k] = 1; }); });
+    Object.keys(keys).forEach(function(k){
+      if(k === "containers" || k === "drivers"){
+        out[k] = mergeMap(base[k], local[k], remote[k]);
+      } else if(k === "history" || k === "truckRecords"){
+        out[k] = mergeArrayById(base[k], local[k], remote[k]);
+      } else {
+        var changed = !mergeSame(local[k], base[k]);
+        var v = changed ? local[k] : remote[k];
+        if(v !== undefined) out[k] = v;
+      }
+    });
+    if(!out.containers) out.containers = {};
+    if(!out.history) out.history = [];
+    if(!out.truckRecords) out.truckRecords = [];
+    return out;
+  }
+  // ---- MERGE END ----
+
+  var ghAuthToastShown = false;
+  function isAuthProblem(err){ return !!(err && (err.status === 401 || err.status === 403)); }
+  function notifyAuthProblem(){
+    setSyncBadge("auth");
+    if(ghAuthToastShown) return;
+    ghAuthToastShown = true;
+    showToast("This phone's access code no longer works. Your changes are kept here — ask the admin for a new setup link.", true);
+  }
+
+  function scheduleRetry(){
+    clearTimeout(ghRetryTimer);
+    var delay = Math.min(60000, 5000 * Math.pow(2, Math.max(0, ghFailCount - 1))); // 5s, 10s, 20s … max 60s
+    ghRetryTimer = setTimeout(function(){
+      if(isDirty()) performGhSave(); else autoRefreshIfSafe(true);
+    }, delay);
+  }
+
   async function performGhSave(){
     ghSavePending = false;
-    if(!ghActive || !ghConfig) return;
+    clearTimeout(ghSaveTimer);
+    clearTimeout(ghRetryTimer);
+    if(!ghConfig) return;
+    if(!ghActive){ return connectGh(true); } // never reached GitHub yet: connect first (this also uploads local changes)
     if(ghSaving){ ghSaveAgainAfter = true; return; }
     ghSaving = true;
     setSyncBadge("saving");
     try{
-      var newSha = await ghPutFile(ghConfig, db, ghSha, "Update delivery record data");
-      ghSha = newSha;
-      setSyncBadge("synced");
-    }catch(err){
-      if(err && err.code === "conflict"){
-        showToast("Someone else saved changes first — pulling the latest version. Please redo your last change if needed.", true);
-        await ghRefresh();
-      } else {
-        showToast("Could not save to GitHub. Your change is kept on this device — try Refresh once you're back online.", true);
-        setSyncBadge("error");
+      for(var attempt = 0; attempt < 4; attempt++){
+        var snapshot = JSON.parse(JSON.stringify(db));
+        try{
+          var newSha = await ghPutFile(ghConfig, snapshot, ghSha, "Update delivery record data");
+          ghSha = newSha;
+          saveBase(snapshot);
+          if(!ghSaveAgainAfter) setDirty(false);
+          ghFailCount = 0;
+          setSyncBadge("synced");
+          return;
+        }catch(err){
+          if(err && err.code === "conflict"){
+            // Another device saved first. Pull its version, keep BOTH sets of changes, try again.
+            var r = await ghFetchFile(ghConfig);
+            if(r.exists){
+              db = mergeData(loadBase(), db, r.data || {});
+              ghSha = r.sha;
+              saveBase(r.data || {});
+            } else {
+              ghSha = null;
+            }
+            persistLocalNow();
+            rerenderAll();
+            continue;
+          }
+          throw err;
+        }
       }
+      throw new Error("Too many simultaneous changes");
+    }catch(err){
+      ghFailCount++;
+      if(isAuthProblem(err)){
+        notifyAuthProblem();
+      } else {
+        setSyncBadge("error");
+        if(ghFailCount === 1){
+          showToast("Can't reach the shared data right now. Your change is kept on this device and will upload automatically.", true);
+        }
+      }
+      scheduleRetry();
     }finally{
       ghSaving = false;
       if(ghSaveAgainAfter){
@@ -1210,10 +1410,20 @@
   // rather than starting empty (used on a plain Refresh).
   async function connectGh(seedFromLocalIfNew){
     var pendingSeedPush = false;
-    setSyncBadge("connecting");
+    var needsPush = false;
+    var wasActive = ghActive;
+    if(!wasActive) setSyncBadge("connecting");
     try{
       var result = await ghFetchFile(ghConfig);
       if(result.exists){
+        // Nothing new in GitHub and nothing waiting to upload: leave the screen alone.
+        if(wasActive && !seedFromLocalIfNew && result.sha === ghSha && !isDirty()){
+          ghFailCount = 0;
+          setSyncBadge("synced");
+          return;
+        }
+        var oldBase = loadBase();     // what GitHub held the last time this device synced (needed for the merge)
+        saveBase(result.data || {});  // now remember what GitHub holds today (before anything below edits it)
         var remote = result.data || {};
         var remoteEmpty = objEmpty(remote.containers) && arrEmpty(remote.history) && arrEmpty(remote.truckRecords);
         var seededFromLocal = false;
@@ -1235,29 +1445,47 @@
             }
           }
         }
+        if(!seededFromLocal && isDirty()){
+          // This device has changes that never reached GitHub (was offline, or the app was
+          // closed too soon). Fold them into what GitHub holds now, then upload the result.
+          remote = mergeData(oldBase, loadDataLocal(), remote);
+          needsPush = true;
+        }
         db = remote;
         if(!db.containers) db.containers = {};
         if(!db.history) db.history = [];
         if(!db.truckRecords) db.truckRecords = [];
         ghSha = result.sha;
-        if(seededFromLocal) pendingSeedPush = true;
+        if(seededFromLocal){ pendingSeedPush = true; setDirty(true); }
       } else {
-        db = seedFromLocalIfNew ? loadDataLocal() : { containers:{}, history:[], truckRecords:[] };
+        var localFirst = seedFromLocalIfNew ? loadDataLocal() : null;
+        db = localFirst || { containers:{}, history:[], truckRecords:[] };
         ghSha = null; // file doesn't exist yet — the next save creates it
+        saveBase({});
+        if(localFirst && (!objEmpty(localFirst.containers) || !arrEmpty(localFirst.history) || !arrEmpty(localFirst.truckRecords))){
+          needsPush = true; setDirty(true);
+        }
       }
       ghActive = true;
+      ghFailCount = 0;
       setSyncBadge("synced");
-      if(pendingSeedPush){ pendingSeedPush = false; scheduleGhSave(); }
+      if(pendingSeedPush || needsPush){ pendingSeedPush = false; scheduleGhSave(); }
     }catch(err){
+      ghFailCount++;
+      var authProblem = isAuthProblem(err);
+      if(authProblem) notifyAuthProblem(); else setSyncBadge("error");
+      if(wasActive){
+        // Temporary problem (no signal, GitHub hiccup). Keep working and keep trying — never switch syncing off.
+        return;
+      }
       ghActive = false;
-      setSyncBadge("error");
-      showToast("Could not connect to GitHub. Working from this device's local copy — check Sync settings.", true);
+      if(!authProblem && !ghConnectToastShown){
+        ghConnectToastShown = true;
+        showToast("Can't reach the shared data right now. Working from this device's copy — it will connect automatically when the connection is back.", true);
+      }
       db = loadDataLocal();
     }
-    refreshDatalists();
-    renderContainers();
-    renderHistory();
-    renderTrucks();
+    rerenderAll();
     normalizeAuthData();
     checkLoginGate();
   }
@@ -1280,7 +1508,7 @@
   // Skips a refresh if: sync isn't on, a modal is open (don't yank data
   // out from under someone mid-edit), or a local save is about to fire /
   // in flight (don't clobber a change that hasn't reached GitHub yet).
-  var GH_POLL_INTERVAL_MS = 30000; // 30s — adjust to taste; see README
+  var GH_POLL_INTERVAL_MS = 20000; // check for other devices' changes every 20 seconds
   var GH_MIN_REFRESH_GAP_MS = 8000; // don't refetch more than this often
   var lastAutoRefreshAt = 0;
 
@@ -1288,24 +1516,71 @@
     return !!document.querySelector(".modal-backdrop:not(.hidden)");
   }
 
-  function autoRefreshIfSafe(){
-    if(!ghActive || !ghConfig) return;
-    if(ghSaving || ghSavePending) return;     // a local change hasn't been pushed yet
-    if(isAnyModalOpen()) return;               // don't disrupt someone mid-form
+  function autoRefreshIfSafe(force){
+    if(!ghConfig) return;
+    if(ghSaving) return;
+    if(document.hidden && !force) return;
     var now = Date.now();
-    if(now - lastAutoRefreshAt < GH_MIN_REFRESH_GAP_MS) return;
+    if(!force && now - lastAutoRefreshAt < GH_MIN_REFRESH_GAP_MS) return;
+    if(isDirty()){
+      // Unsent changes come first: upload them (merging with anyone else's) instead of pulling over them.
+      lastAutoRefreshAt = now;
+      performGhSave();
+      return;
+    }
+    if(ghSavePending) return;
+    if(isAnyModalOpen()) return;               // don't disrupt someone mid-form
     lastAutoRefreshAt = now;
-    connectGh(false); // same as ghRefresh(), without the "not connected" toast
+    connectGh(!ghActive);
   }
 
-  setInterval(autoRefreshIfSafe, GH_POLL_INTERVAL_MS);
+  // Send anything still waiting as soon as the app is hidden or closed, instead of after the short delay.
+  function flushPendingSave(){
+    if(ghConfig && !ghSaving && (ghSavePending || isDirty())) performGhSave();
+  }
+
+  setInterval(function(){ autoRefreshIfSafe(); }, GH_POLL_INTERVAL_MS);
 
   document.addEventListener("visibilitychange", function(){
-    if(document.visibilityState === "visible") autoRefreshIfSafe();
+    if(document.visibilityState === "hidden") flushPendingSave();
+    else autoRefreshIfSafe();
   });
-  window.addEventListener("focus", autoRefreshIfSafe);
+  window.addEventListener("pagehide", flushPendingSave);
+  window.addEventListener("focus", function(){ autoRefreshIfSafe(); });
+  window.addEventListener("online", function(){ autoRefreshIfSafe(true); }); // connection came back
+
+  // A setup link looks like  https://…/#setup=CODE . Opening it connects this phone in one tap.
+  // The part after # is never sent to any server, and it is wiped from the address bar right away.
+  function applySetupLinkFromUrl(){
+    var h = window.location.hash || "";
+    if(h.indexOf("setup=") === -1) return false;
+    try{ history.replaceState(null, "", window.location.pathname + window.location.search); }catch(e){}
+    var p = new URLSearchParams(h.replace(/^#/, ""));
+    var token = (p.get("setup") || "").trim();
+    var d = getUrlGhDefaults();
+    var owner = (p.get("owner") || d.owner || "").trim();
+    var repo = (p.get("repo") || d.repo || "").trim();
+    if(!token || !owner || !repo) return false;
+    saveGhConfig({
+      token: token, owner: owner, repo: repo,
+      branch: p.get("branch") || d.branch || "main",
+      path: p.get("path") || d.path || "data.json"
+    });
+    return true;
+  }
+
+  // If a setup link is opened while the app is already showing (same page, only the # part changes),
+  // the page doesn't reload — so pick the new code up here and reconnect.
+  window.addEventListener("hashchange", async function(){
+    if(!applySetupLinkFromUrl()) return;
+    ghConfig = resolveGhConfig();
+    ghActive = false; ghSha = null; ghFailCount = 0; ghAuthToastShown = false;
+    await connectGh(true);
+    if(ghActive) showToast("This phone is now connected.");
+  });
 
   async function initGitHubSync(){
+    var linked = applySetupLinkFromUrl();
     await loadSharedConfig();
     ghConfig = resolveGhConfig();
     if(!ghConfig){
@@ -1321,6 +1596,7 @@
       return;
     }
     await connectGh(true);
+    if(linked && ghActive) showToast("This phone is now connected. Sign in with your ID and PIN.");
   }
 
   // ---------- driver login & admin lock ----------
@@ -1374,7 +1650,7 @@
   // exist and whether this device has a still-valid session.
   // In shared mode, only admins (or a device already holding a token) see Sync settings.
   function updateSyncBtn(){
-    var show = !sharedCfg || adminUnlocked || hasTokenConfig(loadGhConfig());
+    var show = adminUnlocked;
     document.getElementById("syncSettingsBtn").classList.toggle("hidden", !show);
   }
   function checkLoginGate(){
@@ -1390,6 +1666,17 @@
     if(!authReady){
       authReady = true;
       document.getElementById("loginError").textContent = "";
+    }
+
+    if(!ghConfig){
+      // Not connected to the shared data yet: the only thing to do is connect.
+      adminUnlocked = false;
+      currentDriver = null;
+      driverBadge.classList.add("hidden");
+      logoutBtn.classList.add("hidden");
+      renderGate();
+      gate.classList.remove("hidden");
+      return;
     }
 
     var savedAdminHash = sessionStore.getItem(ADMIN_SESSION_KEY);
@@ -1427,13 +1714,21 @@
   // Chooses which form the gate shows. Only switches forms — it never clears
   // what someone is typing, because background refreshes call it too.
   function renderGate(){
-    var needsSetup = !db.adminPinHash;
-    document.getElementById("loginForm").classList.toggle("hidden", needsSetup);
+    var needsConnect = !ghConfig;
+    var needsSetup = !needsConnect && !db.adminPinHash;
+    document.getElementById("connectForm").classList.toggle("hidden", !needsConnect);
+    document.getElementById("loginForm").classList.toggle("hidden", needsConnect || needsSetup);
     document.getElementById("setupForm").classList.toggle("hidden", !needsSetup);
-    document.getElementById("loginTitle").textContent = needsSetup ? "First-time setup" : "Sign in";
-    document.getElementById("loginHint").textContent = needsSetup
-      ? "No admin PIN has been set yet. Create one now — you will sign in with the ID “admin” and this PIN, and use it to create driver IDs."
-      : "Enter the ID and PIN you were given by the admin.";
+    document.getElementById("loginTitle").textContent = needsConnect ? "Connect this phone" : (needsSetup ? "First-time setup" : "Sign in");
+    document.getElementById("loginHint").textContent = needsConnect
+      ? "This phone isn't connected to the shared data yet. Paste the access code from the admin — or open the setup link the admin sent you, which does this in one tap."
+      : (needsSetup
+        ? "No admin PIN has been set yet. Create one now — you will sign in with the ID “admin” and this PIN, and use it to create driver IDs."
+        : "Enter the ID and PIN you were given by the admin.");
+    if(needsConnect){
+      var d = getUrlGhDefaults();
+      document.getElementById("connectRepoFields").classList.toggle("hidden", !!(d.owner && d.repo));
+    }
   }
 
   function findDriverId(typed){
@@ -1585,8 +1880,38 @@
   });
 
   // ---------- admin: manage drivers ----------
+  function buildSetupLink(){
+    var cfg = loadGhConfig();
+    if(!hasTokenConfig(cfg)) return "";
+    var d = getUrlGhDefaults();
+    var link = window.location.origin + window.location.pathname + "#setup=" + encodeURIComponent(cfg.token);
+    if(String(cfg.owner).toLowerCase() !== String(d.owner || "").toLowerCase() || cfg.repo !== d.repo){
+      link += "&owner=" + encodeURIComponent(cfg.owner) + "&repo=" + encodeURIComponent(cfg.repo);
+    }
+    if(cfg.branch && cfg.branch !== "main") link += "&branch=" + encodeURIComponent(cfg.branch);
+    if(cfg.path && cfg.path !== "data.json") link += "&path=" + encodeURIComponent(cfg.path);
+    return link;
+  }
+  function renderSetupLink(){
+    var link = buildSetupLink();
+    document.getElementById("setupLinkBox").classList.toggle("hidden", !link);
+    document.getElementById("setupLinkField").value = link;
+    document.getElementById("shareSetupLinkBtn").classList.toggle("hidden", !(link && navigator.share));
+  }
+  document.getElementById("copySetupLinkBtn").addEventListener("click", async function(){
+    var f = document.getElementById("setupLinkField");
+    try{ await navigator.clipboard.writeText(f.value); }
+    catch(e){ f.focus(); f.select(); try{ document.execCommand("copy"); }catch(e2){} }
+    showToast("Link copied. Send it to the driver.");
+  });
+  document.getElementById("shareSetupLinkBtn").addEventListener("click", function(){
+    var link = document.getElementById("setupLinkField").value;
+    if(navigator.share) navigator.share({ title: "Delivery Record", text: "Open this link on your phone to connect to Delivery Record:", url: link }).catch(function(){});
+  });
+
   function openAdminPanel(){
     renderDrivers();
+    renderSetupLink();
     openModal("adminModal");
   }
 
@@ -1779,6 +2104,49 @@
     };
   }
 
+  function describeConnectError(err, cfg){
+    if(err && err.code === "badtoken") return "That access code was not accepted. Check it, or ask the admin for a new one.";
+    if(err && err.code === "norepo") return "That code can't open the repository “" + cfg.owner + "/" + cfg.repo + "”. Check the code and the repo name.";
+    return "Can't reach GitHub. Check your internet connection and try again.";
+  }
+
+  document.getElementById("connectForm").addEventListener("submit", async function(e){
+    e.preventDefault();
+    var errEl = document.getElementById("loginError");
+    var btn = document.getElementById("connectBtn");
+    errEl.textContent = "";
+    var raw = document.getElementById("connect_token").value.trim();
+    var token = raw, linkOwner = "", linkRepo = "";
+    if(raw.indexOf("setup=") !== -1){ // they pasted the whole setup link — take the code out of it
+      var q = new URLSearchParams(raw.slice(raw.indexOf("#") + 1));
+      token = (q.get("setup") || "").trim(); linkOwner = q.get("owner") || ""; linkRepo = q.get("repo") || "";
+    }
+    if(!token){ errEl.textContent = "Paste the access code first."; return; }
+    var d = getUrlGhDefaults();
+    var owner = document.getElementById("connect_owner").value.trim() || linkOwner || d.owner;
+    var repo = document.getElementById("connect_repo").value.trim() || linkRepo || d.repo;
+    if(!owner || !repo){
+      document.getElementById("connectRepoFields").classList.remove("hidden");
+      errEl.textContent = "Enter the repo owner and repo name.";
+      return;
+    }
+    var cfg = { token: token, owner: owner, repo: repo, branch: d.branch || "main", path: d.path || "data.json" };
+    btn.disabled = true; btn.textContent = "Connecting…";
+    try{
+      await verifyGhAccess(cfg);
+    }catch(err){
+      errEl.textContent = describeConnectError(err, cfg);
+      btn.disabled = false; btn.textContent = "Connect this phone";
+      return;
+    }
+    btn.disabled = false; btn.textContent = "Connect this phone";
+    saveGhConfig(cfg);
+    ghConfig = cfg; ghActive = false; ghSha = null; ghAuthToastShown = false;
+    document.getElementById("connectForm").reset();
+    await connectGh(true);
+    if(ghActive) showToast("This phone is now connected.");
+  });
+
   document.getElementById("syncSettingsBtn").addEventListener("click", function(){
     var cfg = ghConfig || {};
     var urlDefaults = getUrlGhDefaults();
@@ -1812,7 +2180,7 @@
     var ok = await showConfirm("Disconnect GitHub sync",
       sharedCfg
         ? "Remove this device's token? It will go back to the shared connection, which needs no token."
-        : "Stop syncing with GitHub? Data already saved to this browser stays here, but stops sharing with other devices.");
+        : "Disconnect this phone from the shared data? You will need the access code (or a new setup link) to connect it again.");
     if(!ok) return;
     clearGhConfig();
     ghConfig = resolveGhConfig();
@@ -1832,7 +2200,10 @@
     renderHistory();
     renderTrucks();
     closeModal("syncModal");
-    showToast("Disconnected — working locally on this device.");
+    adminUnlocked = false; saveAdminSession(false);
+    currentDriver = null; saveCurrentDriver(null);
+    checkLoginGate();
+    showToast("This phone is disconnected.");
   });
 
   document.getElementById("addContainerBtn").addEventListener("click", function(){

@@ -11,8 +11,10 @@
  * When you upload a new version of index.html, bump CACHE_VERSION below so
  * devices drop the old cached copy.
  */
-const CACHE_VERSION = "delivery-record-v6";
+const CACHE_VERSION = "delivery-record-v8";
 const CACHEABLE_HOSTS = ["fonts.googleapis.com", "fonts.gstatic.com", "cdnjs.cloudflare.com"];
+// The only outside sites whose files may be cached (fonts + spreadsheet export library).
+const STATIC_HOSTS = ["fonts.googleapis.com", "fonts.gstatic.com", "cdnjs.cloudflare.com"];
 const SHELL = [
   "./",
   "./index.html",
@@ -71,7 +73,10 @@ self.addEventListener("fetch", (event) => {
   }
 
   // Fonts and the spreadsheet library (cross-origin): serve from cache
-  // instantly, refresh in the background.
+  // instantly, refresh in the background. ONLY these hosts — anything else
+  // (notably the shared-data sync address) goes straight to the network so
+  // every device always sees the latest data.
+  if (!STATIC_HOSTS.includes(url.hostname)) return;
   event.respondWith(
     caches.match(req).then((hit) => {
       const refresh = fetch(req)
