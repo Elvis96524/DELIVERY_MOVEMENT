@@ -4442,6 +4442,26 @@
       },
       "id": "656f97df-e7c5-46d3-a23c-e997c7c44f4a",
       "recordedAt": "2026-09-28T06:06:41.618Z"
+    },
+    {
+      "driver": "SYAH",
+      "laborers": "Nasir",
+      "vessel": "Tovud Koposizon Plt",
+      "place": "Kilang air",
+      "truckPlate": "QMU6228",
+      "date": "2026-09-28",
+      "timeDelivery": "15:08",
+      "timeBack": "",
+      "items": {
+        "basketLarge": 0,
+        "basketSmall": 0,
+        "basketThai": 0,
+        "roBottles": 0,
+        "others": 0,
+        "othersNote": ""
+      },
+      "id": "002ccc71-d08b-4ade-b34e-b3acedd2494c",
+      "recordedAt": "2026-09-28T07:08:35.866Z"
     }
   ],
   "drivers": {
