@@ -4482,6 +4482,26 @@
       },
       "id": "a790fbab-2fc1-4d99-99c8-b3e0563d7626",
       "recordedAt": "2026-09-28T07:36:44.971Z"
+    },
+    {
+      "driver": "SHAHRIN",
+      "laborers": "SYUKRI",
+      "vessel": "SK MAJESTIC",
+      "place": "NATSELANE",
+      "truckPlate": "SK8226E",
+      "date": "2026-09-28",
+      "timeDelivery": "15:37",
+      "timeBack": "",
+      "items": {
+        "basketLarge": 0,
+        "basketSmall": 0,
+        "basketThai": 0,
+        "roBottles": 0,
+        "others": 0,
+        "othersNote": ""
+      },
+      "id": "b8bcb381-a293-40bf-be2d-f80d3835c7cd",
+      "recordedAt": "2026-09-28T07:37:56.239Z"
     }
   ],
   "drivers": {
