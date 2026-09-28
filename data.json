@@ -4422,6 +4422,26 @@
       },
       "id": "0f0f2af6-a72b-4198-ab7f-747d3b307b9d",
       "recordedAt": "2026-09-28T05:10:56.124Z"
+    },
+    {
+      "driver": "SYAH",
+      "laborers": "Nasir",
+      "vessel": "Lee",
+      "place": "Lee supplier",
+      "truckPlate": "QMU6228",
+      "date": "2026-09-28",
+      "timeDelivery": "13:30",
+      "timeBack": "",
+      "items": {
+        "basketLarge": 0,
+        "basketSmall": 0,
+        "basketThai": 0,
+        "roBottles": 0,
+        "others": 0,
+        "othersNote": ""
+      },
+      "id": "656f97df-e7c5-46d3-a23c-e997c7c44f4a",
+      "recordedAt": "2026-09-28T06:06:41.618Z"
     }
   ],
   "drivers": {
