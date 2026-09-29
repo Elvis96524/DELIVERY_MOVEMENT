@@ -2269,12 +2269,19 @@
     },
     "TK-5007": {
       "serial": "TK-5007",
-      "status": "loaded",
-      "vessel": "OS ONE",
+      "status": "backloaded",
+      "vessel": "",
       "nextVessel": "",
-      "lastQuantities": null,
+      "lastQuantities": {
+        "basketLarge": 0,
+        "basketSmall": 0,
+        "basketThai": 0,
+        "roBottles": 0,
+        "others": 0,
+        "othersNote": ""
+      },
       "createdAt": "2026-09-22T03:48:39.338Z",
-      "updatedAt": "2026-09-22T07:03:08.950Z",
+      "updatedAt": "2026-09-29T08:29:28.633Z",
       "length": 2.5,
       "width": 2.44,
       "height": 2.75,
@@ -5058,6 +5065,23 @@
       },
       "id": "cd070bae-23c9-4bf9-99b1-c84c763f8f21",
       "recordedAt": "2026-09-29T08:29:23.033Z"
+    },
+    {
+      "serial": "TK-5007",
+      "action": "backloaded",
+      "vessel": "",
+      "date": "2026-09-29",
+      "trailerPlate": "",
+      "quantities": {
+        "basketLarge": 0,
+        "basketSmall": 0,
+        "basketThai": 0,
+        "roBottles": 0,
+        "others": 0,
+        "othersNote": ""
+      },
+      "id": "d07381be-d843-4868-bf60-80a2e0538c31",
+      "recordedAt": "2026-09-29T08:29:28.633Z"
     }
   ],
   "truckRecords": [
