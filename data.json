@@ -1556,8 +1556,8 @@
     },
     "FSE-DC-30": {
       "serial": "FSE-DC-30",
-      "status": "backloaded",
-      "vessel": "",
+      "status": "reserved",
+      "vessel": "KEYFIELD WISDOM",
       "nextVessel": "",
       "lastQuantities": {
         "basketLarge": 0,
@@ -1568,7 +1568,7 @@
         "othersNote": ""
       },
       "createdAt": "2026-09-21T08:56:58.369Z",
-      "updatedAt": "2026-09-29T08:26:21.161Z",
+      "updatedAt": "2026-09-29T08:34:23.064Z",
       "length": 2.991,
       "width": 2.235,
       "height": 2.565,
@@ -5121,6 +5121,14 @@
       "vessel": "KEYFIELD WISDOM",
       "id": "ab0d3acf-6e5a-44d1-98b6-bd416593a2a9",
       "recordedAt": "2026-09-29T08:34:07.040Z",
+      "date": "2026-09-29"
+    },
+    {
+      "serial": "FSE-DC-30",
+      "action": "reserved",
+      "vessel": "KEYFIELD WISDOM",
+      "id": "c3a9ca05-0283-425b-996b-57ac38dd4982",
+      "recordedAt": "2026-09-29T08:34:23.064Z",
       "date": "2026-09-29"
     }
   ],
