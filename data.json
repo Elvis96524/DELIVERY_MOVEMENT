@@ -2324,12 +2324,19 @@
     },
     "UMW-N7-RC-001": {
       "serial": "UMW-N7-RC-001",
-      "status": "reserved",
-      "vessel": "OS ONE",
+      "status": "backloaded",
+      "vessel": "",
       "nextVessel": "",
-      "lastQuantities": null,
+      "lastQuantities": {
+        "basketLarge": 0,
+        "basketSmall": 0,
+        "basketThai": 0,
+        "roBottles": 0,
+        "others": 0,
+        "othersNote": ""
+      },
       "createdAt": "2026-09-22T03:49:26.490Z",
-      "updatedAt": "2026-09-22T08:51:40.150Z",
+      "updatedAt": "2026-09-29T08:29:42.441Z",
       "length": 3.048,
       "width": 2.438,
       "height": 2.621,
@@ -5082,6 +5089,23 @@
       },
       "id": "d07381be-d843-4868-bf60-80a2e0538c31",
       "recordedAt": "2026-09-29T08:29:28.633Z"
+    },
+    {
+      "serial": "UMW-N7-RC-001",
+      "action": "backloaded",
+      "vessel": "",
+      "date": "2026-09-29",
+      "trailerPlate": "",
+      "quantities": {
+        "basketLarge": 0,
+        "basketSmall": 0,
+        "basketThai": 0,
+        "roBottles": 0,
+        "others": 0,
+        "othersNote": ""
+      },
+      "id": "bc4d1234-cfd3-4710-a08a-11bc89130769",
+      "recordedAt": "2026-09-29T08:29:42.441Z"
     }
   ],
   "truckRecords": [
