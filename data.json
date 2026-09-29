@@ -215,12 +215,19 @@
     },
     "FSE-CF-08": {
       "serial": "FSE-CF-08",
-      "status": "loaded",
-      "vessel": "SUMANDAK PLATFORM",
+      "status": "backloaded",
+      "vessel": "",
       "nextVessel": "",
-      "lastQuantities": null,
+      "lastQuantities": {
+        "basketLarge": 0,
+        "basketSmall": 0,
+        "basketThai": 0,
+        "roBottles": 0,
+        "others": 0,
+        "othersNote": ""
+      },
       "createdAt": "2026-09-21T02:21:46.812Z",
-      "updatedAt": "2026-09-22T07:01:51.950Z",
+      "updatedAt": "2026-09-29T07:54:32.875Z",
       "length": 2.44,
       "width": 2.44,
       "height": 2.5,
@@ -4189,6 +4196,23 @@
       },
       "id": "b5371e08-8339-4b53-9adf-b96decc00830",
       "recordedAt": "2026-09-29T07:54:02.019Z"
+    },
+    {
+      "serial": "FSE-CF-08",
+      "action": "backloaded",
+      "vessel": "",
+      "date": "2026-09-29",
+      "trailerPlate": "",
+      "quantities": {
+        "basketLarge": 0,
+        "basketSmall": 0,
+        "basketThai": 0,
+        "roBottles": 0,
+        "others": 0,
+        "othersNote": ""
+      },
+      "id": "4544a22b-c1ec-49b5-b237-68e35a0fbfdb",
+      "recordedAt": "2026-09-29T07:54:32.875Z"
     }
   ],
   "truckRecords": [
