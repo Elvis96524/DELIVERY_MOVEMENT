@@ -2198,12 +2198,12 @@
     },
     "TK-4014": {
       "serial": "TK-4014",
-      "status": "reserved",
+      "status": "loaded",
       "vessel": "SK PURPOSE",
       "nextVessel": "",
       "lastQuantities": null,
       "createdAt": "2026-09-22T03:47:46.499Z",
-      "updatedAt": "2026-09-22T08:53:10.046Z",
+      "updatedAt": "2026-09-29T08:29:10.441Z",
       "length": 2.5,
       "width": 2.44,
       "height": 2.75,
@@ -5025,6 +5025,15 @@
       },
       "id": "7e8611ec-fce8-4929-b4b4-cffe7c1fee9c",
       "recordedAt": "2026-09-29T08:28:43.521Z"
+    },
+    {
+      "serial": "TK-4014",
+      "action": "loaded",
+      "vessel": "SK PURPOSE",
+      "date": "2026-09-25",
+      "trailerPlate": "VPP6663",
+      "id": "d57ba8fd-436d-4c29-9711-b88a6e53e17e",
+      "recordedAt": "2026-09-29T08:29:10.441Z"
     }
   ],
   "truckRecords": [
