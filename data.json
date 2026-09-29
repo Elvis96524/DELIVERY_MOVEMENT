@@ -607,8 +607,8 @@
     },
     "FSE-CF-29": {
       "serial": "FSE-CF-29",
-      "status": "backloaded",
-      "vessel": "",
+      "status": "reserved",
+      "vessel": "KEYFIELD WISDOM",
       "nextVessel": "",
       "lastQuantities": {
         "basketLarge": 0,
@@ -619,7 +619,7 @@
         "othersNote": ""
       },
       "createdAt": "2026-09-21T07:41:39.615Z",
-      "updatedAt": "2026-09-22T07:35:29.675Z",
+      "updatedAt": "2026-09-29T08:38:51.328Z",
       "length": 2.991,
       "width": 2.438,
       "height": 2.591,
@@ -5169,6 +5169,14 @@
       "vessel": "HELANG INTEGRATED PLATFORM",
       "id": "2f4d0488-cddb-4805-8b18-63801915f9be",
       "recordedAt": "2026-09-29T08:38:42.920Z",
+      "date": "2026-09-29"
+    },
+    {
+      "serial": "FSE-CF-29",
+      "action": "reserved",
+      "vessel": "KEYFIELD WISDOM",
+      "id": "626da26f-b37f-4cae-8c9b-af0da4b02720",
+      "recordedAt": "2026-09-29T08:38:51.328Z",
       "date": "2026-09-29"
     }
   ],
