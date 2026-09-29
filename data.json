@@ -457,12 +457,19 @@
     },
     "FSE-CF-24": {
       "serial": "FSE-CF-24",
-      "status": "loaded",
-      "vessel": "PETRO DIAMOND",
+      "status": "backloaded",
+      "vessel": "",
       "nextVessel": "",
-      "lastQuantities": null,
+      "lastQuantities": {
+        "basketLarge": 0,
+        "basketSmall": 0,
+        "basketThai": 0,
+        "roBottles": 0,
+        "others": 0,
+        "othersNote": ""
+      },
       "createdAt": "2026-09-21T02:27:09.459Z",
-      "updatedAt": "2026-09-22T06:57:00.174Z",
+      "updatedAt": "2026-09-29T07:17:58.485Z",
       "length": 3,
       "width": 2.5,
       "height": 2.7,
@@ -4004,6 +4011,23 @@
       },
       "id": "9948c311-102a-4158-be7e-8d96e16ad858",
       "recordedAt": "2026-09-29T07:17:48.918Z"
+    },
+    {
+      "serial": "FSE-CF-24",
+      "action": "backloaded",
+      "vessel": "",
+      "date": "2026-09-29",
+      "trailerPlate": "",
+      "quantities": {
+        "basketLarge": 0,
+        "basketSmall": 0,
+        "basketThai": 0,
+        "roBottles": 0,
+        "others": 0,
+        "othersNote": ""
+      },
+      "id": "4cafb228-eeaf-4f64-81df-c67fda68f47c",
+      "recordedAt": "2026-09-29T07:17:58.485Z"
     }
   ],
   "truckRecords": [
