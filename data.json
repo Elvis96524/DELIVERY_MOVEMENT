@@ -1877,12 +1877,12 @@
     },
     "FSE-DC-48": {
       "serial": "FSE-DC-48",
-      "status": "backloaded",
-      "vessel": "",
+      "status": "reserved",
+      "vessel": "TWO TEJA",
       "nextVessel": "",
       "lastQuantities": null,
       "createdAt": "2026-09-21T09:01:15.201Z",
-      "updatedAt": "2026-09-21T09:01:15.201Z",
+      "updatedAt": "2026-09-29T08:37:38.360Z",
       "length": 2.991,
       "width": 2.438,
       "height": 2.591,
@@ -5137,6 +5137,14 @@
       "vessel": "KEYFIELD WISDOM",
       "id": "724dc567-9787-454e-a5a3-13846f0ab4e2",
       "recordedAt": "2026-09-29T08:37:27.344Z",
+      "date": "2026-09-29"
+    },
+    {
+      "serial": "FSE-DC-48",
+      "action": "reserved",
+      "vessel": "TWO TEJA",
+      "id": "464fe8ee-a186-4744-85df-0914a54d3156",
+      "recordedAt": "2026-09-29T08:37:38.360Z",
       "date": "2026-09-29"
     }
   ],
