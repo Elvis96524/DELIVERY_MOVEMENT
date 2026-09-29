@@ -233,7 +233,6 @@
   .badge.backloaded{border-color:var(--green);color:var(--green);}
   .badge.reserved{border-color:var(--amber);color:var(--amber);}
   .badge.loaded{border-color:var(--teal);color:var(--teal);}
-  .badge.reserved_next{border-color:#7A5CA8;color:#7A5CA8;}
   .subtext{display:block;font-size:11.5px;color:var(--ink-soft);margin-top:2px;font-weight:500;}
   .expiry-warn{color:var(--red);font-weight:700;}
   .row-actions{display:flex;gap:6px;flex-wrap:wrap;}
@@ -432,7 +431,7 @@
       <span class="summary-value" id="sumYard">0</span>
       <span class="summary-label">In yard (backloaded)</span>
     </button>
-    <button type="button" class="summary-card" id="cardLoaded" data-filter="loaded_group">
+    <button type="button" class="summary-card" id="cardLoaded" data-filter="loaded">
       <span class="summary-value" id="sumLoaded">0</span>
       <span class="summary-label">Loaded / out on vessel</span>
     </button>
@@ -457,8 +456,6 @@
           <option value="backloaded">Backloaded (in yard)</option>
           <option value="reserved">Reserved for loading</option>
           <option value="loaded">Loaded</option>
-          <option value="reserved_next">Reserved for next loading</option>
-          <option value="loaded_group">Loaded + reserved for next (combined)</option>
         </select>
       </label>
       <label class="checkbox-label">
@@ -637,13 +634,6 @@
             <span class="opt-desc">Container has been loaded onto the reserved vessel.</span>
           </span>
         </label>
-        <label class="status-opt">
-          <input type="radio" name="statusChoice" value="reserved_next">
-          <span>
-            <span class="opt-title">Reserved for next loading</span>
-            <span class="opt-desc">Still out on its current vessel, but already earmarked for its next loading before it even comes back to backload.</span>
-          </span>
-        </label>
       </div>
 
       <div class="status-detail" id="detail_reserved">
@@ -672,17 +662,6 @@
               <label for="f_trailer_loaded">Trailer plate number</label>
               <input type="text" id="f_trailer_loaded" placeholder="Optional" list="trailerOptions">
             </div>
-          </div>
-        </fieldset>
-      </div>
-
-      <div class="status-detail" id="detail_reserved_next">
-        <fieldset>
-          <legend>Next-loading reservation</legend>
-          <p class="modal-sub" id="currentVesselNote" style="margin:0 0 10px;"></p>
-          <div class="field">
-            <label for="f_vessel_next">Next vessel name</label>
-            <input type="text" id="f_vessel_next" placeholder="e.g. MV Coral Trader" list="vesselOptions">
           </div>
         </fieldset>
       </div>
@@ -1053,8 +1032,7 @@
   var STATUS_LABEL = {
     backloaded: "Backloaded (in yard)",
     reserved: "Reserved for loading",
-    loaded: "Loaded",
-    reserved_next: "Reserved for next loading"
+    loaded: "Loaded"
   };
   var ACTION_LABEL = {
     created: "Container added",
@@ -1062,7 +1040,7 @@
     backloaded: "Backloaded",
     reserved: "Reserved for loading",
     loaded: "Loaded",
-    reserved_next: "Reserved for next loading",
+    reserved_next: "Reserved for next loading", // kept so old history entries still show a friendly label
     deleted: "Container removed"
   };
 
@@ -1623,6 +1601,25 @@
   function normalizeAuthData(){
     if(!db.drivers) db.drivers = {};
     if(typeof db.adminPinHash !== "string") db.adminPinHash = "";
+    normalizeContainerData();
+  }
+
+  // "Reserved for next loading" was removed. Any container still carrying that
+  // status (saved before the removal) becomes a plain "Loaded" container instead
+  // of disappearing from view, and its unused next-vessel note is cleared.
+  function normalizeContainerData(){
+    if(!db.containers) return;
+    var changed = false;
+    Object.keys(db.containers).forEach(function(serial){
+      var c = db.containers[serial];
+      if(c.status === "reserved_next"){ c.status = "loaded"; changed = true; }
+      if(c.nextVessel){ c.nextVessel = ""; changed = true; }
+    });
+    if(changed){
+      persistLocalNow();
+      if(ghConfig){ setDirty(true); scheduleGhSave(); } // carry the fix back into the shared data too
+      rerenderAll(); // the screen may already have drawn the old status before this ran — fix it now
+    }
   }
 
   async function sha256Hex(str){
@@ -2272,7 +2269,6 @@
         serial: serial,
         status: "backloaded",
         vessel: "",
-        nextVessel: "",
         lastQuantities: null,
         createdAt: new Date().toISOString(),
         updatedAt: new Date().toISOString()
@@ -2321,12 +2317,8 @@
     var radios = statusForm.querySelectorAll('input[name="statusChoice"]');
     radios.forEach(function(r){ r.checked = (r.value === c.status); });
 
-    document.getElementById("f_vessel_reserved").value = c.nextVessel || c.vessel || "";
+    document.getElementById("f_vessel_reserved").value = c.vessel || "";
     document.getElementById("f_vessel_loaded").value = c.vessel || "";
-    document.getElementById("f_vessel_next").value = c.nextVessel || "";
-    document.getElementById("currentVesselNote").textContent = c.vessel
-      ? "Currently loaded on: " + c.vessel
-      : "No current vessel on record.";
     document.getElementById("f_date_loaded").value = formatDMY(todayISO());
     document.getElementById("f_date_backloaded").value = formatDMY(todayISO());
     document.getElementById("f_trailer_loaded").value = "";
@@ -2359,7 +2351,6 @@
       if(!v){ showToast("Vessel name is required for a loading reservation.", true); return; }
       c.status = "reserved";
       c.vessel = v;
-      c.nextVessel = "";
       addHistory({ serial: statusSerial, action: "reserved", vessel: v });
 
     } else if(val === "loaded"){
@@ -2371,13 +2362,6 @@
       c.status = "loaded";
       c.vessel = v2;
       addHistory({ serial: statusSerial, action: "loaded", vessel: v2, date: loadDate, trailerPlate: loadTrailer });
-
-    } else if(val === "reserved_next"){
-      var v3 = document.getElementById("f_vessel_next").value.trim();
-      if(!v3){ showToast("Next vessel name is required.", true); return; }
-      c.status = "reserved_next";
-      c.nextVessel = v3;
-      addHistory({ serial: statusSerial, action: "reserved_next", vessel: v3 });
 
     } else if(val === "backloaded"){
       var backDate = parseDMY(document.getElementById("f_date_backloaded").value);
@@ -2433,7 +2417,7 @@
     var yard = 0, loaded = 0, reserved = 0, expiring = 0;
     list.forEach(function(c){
       if(c.status === "backloaded") yard++;
-      if(c.status === "loaded" || c.status === "reserved_next") loaded++;
+      if(c.status === "loaded") loaded++;
       if(c.status === "reserved") reserved++;
       if(c.expiry && new Date(c.expiry + "T00:00:00") < soon) expiring++;
     });
@@ -2446,7 +2430,7 @@
     var statusF = document.getElementById("statusFilter").value;
     var expiringOn = document.getElementById("expiringFilter").checked;
     document.getElementById("cardYard").classList.toggle("active", !expiringOn && statusF === "backloaded");
-    document.getElementById("cardLoaded").classList.toggle("active", !expiringOn && statusF === "loaded_group");
+    document.getElementById("cardLoaded").classList.toggle("active", !expiringOn && statusF === "loaded");
     document.getElementById("cardReserved").classList.toggle("active", !expiringOn && statusF === "reserved");
     document.getElementById("cardExpiring").classList.toggle("active", expiringOn);
   }
@@ -2476,8 +2460,6 @@
     var sub = "";
     if(c.status === "reserved" && c.vessel) sub = "Vessel: " + c.vessel;
     else if(c.status === "loaded" && c.vessel) sub = "Vessel: " + c.vessel;
-    else if(c.status === "reserved_next" && c.nextVessel) sub = "Next: " + c.nextVessel + (c.vessel ? " · on " + c.vessel : "");
-    else if(c.status === "backloaded" && c.nextVessel) sub = "Next: " + c.nextVessel;
     return '<span class="badge ' + c.status + '">' + label + '</span>' + (sub ? '<span class="subtext">' + escapeHtml(sub) + '</span>' : "");
   }
 
@@ -2499,7 +2481,6 @@
     Object.keys(db.containers).forEach(function(s){
       var c = db.containers[s];
       if(c.vessel) vessels.add(c.vessel);
-      if(c.nextVessel) vessels.add(c.nextVessel);
     });
     db.history.forEach(function(h){ if(h.vessel) vessels.add(h.vessel); });
     (db.truckRecords || []).forEach(function(t){ if(t.vessel) vessels.add(t.vessel); });
@@ -2537,13 +2518,10 @@
     if(search){
       list = list.filter(function(c){
         return c.serial.toLowerCase().indexOf(search) > -1 ||
-          (c.vessel || "").toLowerCase().indexOf(search) > -1 ||
-          (c.nextVessel || "").toLowerCase().indexOf(search) > -1;
+          (c.vessel || "").toLowerCase().indexOf(search) > -1;
       });
     }
-    if(statusF === "loaded_group"){
-      list = list.filter(function(c){ return c.status === "loaded" || c.status === "reserved_next"; });
-    } else if(statusF){
+    if(statusF){
       list = list.filter(function(c){ return c.status === statusF; });
     }
     if(document.getElementById("expiringFilter").checked){
