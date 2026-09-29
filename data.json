@@ -995,12 +995,12 @@
     },
     "FSE-CF-48": {
       "serial": "FSE-CF-48",
-      "status": "reserved",
+      "status": "loaded",
       "vessel": "SK PURPOSE",
       "nextVessel": "",
       "lastQuantities": null,
       "createdAt": "2026-09-21T07:48:04.174Z",
-      "updatedAt": "2026-09-22T08:52:59.742Z",
+      "updatedAt": "2026-09-29T08:24:47.017Z",
       "length": 2.991,
       "width": 2.286,
       "height": 2.519,
@@ -4512,6 +4512,15 @@
       },
       "id": "0d9ecf57-0e09-4f4c-a228-375b2900dcc8",
       "recordedAt": "2026-09-29T08:24:10.305Z"
+    },
+    {
+      "serial": "FSE-CF-48",
+      "action": "loaded",
+      "vessel": "SK PURPOSE",
+      "date": "2026-09-25",
+      "trailerPlate": "VPP6663",
+      "id": "d31bcbd3-004a-4a93-88db-cc2e6efc75d3",
+      "recordedAt": "2026-09-29T08:24:47.017Z"
     }
   ],
   "truckRecords": [
