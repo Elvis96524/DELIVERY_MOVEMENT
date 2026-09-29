@@ -460,12 +460,19 @@
     },
     "FSE-CF-22": {
       "serial": "FSE-CF-22",
-      "status": "loaded",
-      "vessel": "KEYFIELD HARMONY",
+      "status": "backloaded",
+      "vessel": "",
       "nextVessel": "",
-      "lastQuantities": null,
+      "lastQuantities": {
+        "basketLarge": 0,
+        "basketSmall": 0,
+        "basketThai": 0,
+        "roBottles": 0,
+        "others": 0,
+        "othersNote": ""
+      },
       "createdAt": "2026-09-21T02:26:41.219Z",
-      "updatedAt": "2026-09-22T06:58:05.302Z",
+      "updatedAt": "2026-09-29T07:55:04.707Z",
       "length": 3,
       "width": 2.5,
       "height": 2.7,
@@ -4237,6 +4244,23 @@
       },
       "id": "3f0c8657-2522-4f53-b09b-f8276aee726a",
       "recordedAt": "2026-09-29T07:54:41.403Z"
+    },
+    {
+      "serial": "FSE-CF-22",
+      "action": "backloaded",
+      "vessel": "",
+      "date": "2026-09-29",
+      "trailerPlate": "",
+      "quantities": {
+        "basketLarge": 0,
+        "basketSmall": 0,
+        "basketThai": 0,
+        "roBottles": 0,
+        "others": 0,
+        "othersNote": ""
+      },
+      "id": "c7dd2147-79c3-49f0-b03f-1052c28a3076",
+      "recordedAt": "2026-09-29T07:55:04.707Z"
     }
   ],
   "truckRecords": [
