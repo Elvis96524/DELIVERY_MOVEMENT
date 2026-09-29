@@ -1336,12 +1336,19 @@
     },
     "FSE-DC-18": {
       "serial": "FSE-DC-18",
-      "status": "loaded",
-      "vessel": "ETK PLATFORM",
+      "status": "backloaded",
+      "vessel": "",
       "nextVessel": "",
-      "lastQuantities": null,
+      "lastQuantities": {
+        "basketLarge": 0,
+        "basketSmall": 0,
+        "basketThai": 0,
+        "roBottles": 0,
+        "others": 0,
+        "othersNote": ""
+      },
       "createdAt": "2026-09-21T08:52:55.233Z",
-      "updatedAt": "2026-09-22T08:54:20.910Z",
+      "updatedAt": "2026-09-29T08:25:46.937Z",
       "length": 2.5,
       "width": 2.44,
       "height": 2.75,
@@ -4593,6 +4600,23 @@
       },
       "id": "26d7cdce-2932-47da-a3bd-ce147ad2d15e",
       "recordedAt": "2026-09-29T08:25:20.425Z"
+    },
+    {
+      "serial": "FSE-DC-18",
+      "action": "backloaded",
+      "vessel": "",
+      "date": "2026-09-29",
+      "trailerPlate": "",
+      "quantities": {
+        "basketLarge": 0,
+        "basketSmall": 0,
+        "basketThai": 0,
+        "roBottles": 0,
+        "others": 0,
+        "othersNote": ""
+      },
+      "id": "699e7e03-cedd-4e86-a653-0881771f8474",
+      "recordedAt": "2026-09-29T08:25:46.937Z"
     }
   ],
   "truckRecords": [
