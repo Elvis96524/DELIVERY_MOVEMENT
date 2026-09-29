@@ -80,12 +80,12 @@
     },
     "DF-02": {
       "serial": "DF-02",
-      "status": "reserved",
+      "status": "loaded",
       "vessel": "SK PURPOSE",
       "nextVessel": "",
       "lastQuantities": null,
       "createdAt": "2026-09-21T02:18:23.156Z",
-      "updatedAt": "2026-09-22T08:52:49.646Z",
+      "updatedAt": "2026-09-29T08:20:29.074Z",
       "length": 2.438,
       "width": 2.438,
       "height": 2.76,
@@ -4374,6 +4374,15 @@
       },
       "id": "e9ef1782-71a7-46d3-b35c-0fbd1d9582b3",
       "recordedAt": "2026-09-29T07:58:47.699Z"
+    },
+    {
+      "serial": "DF-02",
+      "action": "loaded",
+      "vessel": "SK PURPOSE",
+      "date": "2026-09-25",
+      "trailerPlate": "VPP6663",
+      "id": "8410b949-2bbc-4c69-88b1-296ecd5e79cd",
+      "recordedAt": "2026-09-29T08:20:29.073Z"
     }
   ],
   "truckRecords": [
