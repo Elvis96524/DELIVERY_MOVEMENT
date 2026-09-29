@@ -2049,12 +2049,19 @@
     },
     "PTSB100030-0": {
       "serial": "PTSB100030-0",
-      "status": "loaded",
-      "vessel": "TWO TEJA",
+      "status": "backloaded",
+      "vessel": "",
       "nextVessel": "",
-      "lastQuantities": null,
+      "lastQuantities": {
+        "basketLarge": 0,
+        "basketSmall": 0,
+        "basketThai": 0,
+        "roBottles": 0,
+        "others": 0,
+        "othersNote": ""
+      },
       "createdAt": "2026-09-22T03:44:11.731Z",
-      "updatedAt": "2026-09-22T07:05:33.694Z",
+      "updatedAt": "2026-09-29T08:28:21.745Z",
       "length": 2.991,
       "width": 2.438,
       "height": 2.591,
@@ -4953,6 +4960,23 @@
       },
       "id": "14ab2bd5-73b7-43ef-b735-97424e3724fa",
       "recordedAt": "2026-09-29T08:28:10.697Z"
+    },
+    {
+      "serial": "PTSB100030-0",
+      "action": "backloaded",
+      "vessel": "",
+      "date": "2026-09-29",
+      "trailerPlate": "",
+      "quantities": {
+        "basketLarge": 0,
+        "basketSmall": 0,
+        "basketThai": 0,
+        "roBottles": 0,
+        "others": 0,
+        "othersNote": ""
+      },
+      "id": "f2db477c-b16d-4673-b4d3-ae3b41b4432d",
+      "recordedAt": "2026-09-29T08:28:21.745Z"
     }
   ],
   "truckRecords": [
