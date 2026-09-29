@@ -1137,12 +1137,19 @@
     },
     "FSE-DC-06": {
       "serial": "FSE-DC-06",
-      "status": "loaded",
-      "vessel": "SAMARANG PLATFORM",
+      "status": "backloaded",
+      "vessel": "",
       "nextVessel": "",
-      "lastQuantities": null,
+      "lastQuantities": {
+        "basketLarge": 0,
+        "basketSmall": 0,
+        "basketThai": 0,
+        "roBottles": 0,
+        "others": 0,
+        "othersNote": ""
+      },
       "createdAt": "2026-09-21T07:51:50.389Z",
-      "updatedAt": "2026-09-22T08:49:54.662Z",
+      "updatedAt": "2026-09-29T08:25:20.425Z",
       "length": 2.44,
       "width": 2.44,
       "height": 2.65,
@@ -4569,6 +4576,23 @@
       },
       "id": "91af0713-c7fc-4c86-8e5e-a956da65b530",
       "recordedAt": "2026-09-29T08:24:58.209Z"
+    },
+    {
+      "serial": "FSE-DC-06",
+      "action": "backloaded",
+      "vessel": "",
+      "date": "2026-09-29",
+      "trailerPlate": "",
+      "quantities": {
+        "basketLarge": 0,
+        "basketSmall": 0,
+        "basketThai": 0,
+        "roBottles": 0,
+        "others": 0,
+        "othersNote": ""
+      },
+      "id": "26d7cdce-2932-47da-a3bd-ce147ad2d15e",
+      "recordedAt": "2026-09-29T08:25:20.425Z"
     }
   ],
   "truckRecords": [
