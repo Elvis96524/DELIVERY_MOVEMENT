@@ -1987,12 +1987,19 @@
     },
     "PTSB100027-6": {
       "serial": "PTSB100027-6",
-      "status": "reserved",
-      "vessel": "KEYFIELD WISDOM",
+      "status": "backloaded",
+      "vessel": "",
       "nextVessel": "",
-      "lastQuantities": null,
+      "lastQuantities": {
+        "basketLarge": 0,
+        "basketSmall": 0,
+        "basketThai": 0,
+        "roBottles": 0,
+        "others": 0,
+        "othersNote": ""
+      },
       "createdAt": "2026-09-22T03:43:19.771Z",
-      "updatedAt": "2026-09-22T08:52:05.998Z",
+      "updatedAt": "2026-09-29T08:28:06.161Z",
       "length": 2.991,
       "width": 2.438,
       "height": 2.591,
@@ -4905,6 +4912,23 @@
       },
       "id": "5c136ac8-ba4d-4df4-9281-4719752586a6",
       "recordedAt": "2026-09-29T08:27:53.784Z"
+    },
+    {
+      "serial": "PTSB100027-6",
+      "action": "backloaded",
+      "vessel": "",
+      "date": "2026-09-29",
+      "trailerPlate": "",
+      "quantities": {
+        "basketLarge": 0,
+        "basketSmall": 0,
+        "basketThai": 0,
+        "roBottles": 0,
+        "others": 0,
+        "othersNote": ""
+      },
+      "id": "052cd717-c113-44f7-b59a-0e71bda510cc",
+      "recordedAt": "2026-09-29T08:28:06.161Z"
     }
   ],
   "truckRecords": [
