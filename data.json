@@ -740,8 +740,8 @@
     },
     "FSE-CF-36": {
       "serial": "FSE-CF-36",
-      "status": "backloaded",
-      "vessel": "",
+      "status": "reserved",
+      "vessel": "TWO TEJA",
       "nextVessel": "",
       "lastQuantities": {
         "basketLarge": 0,
@@ -752,7 +752,7 @@
         "othersNote": ""
       },
       "createdAt": "2026-09-21T07:43:47.790Z",
-      "updatedAt": "2026-09-29T07:18:39.549Z",
+      "updatedAt": "2026-09-29T08:39:07.784Z",
       "length": 2.991,
       "width": 2.286,
       "height": 2.519,
@@ -5177,6 +5177,14 @@
       "vessel": "KEYFIELD WISDOM",
       "id": "626da26f-b37f-4cae-8c9b-af0da4b02720",
       "recordedAt": "2026-09-29T08:38:51.328Z",
+      "date": "2026-09-29"
+    },
+    {
+      "serial": "FSE-CF-36",
+      "action": "reserved",
+      "vessel": "TWO TEJA",
+      "id": "10ed9f7e-c6ed-4804-a9ef-faf82e418177",
+      "recordedAt": "2026-09-29T08:39:07.784Z",
       "date": "2026-09-29"
     }
   ],
