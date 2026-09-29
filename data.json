@@ -2143,12 +2143,19 @@
     },
     "TK-4004": {
       "serial": "TK-4004",
-      "status": "reserved",
-      "vessel": "OS ONE",
+      "status": "backloaded",
+      "vessel": "",
       "nextVessel": "",
-      "lastQuantities": null,
+      "lastQuantities": {
+        "basketLarge": 0,
+        "basketSmall": 0,
+        "basketThai": 0,
+        "roBottles": 0,
+        "others": 0,
+        "othersNote": ""
+      },
       "createdAt": "2026-09-22T03:46:56.539Z",
-      "updatedAt": "2026-09-22T08:51:52.119Z",
+      "updatedAt": "2026-09-29T08:28:43.521Z",
       "length": 2.5,
       "width": 2.44,
       "height": 2.75,
@@ -5001,6 +5008,23 @@
       },
       "id": "9fc28d2c-acff-48d9-8bfe-473470f87214",
       "recordedAt": "2026-09-29T08:28:39.305Z"
+    },
+    {
+      "serial": "TK-4004",
+      "action": "backloaded",
+      "vessel": "",
+      "date": "2026-09-29",
+      "trailerPlate": "",
+      "quantities": {
+        "basketLarge": 0,
+        "basketSmall": 0,
+        "basketThai": 0,
+        "roBottles": 0,
+        "others": 0,
+        "othersNote": ""
+      },
+      "id": "7e8611ec-fce8-4929-b4b4-cffe7c1fee9c",
+      "recordedAt": "2026-09-29T08:28:43.521Z"
     }
   ],
   "truckRecords": [
