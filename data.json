@@ -1034,12 +1034,19 @@
     },
     "FSE-CF-50": {
       "serial": "FSE-CF-50",
-      "status": "loaded",
-      "vessel": "ETK PLATFORM",
+      "status": "backloaded",
+      "vessel": "",
       "nextVessel": "",
-      "lastQuantities": null,
+      "lastQuantities": {
+        "basketLarge": 0,
+        "basketSmall": 0,
+        "basketThai": 0,
+        "roBottles": 0,
+        "others": 0,
+        "othersNote": ""
+      },
       "createdAt": "2026-09-21T07:48:33.254Z",
-      "updatedAt": "2026-09-22T08:54:42.990Z",
+      "updatedAt": "2026-09-29T08:24:58.209Z",
       "length": 2.991,
       "width": 2.286,
       "height": 2.519,
@@ -4545,6 +4552,23 @@
       },
       "id": "3eb47acf-0005-4b79-8b5c-f1d3bda5a46c",
       "recordedAt": "2026-09-29T08:24:55.017Z"
+    },
+    {
+      "serial": "FSE-CF-50",
+      "action": "backloaded",
+      "vessel": "",
+      "date": "2026-09-29",
+      "trailerPlate": "",
+      "quantities": {
+        "basketLarge": 0,
+        "basketSmall": 0,
+        "basketThai": 0,
+        "roBottles": 0,
+        "others": 0,
+        "othersNote": ""
+      },
+      "id": "91af0713-c7fc-4c86-8e5e-a956da65b530",
+      "recordedAt": "2026-09-29T08:24:58.209Z"
     }
   ],
   "truckRecords": [
