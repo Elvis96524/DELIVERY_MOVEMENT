@@ -270,12 +270,19 @@
     },
     "FSE-CF-11": {
       "serial": "FSE-CF-11",
-      "status": "loaded",
-      "vessel": "TWO TEJA",
+      "status": "backloaded",
+      "vessel": "",
       "nextVessel": "",
-      "lastQuantities": null,
+      "lastQuantities": {
+        "basketLarge": 0,
+        "basketSmall": 0,
+        "basketThai": 0,
+        "roBottles": 0,
+        "others": 0,
+        "othersNote": ""
+      },
       "createdAt": "2026-09-21T02:23:28.588Z",
-      "updatedAt": "2026-09-22T07:06:10.269Z",
+      "updatedAt": "2026-09-29T07:54:41.403Z",
       "length": 2.991,
       "width": 2.438,
       "height": 2.591,
@@ -4213,6 +4220,23 @@
       },
       "id": "4544a22b-c1ec-49b5-b237-68e35a0fbfdb",
       "recordedAt": "2026-09-29T07:54:32.875Z"
+    },
+    {
+      "serial": "FSE-CF-11",
+      "action": "backloaded",
+      "vessel": "",
+      "date": "2026-09-29",
+      "trailerPlate": "",
+      "quantities": {
+        "basketLarge": 0,
+        "basketSmall": 0,
+        "basketThai": 0,
+        "roBottles": 0,
+        "others": 0,
+        "othersNote": ""
+      },
+      "id": "3f0c8657-2522-4f53-b09b-f8276aee726a",
+      "recordedAt": "2026-09-29T07:54:41.403Z"
     }
   ],
   "truckRecords": [
