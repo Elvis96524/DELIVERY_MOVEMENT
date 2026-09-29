@@ -786,8 +786,8 @@
     },
     "FSE-CF-38": {
       "serial": "FSE-CF-38",
-      "status": "backloaded",
-      "vessel": "",
+      "status": "loaded",
+      "vessel": "KEYFIELD JOYFUL",
       "nextVessel": "",
       "lastQuantities": {
         "basketLarge": 0,
@@ -798,7 +798,7 @@
         "othersNote": ""
       },
       "createdAt": "2026-09-21T07:44:17.718Z",
-      "updatedAt": "2026-09-29T08:22:21.105Z",
+      "updatedAt": "2026-09-29T08:23:14.105Z",
       "length": 2.991,
       "width": 2.286,
       "height": 2.519,
@@ -4407,6 +4407,15 @@
       },
       "id": "baf51feb-9241-4731-870a-bee81123432c",
       "recordedAt": "2026-09-29T08:22:21.105Z"
+    },
+    {
+      "serial": "FSE-CF-38",
+      "action": "loaded",
+      "vessel": "KEYFIELD JOYFUL",
+      "date": "2026-09-28",
+      "trailerPlate": "VPP6663",
+      "id": "6ec3aefa-eb28-4ffd-bf06-82aa2fd32d17",
+      "recordedAt": "2026-09-29T08:23:14.105Z"
     }
   ],
   "truckRecords": [
