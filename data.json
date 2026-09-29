@@ -1948,12 +1948,19 @@
     },
     "GV-01": {
       "serial": "GV-01",
-      "status": "loaded",
-      "vessel": "KINABALU PLATFORM",
+      "status": "backloaded",
+      "vessel": "",
       "nextVessel": "",
-      "lastQuantities": null,
+      "lastQuantities": {
+        "basketLarge": 0,
+        "basketSmall": 0,
+        "basketThai": 0,
+        "roBottles": 0,
+        "others": 0,
+        "othersNote": ""
+      },
       "createdAt": "2026-09-22T03:42:45.643Z",
-      "updatedAt": "2026-09-22T08:51:09.078Z",
+      "updatedAt": "2026-09-29T08:27:53.784Z",
       "length": 2.48,
       "width": 2.48,
       "height": 2.73,
@@ -4881,6 +4888,23 @@
       },
       "id": "b0325f77-e8bf-4f36-815d-32577236e045",
       "recordedAt": "2026-09-29T08:27:48.313Z"
+    },
+    {
+      "serial": "GV-01",
+      "action": "backloaded",
+      "vessel": "",
+      "date": "2026-09-29",
+      "trailerPlate": "",
+      "quantities": {
+        "basketLarge": 0,
+        "basketSmall": 0,
+        "basketThai": 0,
+        "roBottles": 0,
+        "others": 0,
+        "othersNote": ""
+      },
+      "id": "5c136ac8-ba4d-4df4-9281-4719752586a6",
+      "recordedAt": "2026-09-29T08:27:53.784Z"
     }
   ],
   "truckRecords": [
