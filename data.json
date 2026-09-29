@@ -2,12 +2,19 @@
   "containers": {
     "CFC-006": {
       "serial": "CFC-006",
-      "status": "loaded",
-      "vessel": "OS ONE",
+      "status": "backloaded",
+      "vessel": "",
       "nextVessel": "",
-      "lastQuantities": null,
+      "lastQuantities": {
+        "basketLarge": 0,
+        "basketSmall": 0,
+        "basketThai": 0,
+        "roBottles": 0,
+        "others": 0,
+        "othersNote": ""
+      },
       "createdAt": "2026-09-21T02:07:59.902Z",
-      "updatedAt": "2026-09-22T07:03:44.933Z",
+      "updatedAt": "2026-09-29T07:53:40.259Z",
       "length": 2.44,
       "width": 2.44,
       "height": 2.5,
@@ -4117,6 +4124,23 @@
       },
       "id": "2a959d73-2bbb-4742-920b-c2e24fdf57c7",
       "recordedAt": "2026-09-29T07:53:14.403Z"
+    },
+    {
+      "serial": "CFC-006",
+      "action": "backloaded",
+      "vessel": "",
+      "date": "2026-09-29",
+      "trailerPlate": "",
+      "quantities": {
+        "basketLarge": 0,
+        "basketSmall": 0,
+        "basketThai": 0,
+        "roBottles": 0,
+        "others": 0,
+        "othersNote": ""
+      },
+      "id": "af402905-7bfe-490f-b34b-d63246e2ce3f",
+      "recordedAt": "2026-09-29T07:53:40.259Z"
     }
   ],
   "truckRecords": [
