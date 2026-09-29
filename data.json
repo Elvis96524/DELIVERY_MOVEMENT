@@ -2246,12 +2246,19 @@
     },
     "TK-5006": {
       "serial": "TK-5006",
-      "status": "loaded",
-      "vessel": "KINABALU PLATFORM",
+      "status": "backloaded",
+      "vessel": "",
       "nextVessel": "",
-      "lastQuantities": null,
+      "lastQuantities": {
+        "basketLarge": 0,
+        "basketSmall": 0,
+        "basketThai": 0,
+        "roBottles": 0,
+        "others": 0,
+        "othersNote": ""
+      },
       "createdAt": "2026-09-22T03:48:25.963Z",
-      "updatedAt": "2026-09-22T08:50:56.262Z",
+      "updatedAt": "2026-09-29T08:29:23.033Z",
       "length": 2.5,
       "width": 2.44,
       "height": 2.75,
@@ -5034,6 +5041,23 @@
       "trailerPlate": "VPP6663",
       "id": "d57ba8fd-436d-4c29-9711-b88a6e53e17e",
       "recordedAt": "2026-09-29T08:29:10.441Z"
+    },
+    {
+      "serial": "TK-5006",
+      "action": "backloaded",
+      "vessel": "",
+      "date": "2026-09-29",
+      "trailerPlate": "",
+      "quantities": {
+        "basketLarge": 0,
+        "basketSmall": 0,
+        "basketThai": 0,
+        "roBottles": 0,
+        "others": 0,
+        "othersNote": ""
+      },
+      "id": "cd070bae-23c9-4bf9-99b1-c84c763f8f21",
+      "recordedAt": "2026-09-29T08:29:23.033Z"
     }
   ],
   "truckRecords": [
