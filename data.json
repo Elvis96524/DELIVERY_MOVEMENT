@@ -483,8 +483,8 @@
     },
     "FSE-CF-23": {
       "serial": "FSE-CF-23",
-      "status": "backloaded",
-      "vessel": "",
+      "status": "reserved",
+      "vessel": "KEYFIELD WISDOM",
       "nextVessel": "",
       "lastQuantities": {
         "basketLarge": 0,
@@ -495,7 +495,7 @@
         "othersNote": ""
       },
       "createdAt": "2026-09-21T02:26:56.627Z",
-      "updatedAt": "2026-09-29T07:17:48.920Z",
+      "updatedAt": "2026-09-29T08:38:12.648Z",
       "length": 3,
       "width": 2.5,
       "height": 2.7,
@@ -5145,6 +5145,14 @@
       "vessel": "TWO TEJA",
       "id": "464fe8ee-a186-4744-85df-0914a54d3156",
       "recordedAt": "2026-09-29T08:37:38.360Z",
+      "date": "2026-09-29"
+    },
+    {
+      "serial": "FSE-CF-23",
+      "action": "reserved",
+      "vessel": "KEYFIELD WISDOM",
+      "id": "be9fa5ee-f849-43d6-b800-8e349dce9394",
+      "recordedAt": "2026-09-29T08:38:12.648Z",
       "date": "2026-09-29"
     }
   ],
