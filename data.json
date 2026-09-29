@@ -519,12 +519,19 @@
     },
     "FSE-CF-27": {
       "serial": "FSE-CF-27",
-      "status": "loaded",
-      "vessel": "KEYFIELD WISDOM",
+      "status": "backloaded",
+      "vessel": "",
       "nextVessel": "",
-      "lastQuantities": null,
+      "lastQuantities": {
+        "basketLarge": 0,
+        "basketSmall": 0,
+        "basketThai": 0,
+        "roBottles": 0,
+        "others": 0,
+        "othersNote": ""
+      },
       "createdAt": "2026-09-21T02:27:53.451Z",
-      "updatedAt": "2026-09-22T06:53:05.390Z",
+      "updatedAt": "2026-09-29T07:53:14.403Z",
       "length": 3,
       "width": 2.5,
       "height": 2.7,
@@ -4093,6 +4100,23 @@
       },
       "id": "5a6ce4b4-6bee-4ce5-b44e-bdd467ce8ea1",
       "recordedAt": "2026-09-29T07:18:39.549Z"
+    },
+    {
+      "serial": "FSE-CF-27",
+      "action": "backloaded",
+      "vessel": "",
+      "date": "2026-09-29",
+      "trailerPlate": "",
+      "quantities": {
+        "basketLarge": 0,
+        "basketSmall": 0,
+        "basketThai": 0,
+        "roBottles": 0,
+        "others": 0,
+        "othersNote": ""
+      },
+      "id": "2a959d73-2bbb-4742-920b-c2e24fdf57c7",
+      "recordedAt": "2026-09-29T07:53:14.403Z"
     }
   ],
   "truckRecords": [
