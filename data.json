@@ -1336,7 +1336,7 @@
     },
     "FSE-DC-18": {
       "serial": "FSE-DC-18",
-      "status": "reserved",
+      "status": "loaded",
       "vessel": "SK PREMIER",
       "nextVessel": "",
       "lastQuantities": {
@@ -1348,7 +1348,7 @@
         "othersNote": ""
       },
       "createdAt": "2026-09-21T08:52:55.233Z",
-      "updatedAt": "2026-09-30T00:44:46.220Z",
+      "updatedAt": "2026-09-30T01:49:52.675Z",
       "length": 2.5,
       "width": 2.44,
       "height": 2.75,
@@ -5280,6 +5280,15 @@
       "trailerPlate": "SK3666B",
       "id": "ff1cc499-fa6f-4b3f-84bb-4f3586a1e3be",
       "recordedAt": "2026-09-30T01:49:40.055Z"
+    },
+    {
+      "serial": "FSE-DC-18",
+      "action": "loaded",
+      "vessel": "SK PREMIER",
+      "date": "2026-09-30",
+      "trailerPlate": "SK3666B",
+      "id": "3b4949ef-92b9-41b5-bb64-46221078b9d7",
+      "recordedAt": "2026-09-30T01:49:52.675Z"
     }
   ],
   "truckRecords": [
