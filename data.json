@@ -460,8 +460,8 @@
     },
     "FSE-CF-22": {
       "serial": "FSE-CF-22",
-      "status": "backloaded",
-      "vessel": "",
+      "status": "reserved",
+      "vessel": "SK PREMIER",
       "nextVessel": "",
       "lastQuantities": {
         "basketLarge": 0,
@@ -472,7 +472,7 @@
         "othersNote": ""
       },
       "createdAt": "2026-09-21T02:26:41.219Z",
-      "updatedAt": "2026-09-29T07:55:04.707Z",
+      "updatedAt": "2026-09-30T00:45:13.736Z",
       "length": 3,
       "width": 2.5,
       "height": 2.7,
@@ -5217,6 +5217,14 @@
       "vessel": "SK PREMIER",
       "id": "8f15b101-b9b1-4214-9697-8d695e497dac",
       "recordedAt": "2026-09-30T00:45:03.599Z",
+      "date": "2026-09-30"
+    },
+    {
+      "serial": "FSE-CF-22",
+      "action": "reserved",
+      "vessel": "SK PREMIER",
+      "id": "2820d812-448a-4c7f-8a44-1ac869df34ce",
+      "recordedAt": "2026-09-30T00:45:13.736Z",
       "date": "2026-09-30"
     }
   ],
