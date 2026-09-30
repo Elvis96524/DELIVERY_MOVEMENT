@@ -1556,7 +1556,7 @@
     },
     "FSE-DC-30": {
       "serial": "FSE-DC-30",
-      "status": "reserved",
+      "status": "loaded",
       "vessel": "KEYFIELD WISDOM",
       "nextVessel": "",
       "lastQuantities": {
@@ -1568,7 +1568,7 @@
         "othersNote": ""
       },
       "createdAt": "2026-09-21T08:56:58.369Z",
-      "updatedAt": "2026-09-29T08:34:23.064Z",
+      "updatedAt": "2026-09-30T01:19:13.825Z",
       "length": 2.991,
       "width": 2.235,
       "height": 2.565,
@@ -5244,6 +5244,15 @@
       "trailerPlate": "VPP6663",
       "id": "bb707e08-270c-49d9-9b25-66c5f34c78d8",
       "recordedAt": "2026-09-30T01:19:07.188Z"
+    },
+    {
+      "serial": "FSE-DC-30",
+      "action": "loaded",
+      "vessel": "KEYFIELD WISDOM",
+      "date": "2026-09-30",
+      "trailerPlate": "VPP6663",
+      "id": "2e571bb6-415f-44bc-8735-cf1e3a8b381f",
+      "recordedAt": "2026-09-30T01:19:13.825Z"
     }
   ],
   "truckRecords": [
