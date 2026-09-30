@@ -1336,8 +1336,8 @@
     },
     "FSE-DC-18": {
       "serial": "FSE-DC-18",
-      "status": "backloaded",
-      "vessel": "",
+      "status": "reserved",
+      "vessel": "SK PREMIER",
       "nextVessel": "",
       "lastQuantities": {
         "basketLarge": 0,
@@ -1348,7 +1348,7 @@
         "othersNote": ""
       },
       "createdAt": "2026-09-21T08:52:55.233Z",
-      "updatedAt": "2026-09-29T08:25:46.937Z",
+      "updatedAt": "2026-09-30T00:44:46.220Z",
       "length": 2.5,
       "width": 2.44,
       "height": 2.75,
@@ -5202,6 +5202,14 @@
       "id": "95c7b0b1-2d1a-45ca-9faf-10b72eb62dd3",
       "recordedAt": "2026-09-29T08:39:42.512Z",
       "date": "2026-09-29"
+    },
+    {
+      "serial": "FSE-DC-18",
+      "action": "reserved",
+      "vessel": "SK PREMIER",
+      "id": "37bb4066-8940-4c95-a6bb-f2f3bd434fc9",
+      "recordedAt": "2026-09-30T00:44:46.215Z",
+      "date": "2026-09-30"
     }
   ],
   "truckRecords": [
