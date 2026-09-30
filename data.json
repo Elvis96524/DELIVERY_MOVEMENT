@@ -2143,7 +2143,7 @@
     },
     "TK-4004": {
       "serial": "TK-4004",
-      "status": "reserved",
+      "status": "loaded",
       "vessel": "PTTEP",
       "nextVessel": "",
       "lastQuantities": {
@@ -2155,7 +2155,7 @@
         "othersNote": ""
       },
       "createdAt": "2026-09-22T03:46:56.539Z",
-      "updatedAt": "2026-09-30T02:02:43.598Z",
+      "updatedAt": "2026-09-30T03:29:44.090Z",
       "length": 2.5,
       "width": 2.44,
       "height": 2.75,
@@ -5306,6 +5306,15 @@
       "id": "b04ee947-459e-42c8-9e7e-91961bfb6b92",
       "recordedAt": "2026-09-30T02:02:43.597Z",
       "date": "2026-09-30"
+    },
+    {
+      "serial": "TK-4004",
+      "action": "loaded",
+      "vessel": "PTTEP",
+      "date": "2026-09-30",
+      "trailerPlate": "QPC9717",
+      "id": "e4aaca6e-541f-41fd-a670-7f27a6b12c6a",
+      "recordedAt": "2026-09-30T03:29:44.089Z"
     }
   ],
   "truckRecords": [
