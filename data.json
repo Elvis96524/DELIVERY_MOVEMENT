@@ -5848,6 +5848,26 @@
       },
       "id": "b18a1c40-b609-470d-b94a-34111902eb69",
       "recordedAt": "2026-09-29T06:26:35.638Z"
+    },
+    {
+      "driver": "SYAH",
+      "laborers": "Wan",
+      "vessel": "SK PRODIGY",
+      "place": "SRI GANTI",
+      "truckPlate": "SK8226E",
+      "date": "2026-09-30",
+      "timeDelivery": "10:28",
+      "timeBack": "",
+      "items": {
+        "basketLarge": 0,
+        "basketSmall": 0,
+        "basketThai": 0,
+        "roBottles": 0,
+        "others": 0,
+        "othersNote": ""
+      },
+      "id": "2a55643d-da2f-40d5-943e-db2e017338d0",
+      "recordedAt": "2026-09-30T02:28:11.058Z"
     }
   ],
   "drivers": {
