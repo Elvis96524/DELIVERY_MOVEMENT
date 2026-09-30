@@ -460,7 +460,7 @@
     },
     "FSE-CF-22": {
       "serial": "FSE-CF-22",
-      "status": "reserved",
+      "status": "loaded",
       "vessel": "SK PREMIER",
       "nextVessel": "",
       "lastQuantities": {
@@ -472,7 +472,7 @@
         "othersNote": ""
       },
       "createdAt": "2026-09-21T02:26:41.219Z",
-      "updatedAt": "2026-09-30T00:45:13.736Z",
+      "updatedAt": "2026-09-30T01:50:01.007Z",
       "length": 3,
       "width": 2.5,
       "height": 2.7,
@@ -5289,6 +5289,15 @@
       "trailerPlate": "SK3666B",
       "id": "3b4949ef-92b9-41b5-bb64-46221078b9d7",
       "recordedAt": "2026-09-30T01:49:52.675Z"
+    },
+    {
+      "serial": "FSE-CF-22",
+      "action": "loaded",
+      "vessel": "SK PREMIER",
+      "date": "2026-09-30",
+      "trailerPlate": "SK3666B",
+      "id": "30cb7cd1-2001-414f-ab9e-12da1844f399",
+      "recordedAt": "2026-09-30T01:50:01.007Z"
     }
   ],
   "truckRecords": [
