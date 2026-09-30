@@ -5877,6 +5877,26 @@
       },
       "id": "2a55643d-da2f-40d5-943e-db2e017338d0",
       "recordedAt": "2026-09-30T02:28:11.058Z"
+    },
+    {
+      "driver": "SAIFUL",
+      "laborers": "Shukri",
+      "vessel": "Tovud Koposizon Plt",
+      "place": "",
+      "truckPlate": "SK8226E",
+      "date": "2026-09-30",
+      "timeDelivery": "13:40",
+      "timeBack": "",
+      "items": {
+        "basketLarge": 0,
+        "basketSmall": 0,
+        "basketThai": 0,
+        "roBottles": 0,
+        "others": 0,
+        "othersNote": ""
+      },
+      "id": "0027c2bb-01f5-4ebd-a27e-e35b75ae13bb",
+      "recordedAt": "2026-09-30T05:40:39.427Z"
     }
   ],
   "drivers": {
