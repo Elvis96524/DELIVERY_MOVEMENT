@@ -5897,6 +5897,26 @@
       },
       "id": "0027c2bb-01f5-4ebd-a27e-e35b75ae13bb",
       "recordedAt": "2026-09-30T05:40:39.427Z"
+    },
+    {
+      "driver": "SHAHRIN",
+      "laborers": "BOBOI,SYUKRI",
+      "vessel": "SK PINNACLE",
+      "place": "ASB",
+      "truckPlate": "SAB9100K",
+      "date": "2026-09-30",
+      "timeDelivery": "09:11",
+      "timeBack": "",
+      "items": {
+        "basketLarge": 0,
+        "basketSmall": 0,
+        "basketThai": 0,
+        "roBottles": 0,
+        "others": 0,
+        "othersNote": ""
+      },
+      "id": "b7794598-5162-4e01-9d9b-9e8b4f9f1edb",
+      "recordedAt": "2026-09-30T01:11:23.805Z"
     }
   ],
   "drivers": {
