@@ -6178,6 +6178,26 @@
       },
       "id": "7e56f037-2dad-4a54-8e55-4f5bccadf6ed",
       "recordedAt": "2026-10-01T06:54:22.190Z"
+    },
+    {
+      "driver": "SAIFUL",
+      "laborers": "Nasir",
+      "vessel": "Sk prudence",
+      "place": "Mutiara",
+      "truckPlate": "WGS2831",
+      "date": "2026-10-01",
+      "timeDelivery": "13:04",
+      "timeBack": "",
+      "items": {
+        "basketLarge": 0,
+        "basketSmall": 0,
+        "basketThai": 0,
+        "roBottles": 0,
+        "others": 0,
+        "othersNote": ""
+      },
+      "id": "98100eb5-76e7-4ce2-89fc-85aec0adb194",
+      "recordedAt": "2026-10-01T05:04:26.669Z"
     }
   ],
   "drivers": {
