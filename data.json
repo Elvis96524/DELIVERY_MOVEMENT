@@ -1701,7 +1701,7 @@
       "nextVessel": "",
       "lastQuantities": null,
       "createdAt": "2026-09-21T08:58:54.433Z",
-      "updatedAt": "2026-09-22T07:31:38.219Z",
+      "updatedAt": "2026-10-01T00:10:14.299Z",
       "length": 2.991,
       "width": 2.438,
       "height": 2.591,
@@ -5342,6 +5342,15 @@
       "trailerPlate": "VPP6663",
       "id": "6ca79311-a7ac-45bb-9aaa-02edb089de11",
       "recordedAt": "2026-09-30T06:34:47.297Z"
+    },
+    {
+      "serial": "FSE-DC-38",
+      "action": "loaded",
+      "vessel": "HELANG INTEGRATED PLATFORM",
+      "date": "2026-09-30",
+      "trailerPlate": "VPP6663",
+      "id": "1d1caa42-027f-4773-9954-867e4d9f2fd8",
+      "recordedAt": "2026-10-01T00:10:14.299Z"
     }
   ],
   "truckRecords": [
