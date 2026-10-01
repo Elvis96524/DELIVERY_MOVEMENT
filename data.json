@@ -506,7 +506,7 @@
     },
     "FSE-CF-24": {
       "serial": "FSE-CF-24",
-      "status": "loaded",
+      "status": "reserved",
       "vessel": "OS ONE",
       "nextVessel": "",
       "lastQuantities": {
@@ -518,7 +518,7 @@
         "othersNote": ""
       },
       "createdAt": "2026-09-21T02:27:09.459Z",
-      "updatedAt": "2026-10-01T05:58:50.317Z",
+      "updatedAt": "2026-09-29T08:38:24.408Z",
       "length": 3,
       "width": 2.5,
       "height": 2.7,
@@ -740,7 +740,7 @@
     },
     "FSE-CF-36": {
       "serial": "FSE-CF-36",
-      "status": "loaded",
+      "status": "reserved",
       "vessel": "TWO TEJA",
       "nextVessel": "",
       "lastQuantities": {
@@ -752,7 +752,7 @@
         "othersNote": ""
       },
       "createdAt": "2026-09-21T07:43:47.790Z",
-      "updatedAt": "2026-10-01T08:10:53.740Z",
+      "updatedAt": "2026-09-29T08:39:07.784Z",
       "length": 2.991,
       "width": 2.286,
       "height": 2.519,
@@ -848,7 +848,7 @@
     },
     "FSE-CF-41": {
       "serial": "FSE-CF-41",
-      "status": "loaded",
+      "status": "reserved",
       "vessel": "OS ONE",
       "nextVessel": "",
       "lastQuantities": {
@@ -860,7 +860,7 @@
         "othersNote": ""
       },
       "createdAt": "2026-09-21T07:45:14.150Z",
-      "updatedAt": "2026-10-01T05:58:56.638Z",
+      "updatedAt": "2026-09-29T08:39:42.512Z",
       "length": 2.991,
       "width": 2.286,
       "height": 2.519,
@@ -894,8 +894,8 @@
     },
     "FSE-CF-43": {
       "serial": "FSE-CF-43",
-      "status": "reserved",
-      "vessel": "HELANG INTEGRATED PLATFORM",
+      "status": "backloaded",
+      "vessel": "",
       "nextVessel": "",
       "lastQuantities": {
         "basketLarge": 0,
@@ -906,7 +906,7 @@
         "othersNote": ""
       },
       "createdAt": "2026-09-21T07:45:47.166Z",
-      "updatedAt": "2026-10-01T07:56:46.750Z",
+      "updatedAt": "2026-09-29T07:56:50.227Z",
       "length": 2.991,
       "width": 2.286,
       "height": 2.519,
@@ -1501,7 +1501,7 @@
     },
     "FSE-DC-27": {
       "serial": "FSE-DC-27",
-      "status": "loaded",
+      "status": "reserved",
       "vessel": "OS ONE",
       "nextVessel": "",
       "lastQuantities": {
@@ -1513,7 +1513,7 @@
         "othersNote": ""
       },
       "createdAt": "2026-09-21T08:56:16.585Z",
-      "updatedAt": "2026-10-01T05:59:03.672Z",
+      "updatedAt": "2026-09-29T08:33:56.504Z",
       "length": 2.991,
       "width": 2.438,
       "height": 2.591,
@@ -1898,12 +1898,12 @@
     },
     "FSE-DC-48": {
       "serial": "FSE-DC-48",
-      "status": "loaded",
+      "status": "reserved",
       "vessel": "TWO TEJA",
       "nextVessel": "",
       "lastQuantities": null,
       "createdAt": "2026-09-21T09:01:15.201Z",
-      "updatedAt": "2026-10-01T08:11:01.987Z",
+      "updatedAt": "2026-09-29T08:37:38.360Z",
       "length": 2.991,
       "width": 2.438,
       "height": 2.591,
@@ -5423,59 +5423,6 @@
       },
       "id": "c701a9ef-5e9e-4de3-ae3c-fa3d9d97dee0",
       "recordedAt": "2026-10-01T00:10:58.018Z"
-    },
-    {
-      "serial": "FSE-CF-24",
-      "action": "loaded",
-      "vessel": "OS ONE",
-      "date": "2026-10-01",
-      "trailerPlate": "VPP6663",
-      "id": "31c2e99e-d39f-4344-baaa-0e33490575a4",
-      "recordedAt": "2026-10-01T05:58:50.317Z"
-    },
-    {
-      "serial": "FSE-CF-41",
-      "action": "loaded",
-      "vessel": "OS ONE",
-      "date": "2026-10-01",
-      "trailerPlate": "VPP6663",
-      "id": "e6484922-28a3-4a78-a41e-a322374a837d",
-      "recordedAt": "2026-10-01T05:58:56.638Z"
-    },
-    {
-      "serial": "FSE-DC-27",
-      "action": "loaded",
-      "vessel": "OS ONE",
-      "date": "2026-10-01",
-      "trailerPlate": "VPP6663",
-      "id": "58f090d4-2c59-4d08-a01c-182dc49ee2e7",
-      "recordedAt": "2026-10-01T05:59:03.672Z"
-    },
-    {
-      "serial": "FSE-CF-43",
-      "action": "reserved",
-      "vessel": "HELANG INTEGRATED PLATFORM",
-      "id": "5fa36ea5-db2b-4776-81e2-aaf898f016d0",
-      "recordedAt": "2026-10-01T07:56:46.749Z",
-      "date": "2026-10-01"
-    },
-    {
-      "serial": "FSE-CF-36",
-      "action": "loaded",
-      "vessel": "TWO TEJA",
-      "date": "2026-10-01",
-      "trailerPlate": "VPP6663",
-      "id": "2abff948-8818-4501-b5de-db581e27111b",
-      "recordedAt": "2026-10-01T08:10:53.739Z"
-    },
-    {
-      "serial": "FSE-DC-48",
-      "action": "loaded",
-      "vessel": "TWO TEJA",
-      "date": "2026-10-01",
-      "trailerPlate": "VPP6663",
-      "id": "5b7e9688-06bd-4ce2-b800-7b1e4d1397d1",
-      "recordedAt": "2026-10-01T08:11:01.987Z"
     }
   ],
   "truckRecords": [
@@ -6118,66 +6065,6 @@
       },
       "id": "7c595708-749a-4b73-8db3-7fab4d025344",
       "recordedAt": "2026-10-01T02:25:50.536Z"
-    },
-    {
-      "driver": "SYAH",
-      "laborers": "Aliff",
-      "vessel": "SK GEOTEK",
-      "place": "MUTIARA",
-      "truckPlate": "SAB9100K",
-      "date": "2026-10-01",
-      "timeDelivery": "13:05",
-      "timeBack": "",
-      "items": {
-        "basketLarge": 0,
-        "basketSmall": 0,
-        "basketThai": 0,
-        "roBottles": 0,
-        "others": 0,
-        "othersNote": ""
-      },
-      "id": "3eb1e937-2a7a-4cf4-b47b-2f50d592a37b",
-      "recordedAt": "2026-10-01T05:05:17.133Z"
-    },
-    {
-      "driver": "SHAHRIN",
-      "laborers": "SYUKRI,BOBOI",
-      "vessel": "PERDANA ENDURANCE,EMERALD",
-      "place": "Mutiara",
-      "truckPlate": "QMU6228",
-      "date": "2026-10-01",
-      "timeDelivery": "09:43",
-      "timeBack": "13:51",
-      "items": {
-        "basketLarge": 0,
-        "basketSmall": 0,
-        "basketThai": 0,
-        "roBottles": 0,
-        "others": 0,
-        "othersNote": "Emerald 5 botol, Endurance 8botol"
-      },
-      "id": "262dfe3e-dcef-45bf-9ce0-1d9a1ea3392e",
-      "recordedAt": "2026-10-01T01:44:01.733Z"
-    },
-    {
-      "driver": "SHAHRIN",
-      "laborers": "SYUKRI",
-      "vessel": "BORNEO GROCERY,BORNEO MART",
-      "place": "",
-      "truckPlate": "SK8226E",
-      "date": "2026-10-01",
-      "timeDelivery": "14:54",
-      "timeBack": "",
-      "items": {
-        "basketLarge": 0,
-        "basketSmall": 0,
-        "basketThai": 0,
-        "roBottles": 0,
-        "others": 0,
-        "othersNote": ""
-      },
-      "id": "7e56f037-2dad-4a54-8e55-4f5bccadf6ed",
-      "recordedAt": "2026-10-01T06:54:22.190Z"
     },
     {
       "driver": "SAIFUL",
