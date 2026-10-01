@@ -6085,6 +6085,26 @@
       },
       "id": "98100eb5-76e7-4ce2-89fc-85aec0adb194",
       "recordedAt": "2026-10-01T05:04:26.669Z"
+    },
+    {
+      "driver": "SYAH",
+      "laborers": "Aliff,Ahmad",
+      "vessel": "SK GEOTEK",
+      "place": "Mutiara",
+      "truckPlate": "SAB9100K",
+      "date": "2026-10-01",
+      "timeDelivery": "13:10",
+      "timeBack": "18:29",
+      "items": {
+        "basketLarge": 0,
+        "basketSmall": 0,
+        "basketThai": 0,
+        "roBottles": 0,
+        "others": 0,
+        "othersNote": ""
+      },
+      "id": "44a277c7-b448-486c-96a7-d4d523bc8019",
+      "recordedAt": "2026-10-01T10:29:41.805Z"
     }
   ],
   "drivers": {
