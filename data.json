@@ -1696,12 +1696,19 @@
     },
     "FSE-DC-38": {
       "serial": "FSE-DC-38",
-      "status": "loaded",
-      "vessel": "HELANG INTEGRATED PLATFORM",
+      "status": "backloaded",
+      "vessel": "",
       "nextVessel": "",
-      "lastQuantities": null,
+      "lastQuantities": {
+        "basketLarge": 0,
+        "basketSmall": 0,
+        "basketThai": 0,
+        "roBottles": 0,
+        "others": 0,
+        "othersNote": ""
+      },
       "createdAt": "2026-09-21T08:58:54.433Z",
-      "updatedAt": "2026-10-01T00:10:14.299Z",
+      "updatedAt": "2026-10-01T00:10:40.410Z",
       "length": 2.991,
       "width": 2.438,
       "height": 2.591,
@@ -5351,6 +5358,23 @@
       "trailerPlate": "VPP6663",
       "id": "1d1caa42-027f-4773-9954-867e4d9f2fd8",
       "recordedAt": "2026-10-01T00:10:14.299Z"
+    },
+    {
+      "serial": "FSE-DC-38",
+      "action": "backloaded",
+      "vessel": "",
+      "date": "2026-09-30",
+      "trailerPlate": "VPP6663",
+      "quantities": {
+        "basketLarge": 0,
+        "basketSmall": 0,
+        "basketThai": 0,
+        "roBottles": 0,
+        "others": 0,
+        "othersNote": ""
+      },
+      "id": "61c0c12f-e288-4ed4-a977-6455d382c8c3",
+      "recordedAt": "2026-10-01T00:10:40.410Z"
     }
   ],
   "truckRecords": [
