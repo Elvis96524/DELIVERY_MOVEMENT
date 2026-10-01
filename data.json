@@ -1898,12 +1898,12 @@
     },
     "FSE-DC-48": {
       "serial": "FSE-DC-48",
-      "status": "reserved",
+      "status": "loaded",
       "vessel": "TWO TEJA",
       "nextVessel": "",
       "lastQuantities": null,
       "createdAt": "2026-09-21T09:01:15.201Z",
-      "updatedAt": "2026-09-29T08:37:38.360Z",
+      "updatedAt": "2026-10-01T08:11:01.987Z",
       "length": 2.991,
       "width": 2.438,
       "height": 2.591,
@@ -5467,6 +5467,15 @@
       "trailerPlate": "VPP6663",
       "id": "2abff948-8818-4501-b5de-db581e27111b",
       "recordedAt": "2026-10-01T08:10:53.739Z"
+    },
+    {
+      "serial": "FSE-DC-48",
+      "action": "loaded",
+      "vessel": "TWO TEJA",
+      "date": "2026-10-01",
+      "trailerPlate": "VPP6663",
+      "id": "5b7e9688-06bd-4ce2-b800-7b1e4d1397d1",
+      "recordedAt": "2026-10-01T08:11:01.987Z"
     }
   ],
   "truckRecords": [
