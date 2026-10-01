@@ -6074,14 +6074,14 @@
       "truckPlate": "WGS2831",
       "date": "2026-10-01",
       "timeDelivery": "13:04",
-      "timeBack": "",
+      "timeBack": "18:27",
       "items": {
         "basketLarge": 0,
         "basketSmall": 0,
         "basketThai": 0,
         "roBottles": 0,
         "others": 0,
-        "othersNote": ""
+        "othersNote": "13 botol kosong"
       },
       "id": "98100eb5-76e7-4ce2-89fc-85aec0adb194",
       "recordedAt": "2026-10-01T05:04:26.669Z"
