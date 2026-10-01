@@ -894,8 +894,8 @@
     },
     "FSE-CF-43": {
       "serial": "FSE-CF-43",
-      "status": "backloaded",
-      "vessel": "",
+      "status": "reserved",
+      "vessel": "HELANG INTEGRATED PLATFORM",
       "nextVessel": "",
       "lastQuantities": {
         "basketLarge": 0,
@@ -906,7 +906,7 @@
         "othersNote": ""
       },
       "createdAt": "2026-09-21T07:45:47.166Z",
-      "updatedAt": "2026-09-29T07:56:50.227Z",
+      "updatedAt": "2026-10-01T22:22:33.536Z",
       "length": 2.991,
       "width": 2.286,
       "height": 2.519,
@@ -5495,6 +5495,14 @@
       "trailerPlate": "VPP6663",
       "id": "561197dc-b328-46f5-b5af-2bd6dc257026",
       "recordedAt": "2026-10-01T22:22:12.909Z"
+    },
+    {
+      "serial": "FSE-CF-43",
+      "action": "reserved",
+      "vessel": "HELANG INTEGRATED PLATFORM",
+      "id": "4dd6cf35-e17a-43d1-b772-9731a36146e0",
+      "recordedAt": "2026-10-01T22:22:33.536Z",
+      "date": "2026-10-02"
     }
   ],
   "truckRecords": [
