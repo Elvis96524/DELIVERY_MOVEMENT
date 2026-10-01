@@ -6085,6 +6085,26 @@
       },
       "id": "3eb1e937-2a7a-4cf4-b47b-2f50d592a37b",
       "recordedAt": "2026-10-01T05:05:17.133Z"
+    },
+    {
+      "driver": "SHAHRIN",
+      "laborers": "SYUKRI,BOBOI",
+      "vessel": "PERDANA ENDURANCE,EMERALD",
+      "place": "Mutiara",
+      "truckPlate": "QMU6228",
+      "date": "2026-10-01",
+      "timeDelivery": "09:43",
+      "timeBack": "",
+      "items": {
+        "basketLarge": 0,
+        "basketSmall": 0,
+        "basketThai": 0,
+        "roBottles": 0,
+        "others": 0,
+        "othersNote": ""
+      },
+      "id": "262dfe3e-dcef-45bf-9ce0-1d9a1ea3392e",
+      "recordedAt": "2026-10-01T01:44:01.733Z"
     }
   ],
   "drivers": {
