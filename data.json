@@ -2233,12 +2233,19 @@
     },
     "TK-4014": {
       "serial": "TK-4014",
-      "status": "loaded",
-      "vessel": "SK PURPOSE",
+      "status": "backloaded",
+      "vessel": "",
       "nextVessel": "",
-      "lastQuantities": null,
+      "lastQuantities": {
+        "basketLarge": 0,
+        "basketSmall": 0,
+        "basketThai": 0,
+        "roBottles": 0,
+        "others": 0,
+        "othersNote": ""
+      },
       "createdAt": "2026-09-22T03:47:46.499Z",
-      "updatedAt": "2026-09-29T08:29:10.441Z",
+      "updatedAt": "2026-10-02T02:51:14.007Z",
       "length": 2.5,
       "width": 2.44,
       "height": 2.75,
@@ -5551,6 +5558,23 @@
       },
       "id": "96b116e9-9767-4aeb-b372-d01e55b3b012",
       "recordedAt": "2026-10-02T02:51:05.007Z"
+    },
+    {
+      "serial": "TK-4014",
+      "action": "backloaded",
+      "vessel": "",
+      "date": "2026-10-02",
+      "trailerPlate": "VPP6663",
+      "quantities": {
+        "basketLarge": 0,
+        "basketSmall": 0,
+        "basketThai": 0,
+        "roBottles": 0,
+        "others": 0,
+        "othersNote": ""
+      },
+      "id": "38b275fa-6a08-4db7-9730-cb00223c6e57",
+      "recordedAt": "2026-10-02T02:51:14.007Z"
     }
   ],
   "truckRecords": [
