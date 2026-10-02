@@ -493,6 +493,7 @@
         <thead>
           <tr>
             <th>Date</th>
+            <th>Actions</th>
             <th>Driver</th>
             <th>Laborer(s)</th>
             <th>Vessel</th>
@@ -501,7 +502,6 @@
             <th>Delivery time</th>
             <th>Back to yard</th>
             <th>Items returned</th>
-            <th>Actions</th>
           </tr>
         </thead>
         <tbody id="trucksBody"></tbody>
@@ -2850,6 +2850,10 @@
       var tr = document.createElement("tr");
       tr.innerHTML =
         '<td class="mono">' + formatDMY(t.date) + '</td>' +
+        '<td><div class="row-actions">' +
+          '<button class="btn btn-sm btn-ghost" data-truck-edit="' + t.id + '">Edit</button>' +
+          (adminUnlocked ? '<button class="btn btn-sm btn-danger" data-truck-delete="' + t.id + '">Remove</button>' : "") +
+        '</div></td>' +
         '<td>' + escapeHtml(t.driver || "—") + '</td>' +
         '<td>' + escapeHtml(t.laborers || "—") + '</td>' +
         '<td>' + escapeHtml(t.vessel || "—") + '</td>' +
@@ -2857,11 +2861,7 @@
         '<td class="mono">' + escapeHtml(t.truckPlate || "—") + '</td>' +
         '<td class="mono">' + (t.timeDelivery || "—") + '</td>' +
         '<td class="mono">' + (t.timeBack || "—") + '</td>' +
-        '<td>' + fmtItems(t.items) + '</td>' +
-        '<td><div class="row-actions">' +
-          '<button class="btn btn-sm btn-ghost" data-truck-edit="' + t.id + '">Edit</button>' +
-          (adminUnlocked ? '<button class="btn btn-sm btn-danger" data-truck-delete="' + t.id + '">Remove</button>' : "") +
-        '</div></td>';
+        '<td>' + fmtItems(t.items) + '</td>';
       body.appendChild(tr);
     });
 
