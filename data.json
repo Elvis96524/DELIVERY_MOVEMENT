@@ -1002,8 +1002,8 @@
     },
     "FSE-CF-48": {
       "serial": "FSE-CF-48",
-      "status": "backloaded",
-      "vessel": "",
+      "status": "reserved",
+      "vessel": "OS ONE",
       "nextVessel": "",
       "lastQuantities": {
         "basketLarge": 0,
@@ -1014,7 +1014,7 @@
         "othersNote": ""
       },
       "createdAt": "2026-09-21T07:48:04.174Z",
-      "updatedAt": "2026-10-02T02:51:05.007Z",
+      "updatedAt": "2026-10-02T03:51:19.633Z",
       "length": 2.991,
       "width": 2.286,
       "height": 2.519,
@@ -5598,6 +5598,14 @@
       "vessel": "OS ONE",
       "id": "009d2273-4bed-4efb-9fa7-d26fb59f3326",
       "recordedAt": "2026-10-02T03:51:07.469Z",
+      "date": "2026-10-02"
+    },
+    {
+      "serial": "FSE-CF-48",
+      "action": "reserved",
+      "vessel": "OS ONE",
+      "id": "a2bbae81-da1b-40c4-9f7f-a71168e2f9f0",
+      "recordedAt": "2026-10-02T03:51:19.633Z",
       "date": "2026-10-02"
     }
   ],
