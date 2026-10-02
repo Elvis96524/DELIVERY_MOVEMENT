@@ -6205,6 +6205,26 @@
       },
       "id": "9e50fb52-1f87-49de-9fae-e3f71082be1b",
       "recordedAt": "2026-10-02T00:42:50.384Z"
+    },
+    {
+      "driver": "SYAH",
+      "laborers": "Boboi,nasir",
+      "vessel": "SK PRODIGY",
+      "place": "Mutiara",
+      "truckPlate": "QMU6228",
+      "date": "2026-10-02",
+      "timeDelivery": "09:21",
+      "timeBack": "",
+      "items": {
+        "basketLarge": 0,
+        "basketSmall": 0,
+        "basketThai": 0,
+        "roBottles": 0,
+        "others": 0,
+        "othersNote": ""
+      },
+      "id": "f5a56cd7-1a8f-482b-b2ad-6191597d3c4b",
+      "recordedAt": "2026-10-02T01:21:38.444Z"
     }
   ],
   "drivers": {
