@@ -865,7 +865,7 @@
 
     <div class="table-wrap">
       <table>
-        <thead><tr><th>Driver ID</th><th>Name</th><th>Added</th><th>Actions</th></tr></thead>
+        <thead><tr><th>Driver ID</th><th>Actions</th><th>Name</th><th>Added</th></tr></thead>
         <tbody id="driversBody"></tbody>
       </table>
     </div>
@@ -1930,12 +1930,12 @@
       var tr = document.createElement("tr");
       tr.innerHTML =
         '<td class="mono">' + escapeHtml(id) + '</td>' +
-        '<td>' + escapeHtml(d.name) + (d.active === false ? ' <span class="subtext">(inactive)</span>' : '') + '</td>' +
-        '<td class="mono">' + (d.createdAt ? formatDMY(d.createdAt.slice(0,10)) : "—") + '</td>' +
         '<td><div class="row-actions">' +
           '<button class="btn btn-sm btn-ghost" data-reset-pin="' + id + '">Reset PIN</button>' +
           '<button class="btn btn-sm btn-danger" data-delete-driver="' + id + '">Delete</button>' +
-        '</div></td>';
+        '</div></td>' +
+        '<td>' + escapeHtml(d.name) + (d.active === false ? ' <span class="subtext">(inactive)</span>' : '') + '</td>' +
+        '<td class="mono">' + (d.createdAt ? formatDMY(d.createdAt.slice(0,10)) : "—") + '</td>';
       body.appendChild(tr);
     });
 
