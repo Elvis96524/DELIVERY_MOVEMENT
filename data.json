@@ -80,12 +80,19 @@
     },
     "DF-02": {
       "serial": "DF-02",
-      "status": "loaded",
-      "vessel": "SK PURPOSE",
+      "status": "backloaded",
+      "vessel": "",
       "nextVessel": "",
-      "lastQuantities": null,
+      "lastQuantities": {
+        "basketLarge": 0,
+        "basketSmall": 0,
+        "basketThai": 0,
+        "roBottles": 0,
+        "others": 0,
+        "othersNote": ""
+      },
       "createdAt": "2026-09-21T02:18:23.156Z",
-      "updatedAt": "2026-09-29T08:20:29.074Z",
+      "updatedAt": "2026-10-02T02:50:51.756Z",
       "length": 2.438,
       "width": 2.438,
       "height": 2.76,
@@ -5503,6 +5510,23 @@
       "id": "4dd6cf35-e17a-43d1-b772-9731a36146e0",
       "recordedAt": "2026-10-01T22:22:33.536Z",
       "date": "2026-10-02"
+    },
+    {
+      "serial": "DF-02",
+      "action": "backloaded",
+      "vessel": "",
+      "date": "2026-10-02",
+      "trailerPlate": "VPP6663",
+      "quantities": {
+        "basketLarge": 0,
+        "basketSmall": 0,
+        "basketThai": 0,
+        "roBottles": 0,
+        "others": 0,
+        "othersNote": ""
+      },
+      "id": "4ad10464-070f-4a7e-aad0-203710a1e536",
+      "recordedAt": "2026-10-02T02:50:51.754Z"
     }
   ],
   "truckRecords": [
