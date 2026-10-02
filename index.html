@@ -1648,9 +1648,17 @@
     var show = adminUnlocked;
     document.getElementById("syncSettingsBtn").classList.toggle("hidden", !show);
   }
+  var lastRenderedAdminUnlocked = null; // tracks whether row actions (e.g. Remove) were last drawn for an admin
   function checkLoginGate(){
     checkLoginGateCore();
     updateSyncBtn();
+    if(adminUnlocked !== lastRenderedAdminUnlocked){
+      // Signing in/out (or an admin PIN change) changes which row buttons — like
+      // Remove — someone should see, even without switching tabs or editing anything.
+      lastRenderedAdminUnlocked = adminUnlocked;
+      renderContainers();
+      renderTrucks();
+    }
   }
   function checkLoginGateCore(){
     normalizeAuthData();
@@ -2284,6 +2292,7 @@
 
   // ---------- delete container ----------
   async function deleteContainer(serial){
+    if(!adminUnlocked){ showToast("Only the admin can remove containers.", true); return; }
     var ok = await showConfirm(
       "Remove container",
       "Remove container " + serial + "? This also clears its history record. This cannot be undone."
@@ -2541,7 +2550,7 @@
         '<td><div class="row-actions">' +
           '<button class="btn btn-sm" data-status="' + c.serial + '">Update status</button>' +
           '<button class="btn btn-sm btn-ghost" data-edit="' + c.serial + '">Edit</button>' +
-          '<button class="btn btn-sm btn-danger" data-delete="' + c.serial + '">Remove</button>' +
+          (adminUnlocked ? '<button class="btn btn-sm btn-danger" data-delete="' + c.serial + '">Remove</button>' : "") +
         '</div></td>' +
         '<td class="' + expiryClass(c.expiry) + '">' + (c.expiry ? formatDMY(c.expiry) : "—") + '</td>' +
         '<td class="dim-block">' + fmtDim(c.length) + ' × ' + fmtDim(c.width) + ' × ' + fmtDim(c.height) + '</td>' +
@@ -2746,6 +2755,7 @@
   }
 
   async function deleteTruck(id){
+    if(!adminUnlocked){ showToast("Only the admin can remove truck records.", true); return; }
     var ok = await showConfirm("Remove truck record", "Remove this truck record? This cannot be undone.");
     if(!ok) return;
     db.truckRecords = (db.truckRecords || []).filter(function(r){ return r.id !== id; });
@@ -2850,7 +2860,7 @@
         '<td>' + fmtItems(t.items) + '</td>' +
         '<td><div class="row-actions">' +
           '<button class="btn btn-sm btn-ghost" data-truck-edit="' + t.id + '">Edit</button>' +
-          '<button class="btn btn-sm btn-danger" data-truck-delete="' + t.id + '">Remove</button>' +
+          (adminUnlocked ? '<button class="btn btn-sm btn-danger" data-truck-delete="' + t.id + '">Remove</button>' : "") +
         '</div></td>';
       body.appendChild(tr);
     });
