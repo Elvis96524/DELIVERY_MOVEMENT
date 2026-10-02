@@ -2233,8 +2233,8 @@
     },
     "TK-4014": {
       "serial": "TK-4014",
-      "status": "backloaded",
-      "vessel": "",
+      "status": "reserved",
+      "vessel": "OS ONE",
       "nextVessel": "",
       "lastQuantities": {
         "basketLarge": 0,
@@ -2245,7 +2245,7 @@
         "othersNote": ""
       },
       "createdAt": "2026-09-22T03:47:46.499Z",
-      "updatedAt": "2026-10-02T02:51:14.007Z",
+      "updatedAt": "2026-10-02T03:51:31.900Z",
       "length": 2.5,
       "width": 2.44,
       "height": 2.75,
@@ -5606,6 +5606,14 @@
       "vessel": "OS ONE",
       "id": "a2bbae81-da1b-40c4-9f7f-a71168e2f9f0",
       "recordedAt": "2026-10-02T03:51:19.633Z",
+      "date": "2026-10-02"
+    },
+    {
+      "serial": "TK-4014",
+      "action": "reserved",
+      "vessel": "OS ONE",
+      "id": "fdd69909-0c12-460e-8430-881e2e92f11f",
+      "recordedAt": "2026-10-02T03:51:31.900Z",
       "date": "2026-10-02"
     }
   ],
