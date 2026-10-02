@@ -1002,12 +1002,19 @@
     },
     "FSE-CF-48": {
       "serial": "FSE-CF-48",
-      "status": "loaded",
-      "vessel": "SK PURPOSE",
+      "status": "backloaded",
+      "vessel": "",
       "nextVessel": "",
-      "lastQuantities": null,
+      "lastQuantities": {
+        "basketLarge": 0,
+        "basketSmall": 0,
+        "basketThai": 0,
+        "roBottles": 0,
+        "others": 0,
+        "othersNote": ""
+      },
       "createdAt": "2026-09-21T07:48:04.174Z",
-      "updatedAt": "2026-09-29T08:24:47.017Z",
+      "updatedAt": "2026-10-02T02:51:05.007Z",
       "length": 2.991,
       "width": 2.286,
       "height": 2.519,
@@ -5527,6 +5534,23 @@
       },
       "id": "4ad10464-070f-4a7e-aad0-203710a1e536",
       "recordedAt": "2026-10-02T02:50:51.754Z"
+    },
+    {
+      "serial": "FSE-CF-48",
+      "action": "backloaded",
+      "vessel": "",
+      "date": "2026-10-02",
+      "trailerPlate": "VPP6663",
+      "quantities": {
+        "basketLarge": 0,
+        "basketSmall": 0,
+        "basketThai": 0,
+        "roBottles": 0,
+        "others": 0,
+        "othersNote": ""
+      },
+      "id": "96b116e9-9767-4aeb-b372-d01e55b3b012",
+      "recordedAt": "2026-10-02T02:51:05.007Z"
     }
   ],
   "truckRecords": [
