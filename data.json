@@ -2084,8 +2084,8 @@
     },
     "PTSB100030-0": {
       "serial": "PTSB100030-0",
-      "status": "backloaded",
-      "vessel": "",
+      "status": "reserved",
+      "vessel": "OS ONE",
       "nextVessel": "",
       "lastQuantities": {
         "basketLarge": 0,
@@ -2096,7 +2096,7 @@
         "othersNote": ""
       },
       "createdAt": "2026-09-22T03:44:11.731Z",
-      "updatedAt": "2026-09-29T08:28:21.745Z",
+      "updatedAt": "2026-10-02T03:51:07.469Z",
       "length": 2.991,
       "width": 2.438,
       "height": 2.591,
@@ -5590,6 +5590,14 @@
       "vessel": "KEYFIELD WISDOM",
       "id": "a26f16a4-e1b5-4373-912b-79b2f149b294",
       "recordedAt": "2026-10-02T03:50:50.860Z",
+      "date": "2026-10-02"
+    },
+    {
+      "serial": "PTSB100030-0",
+      "action": "reserved",
+      "vessel": "OS ONE",
+      "id": "009d2273-4bed-4efb-9fa7-d26fb59f3326",
+      "recordedAt": "2026-10-02T03:51:07.469Z",
       "date": "2026-10-02"
     }
   ],
