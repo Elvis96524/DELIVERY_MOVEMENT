@@ -6185,6 +6185,26 @@
       },
       "id": "44a277c7-b448-486c-96a7-d4d523bc8019",
       "recordedAt": "2026-10-01T10:29:41.805Z"
+    },
+    {
+      "driver": "SHAHRIN",
+      "laborers": "SYUKRI",
+      "vessel": "BORNEO GROCERY,BORNEO MART",
+      "place": "",
+      "truckPlate": "SK8226E",
+      "date": "2026-10-01",
+      "timeDelivery": "14:49",
+      "timeBack": "17:10",
+      "items": {
+        "basketLarge": 0,
+        "basketSmall": 0,
+        "basketThai": 0,
+        "roBottles": 0,
+        "others": 0,
+        "othersNote": "15 bakul"
+      },
+      "id": "9e50fb52-1f87-49de-9fae-e3f71082be1b",
+      "recordedAt": "2026-10-02T00:42:50.384Z"
     }
   ],
   "drivers": {
