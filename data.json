@@ -6407,11 +6407,11 @@
       "truckPlate": "SK8226E",
       "date": "2026-10-02",
       "timeDelivery": "13:50",
-      "timeBack": "",
+      "timeBack": "14:39",
       "items": {
         "basketLarge": 0,
         "basketSmall": 0,
-        "basketThai": 0,
+        "basketThai": 5,
         "roBottles": 0,
         "others": 0,
         "othersNote": ""
