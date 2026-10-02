@@ -2022,8 +2022,8 @@
     },
     "PTSB100027-6": {
       "serial": "PTSB100027-6",
-      "status": "backloaded",
-      "vessel": "",
+      "status": "reserved",
+      "vessel": "PETRO DIAMOND",
       "nextVessel": "",
       "lastQuantities": {
         "basketLarge": 0,
@@ -2034,7 +2034,7 @@
         "othersNote": ""
       },
       "createdAt": "2026-09-22T03:43:19.771Z",
-      "updatedAt": "2026-09-29T08:28:06.161Z",
+      "updatedAt": "2026-10-02T03:51:45.497Z",
       "length": 2.991,
       "width": 2.438,
       "height": 2.591,
@@ -5614,6 +5614,14 @@
       "vessel": "OS ONE",
       "id": "fdd69909-0c12-460e-8430-881e2e92f11f",
       "recordedAt": "2026-10-02T03:51:31.900Z",
+      "date": "2026-10-02"
+    },
+    {
+      "serial": "PTSB100027-6",
+      "action": "reserved",
+      "vessel": "PETRO DIAMOND",
+      "id": "3fd936a2-7fd7-4754-8928-08b694eb8802",
+      "recordedAt": "2026-10-02T03:51:45.497Z",
       "date": "2026-10-02"
     }
   ],
