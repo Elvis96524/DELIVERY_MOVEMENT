@@ -6418,6 +6418,26 @@
       },
       "id": "328d0a78-1a77-4e4c-922c-01844d3088fd",
       "recordedAt": "2026-10-02T05:50:06.038Z"
+    },
+    {
+      "driver": "SHAHRIN",
+      "laborers": "boboi, syukri",
+      "vessel": "PERDANA EMERALD, PERDANA ENDURANCE",
+      "place": "Mutiara",
+      "truckPlate": "QMU6228",
+      "date": "2026-10-01",
+      "timeDelivery": "09:30",
+      "timeBack": "14:00",
+      "items": {
+        "basketLarge": 0,
+        "basketSmall": 0,
+        "basketThai": 0,
+        "roBottles": 0,
+        "others": 0,
+        "othersNote": "PED 8gal, PEM 5gal"
+      },
+      "id": "3f4a4b1d-e31d-4a6b-b998-5b070319a556",
+      "recordedAt": "2026-10-02T06:46:35.222Z"
     }
   ],
   "drivers": {
