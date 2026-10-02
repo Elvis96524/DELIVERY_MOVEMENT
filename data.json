@@ -6225,6 +6225,26 @@
       },
       "id": "f5a56cd7-1a8f-482b-b2ad-6191597d3c4b",
       "recordedAt": "2026-10-02T01:21:38.444Z"
+    },
+    {
+      "driver": "SHAHRIN",
+      "laborers": "AMAT,WAN",
+      "vessel": "SK PLENTY",
+      "place": "ASB",
+      "truckPlate": "SAB9100K",
+      "date": "2026-10-02",
+      "timeDelivery": "09:57",
+      "timeBack": "",
+      "items": {
+        "basketLarge": 0,
+        "basketSmall": 0,
+        "basketThai": 0,
+        "roBottles": 0,
+        "others": 0,
+        "othersNote": ""
+      },
+      "id": "248576d9-9ef8-4b1b-be50-d9e1ad44b1ef",
+      "recordedAt": "2026-10-02T01:57:33.419Z"
     }
   ],
   "drivers": {
