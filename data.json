@@ -6387,12 +6387,12 @@
       "truckPlate": "SAB9100K",
       "date": "2026-10-02",
       "timeDelivery": "09:57",
-      "timeBack": "",
+      "timeBack": "13:00",
       "items": {
         "basketLarge": 0,
         "basketSmall": 0,
         "basketThai": 0,
-        "roBottles": 0,
+        "roBottles": 8,
         "others": 0,
         "othersNote": ""
       },
