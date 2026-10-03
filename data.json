@@ -6438,6 +6438,26 @@
       },
       "id": "3f4a4b1d-e31d-4a6b-b998-5b070319a556",
       "recordedAt": "2026-10-02T06:46:35.222Z"
+    },
+    {
+      "driver": "SYAH",
+      "laborers": "Ahmad,Saiful",
+      "vessel": "Tovud Koposizon Plt",
+      "place": "Kilang air",
+      "truckPlate": "SAB9100K",
+      "date": "2026-10-03",
+      "timeDelivery": "11:15",
+      "timeBack": "",
+      "items": {
+        "basketLarge": 0,
+        "basketSmall": 0,
+        "basketThai": 0,
+        "roBottles": 0,
+        "others": 0,
+        "othersNote": ""
+      },
+      "id": "f863ade1-f546-4fdc-ae69-d360b21b48cd",
+      "recordedAt": "2026-10-03T03:27:17.694Z"
     }
   ],
   "drivers": {
