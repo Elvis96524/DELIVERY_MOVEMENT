@@ -6521,12 +6521,12 @@
       "truckPlate": "SAB9100K",
       "date": "2026-10-05",
       "timeDelivery": "13:05",
-      "timeBack": "",
+      "timeBack": "16:36",
       "items": {
         "basketLarge": 0,
         "basketSmall": 0,
         "basketThai": 0,
-        "roBottles": 0,
+        "roBottles": 8,
         "others": 0,
         "othersNote": ""
       },
