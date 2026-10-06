@@ -1566,8 +1566,8 @@
     },
     "FSE-DC-28": {
       "serial": "FSE-DC-28",
-      "status": "loaded",
-      "vessel": "KEYFIELD WISDOM",
+      "status": "backloaded",
+      "vessel": "",
       "nextVessel": "",
       "lastQuantities": {
         "basketLarge": 0,
@@ -1578,7 +1578,7 @@
         "othersNote": ""
       },
       "createdAt": "2026-09-21T08:56:29.393Z",
-      "updatedAt": "2026-09-30T01:19:07.188Z",
+      "updatedAt": "2026-10-06T04:06:36.953Z",
       "length": 2.991,
       "width": 2.438,
       "height": 2.591,
@@ -6007,6 +6007,23 @@
       },
       "id": "379ea786-a6f0-47b4-a1e1-c7ded5f7e3fa",
       "recordedAt": "2026-10-06T04:06:26.252Z"
+    },
+    {
+      "serial": "FSE-DC-28",
+      "action": "backloaded",
+      "vessel": "",
+      "date": "2026-10-06",
+      "trailerPlate": "BPY9993",
+      "quantities": {
+        "basketLarge": 0,
+        "basketSmall": 0,
+        "basketThai": 0,
+        "roBottles": 0,
+        "others": 0,
+        "othersNote": ""
+      },
+      "id": "83596440-57eb-4acf-8356-13481e2812b7",
+      "recordedAt": "2026-10-06T04:06:36.953Z"
     }
   ],
   "truckRecords": [
