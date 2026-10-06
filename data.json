@@ -2316,7 +2316,7 @@
     },
     "TK-5006": {
       "serial": "TK-5006",
-      "status": "reserved",
+      "status": "loaded",
       "vessel": "KEYFIELD WISDOM",
       "nextVessel": "",
       "lastQuantities": {
@@ -2328,7 +2328,7 @@
         "othersNote": ""
       },
       "createdAt": "2026-09-22T03:48:25.963Z",
-      "updatedAt": "2026-10-02T03:50:37.260Z",
+      "updatedAt": "2026-10-06T01:13:35.671Z",
       "length": 2.5,
       "width": 2.44,
       "height": 2.75,
@@ -5821,6 +5821,15 @@
       "trailerPlate": "BPY9993",
       "id": "ddc02875-af73-4133-8a05-bc4d03965f69",
       "recordedAt": "2026-10-06T01:13:28.902Z"
+    },
+    {
+      "serial": "TK-5006",
+      "action": "loaded",
+      "vessel": "KEYFIELD WISDOM",
+      "date": "2026-10-06",
+      "trailerPlate": "BPY9993",
+      "id": "f99bd9cd-e93f-4b5b-a329-06bdd8b20a40",
+      "recordedAt": "2026-10-06T01:13:35.671Z"
     }
   ],
   "truckRecords": [
