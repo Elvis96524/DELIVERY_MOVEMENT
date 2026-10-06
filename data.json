@@ -869,8 +869,8 @@
     },
     "FSE-CF-41": {
       "serial": "FSE-CF-41",
-      "status": "loaded",
-      "vessel": "OS ONE",
+      "status": "backloaded",
+      "vessel": "",
       "nextVessel": "",
       "lastQuantities": {
         "basketLarge": 0,
@@ -881,7 +881,7 @@
         "othersNote": ""
       },
       "createdAt": "2026-09-21T07:45:14.150Z",
-      "updatedAt": "2026-10-01T22:20:59.588Z",
+      "updatedAt": "2026-10-06T02:14:57.348Z",
       "length": 2.991,
       "width": 2.286,
       "height": 2.519,
@@ -5847,6 +5847,23 @@
       },
       "id": "2c62b279-9f7b-493a-856f-d2d472e43410",
       "recordedAt": "2026-10-06T02:14:46.140Z"
+    },
+    {
+      "serial": "FSE-CF-41",
+      "action": "backloaded",
+      "vessel": "",
+      "date": "2026-10-06",
+      "trailerPlate": "VPP6663",
+      "quantities": {
+        "basketLarge": 0,
+        "basketSmall": 0,
+        "basketThai": 0,
+        "roBottles": 0,
+        "others": 0,
+        "othersNote": ""
+      },
+      "id": "1b3bace4-7fa2-4805-94af-6d7114138a7b",
+      "recordedAt": "2026-10-06T02:14:57.348Z"
     }
   ],
   "truckRecords": [
