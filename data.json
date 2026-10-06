@@ -6847,8 +6847,8 @@
     {
       "driver": "SYAH",
       "laborers": "Boboi",
-      "vessel": "Lee, Tokong",
-      "place": "",
+      "vessel": "Lee",
+      "place": "Lee supplier",
       "truckPlate": "WGS2831",
       "date": "2026-10-05",
       "timeDelivery": "13:20",
@@ -6883,26 +6883,6 @@
       },
       "id": "1c29648f-19b7-4728-a9af-5db089ecb53a",
       "recordedAt": "2026-10-05T06:59:31.967Z"
-    },
-    {
-      "driver": "SYAH",
-      "laborers": "Aliff",
-      "vessel": "Tokong",
-      "place": "",
-      "truckPlate": "SK8226E",
-      "date": "2026-10-06",
-      "timeDelivery": "13:15",
-      "timeBack": "13:55",
-      "items": {
-        "basketLarge": 0,
-        "basketSmall": 0,
-        "basketThai": 0,
-        "roBottles": 0,
-        "others": 0,
-        "othersNote": ""
-      },
-      "id": "45caf783-9075-4154-9735-4995394468ff",
-      "recordedAt": "2026-10-06T06:04:57.145Z"
     },
     {
       "driver": "SAIFUL",
