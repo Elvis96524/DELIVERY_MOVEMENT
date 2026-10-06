@@ -2247,8 +2247,8 @@
     },
     "TK-4014": {
       "serial": "TK-4014",
-      "status": "reserved",
-      "vessel": "OS ONE",
+      "status": "backloaded",
+      "vessel": "",
       "nextVessel": "",
       "lastQuantities": {
         "basketLarge": 0,
@@ -2256,10 +2256,10 @@
         "basketThai": 0,
         "roBottles": 0,
         "others": 0,
-        "othersNote": ""
+        "othersNote": "RESERVATION CANCELLED"
       },
       "createdAt": "2026-09-22T03:47:46.499Z",
-      "updatedAt": "2026-10-02T03:51:31.900Z",
+      "updatedAt": "2026-10-06T00:10:36.306Z",
       "length": 2.5,
       "width": 2.44,
       "height": 2.75,
@@ -5730,6 +5730,23 @@
       "trailerPlate": "BPY9993",
       "id": "6af6d2ed-dc37-4634-b50f-4f61d6fc3094",
       "recordedAt": "2026-10-06T00:09:49.033Z"
+    },
+    {
+      "serial": "TK-4014",
+      "action": "backloaded",
+      "vessel": "",
+      "date": "2026-10-06",
+      "trailerPlate": "",
+      "quantities": {
+        "basketLarge": 0,
+        "basketSmall": 0,
+        "basketThai": 0,
+        "roBottles": 0,
+        "others": 0,
+        "othersNote": "RESERVATION CANCELLED"
+      },
+      "id": "b72103f6-90f3-4886-b924-79474c301203",
+      "recordedAt": "2026-10-06T00:10:36.306Z"
     }
   ],
   "truckRecords": [
