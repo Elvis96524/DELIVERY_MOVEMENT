@@ -899,8 +899,8 @@
     },
     "FSE-CF-42": {
       "serial": "FSE-CF-42",
-      "status": "loaded",
-      "vessel": "SK PREMIER",
+      "status": "backloaded",
+      "vessel": "",
       "nextVessel": "",
       "lastQuantities": {
         "basketLarge": 0,
@@ -911,7 +911,7 @@
         "othersNote": ""
       },
       "createdAt": "2026-09-21T07:45:32.510Z",
-      "updatedAt": "2026-09-30T01:49:40.055Z",
+      "updatedAt": "2026-10-06T04:07:25.056Z",
       "length": 2.991,
       "width": 2.286,
       "height": 2.519,
@@ -6024,6 +6024,23 @@
       },
       "id": "83596440-57eb-4acf-8356-13481e2812b7",
       "recordedAt": "2026-10-06T04:06:36.953Z"
+    },
+    {
+      "serial": "FSE-CF-42",
+      "action": "backloaded",
+      "vessel": "",
+      "date": "2026-10-06",
+      "trailerPlate": "VPP6663",
+      "quantities": {
+        "basketLarge": 0,
+        "basketSmall": 0,
+        "basketThai": 0,
+        "roBottles": 0,
+        "others": 0,
+        "othersNote": ""
+      },
+      "id": "c35a80d4-112a-4f1a-9804-4fded2f443fb",
+      "recordedAt": "2026-10-06T04:07:25.056Z"
     }
   ],
   "truckRecords": [
