@@ -1023,7 +1023,7 @@
     },
     "FSE-CF-48": {
       "serial": "FSE-CF-48",
-      "status": "reserved",
+      "status": "loaded",
       "vessel": "OS ONE",
       "nextVessel": "",
       "lastQuantities": {
@@ -1035,7 +1035,7 @@
         "othersNote": ""
       },
       "createdAt": "2026-09-21T07:48:04.174Z",
-      "updatedAt": "2026-10-02T03:51:19.633Z",
+      "updatedAt": "2026-10-07T09:01:43.254Z",
       "length": 2.991,
       "width": 2.286,
       "height": 2.519,
@@ -6134,6 +6134,15 @@
       },
       "id": "bd12638e-0c6b-4f66-bebc-4d7684b422a7",
       "recordedAt": "2026-10-07T09:00:58.174Z"
+    },
+    {
+      "serial": "FSE-CF-48",
+      "action": "loaded",
+      "vessel": "OS ONE",
+      "date": "2026-10-07",
+      "trailerPlate": "VPP6663",
+      "id": "4a368675-31cf-4f97-8967-60fd4784d82d",
+      "recordedAt": "2026-10-07T09:01:43.254Z"
     }
   ],
   "truckRecords": [
