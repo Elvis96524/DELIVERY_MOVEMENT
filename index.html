@@ -961,7 +961,7 @@
   // ---------- data layer ----------
   var STORAGE_KEY = "containerLogV1";
   var GH_CONFIG_KEY = "containerLogGitHubConfig";
-  var db = { containers:{}, history:[], truckRecords:[] };
+  var db = { containers:{}, history:[], truckRecords:[], drivers:{}, adminPinHash:"", deletedIds:{containers:[],trucks:[],drivers:[]} };
   var ghConfig = null;   // {token, owner, repo, branch, path} (direct), {proxy} (shared), or null = local-only
   var sharedCfg = null;  // {proxy} when config.json provides a shared sync address
   var ghActive = false;  // true once a GitHub config is loaded and reachable
@@ -987,7 +987,8 @@
             history: Array.isArray(parsed.history) ? parsed.history : [],
             truckRecords: Array.isArray(parsed.truckRecords) ? parsed.truckRecords : [],
             drivers: (parsed.drivers && typeof parsed.drivers === "object") ? parsed.drivers : {},
-            adminPinHash: typeof parsed.adminPinHash === "string" ? parsed.adminPinHash : ""
+            adminPinHash: typeof parsed.adminPinHash === "string" ? parsed.adminPinHash : "",
+            deletedIds: normalizeDeletedIds(parsed.deletedIds)
           };
           out.history.forEach(function(h){
             if(!h.date){ h.date = h.timestamp ? String(h.timestamp).slice(0,10) : todayISO(); }
@@ -997,7 +998,22 @@
         }
       }
     }catch(e){ /* fall through to fresh store */ }
-    return { containers:{}, history:[], truckRecords:[], drivers:{}, adminPinHash:"" };
+    return { containers:{}, history:[], truckRecords:[], drivers:{}, adminPinHash:"", deletedIds:{containers:[],trucks:[],drivers:[]} };
+  }
+
+  // A delete tombstone list, defaulted and shape-checked. Devices updating from
+  // before this field existed (or data pulled from an older save) just get an
+  // empty list here — nothing is retroactively deleted.
+  function normalizeDeletedIds(d){
+    d = (d && typeof d === "object") ? d : {};
+    function arr(v){ return Array.isArray(v) ? v.filter(function(x){ return x !== null && x !== undefined; }).map(String) : []; }
+    return { containers: arr(d.containers), trucks: arr(d.trucks), drivers: arr(d.drivers) };
+  }
+  function tombstoneAdd(list, id){
+    list = Array.isArray(list) ? list.slice() : [];
+    id = String(id);
+    if(list.indexOf(id) === -1) list.push(id);
+    return list;
   }
 
   // saveData(): always caches to this browser (so the app still has its
@@ -1246,23 +1262,44 @@
   // ---- MERGE START ----
   // Three-way merge: "base" is the last version known to be in GitHub, "local" is this
   // device's version, "remote" is what GitHub holds now. Anything this device changed
-  // (added, edited, deleted) is applied on top of remote; everything else follows remote.
+  // (added or edited) is applied on top of remote; everything else follows remote.
   // Result: two people saving at the same moment never lose each other's records.
+  //
+  // Deletion is handled separately from everything else, through explicit tombstone
+  // lists (db.deletedIds), rather than by noticing a record is "missing from local".
+  // A record can go missing from a device's own copy for reasons that have nothing to
+  // do with anyone deleting it — a browser tab left open for hours, a second copy of
+  // the app in another tab, a slow phone that fell behind on refreshing — and if that
+  // stale copy is later treated as "the truth" for what was deleted, every record
+  // added anywhere else since it last refreshed gets silently wiped out the moment it
+  // saves. Only an actual tap on Remove/Delete adds something to a tombstone list, and
+  // tombstone lists only ever grow (union of base+local+remote), so a real delete
+  // still always reaches every device, but staleness alone can never delete anything.
   function mergeHas(o, k){ return Object.prototype.hasOwnProperty.call(o, k); }
   function mergeSame(a, b){ return JSON.stringify(a) === JSON.stringify(b); }
-  function mergeMap(base, local, remote){
+  function mergeTombstoneSet(baseArr, localArr, remoteArr){
+    var set = {};
+    [baseArr, localArr, remoteArr].forEach(function(arr){
+      (Array.isArray(arr) ? arr : []).forEach(function(id){ if(id !== null && id !== undefined) set[String(id)] = 1; });
+    });
+    return set;
+  }
+  function mergeMap(base, local, remote, deletedSet){
     base = base || {}; local = local || {}; remote = remote || {};
+    deletedSet = deletedSet || {};
     var keys = {}, out = {};
     [base, local, remote].forEach(function(m){ Object.keys(m).forEach(function(k){ keys[k] = 1; }); });
     Object.keys(keys).forEach(function(k){
+      if(deletedSet[k]) return; // explicitly deleted somewhere — stays deleted, however stale a copy is
       var inB = mergeHas(base, k), inL = mergeHas(local, k), inR = mergeHas(remote, k);
-      var localChanged = (inL !== inB) || (inL && !mergeSame(local[k], base[k]));
-      if(localChanged){ if(inL) out[k] = local[k]; }
-      else if(inR){ out[k] = remote[k]; }
+      var editedLocally = inL && (!inB || !mergeSame(local[k], base[k]));
+      if(editedLocally) out[k] = local[k];           // this device changed (or newly added) it — keep that
+      else if(inR) out[k] = remote[k];                 // otherwise, whatever GitHub currently has wins
+      else if(inL) out[k] = local[k];                  // remote lacks it but local does (and it's not deleted) — keep it
     });
     return out;
   }
-  function mergeArrayById(base, local, remote){
+  function mergeArrayById(base, local, remote, deletedSet){
     function toMap(arr){
       var m = {};
       (Array.isArray(arr) ? arr : []).forEach(function(it){
@@ -1271,7 +1308,7 @@
       });
       return m;
     }
-    var merged = mergeMap(toMap(base), toMap(local), toMap(remote));
+    var merged = mergeMap(toMap(base), toMap(local), toMap(remote), deletedSet);
     var out = [], used = {};
     function take(arr){
       (Array.isArray(arr) ? arr : []).forEach(function(it){
@@ -1284,22 +1321,47 @@
   }
   function mergeData(base, local, remote){
     base = base || {}; local = local || {}; remote = remote || {};
+    var dB = normalizeDeletedIds(base.deletedIds), dL = normalizeDeletedIds(local.deletedIds), dR = normalizeDeletedIds(remote.deletedIds);
+    var deletedSets = {
+      containers: mergeTombstoneSet(dB.containers, dL.containers, dR.containers),
+      trucks: mergeTombstoneSet(dB.trucks, dL.trucks, dR.trucks),
+      drivers: mergeTombstoneSet(dB.drivers, dL.drivers, dR.drivers)
+    };
+
     var keys = {}, out = {};
     [base, local, remote].forEach(function(m){ Object.keys(m).forEach(function(k){ keys[k] = 1; }); });
     Object.keys(keys).forEach(function(k){
-      if(k === "containers" || k === "drivers"){
-        out[k] = mergeMap(base[k], local[k], remote[k]);
-      } else if(k === "history" || k === "truckRecords"){
-        out[k] = mergeArrayById(base[k], local[k], remote[k]);
+      if(k === "deletedIds") return; // computed below, from all three sides' tombstones
+      if(k === "containers"){
+        out[k] = mergeMap(base[k], local[k], remote[k], deletedSets.containers);
+      } else if(k === "drivers"){
+        out[k] = mergeMap(base[k], local[k], remote[k], deletedSets.drivers);
+      } else if(k === "truckRecords"){
+        out[k] = mergeArrayById(base[k], local[k], remote[k], deletedSets.trucks);
+      } else if(k === "history"){
+        out[k] = mergeArrayById(base[k], local[k], remote[k], {}); // history is never deleted by staleness or id
       } else {
         var changed = !mergeSame(local[k], base[k]);
         var v = changed ? local[k] : remote[k];
         if(v !== undefined) out[k] = v;
       }
     });
+
+    // A deleted container's history goes with it — even on a device whose copy was
+    // stale at the moment the container was deleted elsewhere.
+    if(Object.keys(deletedSets.containers).length){
+      out.history = (out.history || []).filter(function(h){ return !deletedSets.containers[h.serial]; });
+    }
+
+    out.deletedIds = {
+      containers: Object.keys(deletedSets.containers),
+      trucks: Object.keys(deletedSets.trucks),
+      drivers: Object.keys(deletedSets.drivers)
+    };
     if(!out.containers) out.containers = {};
     if(!out.history) out.history = [];
     if(!out.truckRecords) out.truckRecords = [];
+    if(!out.drivers) out.drivers = {};
     return out;
   }
   // ---- MERGE END ----
@@ -1435,7 +1497,7 @@
         if(seededFromLocal){ pendingSeedPush = true; setDirty(true); }
       } else {
         var localFirst = seedFromLocalIfNew ? loadDataLocal() : null;
-        db = localFirst || { containers:{}, history:[], truckRecords:[] };
+        db = localFirst || { containers:{}, history:[], truckRecords:[], drivers:{}, adminPinHash:"", deletedIds:{containers:[],trucks:[],drivers:[]} };
         ghSha = null; // file doesn't exist yet — the next save creates it
         saveBase({});
         if(localFirst && (!objEmpty(localFirst.containers) || !arrEmpty(localFirst.history) || !arrEmpty(localFirst.truckRecords))){
@@ -1599,6 +1661,7 @@
   function normalizeAuthData(){
     if(!db.drivers) db.drivers = {};
     if(typeof db.adminPinHash !== "string") db.adminPinHash = "";
+    db.deletedIds = normalizeDeletedIds(db.deletedIds);
     normalizeContainerData();
   }
 
@@ -1946,6 +2009,8 @@
         var ok = await showConfirm("Delete driver", "Delete " + name + "'s access? They (and their device) will no longer be able to sign in.");
         if(!ok) return;
         delete db.drivers[id];
+        db.deletedIds = normalizeDeletedIds(db.deletedIds);
+        db.deletedIds.drivers = tombstoneAdd(db.deletedIds.drivers, id);
         saveData();
         renderDrivers();
         checkLoginGate();
@@ -2300,6 +2365,8 @@
     if(!ok) return;
     delete db.containers[serial];
     db.history = db.history.filter(function(h){ return h.serial !== serial; });
+    db.deletedIds = normalizeDeletedIds(db.deletedIds);
+    db.deletedIds.containers = tombstoneAdd(db.deletedIds.containers, serial);
     pushContainerDelete(serial);
     pushHistoryDeleteForSerial(serial);
     saveData();
@@ -2759,6 +2826,8 @@
     var ok = await showConfirm("Remove truck record", "Remove this truck record? This cannot be undone.");
     if(!ok) return;
     db.truckRecords = (db.truckRecords || []).filter(function(r){ return r.id !== id; });
+    db.deletedIds = normalizeDeletedIds(db.deletedIds);
+    db.deletedIds.trucks = tombstoneAdd(db.deletedIds.trucks, id);
     pushTruckDelete(id);
     saveData();
     renderTrucks();
