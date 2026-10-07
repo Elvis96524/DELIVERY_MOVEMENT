@@ -6903,26 +6903,6 @@
       },
       "id": "6d66f860-f66a-40be-936f-0aa17958ae34",
       "recordedAt": "2026-10-06T06:03:28.101Z"
-    },
-    {
-      "driver": "SAIFUL",
-      "laborers": "",
-      "vessel": "SK GEOTEK",
-      "place": "",
-      "truckPlate": "SAB9100K",
-      "date": "2026-10-06",
-      "timeDelivery": "16:59",
-      "timeBack": "",
-      "items": {
-        "basketLarge": 0,
-        "basketSmall": 0,
-        "basketThai": 0,
-        "roBottles": 0,
-        "others": 0,
-        "othersNote": ""
-      },
-      "id": "ba00990c-ceeb-4bef-9e15-f25668bbed4d",
-      "recordedAt": "2026-10-06T08:59:25.818Z"
     }
   ],
   "drivers": {
