@@ -6961,6 +6961,26 @@
       },
       "id": "63479368-86f4-419b-b540-07bf3ff11acc",
       "recordedAt": "2026-10-07T06:11:46.164Z"
+    },
+    {
+      "driver": "SYAH",
+      "laborers": "Alex",
+      "vessel": "Tokong",
+      "place": "",
+      "truckPlate": "WGS2831",
+      "date": "2026-10-07",
+      "timeDelivery": "14:15",
+      "timeBack": "",
+      "items": {
+        "basketLarge": 0,
+        "basketSmall": 0,
+        "basketThai": 0,
+        "roBottles": 0,
+        "others": 0,
+        "othersNote": ""
+      },
+      "id": "45109fc4-d712-43f9-8ef2-c74c515c8537",
+      "recordedAt": "2026-10-07T06:15:12.125Z"
     }
   ],
   "drivers": {
