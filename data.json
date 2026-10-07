@@ -768,8 +768,8 @@
     },
     "FSE-CF-36": {
       "serial": "FSE-CF-36",
-      "status": "backloaded",
-      "vessel": "",
+      "status": "loaded",
+      "vessel": "TWO TEJA",
       "nextVessel": "",
       "lastQuantities": {
         "basketLarge": 0,
@@ -780,7 +780,7 @@
         "othersNote": ""
       },
       "createdAt": "2026-09-21T07:43:47.790Z",
-      "updatedAt": "2026-10-07T08:16:25.484Z",
+      "updatedAt": "2026-10-01T22:20:12.918Z",
       "length": 2.991,
       "width": 2.286,
       "height": 2.519,
@@ -1023,7 +1023,7 @@
     },
     "FSE-CF-48": {
       "serial": "FSE-CF-48",
-      "status": "loaded",
+      "status": "reserved",
       "vessel": "OS ONE",
       "nextVessel": "",
       "lastQuantities": {
@@ -1035,7 +1035,7 @@
         "othersNote": ""
       },
       "createdAt": "2026-09-21T07:48:04.174Z",
-      "updatedAt": "2026-10-07T05:57:22.269Z",
+      "updatedAt": "2026-10-02T03:51:19.633Z",
       "length": 2.991,
       "width": 2.286,
       "height": 2.519,
@@ -1947,19 +1947,12 @@
     },
     "FSE-DC-48": {
       "serial": "FSE-DC-48",
-      "status": "backloaded",
-      "vessel": "",
+      "status": "loaded",
+      "vessel": "TWO TEJA",
       "nextVessel": "",
-      "lastQuantities": {
-        "basketLarge": 0,
-        "basketSmall": 0,
-        "basketThai": 0,
-        "roBottles": 0,
-        "others": 0,
-        "othersNote": ""
-      },
+      "lastQuantities": null,
       "createdAt": "2026-09-21T09:01:15.201Z",
-      "updatedAt": "2026-10-07T08:16:39.934Z",
+      "updatedAt": "2026-10-01T22:20:26.159Z",
       "length": 2.991,
       "width": 2.438,
       "height": 2.591,
@@ -2126,7 +2119,7 @@
     },
     "PTSB100030-0": {
       "serial": "PTSB100030-0",
-      "status": "loaded",
+      "status": "reserved",
       "vessel": "OS ONE",
       "nextVessel": "",
       "lastQuantities": {
@@ -2138,7 +2131,7 @@
         "othersNote": ""
       },
       "createdAt": "2026-09-22T03:44:11.731Z",
-      "updatedAt": "2026-10-07T05:57:28.385Z",
+      "updatedAt": "2026-10-02T03:51:07.469Z",
       "length": 2.991,
       "width": 2.438,
       "height": 2.591,
@@ -6971,7 +6964,7 @@
       "truckPlate": "SK8226E",
       "date": "2026-10-07",
       "timeDelivery": "13:06",
-      "timeBack": "",
+      "timeBack": "16:39",
       "items": {
         "basketLarge": 0,
         "basketSmall": 0,
