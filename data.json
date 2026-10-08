@@ -7094,6 +7094,26 @@
       },
       "id": "a4bb649a-7fc7-44d5-abf3-189d4a43bbd6",
       "recordedAt": "2026-10-07T11:11:20.823Z"
+    },
+    {
+      "driver": "SHAHRIN",
+      "laborers": "SYUKRI,BOBOI",
+      "vessel": "SK MAJESTIC",
+      "place": "LSE",
+      "truckPlate": "QMU6228",
+      "date": "2026-10-08",
+      "timeDelivery": "10:37",
+      "timeBack": "",
+      "items": {
+        "basketLarge": 0,
+        "basketSmall": 0,
+        "basketThai": 0,
+        "roBottles": 0,
+        "others": 0,
+        "othersNote": ""
+      },
+      "id": "26314010-a308-4f48-a181-103fd2c6627f",
+      "recordedAt": "2026-10-08T02:37:18.866Z"
     }
   ],
   "drivers": {
