@@ -7154,6 +7154,26 @@
       },
       "id": "8d7352fa-dbd4-485f-a6a0-d419af170302",
       "recordedAt": "2026-10-08T05:35:20.533Z"
+    },
+    {
+      "driver": "SAIFUL",
+      "laborers": "Amat",
+      "vessel": "BORNEO GROCERY",
+      "place": "",
+      "truckPlate": "SK8226E",
+      "date": "2026-10-08",
+      "timeDelivery": "14:32",
+      "timeBack": "",
+      "items": {
+        "basketLarge": 0,
+        "basketSmall": 0,
+        "basketThai": 0,
+        "roBottles": 0,
+        "others": 0,
+        "othersNote": ""
+      },
+      "id": "b83fea25-3f57-4f8e-811d-137a450e19df",
+      "recordedAt": "2026-10-08T06:32:29.581Z"
     }
   ],
   "drivers": {
