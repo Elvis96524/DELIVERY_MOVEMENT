@@ -7409,6 +7409,26 @@
       },
       "id": "6b45d0cd-4014-48e8-85a8-58df9103d57e",
       "recordedAt": "2026-10-12T00:43:16.701Z"
+    },
+    {
+      "driver": "SHAHRIN",
+      "laborers": "SYUKRI,AMAT",
+      "vessel": "SK FALCON",
+      "place": "ASB",
+      "truckPlate": "WGS2831",
+      "date": "2026-10-12",
+      "timeDelivery": "13:04",
+      "timeBack": "",
+      "items": {
+        "basketLarge": 0,
+        "basketSmall": 0,
+        "basketThai": 0,
+        "roBottles": 0,
+        "others": 0,
+        "othersNote": ""
+      },
+      "id": "bec49d5a-98b3-42c0-b482-c82cdfbe0351",
+      "recordedAt": "2026-10-12T05:03:44.959Z"
     }
   ],
   "drivers": {
