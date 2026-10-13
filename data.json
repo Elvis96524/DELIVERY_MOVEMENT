@@ -7610,11 +7610,11 @@
       "truckPlate": "QMU6228",
       "date": "2026-10-13",
       "timeDelivery": "14:36",
-      "timeBack": "",
+      "timeBack": "16:22",
       "items": {
         "basketLarge": 0,
         "basketSmall": 0,
-        "basketThai": 0,
+        "basketThai": 22,
         "roBottles": 0,
         "others": 0,
         "othersNote": ""
