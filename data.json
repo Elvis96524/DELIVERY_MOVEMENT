@@ -2064,8 +2064,8 @@
     },
     "PTSB100027-6": {
       "serial": "PTSB100027-6",
-      "status": "backloaded",
-      "vessel": "",
+      "status": "reserved",
+      "vessel": "KEYFIELD WISDOM",
       "nextVessel": "",
       "lastQuantities": {
         "basketLarge": 0,
@@ -2076,7 +2076,7 @@
         "othersNote": ""
       },
       "createdAt": "2026-09-22T03:43:19.771Z",
-      "updatedAt": "2026-10-13T02:50:28.973Z",
+      "updatedAt": "2026-10-13T06:19:18.808Z",
       "length": 2.991,
       "width": 2.438,
       "height": 2.591,
@@ -6338,6 +6338,14 @@
       },
       "id": "661481e5-375a-40c5-9793-24193470a357",
       "recordedAt": "2026-10-13T02:50:41.394Z"
+    },
+    {
+      "serial": "PTSB100027-6",
+      "action": "reserved",
+      "vessel": "KEYFIELD WISDOM",
+      "id": "6942b671-5ff8-4ff7-a1dc-69eb08954d66",
+      "recordedAt": "2026-10-13T06:19:18.807Z",
+      "date": "2026-10-13"
     }
   ],
   "truckRecords": [
