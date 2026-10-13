@@ -7540,6 +7540,26 @@
       },
       "id": "773cd575-f9e0-4da1-a8f6-87de71f9f69a",
       "recordedAt": "2026-10-13T01:59:36.891Z"
+    },
+    {
+      "driver": "SYAH",
+      "laborers": "Syukri",
+      "vessel": "SK PALADIN",
+      "place": "SRI GANTI",
+      "truckPlate": "WGS2831",
+      "date": "2026-10-13",
+      "timeDelivery": "13:06",
+      "timeBack": "",
+      "items": {
+        "basketLarge": 0,
+        "basketSmall": 0,
+        "basketThai": 0,
+        "roBottles": 0,
+        "others": 0,
+        "othersNote": ""
+      },
+      "id": "e59bc9dd-137f-4975-901e-9062f0127a5c",
+      "recordedAt": "2026-10-13T05:06:43.370Z"
     }
   ],
   "drivers": {
