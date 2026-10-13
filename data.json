@@ -2220,8 +2220,8 @@
     },
     "TK-4004": {
       "serial": "TK-4004",
-      "status": "loaded",
-      "vessel": "PTTEP",
+      "status": "backloaded",
+      "vessel": "",
       "nextVessel": "",
       "lastQuantities": {
         "basketLarge": 0,
@@ -2232,7 +2232,7 @@
         "othersNote": ""
       },
       "createdAt": "2026-09-22T03:46:56.539Z",
-      "updatedAt": "2026-09-30T03:29:44.090Z",
+      "updatedAt": "2026-10-13T06:32:41.972Z",
       "length": 2.5,
       "width": 2.44,
       "height": 2.75,
@@ -6362,6 +6362,23 @@
       "id": "bb61e094-5b69-48e6-bf8d-6bdc02a60d5b",
       "recordedAt": "2026-10-13T06:19:44.565Z",
       "date": "2026-10-13"
+    },
+    {
+      "serial": "TK-4004",
+      "action": "backloaded",
+      "vessel": "",
+      "date": "2026-10-13",
+      "trailerPlate": "QTT9717",
+      "quantities": {
+        "basketLarge": 0,
+        "basketSmall": 0,
+        "basketThai": 0,
+        "roBottles": 0,
+        "others": 0,
+        "othersNote": ""
+      },
+      "id": "473954c4-962e-478d-b5cf-a96e4765203e",
+      "recordedAt": "2026-10-13T06:32:41.972Z"
     }
   ],
   "truckRecords": [
