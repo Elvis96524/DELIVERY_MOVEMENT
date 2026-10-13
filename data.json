@@ -7469,6 +7469,26 @@
       },
       "id": "8278fe74-c8f1-42fa-a9d8-b3a49e0ff19d",
       "recordedAt": "2026-10-13T00:09:00.282Z"
+    },
+    {
+      "driver": "SHAHRIN",
+      "laborers": "AMAT",
+      "vessel": "TOKONG",
+      "place": "",
+      "truckPlate": "SK8226E",
+      "date": "2026-10-13",
+      "timeDelivery": "09:59",
+      "timeBack": "",
+      "items": {
+        "basketLarge": 0,
+        "basketSmall": 0,
+        "basketThai": 0,
+        "roBottles": 0,
+        "others": 0,
+        "othersNote": ""
+      },
+      "id": "773cd575-f9e0-4da1-a8f6-87de71f9f69a",
+      "recordedAt": "2026-10-13T01:59:36.891Z"
     }
   ],
   "drivers": {
