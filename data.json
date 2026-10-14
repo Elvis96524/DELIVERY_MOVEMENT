@@ -2126,8 +2126,8 @@
     },
     "PTSB100030-0": {
       "serial": "PTSB100030-0",
-      "status": "backloaded",
-      "vessel": "",
+      "status": "reserved",
+      "vessel": "OS ONE",
       "nextVessel": "",
       "lastQuantities": {
         "basketLarge": 0,
@@ -2138,7 +2138,7 @@
         "othersNote": ""
       },
       "createdAt": "2026-09-22T03:44:11.731Z",
-      "updatedAt": "2026-10-12T02:49:54.554Z",
+      "updatedAt": "2026-10-14T00:31:57.154Z",
       "length": 2.991,
       "width": 2.438,
       "height": 2.591,
@@ -6434,6 +6434,14 @@
       "vessel": "HELANG INTEGRATED PLATFORM",
       "id": "f8262be5-04be-4fa6-9b1a-f475e5df3c13",
       "recordedAt": "2026-10-14T00:30:30.775Z",
+      "date": "2026-10-14"
+    },
+    {
+      "serial": "PTSB100030-0",
+      "action": "reserved",
+      "vessel": "OS ONE",
+      "id": "f58717a3-fb2f-42eb-9617-7407c450418b",
+      "recordedAt": "2026-10-14T00:31:57.154Z",
       "date": "2026-10-14"
     }
   ],
