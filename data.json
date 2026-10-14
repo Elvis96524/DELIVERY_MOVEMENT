@@ -474,8 +474,8 @@
     },
     "FSE-CF-22": {
       "serial": "FSE-CF-22",
-      "status": "backloaded",
-      "vessel": "",
+      "status": "reserved",
+      "vessel": "KEYFIELD WISDOM",
       "nextVessel": "",
       "lastQuantities": {
         "basketLarge": 0,
@@ -486,7 +486,7 @@
         "othersNote": ""
       },
       "createdAt": "2026-09-21T02:26:41.219Z",
-      "updatedAt": "2026-10-06T04:04:47.774Z",
+      "updatedAt": "2026-10-14T00:26:52.765Z",
       "length": 3,
       "width": 2.5,
       "height": 2.7,
@@ -6394,6 +6394,14 @@
       "vessel": "KEYFIELD WISDOM",
       "id": "b74b329a-1faf-41b2-b425-8f094e358eea",
       "recordedAt": "2026-10-14T00:26:35.692Z",
+      "date": "2026-10-14"
+    },
+    {
+      "serial": "FSE-CF-22",
+      "action": "reserved",
+      "vessel": "KEYFIELD WISDOM",
+      "id": "343f891a-26b7-457e-a269-9d1830925448",
+      "recordedAt": "2026-10-14T00:26:52.765Z",
       "date": "2026-10-14"
     }
   ],
