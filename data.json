@@ -7752,6 +7752,26 @@
       },
       "id": "6f41ee57-8938-4d21-8a14-71c4ecf16475",
       "recordedAt": "2026-10-13T06:36:12.053Z"
+    },
+    {
+      "driver": "SHAHRIN",
+      "laborers": "ALIP",
+      "vessel": "TOKONG",
+      "place": "",
+      "truckPlate": "SK8226E",
+      "date": "2026-10-14",
+      "timeDelivery": "10:28",
+      "timeBack": "",
+      "items": {
+        "basketLarge": 0,
+        "basketSmall": 0,
+        "basketThai": 0,
+        "roBottles": 0,
+        "others": 0,
+        "othersNote": ""
+      },
+      "id": "360890fb-1a89-43d0-a21d-a71901e1b463",
+      "recordedAt": "2026-10-14T02:28:55.323Z"
     }
   ],
   "drivers": {
