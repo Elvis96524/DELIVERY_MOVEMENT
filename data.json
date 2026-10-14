@@ -2330,8 +2330,8 @@
     },
     "TK-5006": {
       "serial": "TK-5006",
-      "status": "backloaded",
-      "vessel": "",
+      "status": "reserved",
+      "vessel": "KEYFIELD WISDOM",
       "nextVessel": "",
       "lastQuantities": {
         "basketLarge": 0,
@@ -2342,7 +2342,7 @@
         "othersNote": ""
       },
       "createdAt": "2026-09-22T03:48:25.963Z",
-      "updatedAt": "2026-10-12T02:50:29.482Z",
+      "updatedAt": "2026-10-14T00:32:13.920Z",
       "length": 2.5,
       "width": 2.44,
       "height": 2.75,
@@ -6442,6 +6442,14 @@
       "vessel": "OS ONE",
       "id": "f58717a3-fb2f-42eb-9617-7407c450418b",
       "recordedAt": "2026-10-14T00:31:57.154Z",
+      "date": "2026-10-14"
+    },
+    {
+      "serial": "TK-5006",
+      "action": "reserved",
+      "vessel": "KEYFIELD WISDOM",
+      "id": "03537065-e206-42a8-8b61-c9cb982abc8c",
+      "recordedAt": "2026-10-14T00:32:13.920Z",
       "date": "2026-10-14"
     }
   ],
