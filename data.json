@@ -900,7 +900,7 @@
     "FSE-CF-42": {
       "serial": "FSE-CF-42",
       "status": "reserved",
-      "vessel": "HELANG INTEGRATED PLATFORM",
+      "vessel": "OS ONE",
       "nextVessel": "",
       "lastQuantities": {
         "basketLarge": 0,
@@ -911,7 +911,7 @@
         "othersNote": ""
       },
       "createdAt": "2026-09-21T07:45:32.510Z",
-      "updatedAt": "2026-10-14T00:26:11.735Z",
+      "updatedAt": "2026-10-14T00:30:04.192Z",
       "length": 2.991,
       "width": 2.286,
       "height": 2.519,
@@ -6418,6 +6418,14 @@
       "vessel": "HELANG INTEGRATED PLATFORM",
       "id": "37ec5237-479d-40b0-8917-1ca9dc469c19",
       "recordedAt": "2026-10-14T00:28:07.680Z",
+      "date": "2026-10-14"
+    },
+    {
+      "serial": "FSE-CF-42",
+      "action": "reserved",
+      "vessel": "OS ONE",
+      "id": "3a550cd4-0034-4fad-8497-532194dbc935",
+      "recordedAt": "2026-10-14T00:30:04.192Z",
       "date": "2026-10-14"
     }
   ],
