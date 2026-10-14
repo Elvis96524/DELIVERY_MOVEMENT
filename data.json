@@ -1424,8 +1424,8 @@
     },
     "FSE-DC-20": {
       "serial": "FSE-DC-20",
-      "status": "backloaded",
-      "vessel": "",
+      "status": "reserved",
+      "vessel": "HELANG INTEGRATED PLATFORM",
       "nextVessel": "",
       "lastQuantities": {
         "basketLarge": 0,
@@ -1436,7 +1436,7 @@
         "othersNote": ""
       },
       "createdAt": "2026-09-21T08:53:32.681Z",
-      "updatedAt": "2026-09-29T08:25:54.017Z",
+      "updatedAt": "2026-10-14T00:32:46.819Z",
       "length": 2.5,
       "width": 2.44,
       "height": 2.75,
@@ -6450,6 +6450,14 @@
       "vessel": "KEYFIELD WISDOM",
       "id": "03537065-e206-42a8-8b61-c9cb982abc8c",
       "recordedAt": "2026-10-14T00:32:13.920Z",
+      "date": "2026-10-14"
+    },
+    {
+      "serial": "FSE-DC-20",
+      "action": "reserved",
+      "vessel": "HELANG INTEGRATED PLATFORM",
+      "id": "92934dd0-d94c-4ab2-8691-12cee83ad7c5",
+      "recordedAt": "2026-10-14T00:32:46.819Z",
       "date": "2026-10-14"
     }
   ],
