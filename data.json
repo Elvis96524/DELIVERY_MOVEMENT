@@ -8016,11 +8016,11 @@
       "truckPlate": "QMU6228",
       "date": "2026-10-15",
       "timeDelivery": "14:35",
-      "timeBack": "",
+      "timeBack": "16:41",
       "items": {
-        "basketLarge": 0,
-        "basketSmall": 0,
-        "basketThai": 0,
+        "basketLarge": 1,
+        "basketSmall": 2,
+        "basketThai": 16,
         "roBottles": 0,
         "others": 0,
         "othersNote": ""
