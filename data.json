@@ -1074,8 +1074,8 @@
     },
     "FSE-CF-49": {
       "serial": "FSE-CF-49",
-      "status": "backloaded",
-      "vessel": "",
+      "status": "reserved",
+      "vessel": "KEYFIELD JOYFUL",
       "nextVessel": "",
       "lastQuantities": {
         "basketLarge": 0,
@@ -1086,7 +1086,7 @@
         "othersNote": ""
       },
       "createdAt": "2026-09-21T07:48:18.054Z",
-      "updatedAt": "2026-09-29T08:24:55.017Z",
+      "updatedAt": "2026-10-15T07:56:57.357Z",
       "length": 2.991,
       "width": 2.286,
       "height": 2.519,
@@ -6656,6 +6656,14 @@
       "vessel": "KEYFIELD WISDOM",
       "id": "1f761d0b-2099-4276-8662-91e46ae599d8",
       "recordedAt": "2026-10-15T07:09:26.911Z",
+      "date": "2026-10-15"
+    },
+    {
+      "serial": "FSE-CF-49",
+      "action": "reserved",
+      "vessel": "KEYFIELD JOYFUL",
+      "id": "45d175d4-3159-4f7d-af83-ee809e1e7498",
+      "recordedAt": "2026-10-15T07:56:57.356Z",
       "date": "2026-10-15"
     }
   ],
