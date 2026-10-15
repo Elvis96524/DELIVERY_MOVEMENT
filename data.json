@@ -8003,6 +8003,26 @@
       },
       "id": "26aedbdc-827d-482a-8def-3d87fd615638",
       "recordedAt": "2026-10-15T06:35:54.334Z"
+    },
+    {
+      "driver": "SHAHRIN",
+      "laborers": "WAN",
+      "vessel": "SERI GANTI",
+      "place": "",
+      "truckPlate": "SK8226E",
+      "date": "2026-10-15",
+      "timeDelivery": "15:03",
+      "timeBack": "",
+      "items": {
+        "basketLarge": 0,
+        "basketSmall": 0,
+        "basketThai": 0,
+        "roBottles": 0,
+        "others": 0,
+        "othersNote": ""
+      },
+      "id": "a2bb88dc-04fd-4cdc-b4de-33aa140b5271",
+      "recordedAt": "2026-10-15T07:04:00.099Z"
     }
   ],
   "drivers": {
