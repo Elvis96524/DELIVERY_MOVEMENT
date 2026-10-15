@@ -766,8 +766,8 @@
     },
     "FSE-CF-35": {
       "serial": "FSE-CF-35",
-      "status": "backloaded",
-      "vessel": "",
+      "status": "reserved",
+      "vessel": "KEYFIELD WISDOM",
       "nextVessel": "",
       "lastQuantities": {
         "basketLarge": 0,
@@ -778,7 +778,7 @@
         "othersNote": ""
       },
       "createdAt": "2026-09-21T07:43:29.262Z",
-      "updatedAt": "2026-10-15T03:49:19.554Z",
+      "updatedAt": "2026-10-15T07:09:26.912Z",
       "length": 2.991,
       "width": 2.286,
       "height": 2.519,
@@ -6648,6 +6648,14 @@
       "vessel": "KEYFIELD WISDOM",
       "id": "ddbc5652-86a8-4b43-990d-432176ed8fea",
       "recordedAt": "2026-10-15T07:08:37.476Z",
+      "date": "2026-10-15"
+    },
+    {
+      "serial": "FSE-CF-35",
+      "action": "reserved",
+      "vessel": "KEYFIELD WISDOM",
+      "id": "1f761d0b-2099-4276-8662-91e46ae599d8",
+      "recordedAt": "2026-10-15T07:09:26.911Z",
       "date": "2026-10-15"
     }
   ],
