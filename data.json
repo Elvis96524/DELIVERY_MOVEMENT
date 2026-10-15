@@ -1413,7 +1413,7 @@
     },
     "FSE-DC-18": {
       "serial": "FSE-DC-18",
-      "status": "reserved",
+      "status": "loaded",
       "vessel": "OS ONE",
       "nextVessel": "",
       "lastQuantities": {
@@ -1425,7 +1425,7 @@
         "othersNote": ""
       },
       "createdAt": "2026-09-21T08:52:55.233Z",
-      "updatedAt": "2026-10-08T07:19:09.359Z",
+      "updatedAt": "2026-10-15T05:38:00.234Z",
       "length": 2.5,
       "width": 2.44,
       "height": 2.75,
@@ -6632,6 +6632,15 @@
       "trailerPlate": "VPP6663",
       "id": "2ec8d739-306e-4271-b141-9e6b8e4b6740",
       "recordedAt": "2026-10-15T05:37:53.034Z"
+    },
+    {
+      "serial": "FSE-DC-18",
+      "action": "loaded",
+      "vessel": "OS ONE",
+      "date": "2026-10-15",
+      "trailerPlate": "VPP6663",
+      "id": "355d7f2d-8b8c-4fae-a5cf-e0eac15f2867",
+      "recordedAt": "2026-10-15T05:38:00.234Z"
     }
   ],
   "truckRecords": [
