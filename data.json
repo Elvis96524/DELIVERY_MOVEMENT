@@ -7840,6 +7840,26 @@
       },
       "id": "2033e774-ef91-47a6-950a-22d979ea29db",
       "recordedAt": "2026-10-15T01:52:31.826Z"
+    },
+    {
+      "driver": "SAIFUL",
+      "laborers": "",
+      "vessel": "SK POWER",
+      "place": "Mutiara",
+      "truckPlate": "SK8226E",
+      "date": "2026-10-15",
+      "timeDelivery": "10:06",
+      "timeBack": "",
+      "items": {
+        "basketLarge": 0,
+        "basketSmall": 0,
+        "basketThai": 0,
+        "roBottles": 0,
+        "others": 0,
+        "othersNote": ""
+      },
+      "id": "f1ce8740-787e-4149-97e5-635b025cb0e2",
+      "recordedAt": "2026-10-15T02:06:54.943Z"
     }
   ],
   "drivers": {
