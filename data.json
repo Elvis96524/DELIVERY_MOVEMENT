@@ -7820,6 +7820,26 @@
       },
       "id": "5debabf5-10d3-42c7-aed7-d98d3ca5b196",
       "recordedAt": "2026-10-14T06:26:55.956Z"
+    },
+    {
+      "driver": "SYAH",
+      "laborers": "Boboi,shukri",
+      "vessel": "SK POWER",
+      "place": "Mutiara",
+      "truckPlate": "SAB9100K",
+      "date": "2026-10-15",
+      "timeDelivery": "09:53",
+      "timeBack": "",
+      "items": {
+        "basketLarge": 0,
+        "basketSmall": 0,
+        "basketThai": 0,
+        "roBottles": 0,
+        "others": 0,
+        "othersNote": ""
+      },
+      "id": "2033e774-ef91-47a6-950a-22d979ea29db",
+      "recordedAt": "2026-10-15T01:52:31.826Z"
     }
   ],
   "drivers": {
