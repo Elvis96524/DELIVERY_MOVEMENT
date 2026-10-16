@@ -8114,6 +8114,26 @@
       },
       "id": "62ffda6c-5397-4a67-9031-b9cd9c794870",
       "recordedAt": "2026-10-16T02:03:48.254Z"
+    },
+    {
+      "driver": "SYAH",
+      "laborers": "Shukri,ahmad",
+      "vessel": "PERDANA ENDURANCE,PERDANA EMERALD",
+      "place": "",
+      "truckPlate": "",
+      "date": "2026-10-16",
+      "timeDelivery": "",
+      "timeBack": "",
+      "items": {
+        "basketLarge": 0,
+        "basketSmall": 0,
+        "basketThai": 0,
+        "roBottles": 0,
+        "others": 0,
+        "othersNote": ""
+      },
+      "id": "de1f405b-a746-46be-b090-2a78feae3337",
+      "recordedAt": "2026-10-16T02:12:08.936Z"
     }
   ],
   "drivers": {
