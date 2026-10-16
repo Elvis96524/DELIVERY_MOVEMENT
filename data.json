@@ -8119,10 +8119,10 @@
       "driver": "SYAH",
       "laborers": "Shukri,ahmad",
       "vessel": "PERDANA ENDURANCE,PERDANA EMERALD",
-      "place": "",
-      "truckPlate": "",
+      "place": "MUTIARA",
+      "truckPlate": "SAB9100K",
       "date": "2026-10-16",
-      "timeDelivery": "",
+      "timeDelivery": "10:00",
       "timeBack": "",
       "items": {
         "basketLarge": 0,
