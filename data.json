@@ -8047,6 +8047,26 @@
       },
       "id": "a2bb88dc-04fd-4cdc-b4de-33aa140b5271",
       "recordedAt": "2026-10-15T07:04:00.099Z"
+    },
+    {
+      "driver": "SYAH",
+      "laborers": "Ahmad,saiful",
+      "vessel": "Tovud Koposizon Plt",
+      "place": "",
+      "truckPlate": "QMU6228",
+      "date": "2026-10-16",
+      "timeDelivery": "08:30",
+      "timeBack": "09:00",
+      "items": {
+        "basketLarge": 0,
+        "basketSmall": 0,
+        "basketThai": 0,
+        "roBottles": 0,
+        "others": 0,
+        "othersNote": ""
+      },
+      "id": "fdc279d1-0b88-413a-800f-6ee4319f58ef",
+      "recordedAt": "2026-10-16T01:07:01.094Z"
     }
   ],
   "drivers": {
