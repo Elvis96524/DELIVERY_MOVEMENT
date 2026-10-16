@@ -8154,6 +8154,26 @@
       },
       "id": "250b3bdd-9321-434e-91e2-c330b6e678e8",
       "recordedAt": "2026-10-16T06:11:43.347Z"
+    },
+    {
+      "driver": "SAIFUL",
+      "laborers": "Amat",
+      "vessel": "Lee",
+      "place": "",
+      "truckPlate": "SK8226E",
+      "date": "2026-10-16",
+      "timeDelivery": "14:20",
+      "timeBack": "15:30",
+      "items": {
+        "basketLarge": 0,
+        "basketSmall": 0,
+        "basketThai": 0,
+        "roBottles": 0,
+        "others": 0,
+        "othersNote": ""
+      },
+      "id": "6306c426-68d4-49c9-9bef-e8fcba10feb7",
+      "recordedAt": "2026-10-16T08:03:01.997Z"
     }
   ],
   "drivers": {
