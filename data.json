@@ -8094,6 +8094,26 @@
       },
       "id": "fdc279d1-0b88-413a-800f-6ee4319f58ef",
       "recordedAt": "2026-10-16T01:07:01.094Z"
+    },
+    {
+      "driver": "SHAHRIN",
+      "laborers": "BOBOI,WAN",
+      "vessel": "SK PRODIGY",
+      "place": "ASB",
+      "truckPlate": "WGS2831",
+      "date": "2026-10-16",
+      "timeDelivery": "10:03",
+      "timeBack": "",
+      "items": {
+        "basketLarge": 0,
+        "basketSmall": 0,
+        "basketThai": 0,
+        "roBottles": 0,
+        "others": 0,
+        "othersNote": ""
+      },
+      "id": "62ffda6c-5397-4a67-9031-b9cd9c794870",
+      "recordedAt": "2026-10-16T02:03:48.254Z"
     }
   ],
   "drivers": {
