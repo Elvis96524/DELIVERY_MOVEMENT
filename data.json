@@ -744,7 +744,7 @@
     "FSE-CF-34": {
       "serial": "FSE-CF-34",
       "status": "reserved",
-      "vessel": "PETRO DIAMOND",
+      "vessel": "OS ONE",
       "nextVessel": "",
       "lastQuantities": {
         "basketLarge": 0,
@@ -755,7 +755,7 @@
         "othersNote": "RESERVATION CANCELLED"
       },
       "createdAt": "2026-09-21T07:43:08.814Z",
-      "updatedAt": "2026-10-17T03:38:21.874Z",
+      "updatedAt": "2026-10-17T03:41:29.876Z",
       "length": 2.991,
       "width": 2.438,
       "height": 2.591,
@@ -6715,6 +6715,14 @@
       "vessel": "PETRO DIAMOND",
       "id": "52d83c35-40f1-4711-b0a4-3c67448eec52",
       "recordedAt": "2026-10-17T03:38:21.874Z",
+      "date": "2026-10-17"
+    },
+    {
+      "serial": "FSE-CF-34",
+      "action": "reserved",
+      "vessel": "OS ONE",
+      "id": "42040fbb-eea4-459f-9c33-d9dc2f24a5ab",
+      "recordedAt": "2026-10-17T03:41:29.876Z",
       "date": "2026-10-17"
     }
   ],
