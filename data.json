@@ -8194,6 +8194,26 @@
       },
       "id": "82ac55c4-850a-4f1b-97b7-4cf2945bb5ee",
       "recordedAt": "2026-10-16T08:16:30.008Z"
+    },
+    {
+      "driver": "SHAHRIN",
+      "laborers": "Boboi, syukri",
+      "vessel": "SK PALADIN",
+      "place": "MUTIARA",
+      "truckPlate": "QMU6228",
+      "date": "2026-10-16",
+      "timeDelivery": "14:00",
+      "timeBack": "18:50",
+      "items": {
+        "basketLarge": 0,
+        "basketSmall": 0,
+        "basketThai": 0,
+        "roBottles": 0,
+        "others": 0,
+        "othersNote": ""
+      },
+      "id": "67d3513d-cf64-4a02-a4d9-f19b1092b8e8",
+      "recordedAt": "2026-10-17T01:18:22.176Z"
     }
   ],
   "drivers": {
