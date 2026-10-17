@@ -921,7 +921,7 @@
     "FSE-CF-42": {
       "serial": "FSE-CF-42",
       "status": "reserved",
-      "vessel": "OS ONE",
+      "vessel": "PETRO DIAMOND",
       "nextVessel": "",
       "lastQuantities": {
         "basketLarge": 0,
@@ -932,7 +932,7 @@
         "othersNote": ""
       },
       "createdAt": "2026-09-21T07:45:32.510Z",
-      "updatedAt": "2026-10-14T00:30:04.192Z",
+      "updatedAt": "2026-10-17T03:41:44.390Z",
       "length": 2.991,
       "width": 2.286,
       "height": 2.519,
@@ -6723,6 +6723,14 @@
       "vessel": "OS ONE",
       "id": "42040fbb-eea4-459f-9c33-d9dc2f24a5ab",
       "recordedAt": "2026-10-17T03:41:29.876Z",
+      "date": "2026-10-17"
+    },
+    {
+      "serial": "FSE-CF-42",
+      "action": "reserved",
+      "vessel": "PETRO DIAMOND",
+      "id": "32f5c161-7261-4f9e-85a0-bf9cf1764140",
+      "recordedAt": "2026-10-17T03:41:44.390Z",
       "date": "2026-10-17"
     }
   ],
