@@ -1294,8 +1294,8 @@
     },
     "FSE-DC-11": {
       "serial": "FSE-DC-11",
-      "status": "backloaded",
-      "vessel": "",
+      "status": "reserved",
+      "vessel": "PETRO DIAMOND",
       "nextVessel": "",
       "lastQuantities": {
         "basketLarge": 0,
@@ -1306,7 +1306,7 @@
         "othersNote": ""
       },
       "createdAt": "2026-09-21T08:50:54.961Z",
-      "updatedAt": "2026-10-01T00:10:58.018Z",
+      "updatedAt": "2026-10-17T03:35:47.239Z",
       "length": 2.991,
       "width": 2.438,
       "height": 2.591,
@@ -6692,6 +6692,14 @@
       "trailerPlate": "VPP6663",
       "id": "9b32ddf1-213c-4d35-a5ef-4c57f3f2a168",
       "recordedAt": "2026-10-16T01:45:20.623Z"
+    },
+    {
+      "serial": "FSE-DC-11",
+      "action": "reserved",
+      "vessel": "PETRO DIAMOND",
+      "id": "bc78fa05-31cb-4cea-8b0f-0ae8f7d914a8",
+      "recordedAt": "2026-10-17T03:35:47.238Z",
+      "date": "2026-10-17"
     }
   ],
   "truckRecords": [
