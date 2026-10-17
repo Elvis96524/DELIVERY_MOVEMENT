@@ -8214,6 +8214,26 @@
       },
       "id": "67d3513d-cf64-4a02-a4d9-f19b1092b8e8",
       "recordedAt": "2026-10-17T01:18:22.176Z"
+    },
+    {
+      "driver": "SYAH",
+      "laborers": "Boboi,shukri,wan",
+      "vessel": "MV ALYA",
+      "place": "MUTIARA",
+      "truckPlate": "SAB9100K",
+      "date": "2026-10-17",
+      "timeDelivery": "09:45",
+      "timeBack": "",
+      "items": {
+        "basketLarge": 0,
+        "basketSmall": 0,
+        "basketThai": 0,
+        "roBottles": 0,
+        "others": 0,
+        "othersNote": ""
+      },
+      "id": "be0cd7e2-3768-4913-92c2-2649c997af2c",
+      "recordedAt": "2026-10-17T01:53:39.163Z"
     }
   ],
   "drivers": {
