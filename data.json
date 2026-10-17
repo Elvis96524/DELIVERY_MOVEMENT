@@ -8234,6 +8234,26 @@
       },
       "id": "be0cd7e2-3768-4913-92c2-2649c997af2c",
       "recordedAt": "2026-10-17T01:53:39.163Z"
+    },
+    {
+      "driver": "SAIFUL",
+      "laborers": "Amat,osana",
+      "vessel": "Natselane",
+      "place": "",
+      "truckPlate": "QMU6228",
+      "date": "2026-10-17",
+      "timeDelivery": "10:09",
+      "timeBack": "",
+      "items": {
+        "basketLarge": 0,
+        "basketSmall": 0,
+        "basketThai": 0,
+        "roBottles": 0,
+        "others": 0,
+        "othersNote": ""
+      },
+      "id": "57f4c038-6e6f-466c-b708-0d6fc284c3c1",
+      "recordedAt": "2026-10-17T02:55:05.472Z"
     }
   ],
   "drivers": {
