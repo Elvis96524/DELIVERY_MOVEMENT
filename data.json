@@ -1074,7 +1074,7 @@
     },
     "FSE-CF-49": {
       "serial": "FSE-CF-49",
-      "status": "reserved",
+      "status": "loaded",
       "vessel": "KEYFIELD JOYFUL",
       "nextVessel": "",
       "lastQuantities": {
@@ -1086,7 +1086,7 @@
         "othersNote": ""
       },
       "createdAt": "2026-09-21T07:48:18.054Z",
-      "updatedAt": "2026-10-15T07:56:57.357Z",
+      "updatedAt": "2026-10-19T05:29:07.391Z",
       "length": 2.991,
       "width": 2.286,
       "height": 2.519,
@@ -6757,6 +6757,15 @@
       },
       "id": "d359b39f-82d7-443f-ad9f-99d827f164be",
       "recordedAt": "2026-10-19T02:33:44.395Z"
+    },
+    {
+      "serial": "FSE-CF-49",
+      "action": "loaded",
+      "vessel": "KEYFIELD JOYFUL",
+      "date": "2026-10-19",
+      "trailerPlate": "PPD9993",
+      "id": "6b6478ba-acbd-441d-8d4e-5a2b0786e720",
+      "recordedAt": "2026-10-19T05:29:07.390Z"
     }
   ],
   "truckRecords": [
