@@ -2248,8 +2248,8 @@
     },
     "TK-4004": {
       "serial": "TK-4004",
-      "status": "reserved",
-      "vessel": "HELANG INTEGRATED PLATFORM",
+      "status": "backloaded",
+      "vessel": "",
       "nextVessel": "",
       "lastQuantities": {
         "basketLarge": 0,
@@ -2257,10 +2257,10 @@
         "basketThai": 0,
         "roBottles": 0,
         "others": 0,
-        "othersNote": ""
+        "othersNote": "RESERVATION CANCELLED"
       },
       "createdAt": "2026-09-22T03:46:56.539Z",
-      "updatedAt": "2026-10-14T00:28:07.680Z",
+      "updatedAt": "2026-10-19T02:33:44.395Z",
       "length": 2.5,
       "width": 2.44,
       "height": 2.75,
@@ -6740,6 +6740,23 @@
       "id": "c7e0154d-9d92-4f56-afb4-0f83165bd1c4",
       "recordedAt": "2026-10-19T02:33:27.958Z",
       "date": "2026-10-19"
+    },
+    {
+      "serial": "TK-4004",
+      "action": "backloaded",
+      "vessel": "",
+      "date": "2026-10-19",
+      "trailerPlate": "",
+      "quantities": {
+        "basketLarge": 0,
+        "basketSmall": 0,
+        "basketThai": 0,
+        "roBottles": 0,
+        "others": 0,
+        "othersNote": "RESERVATION CANCELLED"
+      },
+      "id": "d359b39f-82d7-443f-ad9f-99d827f164be",
+      "recordedAt": "2026-10-19T02:33:44.395Z"
     }
   ],
   "truckRecords": [
