@@ -8422,12 +8422,12 @@
     },
     {
       "driver": "SYAH",
-      "laborers": "Nasir,boboi",
+      "laborers": "Nasir,boboi,ahmad",
       "vessel": "SK GEOTEK",
       "place": "LSE",
-      "truckPlate": "",
+      "truckPlate": "QMU6228",
       "date": "2026-10-19",
-      "timeDelivery": "13:15",
+      "timeDelivery": "13:20",
       "timeBack": "",
       "items": {
         "basketLarge": 0,
