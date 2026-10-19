@@ -8337,13 +8337,13 @@
     },
     {
       "driver": "SYAH",
-      "laborers": "",
+      "laborers": "Shahrin",
       "vessel": "Tovud Koposizon Plt",
       "place": "",
       "truckPlate": "SAB9100K",
       "date": "2026-10-19",
       "timeDelivery": "08:20",
-      "timeBack": "",
+      "timeBack": "08:56",
       "items": {
         "basketLarge": 0,
         "basketSmall": 0,
