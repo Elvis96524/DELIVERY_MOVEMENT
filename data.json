@@ -8419,6 +8419,26 @@
       },
       "id": "68963828-90c2-4b3f-bb03-e245c0ee632a",
       "recordedAt": "2026-10-19T05:07:19.168Z"
+    },
+    {
+      "driver": "SYAH",
+      "laborers": "Nasir,boboi",
+      "vessel": "SK GEOTEK",
+      "place": "LSE",
+      "truckPlate": "",
+      "date": "2026-10-19",
+      "timeDelivery": "13:15",
+      "timeBack": "",
+      "items": {
+        "basketLarge": 0,
+        "basketSmall": 0,
+        "basketThai": 0,
+        "roBottles": 0,
+        "others": 0,
+        "othersNote": ""
+      },
+      "id": "d8a93b97-2426-40b7-8841-2c3d0f350669",
+      "recordedAt": "2026-10-19T05:15:25.867Z"
     }
   ],
   "drivers": {
