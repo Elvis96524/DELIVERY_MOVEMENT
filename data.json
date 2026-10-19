@@ -8448,6 +8448,26 @@
       },
       "id": "d8a93b97-2426-40b7-8841-2c3d0f350669",
       "recordedAt": "2026-10-19T05:15:25.867Z"
+    },
+    {
+      "driver": "SAIFUL",
+      "laborers": "Alif,osana,alex",
+      "vessel": "BORNEO GROCERY,BORNEO MART",
+      "place": "",
+      "truckPlate": "SAB9100K",
+      "date": "2026-10-19",
+      "timeDelivery": "14:20",
+      "timeBack": "",
+      "items": {
+        "basketLarge": 0,
+        "basketSmall": 0,
+        "basketThai": 0,
+        "roBottles": 0,
+        "others": 0,
+        "othersNote": ""
+      },
+      "id": "4b1a8a11-809c-4d53-9e7f-97560dee0a3e",
+      "recordedAt": "2026-10-19T06:20:12.743Z"
     }
   ],
   "drivers": {
