@@ -8399,6 +8399,26 @@
       },
       "id": "af5a01cf-0ae2-4d59-99b5-078eb062da02",
       "recordedAt": "2026-10-19T02:41:36.789Z"
+    },
+    {
+      "driver": "SHAHRIN",
+      "laborers": "SYUKRI",
+      "vessel": "SK PRUDENCE",
+      "place": "SERI GANTI",
+      "truckPlate": "SK8226E",
+      "date": "2026-10-19",
+      "timeDelivery": "13:06",
+      "timeBack": "",
+      "items": {
+        "basketLarge": 0,
+        "basketSmall": 0,
+        "basketThai": 0,
+        "roBottles": 0,
+        "others": 0,
+        "othersNote": ""
+      },
+      "id": "68963828-90c2-4b3f-bb03-e245c0ee632a",
+      "recordedAt": "2026-10-19T05:07:19.168Z"
     }
   ],
   "drivers": {
