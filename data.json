@@ -8334,6 +8334,26 @@
       },
       "id": "9faec832-4eee-4311-bac6-f528d52e4363",
       "recordedAt": "2026-10-17T06:01:10.476Z"
+    },
+    {
+      "driver": "SYAH",
+      "laborers": "",
+      "vessel": "Tovud Koposizon Plt",
+      "place": "",
+      "truckPlate": "SAB9100K",
+      "date": "2026-10-19",
+      "timeDelivery": "08:20",
+      "timeBack": "",
+      "items": {
+        "basketLarge": 0,
+        "basketSmall": 0,
+        "basketThai": 0,
+        "roBottles": 0,
+        "others": 0,
+        "othersNote": ""
+      },
+      "id": "badc12e9-14a2-48aa-a226-b65b09db400a",
+      "recordedAt": "2026-10-19T00:25:33.164Z"
     }
   ],
   "drivers": {
