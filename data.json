@@ -8528,6 +8528,26 @@
       },
       "id": "4b1a8a11-809c-4d53-9e7f-97560dee0a3e",
       "recordedAt": "2026-10-19T06:20:12.743Z"
+    },
+    {
+      "driver": "SHAHRIN",
+      "laborers": "ALIP,AMAT",
+      "vessel": "BORNEO GROCERY,BORNEO MART",
+      "place": "BANDAR",
+      "truckPlate": "WGS2831",
+      "date": "2026-10-20",
+      "timeDelivery": "14:28",
+      "timeBack": "",
+      "items": {
+        "basketLarge": 0,
+        "basketSmall": 0,
+        "basketThai": 0,
+        "roBottles": 0,
+        "others": 0,
+        "othersNote": ""
+      },
+      "id": "b7df417c-3fa6-41ee-9d16-7321b7ca813c",
+      "recordedAt": "2026-10-20T06:28:37.323Z"
     }
   ],
   "drivers": {
