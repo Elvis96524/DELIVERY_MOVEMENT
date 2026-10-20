@@ -8548,6 +8548,26 @@
       },
       "id": "b7df417c-3fa6-41ee-9d16-7321b7ca813c",
       "recordedAt": "2026-10-20T06:28:37.323Z"
+    },
+    {
+      "driver": "SYAH",
+      "laborers": "Shukri",
+      "vessel": "SK PRELUDE",
+      "place": "SRI GANTI",
+      "truckPlate": "SK8226E",
+      "date": "2026-10-20",
+      "timeDelivery": "15:37",
+      "timeBack": "",
+      "items": {
+        "basketLarge": 0,
+        "basketSmall": 0,
+        "basketThai": 0,
+        "roBottles": 0,
+        "others": 0,
+        "othersNote": ""
+      },
+      "id": "52eb6728-b032-4310-9435-852ebd08c173",
+      "recordedAt": "2026-10-20T07:37:10.318Z"
     }
   ],
   "drivers": {
