@@ -2475,12 +2475,12 @@
     },
     "FSE-DC-32": {
       "serial": "FSE-DC-32",
-      "status": "backloaded",
-      "vessel": "",
+      "status": "reserved",
+      "vessel": "OS ONE",
       "nextVessel": "",
       "lastQuantities": null,
       "createdAt": "2026-09-22T07:43:11.443Z",
-      "updatedAt": "2026-09-22T07:43:11.443Z",
+      "updatedAt": "2026-10-20T01:34:41.031Z",
       "length": 2.991,
       "width": 2.235,
       "height": 2.565,
@@ -6783,6 +6783,14 @@
       },
       "id": "ecfc78c0-484b-4d54-930a-b50410338a02",
       "recordedAt": "2026-10-19T07:41:07.269Z"
+    },
+    {
+      "serial": "FSE-DC-32",
+      "action": "reserved",
+      "vessel": "OS ONE",
+      "id": "0b20ec2b-4727-4885-bbf9-7c61021aa1d1",
+      "recordedAt": "2026-10-20T01:34:41.027Z",
+      "date": "2026-10-20"
     }
   ],
   "truckRecords": [
