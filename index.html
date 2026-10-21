@@ -316,6 +316,56 @@
     box-shadow:inset 0 0 0 1px var(--line-strong);
   }
   .summary-card.warn{border-left-color:var(--red);}
+  .truck-status-bar{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:12px;
+    margin-bottom:16px;
+  }
+  @media (max-width:720px){
+    .truck-status-bar{grid-template-columns:repeat(2,1fr);}
+  }
+  .truck-status-card{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-left:4px solid var(--green);
+    border-radius:var(--radius);
+    padding:12px 14px;
+    text-align:left;
+    cursor:pointer;
+    font-family:inherit;
+    width:100%;
+    transition:background 0.12s ease, border-color 0.12s ease;
+  }
+  .truck-status-card:hover{background:var(--panel-2);}
+  .truck-status-card .ts-plate{
+    display:block;
+    font-family:var(--mono);
+    font-weight:700;
+    font-size:14px;
+    letter-spacing:0.02em;
+  }
+  .truck-status-card .ts-state{
+    display:block;
+    font-size:12px;
+    font-weight:600;
+    margin-top:3px;
+    color:var(--ink-soft);
+  }
+  .truck-status-card .ts-detail{
+    display:block;
+    font-size:12px;
+    margin-top:4px;
+    line-height:1.4;
+  }
+  .truck-status-card.busy{
+    background:var(--red);
+    border-left-color:var(--red);
+    color:#fff;
+  }
+  .truck-status-card.busy .ts-state,
+  .truck-status-card.busy .ts-detail{color:#fff;}
+  .truck-status-card.busy:hover{background:var(--red);filter:brightness(1.08);}
   .checkbox-label{
     display:flex !important;
     flex-direction:row !important;
@@ -481,6 +531,7 @@
   </section>
 
   <section id="trucksView" class="view">
+    <div class="truck-status-bar" id="truckStatusBar"></div>
     <div class="toolbar">
       <label>Search
         <input type="text" id="truckSearch" placeholder="Driver, laborer, vessel or plate">
@@ -2893,7 +2944,55 @@
     return parts.length ? parts.join(", ") : "—";
   }
 
+  // The four trucks we track at a glance. Matching against a record's plate
+  // field ignores spacing/case so "SK 8226 E" and "sk8226e" both count.
+  var TRACKED_TRUCKS = ["SK8226E", "WGS2831", "QMU6228", "SK9100K"];
+  function normalizePlate(s){ return String(s || "").toUpperCase().replace(/[\s-]/g, ""); }
+
+  function renderTruckStatusBar(){
+    var bar = document.getElementById("truckStatusBar");
+    if(!bar) return;
+    var records = db.truckRecords || [];
+    bar.innerHTML = "";
+    TRACKED_TRUCKS.forEach(function(plate){
+      // "Currently delivering" = the truck has a delivery time logged but
+      // hasn't logged a time back to yard yet. If more than one such open
+      // record exists for a plate, the most recent one wins.
+      var open = records
+        .filter(function(t){ return normalizePlate(t.truckPlate) === normalizePlate(plate) && t.timeDelivery && !t.timeBack; })
+        .sort(function(a,b){
+          if(a.date !== b.date) return b.date.localeCompare(a.date);
+          return (b.recordedAt || "").localeCompare(a.recordedAt || "");
+        })[0];
+
+      var card = document.createElement("button");
+      card.type = "button";
+      card.className = "truck-status-card" + (open ? " busy" : "");
+      card.setAttribute("data-truck-status", plate);
+      if(open){
+        card.innerHTML =
+          '<span class="ts-plate">' + escapeHtml(plate) + '</span>' +
+          '<span class="ts-state">Delivering now</span>' +
+          '<span class="ts-detail">Driver: ' + escapeHtml(open.driver || "—") + '</span>' +
+          '<span class="ts-detail">Laborer(s): ' + escapeHtml(open.laborers || "—") + '</span>';
+      } else {
+        card.innerHTML =
+          '<span class="ts-plate">' + escapeHtml(plate) + '</span>' +
+          '<span class="ts-state">In yard</span>';
+      }
+      bar.appendChild(card);
+    });
+
+    bar.querySelectorAll("[data-truck-status]").forEach(function(b){
+      b.addEventListener("click", function(){
+        document.getElementById("truckSearch").value = b.dataset.truckStatus;
+        renderTrucks();
+      });
+    });
+  }
+
   function renderTrucks(){
+    renderTruckStatusBar();
     var body = document.getElementById("trucksBody");
     var search = document.getElementById("truckSearch").value.trim().toLowerCase();
     var list = (db.truckRecords || []).slice().sort(function(a,b){
