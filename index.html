@@ -2946,7 +2946,7 @@
 
   // The four trucks we track at a glance. Matching against a record's plate
   // field ignores spacing/case so "SK 8226 E" and "sk8226e" both count.
-  var TRACKED_TRUCKS = ["SK8226E", "WGS2831", "QMU6228", "SK9100K"];
+  var TRACKED_TRUCKS = ["SK8226E", "WGS2831", "QMU6228", "SAB9100K"];
   function normalizePlate(s){ return String(s || "").toUpperCase().replace(/[\s-]/g, ""); }
 
   function renderTruckStatusBar(){
@@ -2974,7 +2974,8 @@
           '<span class="ts-plate">' + escapeHtml(plate) + '</span>' +
           '<span class="ts-state">Delivering now</span>' +
           '<span class="ts-detail">Driver: ' + escapeHtml(open.driver || "—") + '</span>' +
-          '<span class="ts-detail">Laborer(s): ' + escapeHtml(open.laborers || "—") + '</span>';
+          '<span class="ts-detail">Laborer(s): ' + escapeHtml(open.laborers || "—") + '</span>' +
+          '<span class="ts-detail">Vessel: ' + escapeHtml(open.vessel || "—") + '</span>';
       } else {
         card.innerHTML =
           '<span class="ts-plate">' + escapeHtml(plate) + '</span>' +
