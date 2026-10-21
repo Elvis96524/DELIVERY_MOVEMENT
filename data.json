@@ -1427,8 +1427,8 @@
     },
     "FSE-DC-18": {
       "serial": "FSE-DC-18",
-      "status": "backloaded",
-      "vessel": "",
+      "status": "reserved",
+      "vessel": "HELANG INTEGRATED PLATFORM",
       "nextVessel": "",
       "lastQuantities": {
         "basketLarge": 0,
@@ -1439,7 +1439,7 @@
         "othersNote": ""
       },
       "createdAt": "2026-09-21T08:52:55.233Z",
-      "updatedAt": "2026-10-21T08:07:16.183Z",
+      "updatedAt": "2026-10-21T08:08:00.751Z",
       "length": 2.5,
       "width": 2.44,
       "height": 2.75,
@@ -7062,6 +7062,14 @@
       "vessel": "OS ONE",
       "id": "8d5d76f7-a81b-499a-9c95-02444dc60e6c",
       "recordedAt": "2026-10-21T08:07:45.559Z",
+      "date": "2026-10-21"
+    },
+    {
+      "serial": "FSE-DC-18",
+      "action": "reserved",
+      "vessel": "HELANG INTEGRATED PLATFORM",
+      "id": "4d2c4621-d081-4b09-95b0-fe5bfde200a7",
+      "recordedAt": "2026-10-21T08:08:00.751Z",
       "date": "2026-10-21"
     }
   ],
