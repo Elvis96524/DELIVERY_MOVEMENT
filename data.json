@@ -8669,6 +8669,26 @@
       },
       "id": "52eb6728-b032-4310-9435-852ebd08c173",
       "recordedAt": "2026-10-20T07:37:10.318Z"
+    },
+    {
+      "driver": "SYAH",
+      "laborers": "Ahmad",
+      "vessel": "SK PINNACLE",
+      "place": "Asb",
+      "truckPlate": "SK8226E",
+      "date": "2026-10-21",
+      "timeDelivery": "09:38",
+      "timeBack": "",
+      "items": {
+        "basketLarge": 0,
+        "basketSmall": 0,
+        "basketThai": 0,
+        "roBottles": 0,
+        "others": 0,
+        "othersNote": ""
+      },
+      "id": "29c64fe6-f85b-416a-8ff5-697fb6243633",
+      "recordedAt": "2026-10-21T01:38:53.837Z"
     }
   ],
   "drivers": {
