@@ -2129,8 +2129,8 @@
     },
     "PTSB100028-1": {
       "serial": "PTSB100028-1",
-      "status": "loaded",
-      "vessel": "KEYFIELD WISDOM",
+      "status": "backloaded",
+      "vessel": "",
       "nextVessel": "",
       "lastQuantities": {
         "basketLarge": 0,
@@ -2141,7 +2141,7 @@
         "othersNote": ""
       },
       "createdAt": "2026-09-22T03:43:34.651Z",
-      "updatedAt": "2026-10-16T01:45:00.699Z",
+      "updatedAt": "2026-10-21T05:17:03.127Z",
       "length": 2.991,
       "width": 2.438,
       "height": 2.591,
@@ -6944,6 +6944,23 @@
       },
       "id": "09d4f65c-66a2-4ca5-b7bc-f42d47f56462",
       "recordedAt": "2026-10-21T05:16:55.995Z"
+    },
+    {
+      "serial": "PTSB100028-1",
+      "action": "backloaded",
+      "vessel": "",
+      "date": "2026-10-21",
+      "trailerPlate": "VPP6663",
+      "quantities": {
+        "basketLarge": 0,
+        "basketSmall": 0,
+        "basketThai": 0,
+        "roBottles": 0,
+        "others": 0,
+        "othersNote": ""
+      },
+      "id": "ee7b3500-c5a1-4ba4-a264-c3d4c3ff275f",
+      "recordedAt": "2026-10-21T05:17:03.127Z"
     }
   ],
   "truckRecords": [
