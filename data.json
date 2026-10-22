@@ -973,8 +973,8 @@
     },
     "FSE-CF-44": {
       "serial": "FSE-CF-44",
-      "status": "reserved",
-      "vessel": "KEYFIELD JOYFUL",
+      "status": "backloaded",
+      "vessel": "",
       "nextVessel": "",
       "lastQuantities": {
         "basketLarge": 0,
@@ -982,10 +982,10 @@
         "basketThai": 0,
         "roBottles": 0,
         "others": 0,
-        "othersNote": ""
+        "othersNote": "RESERVATION CANCELLED"
       },
       "createdAt": "2026-09-21T07:46:00.086Z",
-      "updatedAt": "2026-10-22T08:23:04.391Z",
+      "updatedAt": "2026-10-22T08:30:38.624Z",
       "length": 2.991,
       "width": 2.286,
       "height": 2.519,
@@ -7171,6 +7171,23 @@
       "id": "ba885109-b06c-4f76-bd88-d54030cbb614",
       "recordedAt": "2026-10-22T08:23:16.788Z",
       "date": "2026-10-22"
+    },
+    {
+      "serial": "FSE-CF-44",
+      "action": "backloaded",
+      "vessel": "",
+      "date": "2026-10-22",
+      "trailerPlate": "",
+      "quantities": {
+        "basketLarge": 0,
+        "basketSmall": 0,
+        "basketThai": 0,
+        "roBottles": 0,
+        "others": 0,
+        "othersNote": "RESERVATION CANCELLED"
+      },
+      "id": "c69e42bd-6e15-4b05-9049-e2ec2c57c100",
+      "recordedAt": "2026-10-22T08:30:38.624Z"
     }
   ],
   "truckRecords": [
