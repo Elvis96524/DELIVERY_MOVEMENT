@@ -596,8 +596,8 @@
     },
     "FSE-CF-27": {
       "serial": "FSE-CF-27",
-      "status": "backloaded",
-      "vessel": "",
+      "status": "reserved",
+      "vessel": "KEYFIELD WISDOM",
       "nextVessel": "",
       "lastQuantities": {
         "basketLarge": 0,
@@ -608,7 +608,7 @@
         "othersNote": "RESERVATION CANCELLED"
       },
       "createdAt": "2026-09-21T02:27:53.451Z",
-      "updatedAt": "2026-10-19T07:41:07.275Z",
+      "updatedAt": "2026-10-22T01:21:04.540Z",
       "length": 3,
       "width": 2.5,
       "height": 2.7,
@@ -7115,6 +7115,14 @@
       },
       "id": "52e5977f-8b74-4975-9437-8031cd4c4ad1",
       "recordedAt": "2026-10-22T00:31:41.564Z"
+    },
+    {
+      "serial": "FSE-CF-27",
+      "action": "reserved",
+      "vessel": "KEYFIELD WISDOM",
+      "id": "d7e495b2-15de-47e9-ae69-b165cefdd7ba",
+      "recordedAt": "2026-10-22T01:21:04.540Z",
+      "date": "2026-10-22"
     }
   ],
   "truckRecords": [
