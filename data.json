@@ -8949,6 +8949,26 @@
       },
       "id": "b63f0c38-435d-472f-9a1a-a8dbfdb98f8b",
       "recordedAt": "2026-10-22T05:04:28.699Z"
+    },
+    {
+      "driver": "SHAHRIN",
+      "laborers": "SYUKRI,ALIF",
+      "vessel": "SK PERFECT",
+      "place": "ASB",
+      "truckPlate": "SAB9100K",
+      "date": "2026-10-22",
+      "timeDelivery": "13:08",
+      "timeBack": "",
+      "items": {
+        "basketLarge": 0,
+        "basketSmall": 0,
+        "basketThai": 0,
+        "roBottles": 0,
+        "others": 0,
+        "othersNote": ""
+      },
+      "id": "b06e0ffc-fbf0-4f89-a447-b9b386789dbf",
+      "recordedAt": "2026-10-22T05:08:45.560Z"
     }
   ],
   "drivers": {
