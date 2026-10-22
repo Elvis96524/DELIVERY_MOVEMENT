@@ -2317,8 +2317,8 @@
     },
     "TK-4014": {
       "serial": "TK-4014",
-      "status": "backloaded",
-      "vessel": "",
+      "status": "reserved",
+      "vessel": "KEYFIELD JOYFUL",
       "nextVessel": "",
       "lastQuantities": {
         "basketLarge": 0,
@@ -2329,7 +2329,7 @@
         "othersNote": "RESERVATION CANCELLED"
       },
       "createdAt": "2026-09-22T03:47:46.499Z",
-      "updatedAt": "2026-10-06T00:10:36.306Z",
+      "updatedAt": "2026-10-22T08:23:16.788Z",
       "length": 2.5,
       "width": 2.44,
       "height": 2.75,
@@ -7162,6 +7162,14 @@
       "vessel": "KEYFIELD JOYFUL",
       "id": "e893eb55-149b-4620-84fc-70a2a56f3369",
       "recordedAt": "2026-10-22T08:23:04.391Z",
+      "date": "2026-10-22"
+    },
+    {
+      "serial": "TK-4014",
+      "action": "reserved",
+      "vessel": "KEYFIELD JOYFUL",
+      "id": "ba885109-b06c-4f76-bd88-d54030cbb614",
+      "recordedAt": "2026-10-22T08:23:16.788Z",
       "date": "2026-10-22"
     }
   ],
