@@ -2418,12 +2418,12 @@
     },
     "TK-5008": {
       "serial": "TK-5008",
-      "status": "backloaded",
-      "vessel": "",
+      "status": "reserved",
+      "vessel": "KEYFIELD WISDOM",
       "nextVessel": "",
       "lastQuantities": null,
       "createdAt": "2026-09-22T03:48:53.027Z",
-      "updatedAt": "2026-09-22T03:48:53.027Z",
+      "updatedAt": "2026-10-22T01:21:22.396Z",
       "length": 2.5,
       "width": 2.44,
       "height": 2.75,
@@ -7130,6 +7130,14 @@
       "vessel": "KEYFIELD WISDOM",
       "id": "2aaffd93-c53d-493f-8834-adc7459132f8",
       "recordedAt": "2026-10-22T01:21:11.667Z",
+      "date": "2026-10-22"
+    },
+    {
+      "serial": "TK-5008",
+      "action": "reserved",
+      "vessel": "KEYFIELD WISDOM",
+      "id": "1291b2a8-1ea0-46d2-88b2-3e5d6d38f0f4",
+      "recordedAt": "2026-10-22T01:21:22.396Z",
       "date": "2026-10-22"
     }
   ],
