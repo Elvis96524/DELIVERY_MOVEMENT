@@ -80,8 +80,8 @@
     },
     "DF-02": {
       "serial": "DF-02",
-      "status": "backloaded",
-      "vessel": "",
+      "status": "reserved",
+      "vessel": "KEYFIELD JOYFUL",
       "nextVessel": "",
       "lastQuantities": {
         "basketLarge": 0,
@@ -92,7 +92,7 @@
         "othersNote": ""
       },
       "createdAt": "2026-09-21T02:18:23.156Z",
-      "updatedAt": "2026-10-02T02:50:51.756Z",
+      "updatedAt": "2026-10-22T08:22:52.336Z",
       "length": 2.438,
       "width": 2.438,
       "height": 2.76,
@@ -7146,6 +7146,14 @@
       "vessel": "KEYFIELD WISDOM",
       "id": "97527588-00f8-4d8c-8cb5-f0366619b172",
       "recordedAt": "2026-10-22T01:21:28.795Z",
+      "date": "2026-10-22"
+    },
+    {
+      "serial": "DF-02",
+      "action": "reserved",
+      "vessel": "KEYFIELD JOYFUL",
+      "id": "d7dc2843-135b-4b29-8d0c-da7356b7f6d0",
+      "recordedAt": "2026-10-22T08:22:52.332Z",
       "date": "2026-10-22"
     }
   ],
