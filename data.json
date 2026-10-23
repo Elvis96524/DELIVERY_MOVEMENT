@@ -9018,6 +9018,26 @@
       },
       "id": "b06e0ffc-fbf0-4f89-a447-b9b386789dbf",
       "recordedAt": "2026-10-22T05:08:45.560Z"
+    },
+    {
+      "driver": "SYAH",
+      "laborers": "Boboi,alip",
+      "vessel": "SK MAJESTIC",
+      "place": "Lse",
+      "truckPlate": "QMU6228",
+      "date": "2026-10-23",
+      "timeDelivery": "10:14",
+      "timeBack": "",
+      "items": {
+        "basketLarge": 0,
+        "basketSmall": 0,
+        "basketThai": 0,
+        "roBottles": 0,
+        "others": 0,
+        "othersNote": ""
+      },
+      "id": "4dc9a730-144b-45fa-af22-60402ba0896e",
+      "recordedAt": "2026-10-23T02:14:37.877Z"
     }
   ],
   "drivers": {
