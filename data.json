@@ -1088,8 +1088,8 @@
     },
     "FSE-CF-49": {
       "serial": "FSE-CF-49",
-      "status": "loaded",
-      "vessel": "KEYFIELD JOYFUL",
+      "status": "backloaded",
+      "vessel": "",
       "nextVessel": "",
       "lastQuantities": {
         "basketLarge": 0,
@@ -1100,7 +1100,7 @@
         "othersNote": ""
       },
       "createdAt": "2026-09-21T07:48:18.054Z",
-      "updatedAt": "2026-10-19T05:29:07.391Z",
+      "updatedAt": "2026-10-23T06:38:12.782Z",
       "length": 2.991,
       "width": 2.286,
       "height": 2.519,
@@ -7196,6 +7196,23 @@
       "id": "32ce72db-3b78-4809-bde5-1593f6f0b804",
       "recordedAt": "2026-10-22T08:31:02.310Z",
       "date": "2026-10-22"
+    },
+    {
+      "serial": "FSE-CF-49",
+      "action": "backloaded",
+      "vessel": "",
+      "date": "2026-10-23",
+      "trailerPlate": "VMN6663",
+      "quantities": {
+        "basketLarge": 0,
+        "basketSmall": 0,
+        "basketThai": 0,
+        "roBottles": 0,
+        "others": 0,
+        "othersNote": ""
+      },
+      "id": "73de677b-a88d-4ce5-962f-01d534b3933d",
+      "recordedAt": "2026-10-23T06:38:12.781Z"
     }
   ],
   "truckRecords": [
