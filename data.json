@@ -9058,6 +9058,26 @@
       },
       "id": "e7bcbbc3-726a-46e7-9e5a-0d8ce2305667",
       "recordedAt": "2026-10-23T04:17:07.958Z"
+    },
+    {
+      "driver": "SYAH",
+      "laborers": "Ahmad,shukri",
+      "vessel": "BELAIT PSV 2",
+      "place": "Asb",
+      "truckPlate": "WGS2831",
+      "date": "2026-10-23",
+      "timeDelivery": "13:27",
+      "timeBack": "",
+      "items": {
+        "basketLarge": 0,
+        "basketSmall": 0,
+        "basketThai": 0,
+        "roBottles": 0,
+        "others": 0,
+        "othersNote": ""
+      },
+      "id": "f505210a-78f0-419f-9f3e-8cb87d2c05b4",
+      "recordedAt": "2026-10-23T05:27:56.894Z"
     }
   ],
   "drivers": {
