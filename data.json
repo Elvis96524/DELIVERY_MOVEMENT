@@ -9038,6 +9038,26 @@
       },
       "id": "4dc9a730-144b-45fa-af22-60402ba0896e",
       "recordedAt": "2026-10-23T02:14:37.877Z"
+    },
+    {
+      "driver": "SHAHRIN",
+      "laborers": "AMAT,SYUKRI",
+      "vessel": "Sky blue",
+      "place": "",
+      "truckPlate": "SAB9100K",
+      "date": "2026-10-23",
+      "timeDelivery": "11:00",
+      "timeBack": "10:30",
+      "items": {
+        "basketLarge": 0,
+        "basketSmall": 0,
+        "basketThai": 0,
+        "roBottles": 0,
+        "others": 0,
+        "othersNote": "ambil botol kosong baru 300 sm ambil air 100 botol"
+      },
+      "id": "e7bcbbc3-726a-46e7-9e5a-0d8ce2305667",
+      "recordedAt": "2026-10-23T04:17:07.958Z"
     }
   ],
   "drivers": {
