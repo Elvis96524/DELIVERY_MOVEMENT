@@ -9115,6 +9115,26 @@
       },
       "id": "407fc913-9016-4001-ac93-04262c1e547d",
       "recordedAt": "2026-10-24T05:52:49.898Z"
+    },
+    {
+      "driver": "SHAHRIN",
+      "laborers": "OSANA",
+      "vessel": "BORNEO MART",
+      "place": "BANDAR",
+      "truckPlate": "SK8226E",
+      "date": "2026-10-23",
+      "timeDelivery": "13:32",
+      "timeBack": "",
+      "items": {
+        "basketLarge": 0,
+        "basketSmall": 0,
+        "basketThai": 0,
+        "roBottles": 0,
+        "others": 0,
+        "othersNote": ""
+      },
+      "id": "9d3ace1c-ca3b-44a2-bc9e-aded67d06af3",
+      "recordedAt": "2026-10-23T05:32:27.028Z"
     }
   ],
   "drivers": {
