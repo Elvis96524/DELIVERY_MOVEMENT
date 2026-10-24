@@ -9135,6 +9135,26 @@
       },
       "id": "9d3ace1c-ca3b-44a2-bc9e-aded67d06af3",
       "recordedAt": "2026-10-23T05:32:27.028Z"
+    },
+    {
+      "driver": "SHAHRIN",
+      "laborers": "CANANG,AHMAD",
+      "vessel": "BORNEO GROCERY",
+      "place": "BANDAR",
+      "truckPlate": "WGS2831",
+      "date": "2026-10-24",
+      "timeDelivery": "13:54",
+      "timeBack": "",
+      "items": {
+        "basketLarge": 0,
+        "basketSmall": 0,
+        "basketThai": 0,
+        "roBottles": 0,
+        "others": 0,
+        "othersNote": ""
+      },
+      "id": "fb73b068-52f1-4b51-ada3-33cd4ad8d610",
+      "recordedAt": "2026-10-24T05:54:04.320Z"
     }
   ],
   "drivers": {
