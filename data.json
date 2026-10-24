@@ -9155,6 +9155,26 @@
       },
       "id": "fb73b068-52f1-4b51-ada3-33cd4ad8d610",
       "recordedAt": "2026-10-24T05:54:04.320Z"
+    },
+    {
+      "driver": "SYAH",
+      "laborers": "Nasir,shukri",
+      "vessel": "Lee",
+      "place": "",
+      "truckPlate": "QMU6228",
+      "date": "2026-10-24",
+      "timeDelivery": "13:30",
+      "timeBack": "",
+      "items": {
+        "basketLarge": 0,
+        "basketSmall": 0,
+        "basketThai": 0,
+        "roBottles": 0,
+        "others": 0,
+        "othersNote": ""
+      },
+      "id": "c447d88d-f895-471a-b3d5-6fadc543f729",
+      "recordedAt": "2026-10-24T07:22:42.164Z"
     }
   ],
   "drivers": {
