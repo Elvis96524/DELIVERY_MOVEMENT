@@ -796,8 +796,8 @@
     },
     "FSE-CF-36": {
       "serial": "FSE-CF-36",
-      "status": "backloaded",
-      "vessel": "",
+      "status": "reserved",
+      "vessel": "KEYFIELD WISDOM",
       "nextVessel": "",
       "lastQuantities": {
         "basketLarge": 0,
@@ -808,7 +808,7 @@
         "othersNote": ""
       },
       "createdAt": "2026-09-21T07:43:47.790Z",
-      "updatedAt": "2026-10-07T09:00:58.174Z",
+      "updatedAt": "2026-10-26T00:17:32.872Z",
       "length": 2.991,
       "width": 2.286,
       "height": 2.519,
@@ -7271,6 +7271,14 @@
       },
       "id": "3668e35b-b105-4dcc-b3dc-67fbb66e2c75",
       "recordedAt": "2026-10-26T00:17:06.586Z"
+    },
+    {
+      "serial": "FSE-CF-36",
+      "action": "reserved",
+      "vessel": "KEYFIELD WISDOM",
+      "id": "ae6581c6-2ebe-40fe-8b10-9888f989062c",
+      "recordedAt": "2026-10-26T00:17:32.872Z",
+      "date": "2026-10-26"
     }
   ],
   "truckRecords": [
