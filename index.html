@@ -922,6 +922,28 @@
     </div>
     <p class="empty hidden" id="driversEmpty">No driver accounts yet — only the admin can sign in until you add one.</p>
 
+    <div id="encryptionBox" class="hidden" style="border:1px solid var(--line);border-radius:var(--radius);padding:14px 16px;margin-top:18px;">
+      <strong>Data encryption</strong>
+      <span class="badge" id="encStatusBadge" style="margin-left:8px;"></span>
+      <p class="modal-sub" id="encDescOff" style="margin:6px 0 10px;">
+        Right now, a copy of your GitHub repo's <code>data.json</code> is plain, readable text — anyone
+        who finds it (your repo is public) can read every container, delivery and driver name in it.
+        Turning this on encrypts the file before it's saved, so a copy of it is just scrambled
+        characters without the key. Drivers won't notice anything — already-connected phones pick up
+        the key by themselves on their next ordinary refresh, with nothing to tap or re-send.
+      </p>
+      <p class="modal-sub hidden" id="encDescOn" style="margin:6px 0 10px;">
+        New saves are encrypted before they leave this device. Drivers already connected don't need
+        anything from you — their phones quietly pick up the key the next time they refresh (which
+        happens automatically every ~20 seconds, or whenever they tap ⟳). A fresh connect link still
+        works as normal for anyone new.
+      </p>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;">
+        <button type="button" class="btn btn-primary btn-sm" id="enableEncryptionBtn">Turn on encryption</button>
+        <button type="button" class="btn btn-ghost btn-sm hidden" id="copyEncKeyBtn">Copy key (for backup)</button>
+      </div>
+    </div>
+
     <div id="setupLinkBox" class="hidden" style="border:1px solid var(--line);border-radius:var(--radius);padding:14px 16px;margin-top:18px;">
       <strong>Connect a driver's phone</strong>
       <p class="modal-sub" style="margin:6px 0 10px;">
@@ -1140,6 +1162,86 @@
     return new TextDecoder().decode(bytes);
   }
 
+  // ---------- at-rest encryption for data.json ----------
+  // Optional, admin-enabled. When on, the file this app writes to GitHub is
+  // AES-256-GCM ciphertext (envelope: {enc:1, iv, data, keyWrap}) instead of
+  // plain JSON — so a copy of the repo, or of data.json alone, is unreadable
+  // without the key.
+  //
+  // The key itself (encKey) is a random value, generated once, that never
+  // changes just because the GitHub token is rotated later. But every
+  // device that's already connected needs to learn it WITHOUT the admin
+  // re-sharing a link — that's what "keyWrap" is for: encKey, wrapped with
+  // a second key derived from the GitHub token every connected device
+  // already holds (SHA-256(token), used as an AES key). Any device with a
+  // working token can unwrap it locally and silently the moment it next
+  // fetches data.json (a normal background refresh, or tapping ⟳ Refresh)
+  // — nothing for the driver to tap or type. Once unwrapped, a device
+  // caches encKey itself, so it keeps working even through a later token
+  // rotation (every save re-wraps with whatever token is current, so the
+  // next device to refresh with the NEW token can still self-provision).
+  //
+  // A file with no "enc" field is treated as the older plain format, so
+  // existing unencrypted repos keep working until the admin turns this on.
+  function bytesToB64url(bytes){
+    var bin = "";
+    bytes.forEach(function(b){ bin += String.fromCharCode(b); });
+    return btoa(bin).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
+  }
+  function b64urlToBytes(b64url){
+    var b64 = String(b64url || "").replace(/-/g, "+").replace(/_/g, "/");
+    while(b64.length % 4) b64 += "=";
+    var bin = atob(b64);
+    var bytes = new Uint8Array(bin.length);
+    for(var i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+    return bytes;
+  }
+  function genEncKey(){
+    return bytesToB64url(crypto.getRandomValues(new Uint8Array(32))); // 256-bit key
+  }
+  function importEncKey(keyB64url){
+    return crypto.subtle.importKey("raw", b64urlToBytes(keyB64url), { name: "AES-GCM" }, false, ["encrypt", "decrypt"]);
+  }
+  async function encryptForStorage(plainObj, keyB64url){
+    var key = await importEncKey(keyB64url);
+    var iv = crypto.getRandomValues(new Uint8Array(12));
+    var plaintext = new TextEncoder().encode(JSON.stringify(plainObj));
+    var ciphertext = await crypto.subtle.encrypt({ name: "AES-GCM", iv: iv }, key, plaintext);
+    return { enc: 1, iv: bytesToB64url(iv), data: bytesToB64url(new Uint8Array(ciphertext)) };
+  }
+  async function decryptFromStorage(envelope, keyB64url){
+    var key = await importEncKey(keyB64url);
+    var iv = b64urlToBytes(envelope.iv);
+    var ciphertext = b64urlToBytes(envelope.data);
+    var plaintext = await crypto.subtle.decrypt({ name: "AES-GCM", iv: iv }, key, ciphertext);
+    return JSON.parse(new TextDecoder().decode(plaintext));
+  }
+  function looksEncrypted(obj){
+    return !!(obj && obj.enc === 1 && typeof obj.iv === "string" && typeof obj.data === "string");
+  }
+  // Derives an AES-GCM key straight from the GitHub token (via SHA-256) —
+  // used only to wrap/unwrap encKey for auto-provisioning, never to encrypt
+  // the data itself. Safe to tie to the token specifically because it's
+  // re-derived (and the wrap re-saved) on every write, so it always tracks
+  // whichever token is currently in use.
+  async function tokenWrapKey(token){
+    var digest = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(String(token || "")));
+    return crypto.subtle.importKey("raw", digest, { name: "AES-GCM" }, false, ["encrypt", "decrypt"]);
+  }
+  async function wrapEncKeyWithToken(encKeyB64url, token){
+    var key = await tokenWrapKey(token);
+    var iv = crypto.getRandomValues(new Uint8Array(12));
+    var ciphertext = await crypto.subtle.encrypt({ name: "AES-GCM", iv: iv }, key, new TextEncoder().encode(encKeyB64url));
+    return { iv: bytesToB64url(iv), data: bytesToB64url(new Uint8Array(ciphertext)) };
+  }
+  async function unwrapEncKeyWithToken(wrapEnvelope, token){
+    var key = await tokenWrapKey(token);
+    var iv = b64urlToBytes(wrapEnvelope.iv);
+    var ciphertext = b64urlToBytes(wrapEnvelope.data);
+    var plaintext = await crypto.subtle.decrypt({ name: "AES-GCM", iv: iv }, key, ciphertext);
+    return new TextDecoder().decode(plaintext);
+  }
+
   // Reads config.json (same folder as the app) for the shared sync address.
   async function loadSharedConfig(){
     sharedCfg = null;
@@ -1205,6 +1307,10 @@
       el.textContent = "⚠ Access problem";
       el.className = "sync-badge error";
       el.title = "This phone's access code no longer works (it may have expired or been replaced). Ask the admin for a new setup link.";
+    } else if(mode === "nokey"){
+      el.textContent = "⚠ Needs encryption key";
+      el.className = "sync-badge error";
+      el.title = "The shared data is encrypted and this device doesn't have (or has an outdated) key. Ask the admin for a fresh connect link.";
     } else if(mode === "error"){
       el.textContent = "⚠ Offline — will retry";
       el.className = "sync-badge error";
@@ -1232,7 +1338,34 @@
       if(!br.ok) throw ghStatusError("GitHub read failed", br.status);
       content = (await br.json()).content;
     }
-    return { exists: true, sha: body.sha, data: JSON.parse(b64DecodeUnicode(content)) };
+    var parsed = JSON.parse(b64DecodeUnicode(content));
+    if(looksEncrypted(parsed)){
+      var key = cfg.encKey;
+      if(!key && parsed.keyWrap && !cfg.proxy){
+        // This device hasn't got the key yet, but it does have a working
+        // token — and that's all auto-provisioning needs. No link, no tap.
+        try{
+          key = await unwrapEncKeyWithToken(parsed.keyWrap, cfg.token);
+        }catch(unwrapErr){ /* stale token vs. this wrap — fall through to nokey/badkey below */ }
+        if(key){
+          cfg.encKey = key; // cache on this device so future loads skip the unwrap, and it survives a later token rotation
+          saveGhConfig(cfg);
+        }
+      }
+      if(!key){
+        var nk = new Error("encrypted, no key on this device");
+        nk.code = "nokey";
+        throw nk;
+      }
+      try{
+        parsed = await decryptFromStorage(parsed, key);
+      }catch(decErr){
+        var bk = new Error("could not decrypt (wrong or stale key)");
+        bk.code = "badkey";
+        throw bk;
+      }
+    }
+    return { exists: true, sha: body.sha, data: parsed };
   }
 
   function ghStatusError(prefix, status){
@@ -1255,9 +1388,16 @@
   }
 
   async function ghPutFile(cfg, dataObj, sha, message){
+    var toStore = dataObj;
+    if(cfg.encKey){
+      toStore = await encryptForStorage(dataObj, cfg.encKey);
+      if(cfg.token){ // not in proxy mode — this device actually holds a token to wrap with
+        toStore.keyWrap = await wrapEncKeyWithToken(cfg.encKey, cfg.token);
+      }
+    }
     var putBody = JSON.stringify({
       message: message || "Update delivery record data",
-      content: b64EncodeUnicode(JSON.stringify(dataObj, null, 2)),
+      content: b64EncodeUnicode(JSON.stringify(toStore, null, 2)),
       branch: cfg.branch || "main",
       sha: sha || undefined
     });
@@ -1426,6 +1566,15 @@
     showToast("This phone's access code no longer works. Your changes are kept here — ask the admin for a new setup link.", true);
   }
 
+  var ghNoKeyToastShown = false;
+  function isNoKeyProblem(err){ return !!(err && (err.code === "nokey" || err.code === "badkey")); }
+  function notifyNoKeyProblem(){
+    setSyncBadge("nokey");
+    if(ghNoKeyToastShown) return;
+    ghNoKeyToastShown = true;
+    showToast("This phone can't read the shared data — it's encrypted and this device doesn't have (or has an outdated) key. Ask the admin for a fresh connect link.", true);
+  }
+
   function scheduleRetry(){
     clearTimeout(ghRetryTimer);
     var delay = Math.min(60000, 5000 * Math.pow(2, Math.max(0, ghFailCount - 1))); // 5s, 10s, 20s … max 60s
@@ -1477,6 +1626,8 @@
       ghFailCount++;
       if(isAuthProblem(err)){
         notifyAuthProblem();
+      } else if(isNoKeyProblem(err)){
+        notifyNoKeyProblem();
       } else {
         setSyncBadge("error");
         if(ghFailCount === 1){
@@ -1562,13 +1713,16 @@
     }catch(err){
       ghFailCount++;
       var authProblem = isAuthProblem(err);
-      if(authProblem) notifyAuthProblem(); else setSyncBadge("error");
+      var noKeyProblem = isNoKeyProblem(err);
+      if(authProblem) notifyAuthProblem();
+      else if(noKeyProblem) notifyNoKeyProblem();
+      else setSyncBadge("error");
       if(wasActive){
         // Temporary problem (no signal, GitHub hiccup). Keep working and keep trying — never switch syncing off.
         return;
       }
       ghActive = false;
-      if(!authProblem && !ghConnectToastShown){
+      if(!authProblem && !noKeyProblem && !ghConnectToastShown){
         ghConnectToastShown = true;
         showToast("Can't reach the shared data right now. Working from this device's copy — it will connect automatically when the connection is back.", true);
       }
@@ -1650,11 +1804,14 @@
     var owner = (p.get("owner") || d.owner || "").trim();
     var repo = (p.get("repo") || d.repo || "").trim();
     if(!token || !owner || !repo) return false;
-    saveGhConfig({
+    var cfg = {
       token: token, owner: owner, repo: repo,
       branch: p.get("branch") || d.branch || "main",
       path: p.get("path") || d.path || "data.json"
-    });
+    };
+    var key = (p.get("key") || "").trim();
+    if(key) cfg.encKey = key; // carried invisibly: no extra step for whoever opens this link
+    saveGhConfig(cfg);
     return true;
   }
 
@@ -2007,6 +2164,7 @@
     }
     if(cfg.branch && cfg.branch !== "main") link += "&branch=" + encodeURIComponent(cfg.branch);
     if(cfg.path && cfg.path !== "data.json") link += "&path=" + encodeURIComponent(cfg.path);
+    if(cfg.encKey) link += "&key=" + encodeURIComponent(cfg.encKey); // rides along invisibly — nothing for the driver to enter
     return link;
   }
   function renderSetupLink(){
@@ -2026,8 +2184,51 @@
     if(navigator.share) navigator.share({ title: "Delivery Record", text: "Open this link on your phone to connect to Delivery Record:", url: link }).catch(function(){});
   });
 
+  function renderEncryptionBox(){
+    var box = document.getElementById("encryptionBox");
+    var cfg = loadGhConfig();
+    var on = !!(cfg && cfg.encKey);
+    box.classList.toggle("hidden", !hasTokenConfig(cfg)); // only meaningful once connected to a repo
+    var badge = document.getElementById("encStatusBadge");
+    badge.textContent = on ? "On" : "Off";
+    badge.className = "badge" + (on ? " backloaded" : "");
+    document.getElementById("encDescOff").classList.toggle("hidden", on);
+    document.getElementById("encDescOn").classList.toggle("hidden", !on);
+    document.getElementById("enableEncryptionBtn").classList.toggle("hidden", on);
+    document.getElementById("copyEncKeyBtn").classList.toggle("hidden", !on);
+  }
+
+  document.getElementById("enableEncryptionBtn").addEventListener("click", async function(){
+    var cfg = loadGhConfig();
+    if(!hasTokenConfig(cfg)) return;
+    var ok = await showConfirm(
+      "Turn on data encryption",
+      "From now on, data saved to GitHub will be encrypted. Already-connected driver phones pick up the " +
+      "key by themselves on their next refresh — you don't need to tell them or send anything. " +
+      "This can't be turned off again from inside the app, so make sure that's what you want."
+    );
+    if(!ok) return;
+    cfg.encKey = genEncKey();
+    saveGhConfig(cfg);
+    ghConfig = cfg;
+    setDirty(true);       // force the next save to re-write (and encrypt) the current data
+    await performGhSave();
+    renderEncryptionBox();
+    renderSetupLink();
+    showToast("Encryption is on. Connected phones will pick up the key automatically.");
+  });
+
+  document.getElementById("copyEncKeyBtn").addEventListener("click", async function(){
+    var cfg = loadGhConfig();
+    if(!cfg || !cfg.encKey) return;
+    try{ await navigator.clipboard.writeText(cfg.encKey); }
+    catch(e){}
+    showToast("Encryption key copied. Keep it somewhere safe — it's the only way to read the data if every connected device is ever lost.");
+  });
+
   function openAdminPanel(){
     renderDrivers();
+    renderEncryptionBox();
     renderSetupLink();
     openModal("adminModal");
   }
@@ -2045,8 +2246,8 @@
       tr.innerHTML =
         '<td class="mono">' + escapeHtml(id) + '</td>' +
         '<td><div class="row-actions">' +
-          '<button class="btn btn-sm btn-ghost" data-reset-pin="' + id + '">Reset PIN</button>' +
-          '<button class="btn btn-sm btn-danger" data-delete-driver="' + id + '">Delete</button>' +
+          '<button class="btn btn-sm btn-ghost" data-reset-pin="' + escapeHtml(id) + '">Reset PIN</button>' +
+          '<button class="btn btn-sm btn-danger" data-delete-driver="' + escapeHtml(id) + '">Delete</button>' +
         '</div></td>' +
         '<td>' + escapeHtml(d.name) + (d.active === false ? ' <span class="subtext">(inactive)</span>' : '') + '</td>' +
         '<td class="mono">' + (d.createdAt ? formatDMY(d.createdAt.slice(0,10)) : "—") + '</td>';
@@ -2288,7 +2489,9 @@
       showToast("Token, repo owner and repo name are required.", true);
       return;
     }
+    var prevKey = (ghConfig && ghConfig.encKey) || (loadGhConfig() || {}).encKey;
     ghConfig = { token: token, owner: owner, repo: repo, branch: branch, path: path };
+    if(prevKey) ghConfig.encKey = prevKey; // keep this device's encryption key — it's independent of the token
     saveGhConfig(ghConfig);
     closeModal("syncModal");
     await connectGh(true);
@@ -2666,9 +2869,9 @@
         '<td><span class="serial">' + escapeHtml(c.serial) + '</span></td>' +
         '<td>' + statusBadge(c) + '</td>' +
         '<td><div class="row-actions">' +
-          '<button class="btn btn-sm" data-status="' + c.serial + '">Update status</button>' +
-          '<button class="btn btn-sm btn-ghost" data-edit="' + c.serial + '">Edit</button>' +
-          (adminUnlocked ? '<button class="btn btn-sm btn-danger" data-delete="' + c.serial + '">Remove</button>' : "") +
+          '<button class="btn btn-sm" data-status="' + escapeHtml(c.serial) + '">Update status</button>' +
+          '<button class="btn btn-sm btn-ghost" data-edit="' + escapeHtml(c.serial) + '">Edit</button>' +
+          (adminUnlocked ? '<button class="btn btn-sm btn-danger" data-delete="' + escapeHtml(c.serial) + '">Remove</button>' : "") +
         '</div></td>' +
         '<td class="' + expiryClass(c.expiry) + '">' + (c.expiry ? formatDMY(c.expiry) : "—") + '</td>' +
         '<td class="dim-block">' + fmtDim(c.length) + ' × ' + fmtDim(c.width) + ' × ' + fmtDim(c.height) + '</td>' +
@@ -3020,8 +3223,8 @@
       tr.innerHTML =
         '<td class="mono">' + formatDMY(t.date) + '</td>' +
         '<td><div class="row-actions">' +
-          '<button class="btn btn-sm btn-ghost" data-truck-edit="' + t.id + '">Edit</button>' +
-          (adminUnlocked ? '<button class="btn btn-sm btn-danger" data-truck-delete="' + t.id + '">Remove</button>' : "") +
+          '<button class="btn btn-sm btn-ghost" data-truck-edit="' + escapeHtml(t.id) + '">Edit</button>' +
+          (adminUnlocked ? '<button class="btn btn-sm btn-danger" data-truck-delete="' + escapeHtml(t.id) + '">Remove</button>' : "") +
         '</div></td>' +
         '<td>' + escapeHtml(t.driver || "—") + '</td>' +
         '<td>' + escapeHtml(t.laborers || "—") + '</td>' +

@@ -57,11 +57,21 @@ Phones show **⚠ Access problem** (their unsent changes stay safe on the phone)
 2. On your phone: **⚙ Sync settings** → paste the new token → **Save & connect**.
 3. **🔒 Admin → Connect a driver's phone** → send the new link to the drivers. Opening it reconnects them; they stay signed in.
 
+## Data encryption (optional)
+
+**🔒 Admin → Data encryption → Turn on encryption** scrambles `data.json` before it's saved to GitHub (AES-256), so a copy of the file — or the whole repo, since it's public — is unreadable without the key. Nobody has to type, remember or receive the key by hand: it's a random value generated once on your device, and every already-connected driver phone quietly picks it up by itself the next time it refreshes — the same automatic refresh that already runs every ~20 seconds, or whenever someone taps **⟳**. There's nothing to tell drivers and no new link to send.
+
+- Only the admin sees or manages the key directly (**Data encryption → Copy key**, for backup — store it somewhere safe outside this app, e.g. a password manager).
+- It's independent of the GitHub access token: rotating the token later (see above) never loses it or requires re-encrypting anything. The key is re-wrapped automatically on every save, so the next device to refresh with a new token can still pick it up the same silent way.
+- A phone that hasn't picked up the key yet (e.g. it's been offline since before you turned this on) shows **⚠ Needs encryption key** until its next successful refresh — it can't read the data meanwhile, and it can't write garbled data either, it just waits.
+- This can't be turned off from the app once it's on (there's no "decrypt everything back to plain text" button) — if you need that, ask whoever built this for you, or restore an earlier plain-text version of `data.json` from the repo's *History*.
+- This protects the *contents* of `data.json` going forward. It doesn't erase older, already-public commits in the repo's history, and it doesn't hide that the app or repo exists.
+
 ## Good to know
 
 - **The token is on every phone that uses the link.** It only allows reading and writing this one repo's files, but anyone holding it (or anyone who reads it from a phone) can change your data — and, because the app itself is in the same repo, could also change the app. Only send the link to people you trust, and never post it anywhere public. Do not put the token in any file in the repo: GitHub cancels tokens it finds in public repos automatically.
 - The PINs control the *screens*, not the data file. Every save is a GitHub commit, so a bad change can be restored from the repo's *History* on `data.json`.
-- A public repo means `data.json` is readable by anyone. Keep the repo private if the data is sensitive (GitHub Pages on private repos needs a paid plan).
+- A public repo means `data.json` is readable by anyone. Keep the repo private if the data is sensitive (GitHub Pages on private repos needs a paid plan) — or turn on **Data encryption** (below), which keeps the file unreadable to anyone without the key even while the repo stays public and free.
 - After uploading a new `index.html`, change `CACHE_VERSION` in `service-worker.js` (e.g. `v8` → `v9`) so installed copies update.
 - Pre-filled address (only needed if the app is NOT on `USERNAME.github.io/REPO`): add `?gh_owner=USERNAME&gh_repo=REPO` to the app address.
 
