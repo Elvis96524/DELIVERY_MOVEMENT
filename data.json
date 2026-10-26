@@ -2317,8 +2317,8 @@
     },
     "TK-4014": {
       "serial": "TK-4014",
-      "status": "reserved",
-      "vessel": "KEYFIELD JOYFUL",
+      "status": "backloaded",
+      "vessel": "",
       "nextVessel": "",
       "lastQuantities": {
         "basketLarge": 0,
@@ -2329,7 +2329,7 @@
         "othersNote": "RESERVATION CANCELLED"
       },
       "createdAt": "2026-09-22T03:47:46.499Z",
-      "updatedAt": "2026-10-22T08:23:16.788Z",
+      "updatedAt": "2026-10-26T00:10:49.907Z",
       "length": 2.5,
       "width": 2.44,
       "height": 2.75,
@@ -7213,6 +7213,23 @@
       },
       "id": "73de677b-a88d-4ce5-962f-01d534b3933d",
       "recordedAt": "2026-10-23T06:38:12.781Z"
+    },
+    {
+      "serial": "TK-4014",
+      "action": "backloaded",
+      "vessel": "",
+      "date": "2026-10-26",
+      "trailerPlate": "",
+      "quantities": {
+        "basketLarge": 0,
+        "basketSmall": 0,
+        "basketThai": 0,
+        "roBottles": 0,
+        "others": 0,
+        "othersNote": "RESERVATION CANCELLED"
+      },
+      "id": "abcfa986-82d6-439e-8d5b-d77073cef212",
+      "recordedAt": "2026-10-26T00:10:49.906Z"
     }
   ],
   "truckRecords": [
