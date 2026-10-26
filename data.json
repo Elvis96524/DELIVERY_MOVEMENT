@@ -80,7 +80,7 @@
     },
     "DF-02": {
       "serial": "DF-02",
-      "status": "reserved",
+      "status": "loaded",
       "vessel": "KEYFIELD JOYFUL",
       "nextVessel": "",
       "lastQuantities": {
@@ -92,7 +92,7 @@
         "othersNote": ""
       },
       "createdAt": "2026-09-21T02:18:23.156Z",
-      "updatedAt": "2026-10-22T08:22:52.336Z",
+      "updatedAt": "2026-10-26T01:55:43.124Z",
       "length": 2.438,
       "width": 2.438,
       "height": 2.76,
@@ -7304,6 +7304,15 @@
       },
       "id": "e56dc214-54e7-41ca-98df-5d0fefb08380",
       "recordedAt": "2026-10-26T00:18:53.741Z"
+    },
+    {
+      "serial": "DF-02",
+      "action": "loaded",
+      "vessel": "KEYFIELD JOYFUL",
+      "date": "2026-10-26",
+      "trailerPlate": "QTT9993",
+      "id": "fca61141-5447-4da8-ad86-ae62a4c72f3c",
+      "recordedAt": "2026-10-26T01:55:43.124Z"
     }
   ],
   "truckRecords": [
