@@ -327,6 +327,8 @@
   }
   .truck-status-card{
     background:var(--panel);
+    background-size:cover;
+    background-position:center;
     border:1px solid var(--line);
     border-left:4px solid var(--green);
     border-radius:var(--radius);
@@ -335,37 +337,42 @@
     cursor:pointer;
     font-family:inherit;
     width:100%;
-    transition:background 0.12s ease, border-color 0.12s ease;
+    min-height:104px;
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-end;
+    position:relative;
+    color:#fff;
+    transition:filter 0.12s ease, border-color 0.12s ease;
   }
-  .truck-status-card:hover{background:var(--panel-2);}
+  .truck-status-card:hover{filter:brightness(1.08);}
   .truck-status-card .ts-plate{
     display:block;
     font-family:var(--mono);
     font-weight:700;
     font-size:14px;
     letter-spacing:0.02em;
+    text-shadow:0 1px 3px rgba(0,0,0,.7);
   }
   .truck-status-card .ts-state{
     display:block;
     font-size:12px;
     font-weight:600;
     margin-top:3px;
-    color:var(--ink-soft);
+    color:#fff;
+    text-shadow:0 1px 3px rgba(0,0,0,.7);
   }
   .truck-status-card .ts-detail{
     display:block;
     font-size:12px;
     margin-top:4px;
     line-height:1.4;
+    color:#fff;
+    text-shadow:0 1px 3px rgba(0,0,0,.7);
   }
   .truck-status-card.busy{
-    background:var(--red);
     border-left-color:var(--red);
-    color:#fff;
   }
-  .truck-status-card.busy .ts-state,
-  .truck-status-card.busy .ts-detail{color:#fff;}
-  .truck-status-card.busy:hover{background:var(--red);filter:brightness(1.08);}
   .checkbox-label{
     display:flex !important;
     flex-direction:row !important;
@@ -3150,6 +3157,14 @@
   // The four trucks we track at a glance. Matching against a record's plate
   // field ignores spacing/case so "SK 8226 E" and "sk8226e" both count.
   var TRACKED_TRUCKS = ["SK8226E", "WGS2831", "QMU6228", "SAB9100K"];
+  // One photo per tracked truck, shown as the card's background so it's
+  // recognizable at a glance. Lives alongside index.html in the repo.
+  var TRUCK_PHOTOS = {
+    "SK8226E": "truck-photos/sk8226e.jpg",
+    "WGS2831": "truck-photos/wgs2831.jpg",
+    "QMU6228": "truck-photos/qmu6228.jpg",
+    "SAB9100K": "truck-photos/sab9100k.jpg"
+  };
   function normalizePlate(s){ return String(s || "").toUpperCase().replace(/[\s-]/g, ""); }
 
   function renderTruckStatusBar(){
@@ -3172,6 +3187,13 @@
       card.type = "button";
       card.className = "truck-status-card" + (open ? " busy" : "");
       card.setAttribute("data-truck-status", plate);
+      var photo = TRUCK_PHOTOS[plate];
+      if(photo){
+        var overlay = open
+          ? "linear-gradient(rgba(142,30,22,.80),rgba(142,30,22,.80))"
+          : "linear-gradient(rgba(15,20,22,.46),rgba(15,20,22,.62))";
+        card.style.backgroundImage = overlay + ", url('" + photo + "')";
+      }
       if(open){
         card.innerHTML =
           '<span class="ts-plate">' + escapeHtml(plate) + '</span>' +

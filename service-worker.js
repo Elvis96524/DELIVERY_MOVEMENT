@@ -11,7 +11,7 @@
  * When you upload a new version of index.html, bump CACHE_VERSION below so
  * devices drop the old cached copy.
  */
-const CACHE_VERSION = "delivery-record-v19";
+const CACHE_VERSION = "delivery-record-v20";
 const CACHEABLE_HOSTS = ["fonts.googleapis.com", "fonts.gstatic.com", "cdnjs.cloudflare.com"];
 // The only outside sites whose files may be cached (fonts + spreadsheet export library).
 const STATIC_HOSTS = ["fonts.googleapis.com", "fonts.gstatic.com", "cdnjs.cloudflare.com"];
@@ -21,7 +21,11 @@ const SHELL = [
   "./manifest.json",
   "./config.json",
   "./icon-192.png",
-  "./icon-512.png"
+  "./icon-512.png",
+  "./truck-photos/sk8226e.jpg",
+  "./truck-photos/wgs2831.jpg",
+  "./truck-photos/qmu6228.jpg",
+  "./truck-photos/sab9100k.jpg"
 ];
 
 self.addEventListener("install", (event) => {
